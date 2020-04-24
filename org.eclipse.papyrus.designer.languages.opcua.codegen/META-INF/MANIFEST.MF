@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.designer.languages.opcua.codegen;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: org.eclipse.papyrus.designer.languages.opcua.codegen.Activator
+Bundle-Vendor: %vendorName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.papyrus.designer.languages.common.extensionpoints;bundle-version="1.0.3",
+ org.eclipse.core.resources,
+ org.eclipse.uml2.uml
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy

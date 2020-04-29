@@ -8,7 +8,6 @@
             locationURI="popup:org.eclipse.papyrus.designer.popup?after=codegen">
          <command
                commandId="org.eclipse.papyrus.designer.languages.opcua.codegen.command"
-               icon="icons/codegen.gif"
                label="Generate OPC-UA Information Model"
                style="push"
                tooltip="Generate OPC-UA Information Model">

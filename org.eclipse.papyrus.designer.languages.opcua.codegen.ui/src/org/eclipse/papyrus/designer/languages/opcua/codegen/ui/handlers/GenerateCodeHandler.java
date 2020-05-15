@@ -1,5 +1,7 @@
 package org.eclipse.papyrus.designer.languages.opcua.codegen.ui.handlers;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
@@ -47,7 +49,12 @@ public class GenerateCodeHandler extends CmdHandler {
 	}
 
 	private void generate(OpcUaModelElementCreator elem_creator, PackageableElement packageableElement) {
-		elem_creator.createPackageableElement(packageableElement);
+		try {
+			elem_creator.createPackageableElement(packageableElement);
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

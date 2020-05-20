@@ -1,10 +1,5 @@
 package org.eclipse.papyrus.designer.languages.opcua.codegen.transformations;
 
-import java.io.StringWriter;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -17,26 +12,13 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.designer.languages.common.base.ILocationStrategy;
 import org.eclipse.papyrus.designer.languages.common.base.ModelElementsCreator;
 import org.eclipse.papyrus.infra.tools.file.IPFileSystemAccess;
-import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.PackageableElement;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.internal.impl.ClassImpl;
-import org.eclipse.uml2.uml.internal.impl.PackageImpl;
-import org.eclipse.uml2.uml.internal.impl.PropertyImpl;
-import org.eclipse.uml2.uml.internal.impl.StateMachineImpl;
-import org.eclipse.xtend.lib.macro.declaration.MemberDeclaration;
-import org.opcfoundation.ua._2011._03.uanodeset.UANodeSet;
 import org.w3c.dom.Document;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.papyrus.designer.languages.opcua.codegen.xtend.*;
 
 
 public class OpcUaModelElementCreator extends ModelElementsCreator {
@@ -55,7 +37,6 @@ public class OpcUaModelElementCreator extends ModelElementsCreator {
 	public void createPackageableElement(PackageableElement packageableElement) throws ParserConfigurationException {
 		final String filename = locStrategy.getFileName((NamedElement) packageableElement) + ".xml";
 		
-		String output = "asdfsafd";
 		Model model = packageableElement.getModel();
 		String modelname = model.getName();
 		OpcUaUmlNodeSetConverter parser = new OpcUaUmlNodeSetConverter(model);

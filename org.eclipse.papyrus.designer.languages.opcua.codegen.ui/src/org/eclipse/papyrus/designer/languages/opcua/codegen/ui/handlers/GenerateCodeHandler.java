@@ -14,9 +14,6 @@ import org.eclipse.papyrus.designer.languages.opcua.codegen.transformations.OpcU
 import org.eclipse.papyrus.infra.tools.file.IPFileSystemAccess;
 import org.eclipse.papyrus.infra.tools.file.ProjectBasedFileAccess;
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 
 public class GenerateCodeHandler extends CmdHandler {

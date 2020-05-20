@@ -3,10 +3,15 @@ package org.eclipse.papyrus.designer.languages.opcua.codegen.transformations;
 import java.awt.List;
 
 import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+import javax.xml.bind.JAXBElement;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.opcfoundation.ua._2008._02.types.Argument;
+import org.opcfoundation.ua._2008._02.types.ExtensionObject;
+import org.opcfoundation.ua._2008._02.types.ListOfExtensionObject;
+import org.opcfoundation.ua._2008._02.types.NodeId;
 import org.opcfoundation.ua._2011._03.uanodeset.ListOfReferences;
 import org.opcfoundation.ua._2011._03.uanodeset.LocalizedText;
 import org.opcfoundation.ua._2011._03.uanodeset.Reference;
@@ -15,6 +20,7 @@ import org.opcfoundation.ua._2011._03.uanodeset.UANode;
 import org.opcfoundation.ua._2011._03.uanodeset.UANodeSet;
 import org.opcfoundation.ua._2011._03.uanodeset.UAObjectType;
 import org.opcfoundation.ua._2011._03.uanodeset.UAVariable;
+import org.opcfoundation.ua._2011._03.uanodeset.UAVariable.Value;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -101,12 +107,77 @@ public class OpcUaNodeSetWriter {
 			uaVariable.setAttribute("ArrayDimensions", variable.getArrayDimensions());
 		}
 		
+		if(variable.getBrowseName() == "InputArguments")
+		{
+			Element uaValue = this.doc.createElement("Value");
+			addInputArguments(uaValue, variable.getValue());
+			uaVariable.appendChild(uaValue);
+		}
+		
 		ListOfReferences uaRefList = variable.getReferences();
 		convertReferences(uaVariable, uaRefList);
 		
 		this.root.appendChild(uaVariable);
 	}
 	
+	private void addInputArguments(Element argsElement, Value args)
+	{
+		Element uaListOfExtensions = this.doc.createElement("uax:ListOfExtensionObject");
+		ListOfExtensionObject listOfExtensions = (ListOfExtensionObject) args.getAny();
+		
+		for(ExtensionObject arg : listOfExtensions.getExtensionObject())
+		{
+			Element uaExtensionObject = this.doc.createElement("uax:ExtensionObject");
+			Argument argument = (Argument) arg.getBody().getValue().getAny();
+			
+			// set type
+			Element uaTypeID = this.doc.createElement("uax:TypeId");
+			Element uaIdentifier = this.doc.createElement("uax:Identifier");
+			String idstr= arg.getTypeId().getValue().getIdentifier().getValue();
+			uaIdentifier.setTextContent(idstr);
+			uaTypeID.appendChild(uaIdentifier);
+			uaExtensionObject.appendChild(uaTypeID);
+			
+			// set body
+			Element uaBody = this.doc.createElement("uax:Body");
+			Element uaArgument = this.doc.createElement("uax:Argument");
+			
+			Element uaArgumentName = this.doc.createElement("uax:Name");
+			uaArgumentName.setTextContent(argument.getName().getValue());
+			uaArgument.appendChild(uaArgumentName);
+			
+			Element uaDataType = this.doc.createElement("uax:DataType");
+			
+			Element uaDataTypeIdentifier = this.doc.createElement("uax:Identifier");		
+			idstr = argument.getDataType().getValue().getIdentifier().getValue();
+			uaDataTypeIdentifier.setTextContent(idstr);
+			
+			uaDataType.appendChild(uaDataTypeIdentifier);
+			uaArgument.appendChild(uaDataType);
+			
+			Element uaValueRank = this.doc.createElement("aux:ValueRank");
+			uaValueRank.setTextContent(argument.getValueRank().toString());
+			uaArgument.appendChild(uaValueRank);
+			
+			Element uaDescription = this.doc.createElement("aux:Description");
+			Element uaEncoding = this.doc.createElement("uax:Encoding");
+			uaEncoding.setTextContent("0");
+			uaDescription.appendChild(uaEncoding);
+			Element uaLocale= this.doc.createElement("aux:Locael");
+			uaDescription.appendChild(uaLocale);
+			Element uaText = this.doc.createElement("uax:Text");
+			uaDescription.appendChild(uaText);
+			
+			uaArgument.appendChild(uaDescription);
+			
+			uaBody.appendChild(uaArgument);
+			uaExtensionObject.appendChild(uaBody);
+			
+			uaListOfExtensions.appendChild(uaExtensionObject);
+		}
+		
+		argsElement.appendChild(uaListOfExtensions);
+	}
 	
 	private void addDisplayName(Element uaObjType, java.util.List<LocalizedText> displayName) {
 		// TODO Auto-generated method stub

@@ -103,10 +103,25 @@ public class OpcUaUmlNodeSetConverter {
 		uaClass.setBrowseName(classElement.getName());
 		String nodeId = convertQualifiedNameToNodeId(classElement);
 		uaClass.setNodeId(nodeId);
-		
-		
+				
 		ListOfReferences classListOfRefs = new ListOfReferences();
 		List<Reference> refList = classListOfRefs.getReference();
+		
+		if(classElement.getGeneralizations().size() > 0)
+		{			
+			Generalization general = classElement.getGeneralizations().get(0);
+			if(general.getGeneral() instanceof ClassImpl)
+			{
+				Reference subtypeRef = new Reference();
+				subtypeRef.setReferenceType("HasSubtype");
+				subtypeRef.setIsForward(false);
+				String super_type = convertQualifiedNameToNodeId((ClassImpl) general.getGeneral());
+				subtypeRef.setValue(super_type);
+				refList.add(subtypeRef);
+			}
+		}
+		
+		
 		uaClass.setReferences(classListOfRefs);
 		
 		List<UANode> extensionList = this.nodeset.getUAObjectOrUAVariableOrUAMethod();

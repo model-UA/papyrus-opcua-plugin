@@ -3,13 +3,16 @@ package org.eclipse.papyrus.designer.languages.opcua.codegen.transformations;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.NameParser;
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 
 import org.eclipse.core.internal.resources.File;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -34,6 +37,7 @@ import org.opcfoundation.ua._2011._03.uanodeset.UAObjectType;
 import org.opcfoundation.ua._2011._03.uanodeset.UAReferenceType;
 import org.opcfoundation.ua._2011._03.uanodeset.UAVariable;
 import org.opcfoundation.ua._2011._03.uanodeset.UAVariable.Value;
+import org.opcfoundation.ua._2011._03.uanodeset.UriTable;
 
 public class OpcUaUmlNodeSetConverter {
 	
@@ -45,12 +49,27 @@ public class OpcUaUmlNodeSetConverter {
 	{
 		this.model = model;
 		this.nodeset = new UANodeSet();
+	
+		UriTable namespace_table = new UriTable();
+		this.nodeset.setNamespaceUris(namespace_table);
+		List<String> namespaces = namespace_table.getUri();
+		namespaces.add(model.getURI());
+		
 	}
 	
 	public OpcUaUmlNodeSetConverter(Model model, UANodeSet nodeset)
 	{
 		this.model = model;
 		this.nodeset = nodeset;
+		
+		UriTable namespace_table = this.nodeset.getNamespaceUris();
+		if(namespace_table == null )
+		{
+			namespace_table = new UriTable();
+			this.nodeset.setNamespaceUris(namespace_table);
+		}
+		List<String> namespaces = namespace_table.getUri();
+		namespaces.add(model.getURI());
 	}
 	
 		
@@ -80,6 +99,16 @@ public class OpcUaUmlNodeSetConverter {
 		{
 			if(elem instanceof PackageImpl)
 			{
+				UriTable namespace_table = this.nodeset.getNamespaceUris();
+				if(namespace_table == null )
+				{
+					namespace_table = new UriTable();
+					this.nodeset.setNamespaceUris(namespace_table);
+				}
+				
+				List<String> namespaces = namespace_table.getUri();
+				namespaces.add(((PackageImpl) elem).getURI());
+				
 				System.out.println(elem.getName());
 				parsePackage( (PackageImpl) elem);
 			}

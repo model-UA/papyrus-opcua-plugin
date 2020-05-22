@@ -21,6 +21,7 @@ import org.opcfoundation.ua._2011._03.uanodeset.UANodeSet;
 import org.opcfoundation.ua._2011._03.uanodeset.UAObjectType;
 import org.opcfoundation.ua._2011._03.uanodeset.UAVariable;
 import org.opcfoundation.ua._2011._03.uanodeset.UAVariable.Value;
+import org.opcfoundation.ua._2011._03.uanodeset.UriTable;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -43,7 +44,7 @@ public class OpcUaNodeSetWriter {
 	
 	public void writeToFile(UANodeSet nodeset)
 	{
-		String output ="";
+		convertNamespaces(nodeset.getNamespaceUris());
 		
 		for( UANode node : nodeset.getUAObjectOrUAVariableOrUAMethod())
 		{
@@ -61,6 +62,20 @@ public class OpcUaNodeSetWriter {
 			}
 		}
 		
+	}
+	
+	private void convertNamespaces(UriTable namespace_table)
+	{
+		Element namespaceUris = this.doc.createElement("NamespaceUris");
+		
+		for(String namespace : namespace_table.getUri())
+		{
+			Element namespaceElement = this.doc.createElement("Uri");
+			namespaceElement.setTextContent(namespace);
+			namespaceUris.appendChild(namespaceElement);
+		}
+		
+		this.root.appendChild(namespaceUris);
 	}
 	
 	private void converterOpcUAObjectType(UAObjectType uaObject)
@@ -147,11 +162,9 @@ public class OpcUaNodeSetWriter {
 			uaArgument.appendChild(uaArgumentName);
 			
 			Element uaDataType = this.doc.createElement("uax:DataType");
-			
 			Element uaDataTypeIdentifier = this.doc.createElement("uax:Identifier");		
 			idstr = argument.getDataType().getValue().getIdentifier().getValue();
 			uaDataTypeIdentifier.setTextContent(idstr);
-			
 			uaDataType.appendChild(uaDataTypeIdentifier);
 			uaArgument.appendChild(uaDataType);
 			

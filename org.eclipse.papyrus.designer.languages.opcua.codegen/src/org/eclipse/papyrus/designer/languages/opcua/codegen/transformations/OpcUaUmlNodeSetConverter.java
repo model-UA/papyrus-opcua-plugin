@@ -101,7 +101,7 @@ public class OpcUaUmlNodeSetConverter {
 	{
 		UAObjectType uaClass = new UAObjectType();
 		uaClass.setBrowseName(classElement.getName());
-		String nodeId = convertQualifiedNameToNodeId(classElement.getQualifiedName());
+		String nodeId = convertQualifiedNameToNodeId(classElement);
 		uaClass.setNodeId(nodeId);
 		
 		
@@ -117,7 +117,7 @@ public class OpcUaUmlNodeSetConverter {
 			// configure attribute
 			UAVariable attribute = new UAVariable();
 			attribute.setBrowseName(attrib.getName());
-			String attribNodeId = convertQualifiedNameToNodeId(attrib.getQualifiedName());
+			String attribNodeId = convertQualifiedNameToNodeId(attrib);
 			attribute.setNodeId(attribNodeId);			
 			attribute.setParentNodeId(uaClass.getNodeId());
 			if(attrib.getDatatype() != null)
@@ -170,7 +170,7 @@ public class OpcUaUmlNodeSetConverter {
 			// configure method
 			UAMethod method = new UAMethod(); 
 			method.setBrowseName(operation.getName());
-			String opNodeId = convertQualifiedNameToNodeId(operation.getQualifiedName());
+			String opNodeId = convertQualifiedNameToNodeId(operation);
 			method.setNodeId(opNodeId);
 			method.setParentNodeId(uaClass.getNodeId());
 			
@@ -221,7 +221,7 @@ public class OpcUaUmlNodeSetConverter {
 				JAXBElement<ListOfUInt32> value = new JAXBElement<ListOfUInt32>(qArgName, ListOfUInt32.class , argArrayDimension);
 				uaArgument.setArrayDimensions(value);
 				
-				// Set Value Ranke
+				// Set Value Rank
 				// TODO: find out why -1
 				uaArgument.setValueRank(-1);
 				
@@ -307,14 +307,67 @@ public class OpcUaUmlNodeSetConverter {
 		
 	}
 	
-	private static String convertQualifiedNameToNodeId(String qualifiedName)
+	private String getNamespaceUriId(EObject elem)
+	{
+		
+		EObject parent = elem.eContainer();
+		String namespace = "";
+		while(true)
+		{
+			if(parent instanceof PackageImpl)
+			{
+				PackageImpl package_elem = (PackageImpl) parent;
+				if(package_elem.getURI() != null && package_elem.getURI().length() > 0)
+				{					
+					namespace = package_elem.getURI();
+					break;
+				}
+			}
+			else if(parent instanceof Model)
+			{
+				Model model_elem = (Model) parent;
+				namespace = model_elem.getURI();
+				break;
+			}
+			parent = parent.eContainer();
+		}
+		int namespace_id = this.nodeset.getNamespaceUris().getUri().indexOf(namespace)+1;
+		
+		return String.valueOf(namespace_id);
+	}
+	
+	private String convertQualifiedNameToNodeId(Property elem)
+	{
+		String namespace_id = getNamespaceUriId(elem);
+		String nodeId = "ns=" + namespace_id + ";i=";
+		nodeId += elem.getQualifiedName().replace("::","/");
+		return nodeId;
+	}
+	
+	private String convertQualifiedNameToNodeId(Operation elem)
+	{
+		String namespace_id = getNamespaceUriId(elem);
+		String nodeId = "ns=" + namespace_id + ";i=";
+		nodeId += elem.getQualifiedName().replace("::","/");
+		return nodeId;
+	}
+	
+	private String convertQualifiedNameToNodeId(ClassImpl elem)
+	{
+		String namespace_id = getNamespaceUriId(elem);
+		String nodeId = "ns=" + namespace_id + ";i=";
+		nodeId += elem.getQualifiedName().replace("::","/");
+		return nodeId;
+	}
+	
+	private String convertQualifiedNameToNodeId(String qualifiedName)
 	{
 		
 		return qualifiedName.replace("::","/");
 		
 	}
 	
-	private static String convertQualifiedNameToNodeId(String qualifiedName, ArrayList<String> names) {
+	private String convertQualifiedNameToNodeId(String qualifiedName, ArrayList<String> names) {
 		
 		String nodeId = qualifiedName.replace("::","/");
 		
@@ -326,7 +379,7 @@ public class OpcUaUmlNodeSetConverter {
 		return nodeId;
 	}
 	
-	private static String extendNodeId(String nodeId, String extension)
+	private String extendNodeId(String nodeId, String extension)
 	{
 		return nodeId+ "/" + extension;
 	}

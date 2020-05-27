@@ -70,9 +70,12 @@ public class OpcUaNodeSetWriter {
 		
 		for(String namespace : namespace_table.getUri())
 		{
-			Element namespaceElement = this.doc.createElement("Uri");
-			namespaceElement.setTextContent(namespace);
-			namespaceUris.appendChild(namespaceElement);
+			if(namespace.length() > 0)
+			{
+				Element namespaceElement = this.doc.createElement("Uri");
+				namespaceElement.setTextContent(namespace);
+				namespaceUris.appendChild(namespaceElement);				
+			}
 		}
 		
 		this.root.appendChild(namespaceUris);
@@ -81,7 +84,7 @@ public class OpcUaNodeSetWriter {
 	private void converterOpcUAObjectType(UAObjectType uaObject)
 	{
 		Element uaObjType = this.doc.createElement("UAObjectType");
-		uaObjType.setAttribute("BrowseName", uaObject.getBrowseName());
+		uaObjType.setAttribute("BrowseName", uaObject.getBrowseName() + "Type");
 		uaObjType.setAttribute("NodeId", uaObject.getNodeId());
 		
 		addDisplayName(uaObjType, uaObject.getDisplayName());
@@ -94,7 +97,7 @@ public class OpcUaNodeSetWriter {
 
 	private void converterOpcUAMethod(UAMethod method)
 	{
-		Element uaMethod = this.doc.createElement("UAObjectType");
+		Element uaMethod = this.doc.createElement("UAMethod");
 		uaMethod.setAttribute("BrowseName", method.getBrowseName());
 		uaMethod.setAttribute("NodeId", method.getNodeId());
 		uaMethod.setAttribute("ParentNodeId", method.getParentNodeId());
@@ -109,7 +112,7 @@ public class OpcUaNodeSetWriter {
 	
 	private void converterOpcUAVariable(UAVariable variable)
 	{
-		Element uaVariable = this.doc.createElement("UAObjectType");
+		Element uaVariable = this.doc.createElement("UAVariable");
 		uaVariable.setAttribute("BrowseName", variable.getBrowseName());
 		uaVariable.setAttribute("NodeId", variable.getNodeId());
 		uaVariable.setAttribute("ParentNodeId", variable.getParentNodeId());
@@ -122,15 +125,15 @@ public class OpcUaNodeSetWriter {
 			uaVariable.setAttribute("ArrayDimensions", variable.getArrayDimensions());
 		}
 		
+		ListOfReferences uaRefList = variable.getReferences();
+		convertReferences(uaVariable, uaRefList);
+		
 		if(variable.getBrowseName() == "InputArguments")
 		{
 			Element uaValue = this.doc.createElement("Value");
 			addInputArguments(uaValue, variable.getValue());
 			uaVariable.appendChild(uaValue);
 		}
-		
-		ListOfReferences uaRefList = variable.getReferences();
-		convertReferences(uaVariable, uaRefList);
 		
 		this.root.appendChild(uaVariable);
 	}
@@ -168,18 +171,18 @@ public class OpcUaNodeSetWriter {
 			uaDataType.appendChild(uaDataTypeIdentifier);
 			uaArgument.appendChild(uaDataType);
 			
-			Element uaValueRank = this.doc.createElement("aux:ValueRank");
+			Element uaValueRank = this.doc.createElement("uax:ValueRank");
 			uaValueRank.setTextContent(argument.getValueRank().toString());
 			uaArgument.appendChild(uaValueRank);
 			
-			Element uaDescription = this.doc.createElement("aux:Description");
-			Element uaEncoding = this.doc.createElement("uax:Encoding");
-			uaEncoding.setTextContent("0");
-			uaDescription.appendChild(uaEncoding);
-			Element uaLocale= this.doc.createElement("aux:Locael");
-			uaDescription.appendChild(uaLocale);
-			Element uaText = this.doc.createElement("uax:Text");
-			uaDescription.appendChild(uaText);
+			Element uaDescription = this.doc.createElement("uax:Description");
+//			Element uaEncoding = this.doc.createElement("uax:Encoding");
+//			uaEncoding.setTextContent("0");
+//			uaDescription.appendChild(uaEncoding);
+//			Element uaLocale= this.doc.createElement("uax:Locael");
+//			uaDescription.appendChild(uaLocale);
+//			Element uaText = this.doc.createElement("uax:Text");
+//			uaDescription.appendChild(uaText);
 			
 			uaArgument.appendChild(uaDescription);
 			
@@ -200,7 +203,7 @@ public class OpcUaNodeSetWriter {
 		
 		for(LocalizedText line : displayName)
 		{
-			text += line.toString() + "\n";
+			text += line.getLocale();
 		}
 		
 		displayElement.setTextContent(text);
@@ -209,26 +212,29 @@ public class OpcUaNodeSetWriter {
 	
 	private void convertReferences(Element parent, ListOfReferences uaRefList)
 	{
-		Element references = this.doc.createElement("References");
-		
-		for( Reference uaRef : uaRefList.getReference() )
+		if(uaRefList.getReference().size() > 0)
 		{
-			Element reference = this.doc.createElement("Reference");
+			Element references = this.doc.createElement("References");
 			
-			if(uaRef.isIsForward())
+			for( Reference uaRef : uaRefList.getReference() )
 			{
-				reference.setAttribute("IsForward", "true");
+				Element reference = this.doc.createElement("Reference");
+				
+				if(uaRef.isIsForward())
+				{
+					reference.setAttribute("IsForward", "true");
+				}
+				else
+				{
+					reference.setAttribute("IsForward", "false");
+				}
+				reference.setAttribute("ReferenceType", uaRef.getReferenceType());
+				reference.setTextContent(uaRef.getValue());
+				
+				references.appendChild(reference);
 			}
-			else
-			{
-				reference.setAttribute("IsForward", "false");
-			}
-			reference.setAttribute("ReferenceType", uaRef.getReferenceType());
-			reference.setTextContent(uaRef.getValue());
 			
-			references.appendChild(reference);
+			parent.appendChild(references);
 		}
-		
-		parent.appendChild(references);
 	}
 }

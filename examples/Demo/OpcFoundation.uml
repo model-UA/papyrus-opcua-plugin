@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_MuSckKG_EeqfFfpUp59MgQ" name="OpcFoundation" visibility="public" URI="http:://opcfoundation.org/UA/">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_MuzZ8KG_EeqfFfpUp59MgQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ZvFZYKG_EeqfFfpUp59MgQ" name="FiniteStateMachineType">
+    <generalization xmi:type="uml:Generalization" xmi:id="_0s938KHGEeqfFfpUp59MgQ" general="_rVZroKHGEeqfFfpUp59MgQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iALosKHGEeqfFfpUp59MgQ" name="BaseObjectType"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rVZroKHGEeqfFfpUp59MgQ" name="StateMachineType">
+    <generalization xmi:type="uml:Generalization" xmi:id="_0Fx8IKHGEeqfFfpUp59MgQ" general="_iALosKHGEeqfFfpUp59MgQ"/>
+  </packagedElement>
+</uml:Model>

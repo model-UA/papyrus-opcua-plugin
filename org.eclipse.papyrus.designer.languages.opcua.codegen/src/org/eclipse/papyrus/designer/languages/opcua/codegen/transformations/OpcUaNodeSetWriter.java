@@ -18,6 +18,7 @@ import org.opcfoundation.ua._2011._03.uanodeset.Reference;
 import org.opcfoundation.ua._2011._03.uanodeset.UAMethod;
 import org.opcfoundation.ua._2011._03.uanodeset.UANode;
 import org.opcfoundation.ua._2011._03.uanodeset.UANodeSet;
+import org.opcfoundation.ua._2011._03.uanodeset.UAObject;
 import org.opcfoundation.ua._2011._03.uanodeset.UAObjectType;
 import org.opcfoundation.ua._2011._03.uanodeset.UAVariable;
 import org.opcfoundation.ua._2011._03.uanodeset.UAVariable.Value;
@@ -56,12 +57,15 @@ public class OpcUaNodeSetWriter {
 			{
 				converterOpcUAMethod((UAMethod) node );
 			}
+			else if(node instanceof UAObject)
+			{
+				converterOpcUAObject((UAObject) node );
+			}			
 			else if(node instanceof UAVariable)
 			{
 				converterOpcUAVariable((UAVariable) node );
 			}
 		}
-		
 	}
 	
 	private void convertNamespaces(UriTable namespace_table)
@@ -84,7 +88,7 @@ public class OpcUaNodeSetWriter {
 	private void converterOpcUAObjectType(UAObjectType uaObject)
 	{
 		Element uaObjType = this.doc.createElement("UAObjectType");
-		uaObjType.setAttribute("BrowseName", uaObject.getBrowseName() + "Type");
+		uaObjType.setAttribute("BrowseName", uaObject.getBrowseName());
 		uaObjType.setAttribute("NodeId", uaObject.getNodeId());
 		
 		addDisplayName(uaObjType, uaObject.getDisplayName());
@@ -110,17 +114,36 @@ public class OpcUaNodeSetWriter {
 		this.root.appendChild(uaMethod);
 	}
 	
+	private void converterOpcUAObject(UAObject obj)
+	{
+		Element uaObject = this.doc.createElement("UAObject");
+		uaObject.setAttribute("BrowseName", obj.getBrowseName());
+		uaObject.setAttribute("NodeId", obj.getNodeId());
+		uaObject.setAttribute("ParentNodeId", obj.getParentNodeId());
+		
+		addDisplayName(uaObject, obj.getDisplayName());
+		
+		ListOfReferences uaRefList = obj.getReferences();
+		convertReferences(uaObject, uaRefList);
+		
+		this.root.appendChild(uaObject);
+	}
+	
 	private void converterOpcUAVariable(UAVariable variable)
 	{
 		Element uaVariable = this.doc.createElement("UAVariable");
 		uaVariable.setAttribute("BrowseName", variable.getBrowseName());
 		uaVariable.setAttribute("NodeId", variable.getNodeId());
 		uaVariable.setAttribute("ParentNodeId", variable.getParentNodeId());
-		uaVariable.setAttribute("DataType", variable.getDataType());
 		
+		
+		if(variable.getDataType().length() > 0)
+		{
+			uaVariable.setAttribute("DataType", variable.getDataType());
+		}
 		addDisplayName(uaVariable, variable.getDisplayName());
 		
-		if(variable.getArrayDimensions() != null)
+		if(variable.getArrayDimensions() != null && variable.getArrayDimensions().length() > 0)
 		{
 			uaVariable.setAttribute("ArrayDimensions", variable.getArrayDimensions());
 		}
@@ -128,8 +151,9 @@ public class OpcUaNodeSetWriter {
 		ListOfReferences uaRefList = variable.getReferences();
 		convertReferences(uaVariable, uaRefList);
 		
-		if(variable.getBrowseName() == "InputArguments")
+		if(variable.getBrowseName().equals("InputArguments") || variable.getBrowseName().equals("OutputArguments")) 
 		{
+			uaVariable.setAttribute("ValueRank", "1");
 			Element uaValue = this.doc.createElement("Value");
 			addInputArguments(uaValue, variable.getValue());
 			uaVariable.appendChild(uaValue);
@@ -174,6 +198,10 @@ public class OpcUaNodeSetWriter {
 			Element uaValueRank = this.doc.createElement("uax:ValueRank");
 			uaValueRank.setTextContent(argument.getValueRank().toString());
 			uaArgument.appendChild(uaValueRank);
+
+//			Element uaArrayDim = this.doc.createElement("uax:ArrayDimensions");
+//			uaArrayDim.setTextContent(argument.getArrayDimensions().getValue().getUInt32().get(0).toString());
+//			uaArgument.appendChild(uaArrayDim);
 			
 			Element uaDescription = this.doc.createElement("uax:Description");
 //			Element uaEncoding = this.doc.createElement("uax:Encoding");

@@ -93,7 +93,7 @@ public class OpcUaUmlNodeSetConverter {
 		
 	}
 
-	public void writeNodeSet(String filename)
+	public void transformUmlToNodeSet()
 	{
 		parsePackagedElements(model.getPackagedElements());
 	}

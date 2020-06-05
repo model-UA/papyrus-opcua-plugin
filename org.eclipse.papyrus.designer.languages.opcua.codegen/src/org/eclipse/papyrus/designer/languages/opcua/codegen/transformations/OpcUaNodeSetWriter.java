@@ -43,7 +43,7 @@ public class OpcUaNodeSetWriter {
 		this.doc.appendChild(this.root);
 	}
 	
-	public void writeToFile(UANodeSet nodeset)
+	public void convertToXml(UANodeSet nodeset)
 	{
 		convertNamespaces(nodeset.getNamespaceUris());
 		

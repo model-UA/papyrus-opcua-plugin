@@ -1,5 +1,8 @@
 package org.eclipse.papyrus.designer.languages.opcua.codegen.transformations;
 
+import java.io.File;
+import java.io.StringWriter;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -35,19 +38,17 @@ public class OpcUaModelElementCreator extends ModelElementsCreator {
 	}
 
 	public void createPackageableElement(PackageableElement packageableElement) throws ParserConfigurationException {
-		final String filename = locStrategy.getFileName((NamedElement) packageableElement) + ".xml";
 		
 		Model model = packageableElement.getModel();
-		String modelname = model.getName();
 		OpcUaUmlNodeSetConverter parser = new OpcUaUmlNodeSetConverter(model);
-		parser.writeNodeSet(filename);
+		parser.transformUmlToNodeSet();
 		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.newDocument();
         
         OpcUaNodeSetWriter docWriter = new OpcUaNodeSetWriter(doc); 
-		docWriter.writeToFile(parser.nodeset);
+		docWriter.convertToXml(parser.nodeset);
 
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transf;
@@ -62,18 +63,20 @@ public class OpcUaModelElementCreator extends ModelElementsCreator {
         transf.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
         transf.setOutputProperty(OutputKeys.INDENT, "yes");
         transf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-        
-        StreamResult console = new StreamResult(System.out);
+       
+        StringWriter writer = new StringWriter();
+        StreamResult streamResult = new StreamResult(writer);
+        		
         DOMSource source = new DOMSource(doc);
         try {
-			transf.transform(source, console);
+			transf.transform(source, streamResult);
 		} catch (TransformerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		//output.concat(OpcUaPackageHeaderGenerator.generateCode(pack).toString());
-		//fileSystemAccess.generateFile(filename, output);
+		fileSystemAccess.generateFile("InformationModel.xml", writer.toString());
 	}
 	
 	@Override

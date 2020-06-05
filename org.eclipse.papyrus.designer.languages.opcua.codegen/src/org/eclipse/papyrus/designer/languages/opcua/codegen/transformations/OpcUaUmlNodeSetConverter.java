@@ -242,7 +242,11 @@ public class OpcUaUmlNodeSetConverter {
 				lower = attrib.getLowerValue().integerValue();
 			}	
 			
-			if( lower == upper)
+			// get data type and check if it is a basic datatype
+			JAXBElement<NodeId> typeNodeId = getDataTypeNodeId(attrib.getType());
+			String baseTypeId = typeNodeId.getValue().getIdentifier().getValue();
+			// basic data types don't need folder types for multiplicities
+			if( lower == upper || !baseTypeId.startsWith("ns"))
 			{
 				// create normal component
 				addSubComponent(attrib, parent.getNodeId(), parentRefList);
@@ -276,18 +280,10 @@ public class OpcUaUmlNodeSetConverter {
 		List<UANode> extensionList = this.nodeset.getUAObjectOrUAVariableOrUAMethod();
 		String browseName = getNamespaceUriId(attrib) + ":" +attrib.getName();
 		String attribNodeId = convertQualifiedNameToNodeId(attrib);
-		
-		String arrayDims = "";
-		if(attrib.getUpperValue() != null && attrib.getUpperValue() != null &&
-				attrib.getLowerValue() == attrib.getUpperValue() )
-		{
-			arrayDims = String.valueOf(attrib.getLowerValue().integerValue());
-		}	
-		
+				
 		org.opcfoundation.ua._2011._03.uanodeset.LocalizedText displayName = new org.opcfoundation.ua._2011._03.uanodeset.LocalizedText();
 		displayName.setLocale(attrib.getName());
 		
-
 		ListOfReferences attribListOfRefs = new ListOfReferences();
 		List<Reference> attribRefList = attribListOfRefs.getReference();
 		
@@ -318,15 +314,44 @@ public class OpcUaUmlNodeSetConverter {
 			attribute.setBrowseName(browseName);
 			attribute.setNodeId(attribNodeId);			
 			attribute.setParentNodeId(parentNodeId);
-			attribute.setArrayDimensions(arrayDims);
 			attribute.getDisplayName().add(displayName);
 			attribute.setDataType(baseTypeId);
+			
+			// Set Value Rank		
+			int upper = attrib.getUpper();
+			int lower = attrib.getLower();
+			
+			if( lower == upper && lower == 1)
+			{
+				// value is a scalar
+				attribute.setValueRank(-1);
+				attribute.setArrayDimensions("0");
+			}
+			else 
+			{
+				// value is a array one ore more dimensions
+				attribute.setValueRank(1);
+				attribute.setArrayDimensions(String.valueOf(attrib.getLowerValue().integerValue()));
+			}
+			// Check if element is optional
+			if(lower == 0)
+			{
+				is_optional = true;
+			}
 			
 			// set type definition
 			Reference attribRef = new Reference();
 			String refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasTypeDefinition");
 			attribRef.setReferenceType(refId);
-			refId = "i="+ OpcUaNodeIdList.getVariableTypeNodeId("BaseDataVariableType");
+			// if attribute is static transform it as property instead of a variable
+			if(attrib.isStatic())
+			{
+				refId = "i="+ OpcUaNodeIdList.getVariableTypeNodeId("PropertyType");
+			}
+			else
+			{
+				refId = "i="+ OpcUaNodeIdList.getVariableTypeNodeId("BaseDataVariableType");
+			}
 			attribRef.setValue(refId); 
 			attribRefList.add(attribRef);
 			

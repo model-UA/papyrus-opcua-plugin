@@ -14,6 +14,7 @@ Then install the following items
 
 ### Installing the Plugin 
 Download the .jar files from the latest release and drop them into the plugins folder of your Papyrus installation. 
+Current Release https://github.com/model-UA/papyrus-opcua-plugin/releases/tag/v0.0.1-beta1 
 
 ## Using the Plugin
 

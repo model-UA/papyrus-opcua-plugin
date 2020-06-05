@@ -830,6 +830,11 @@ public class OpcUaUmlNodeSetConverter {
 				break;
 			}
 			parent = parent.eContainer();
+			if(parent == null)
+			{
+				// ToDo: set error, at least one namespace needs to be definend
+				return "1";
+			}
 		}
 		int namespace_id = this.nodeset.getNamespaceUris().getUri().indexOf(namespace);
 		

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+
+
+
+
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated org.eclipse.papyrus.opcua.profile -->
+      <package
+            uri="http://opcfoundation.org"
+            class="OPCUAProfile.OPCUAProfilePackage"
+            genModel="model/org.eclipse.papyrus.opcua.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated org.eclipse.papyrus.opcua.profile -->
+      <package
+            uri="http:///OPCUAProfile/VariableTypes.ecore"
+            class="OPCUAProfile.VariableTypes.VariableTypesPackage"
+            genModel="model/org.eclipse.papyrus.opcua.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated org.eclipse.papyrus.opcua.profile -->
+      <package
+            uri="http:///OPCUAProfile/DataTypes.ecore"
+            class="OPCUAProfile.DataTypes.DataTypesPackage"
+            genModel="model/org.eclipse.papyrus.opcua.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated org.eclipse.papyrus.opcua.profile -->
+      <package
+            uri="http:///OPCUAProfile/DataTypes/Number.ecore"
+            class="OPCUAProfile.DataTypes.Number.NumberPackage"
+            genModel="model/org.eclipse.papyrus.opcua.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated org.eclipse.papyrus.opcua.profile -->
+      <package
+            uri="http:///OPCUAProfile/DataTypes/Number/UInteger.ecore"
+            class="OPCUAProfile.DataTypes.Number.UInteger.UIntegerPackage"
+            genModel="model/org.eclipse.papyrus.opcua.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated org.eclipse.papyrus.opcua.profile -->
+      <package
+            uri="http:///OPCUAProfile/DataTypes/Number/Integer.ecore"
+            class="OPCUAProfile.DataTypes.Number.Integer.IntegerPackage"
+            genModel="model/org.eclipse.papyrus.opcua.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated org.eclipse.papyrus.opcua.profile -->
+      <package
+            uri="http:///OPCUAProfile/ReferenceTypes/References.ecore"
+            class="OPCUAProfile.ReferenceTypes.References.ReferencesPackage"
+            genModel="model/org.eclipse.papyrus.opcua.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated org.eclipse.papyrus.opcua.profile -->
+      <package
+            uri="http:///OPCUAProfile/ObjectTypes.ecore"
+            class="OPCUAProfile.ObjectTypes.ObjectTypesPackage"
+            genModel="model/org.eclipse.papyrus.opcua.profile.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://OPC_UA_PROFILE/"
+            target="platform:/plugin/org.eclipse.papyrus.opcua.profile/model/">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="OPC-UA Profile"
+            name="OPC-UA Profile"
+            path="pathmap://OPC_UA_PROFILE/org.eclipse.papyrus.opcua.profile.uml"
+            provider="TU Wien">
+      </profile>
+   </extension>
+</plugin>

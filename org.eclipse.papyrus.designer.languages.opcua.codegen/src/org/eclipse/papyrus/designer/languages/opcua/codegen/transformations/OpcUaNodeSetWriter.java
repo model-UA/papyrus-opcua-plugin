@@ -74,7 +74,7 @@ public class OpcUaNodeSetWriter {
 		
 		for(String namespace : namespace_table.getUri())
 		{
-			if(namespace.length() > 0)
+			if(namespace != null && namespace.length() > 0)
 			{
 				Element namespaceElement = this.doc.createElement("Uri");
 				namespaceElement.setTextContent(namespace);

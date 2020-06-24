@@ -5,23 +5,23 @@
         point="org.eclipse.emf.validation.constraintBindings">
      <clientContext
            default="true"
-           id="context">
+           id="org.eclipse.papyrus.opcua.validation.context">
         <selector
               class="org.eclipse.emf.validation.opcua.util.ValidationClientSelector">
         </selector>
      </clientContext>
      <binding
-           category="org.eclipse.emf.validation.opcua"
-           context="context">
+           category="org.eclipse.papyrus.opcua.validation"
+           context="org.eclipse.papyrus.opcua.validation.context">
         <category
-              ref="org.eclipse.emf.validation.opcua">
+              ref="org.eclipse.papyrus.opcua.validation">
         </category>
      </binding>
   </extension>
   <extension
         point="org.eclipse.emf.validation.constraintProviders">
      <category
-           id="org.eclipse.emf.validation.opcua"
+           id="org.eclipse.papyrus.opcua.validation"
            name="OPC-UA Validation">
      </category>
      <constraintProvider

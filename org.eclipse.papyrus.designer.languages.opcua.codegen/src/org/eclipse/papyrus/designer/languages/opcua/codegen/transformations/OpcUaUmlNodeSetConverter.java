@@ -53,6 +53,7 @@ import org.opcfoundation.ua._2011._03.uanodeset.UAReferenceType;
 import org.opcfoundation.ua._2011._03.uanodeset.UAVariable;
 import org.opcfoundation.ua._2011._03.uanodeset.UAVariable.Value;
 import org.opcfoundation.ua._2011._03.uanodeset.UriTable;
+import org.eclipse.papyrus.designer.languages.opcua.codegen.Activator;
 
 public class OpcUaUmlNodeSetConverter {
 	
@@ -64,7 +65,7 @@ public class OpcUaUmlNodeSetConverter {
 	{
 		this.model = model;
 		this.nodeset = new UANodeSet();
-	
+		
 		UriTable namespace_table = new UriTable();
 		this.nodeset.setNamespaceUris(namespace_table);
 		List<String> namespaces = namespace_table.getUri();
@@ -605,7 +606,7 @@ public class OpcUaUmlNodeSetConverter {
 			methodRef.setValue(parent.getNodeId());
 			methodRefList.add(methodRef);
 						
-			// TODO: set Modelling rule
+			// set Modelling rule
 			methodRef = new Reference();
 			refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasModellingRule");
 			methodRef.setReferenceType(refId);
@@ -675,6 +676,12 @@ public class OpcUaUmlNodeSetConverter {
 			argName.setValue(param.getName());
 			uaArgument.setName(argName);
 			
+			if(param.getType() == null)
+			{
+				Activator.log.error("Paramer " + param.getQualifiedName() +" does not have a type", null);
+				continue;
+			}
+			
 			// set DataType of Argument			
 			uaArgument.setDataType(getDataTypeNodeId(param.getType()));
 			
@@ -731,9 +738,14 @@ public class OpcUaUmlNodeSetConverter {
  			{
  				outputArgList.add(argumentExtensionObject);
  			}
+ 			else if(dir.getLiteral().contentEquals("inout"))
+ 			{
+ 				Activator.log.error("Parameter Type inout is not transformable", null);
+ 			}
  			else
  			{
- 				// TODO: Error inout and return cannot be transformed
+ 				// inout and return cannot be transformed
+ 				Activator.log.error("Parameter Type return is not transformable", null);
  			}
  			
 		}
@@ -741,7 +753,7 @@ public class OpcUaUmlNodeSetConverter {
 	
 	private JAXBElement<NodeId> getDataTypeNodeId(Type dataType)
 	{
-		NodeId typeId = new NodeId();
+		NodeId typeId = new NodeId();		
 		String typeName = dataType.getName();
 		String dataTypeId = "";
 		
@@ -762,7 +774,7 @@ public class OpcUaUmlNodeSetConverter {
 		}
 		else
 		{
-			// TODO: Error unknown type
+			Activator.log.error("Got unknown type "+typeName, null);
 		}
 		QName qDataTypeName = new QName(typeName);
 		JAXBElement<String> dataTypeName = new JAXBElement<String>(qDataTypeName, String.class, dataType.getName());
@@ -829,11 +841,31 @@ public class OpcUaUmlNodeSetConverter {
 				namespace = model_elem.getURI();
 				break;
 			}
+			
 			parent = parent.eContainer();
+			
 			if(parent == null)
 			{
-				// ToDo: set error, at least one namespace needs to be definend
-				return "1";
+				String qualifiedName = "";
+				
+				if(elem instanceof Class)
+				{
+					Class class_elem = (Class) elem;
+					qualifiedName = "Class "+class_elem.getQualifiedName();
+				}
+				else if(elem instanceof org.eclipse.uml2.uml.Package)
+				{
+					org.eclipse.uml2.uml.Package package_elem = (org.eclipse.uml2.uml.Package) elem;
+					qualifiedName = "Package "+ package_elem.getQualifiedName();
+				}
+				else if(elem instanceof Operation)
+				{
+					Operation operation_elem = (Operation) elem;
+					qualifiedName ="Operation "+ operation_elem.getQualifiedName();
+				}
+								
+				Activator.log.error(qualifiedName+" is not inside any namespace", null );
+				return "0";
 			}
 		}
 		int namespace_id = this.nodeset.getNamespaceUris().getUri().indexOf(namespace);

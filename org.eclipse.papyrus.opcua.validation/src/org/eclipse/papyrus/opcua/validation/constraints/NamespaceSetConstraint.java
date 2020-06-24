@@ -1,4 +1,4 @@
-package org.eclipse.emf.validation.opcua.constraints;
+package org.eclipse.papyrus.opcua.validation.constraints;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;

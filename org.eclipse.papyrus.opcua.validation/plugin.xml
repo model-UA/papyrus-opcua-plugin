@@ -7,7 +7,7 @@
            default="true"
            id="org.eclipse.papyrus.opcua.validation.context">
         <selector
-              class="org.eclipse.emf.validation.opcua.util.ValidationClientSelector">
+              class="org.eclipse.papyrus.opcua.validation.util.ValidationClientSelector">
         </selector>
      </clientContext>
      <binding
@@ -30,10 +30,10 @@
               namespaceUri="http://unicase.org/model/task">
         </package>
         <constraints
-              categories="org.eclipse.emf.validation.opcua">
+              categories="org.eclipse.papyrus.opcua.validation">
            <constraint
-                 class="org.eclipse.emf.validation.opcua.constraints.NamespaceSetConstraint"
-                 id="org.eclipse.emf.validation.opcua.constraints.NamespaceSet"
+                 class="org.eclipse.papyrus.opcua.validation.constraints.NamespaceSetConstraint"
+                 id="org.eclipse.papyrus.opcua.validation.constraints.NamespaceSet"
                  isEnabledByDefault="true"
                  lang="Java"
                  mode="Batch"

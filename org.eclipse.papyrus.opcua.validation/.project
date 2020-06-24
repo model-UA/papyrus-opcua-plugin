@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.eclipse.emf.validation.opcua</name>
+	<name>org.eclipse.papyrus.opcua.validation</name>
 	<comment></comment>
 	<projects>
 	</projects>

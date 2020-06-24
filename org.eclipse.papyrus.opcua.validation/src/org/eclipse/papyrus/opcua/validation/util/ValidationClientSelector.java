@@ -1,4 +1,4 @@
-package org.eclipse.emf.validation.opcua.util;
+package org.eclipse.papyrus.opcua.validation.util;
 
 import org.eclipse.emf.validation.model.IClientSelector;
 

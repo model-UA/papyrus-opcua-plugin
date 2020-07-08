@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:applystereotypeadvice="http://www.eclipse.org/papyrus/uml/types/applystereotypeadvice/1.1" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:stereotypematcher="http://www.eclipse.org/papyrus/uml/types/stereotypematcher/1.1" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.elementTypes" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.elementTypes" name="OPC-UA_BaseTypes DI" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_DataType_DataType_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_DataType_DataType_NestedClassifierLabel" name="DataType (DataType_NestedClassifierLabel)" hint="DataType_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXlksD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXlk8D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::DataType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DataType_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_DataType_DataType_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_DataType_DataType_Shape" name="DataType (DataType_Shape)" hint="DataType_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXllcD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXllsD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::DataType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DataType_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_DataType_DataType_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_DataType_DataType_Shape_CN" name="DataType (DataType_Shape_CN)" hint="DataType_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXlmMD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXlmcD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::DataType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DataType_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_Stereotype_Stereotype_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_Stereotype_Stereotype_NestedClassifierLabel" name="DataType (Stereotype_NestedClassifierLabel)" hint="Stereotype_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXlm8D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXlnMD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::DataType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_Stereotype_Stereotype_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_Stereotype_Stereotype_Shape" name="DataType (Stereotype_Shape)" hint="Stereotype_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXlnsD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXln8D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::DataType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_Stereotype_Stereotype_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_Stereotype_Stereotype_Shape_CN" name="DataType (Stereotype_Shape_CN)" hint="Stereotype_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXlocD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXlosD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::DataType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_Stereotype_Stereotype_StereotypeLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_Stereotype_Stereotype_StereotypeLabel" name="DataType (Stereotype_StereotypeLabel)" hint="Stereotype_StereotypeLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXlpMD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXlpcD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::DataType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_StereotypeLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.LocalizedText_DataType_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.LocalizedText_DataType_NestedClassifierLabel" name="LocalizedText (DataType_NestedClassifierLabel)" hint="DataType_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXlp8D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXlqMD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::LocalizedText</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DataType_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.LocalizedText_DataType_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.LocalizedText_DataType_Shape" name="LocalizedText (DataType_Shape)" hint="DataType_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXlqsD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXlq8D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::LocalizedText</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DataType_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.LocalizedText_DataType_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.LocalizedText_DataType_Shape_CN" name="LocalizedText (DataType_Shape_CN)" hint="DataType_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXlrcD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXlrsD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::LocalizedText</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DataType_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Operation_Operation_OperationLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Operation_Operation_OperationLabel" name="Method Operation" hint="Operation_OperationLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXlsMD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Operation.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXlscD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Method</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Operation_OperationLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Stereotype_Stereotype_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Stereotype_Stereotype_NestedClassifierLabel" name="Method (Stereotype_NestedClassifierLabel)" hint="Stereotype_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXls8D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXltMD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Method</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Stereotype_Stereotype_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Stereotype_Stereotype_Shape" name="Method (Stereotype_Shape)" hint="Stereotype_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXltsD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXlt8D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Method</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Stereotype_Stereotype_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Stereotype_Stereotype_Shape_CN" name="Method (Stereotype_Shape_CN)" hint="Stereotype_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXlucD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXlusD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Method</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Stereotype_Stereotype_StereotypeLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Stereotype_Stereotype_StereotypeLabel" name="Method (Stereotype_StereotypeLabel)" hint="Stereotype_StereotypeLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYXlvMD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYXlvcD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Method</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_StereotypeLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.NodeId_DataType_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.NodeId_DataType_NestedClassifierLabel" name="NodeId (DataType_NestedClassifierLabel)" hint="DataType_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMocD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMosD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::NodeId</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DataType_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.NodeId_DataType_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.NodeId_DataType_Shape" name="NodeId (DataType_Shape)" hint="DataType_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMpMD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMpcD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::NodeId</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DataType_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.NodeId_DataType_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.NodeId_DataType_Shape_CN" name="NodeId (DataType_Shape_CN)" hint="DataType_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMp8D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMqMD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::NodeId</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DataType_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_MetaclassShape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_MetaclassShape" name="ObjectType (Class_MetaclassShape)" hint="Class_MetaclassShape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMqsD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMq8D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ObjectType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_MetaclassShape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_MetaclassShape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_MetaclassShape_CN" name="ObjectType (Class_MetaclassShape_CN)" hint="Class_MetaclassShape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMrcD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMrsD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ObjectType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_MetaclassShape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_NestedClassifierLabel" name="ObjectType (Class_NestedClassifierLabel)" hint="Class_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMsMD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMscD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ObjectType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_Shape" name="ObjectType (Class_Shape)" hint="Class_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMs8D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMtMD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ObjectType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_Shape_CN" name="ObjectType (Class_Shape_CN)" hint="Class_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMtsD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMt8D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ObjectType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Stereotype_Stereotype_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Stereotype_Stereotype_NestedClassifierLabel" name="ObjectType (Stereotype_NestedClassifierLabel)" hint="Stereotype_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMucD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMusD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ObjectType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Stereotype_Stereotype_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Stereotype_Stereotype_Shape" name="ObjectType (Stereotype_Shape)" hint="Stereotype_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMvMD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMvcD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ObjectType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Stereotype_Stereotype_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Stereotype_Stereotype_Shape_CN" name="ObjectType (Stereotype_Shape_CN)" hint="Stereotype_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMv8D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMwMD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ObjectType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Stereotype_Stereotype_StereotypeLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Stereotype_Stereotype_StereotypeLabel" name="ObjectType (Stereotype_StereotypeLabel)" hint="Stereotype_StereotypeLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMwsD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMw8D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ObjectType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_StereotypeLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_MetaclassShape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_MetaclassShape" name="Object (Class_MetaclassShape)" hint="Class_MetaclassShape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMxcD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMxsD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Object</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_MetaclassShape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_MetaclassShape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_MetaclassShape_CN" name="Object (Class_MetaclassShape_CN)" hint="Class_MetaclassShape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMyMD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMycD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Object</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_MetaclassShape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_NestedClassifierLabel" name="Object (Class_NestedClassifierLabel)" hint="Class_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMy8D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMzMD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Object</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_Shape" name="Object (Class_Shape)" hint="Class_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYMzsD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYMz8D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Object</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_Shape_CN" name="Object (Class_Shape_CN)" hint="Class_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYM0cD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYM0sD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Object</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Stereotype_Stereotype_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Stereotype_Stereotype_NestedClassifierLabel" name="Object (Stereotype_NestedClassifierLabel)" hint="Stereotype_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYM1MD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYM1cD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Object</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Stereotype_Stereotype_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Stereotype_Stereotype_Shape" name="Object (Stereotype_Shape)" hint="Stereotype_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYM18D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYM2MD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Object</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Stereotype_Stereotype_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Stereotype_Stereotype_Shape_CN" name="Object (Stereotype_Shape_CN)" hint="Stereotype_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYM2sD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYM28D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Object</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Stereotype_Stereotype_StereotypeLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Stereotype_Stereotype_StereotypeLabel" name="Object (Stereotype_StereotypeLabel)" hint="Stereotype_StereotypeLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYM3cD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYM3sD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Object</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_StereotypeLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.QualifiedName_DataType_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.QualifiedName_DataType_NestedClassifierLabel" name="QualifiedName (DataType_NestedClassifierLabel)" hint="DataType_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYM4MD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYM4cD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::QualifiedName</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DataType_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.QualifiedName_DataType_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.QualifiedName_DataType_Shape" name="QualifiedName (DataType_Shape)" hint="DataType_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYM48D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYM5MD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::QualifiedName</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DataType_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.QualifiedName_DataType_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.QualifiedName_DataType_Shape_CN" name="QualifiedName (DataType_Shape_CN)" hint="DataType_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYM5sD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYM58D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::DataTypes::QualifiedName</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DataType_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Association_Association_BranchEdge" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Association_Association_BranchEdge" name="ReferenceType (Association_BranchEdge)" hint="Association_BranchEdge" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYM6cD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Association.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYM6sD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ReferenceType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Association_BranchEdge"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Association_Association_Edge" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Association_Association_Edge" name="ReferenceType (Association_Edge)" hint="Association_Edge" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYM7MD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Association.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYM7cD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ReferenceType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Association_Edge"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Association_Association_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Association_Association_Shape" name="ReferenceType (Association_Shape)" hint="Association_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYzscD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Association.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYzssD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ReferenceType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Association_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Association_Association_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Association_Association_Shape_CN" name="ReferenceType (Association_Shape_CN)" hint="Association_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYztMD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Association.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYztcD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ReferenceType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Association_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Stereotype_Stereotype_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Stereotype_Stereotype_NestedClassifierLabel" name="ReferenceType (Stereotype_NestedClassifierLabel)" hint="Stereotype_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYzt8D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYzuMD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ReferenceType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Stereotype_Stereotype_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Stereotype_Stereotype_Shape" name="ReferenceType (Stereotype_Shape)" hint="Stereotype_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYzusD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYzu8D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ReferenceType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Stereotype_Stereotype_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Stereotype_Stereotype_Shape_CN" name="ReferenceType (Stereotype_Shape_CN)" hint="Stereotype_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYzvcD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYzvsD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ReferenceType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Stereotype_Stereotype_StereotypeLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Stereotype_Stereotype_StereotypeLabel" name="ReferenceType (Stereotype_StereotypeLabel)" hint="Stereotype_StereotypeLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYzwMD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYzwcD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::ReferenceType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_StereotypeLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_MetaclassShape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_MetaclassShape" name="VariableType (Class_MetaclassShape)" hint="Class_MetaclassShape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYzw8D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYzxMD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::VariableType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_MetaclassShape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_MetaclassShape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_MetaclassShape_CN" name="VariableType (Class_MetaclassShape_CN)" hint="Class_MetaclassShape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYzxsD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYzx8D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::VariableType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_MetaclassShape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_NestedClassifierLabel" name="VariableType (Class_NestedClassifierLabel)" hint="Class_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYzycD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYzysD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::VariableType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_Shape" name="VariableType (Class_Shape)" hint="Class_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYzzMD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYzzcD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::VariableType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_Shape_CN" name="VariableType (Class_Shape_CN)" hint="Class_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYzz8D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYz0MD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::VariableType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Stereotype_Stereotype_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Stereotype_Stereotype_NestedClassifierLabel" name="VariableType (Stereotype_NestedClassifierLabel)" hint="Stereotype_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYYz0sD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYYz08D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::VariableType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Stereotype_Stereotype_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Stereotype_Stereotype_Shape" name="VariableType (Stereotype_Shape)" hint="Stereotype_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZawcD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZawsD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::VariableType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Stereotype_Stereotype_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Stereotype_Stereotype_Shape_CN" name="VariableType (Stereotype_Shape_CN)" hint="Stereotype_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZaxMD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZaxcD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::VariableType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Stereotype_Stereotype_StereotypeLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Stereotype_Stereotype_StereotypeLabel" name="VariableType (Stereotype_StereotypeLabel)" hint="Stereotype_StereotypeLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZax8D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZayMD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::VariableType</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_StereotypeLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_MetaclassShape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_MetaclassShape" name="Variable (Class_MetaclassShape)" hint="Class_MetaclassShape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZaysD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZay8D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Variable</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_MetaclassShape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_MetaclassShape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_MetaclassShape_CN" name="Variable (Class_MetaclassShape_CN)" hint="Class_MetaclassShape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZazcD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZazsD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Variable</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_MetaclassShape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_NestedClassifierLabel" name="Variable (Class_NestedClassifierLabel)" hint="Class_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa0MD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa0cD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Variable</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_Shape" name="Variable (Class_Shape)" hint="Class_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa08D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa1MD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Variable</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_Shape_CN" name="Variable (Class_Shape_CN)" hint="Class_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa1sD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa18D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Variable</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Stereotype_Stereotype_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Stereotype_Stereotype_NestedClassifierLabel" name="Variable (Stereotype_NestedClassifierLabel)" hint="Stereotype_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa2cD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa2sD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Variable</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Stereotype_Stereotype_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Stereotype_Stereotype_Shape" name="Variable (Stereotype_Shape)" hint="Stereotype_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa3MD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa3cD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Variable</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Stereotype_Stereotype_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Stereotype_Stereotype_Shape_CN" name="Variable (Stereotype_Shape_CN)" hint="Stereotype_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa38D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa4MD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Variable</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Stereotype_Stereotype_StereotypeLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Stereotype_Stereotype_StereotypeLabel" name="Variable (Stereotype_StereotypeLabel)" hint="Stereotype_StereotypeLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa4sD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa48D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::Variable</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_StereotypeLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_MetaclassShape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_MetaclassShape" name="View (Class_MetaclassShape)" hint="Class_MetaclassShape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa5cD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa5sD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::View</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_MetaclassShape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_MetaclassShape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_MetaclassShape_CN" name="View (Class_MetaclassShape_CN)" hint="Class_MetaclassShape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa6MD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa6cD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::View</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_MetaclassShape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_NestedClassifierLabel" name="View (Class_NestedClassifierLabel)" hint="Class_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa68D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa7MD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::View</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_Shape" name="View (Class_Shape)" hint="Class_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa7sD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa78D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::View</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_Shape_CN" name="View (Class_Shape_CN)" hint="Class_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa8cD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa8sD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::View</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Stereotype_Stereotype_NestedClassifierLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Stereotype_Stereotype_NestedClassifierLabel" name="View (Stereotype_NestedClassifierLabel)" hint="Stereotype_NestedClassifierLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa9MD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa9cD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::View</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_NestedClassifierLabel"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Stereotype_Stereotype_Shape" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Stereotype_Stereotype_Shape" name="View (Stereotype_Shape)" hint="Stereotype_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa98D5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa-MD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::View</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Stereotype_Stereotype_Shape_CN" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Stereotype_Stereotype_Shape_CN" name="View (Stereotype_Shape_CN)" hint="Stereotype_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa-sD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa-8D5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::View</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_Shape_CN"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Stereotype_Stereotype_StereotypeLabel" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Stereotype_Stereotype_StereotypeLabel" name="View (Stereotype_StereotypeLabel)" hint="Stereotype_StereotypeLabel" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_DYZa_cD5EeqFn7KyQ8ZKOg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_DYZa_sD5EeqFn7KyQ8ZKOg">
+      <stereotypesQualifiedNames>OPC-UA_BaseTypes::View</stereotypesQualifiedNames>
+    </matcherConfiguration>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Stereotype_StereotypeLabel"/>
+  </elementTypeConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYZa_8D5EeqFn7KyQ8ZKOg" description="Apply Stereotype DataType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.dataType_DataType_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_DataType_DataType_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYZbAMD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::DataType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYZbAcD5EeqFn7KyQ8ZKOg" description="Apply Stereotype DataType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.dataType_DataType_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_DataType_DataType_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYZbAsD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::DataType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYZbA8D5EeqFn7KyQ8ZKOg" description="Apply Stereotype DataType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.dataType_DataType_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_DataType_DataType_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYZbBMD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::DataType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB0MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype DataType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.dataType_Stereotype_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_Stereotype_Stereotype_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB0cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::DataType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB0sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype DataType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.dataType_Stereotype_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_Stereotype_Stereotype_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB08D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::DataType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB1MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype DataType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.dataType_Stereotype_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_Stereotype_Stereotype_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB1cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::DataType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB1sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype DataType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.dataType_Stereotype_StereotypeLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.DataType_Stereotype_Stereotype_StereotypeLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB18D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::DataType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB2MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype LocalizedText" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.localizedText_DataType_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.LocalizedText_DataType_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB2cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::LocalizedText" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB2sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype LocalizedText" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.localizedText_DataType_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.LocalizedText_DataType_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB28D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::LocalizedText" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB3MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype LocalizedText" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.localizedText_DataType_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.LocalizedText_DataType_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB3cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::LocalizedText" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB3sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Method" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.method_Operation_OperationLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Operation_Operation_OperationLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB38D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Method" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB4MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Method" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.method_Stereotype_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Stereotype_Stereotype_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB4cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Method" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB4sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Method" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.method_Stereotype_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Stereotype_Stereotype_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB48D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Method" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB5MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Method" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.method_Stereotype_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Stereotype_Stereotype_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB5cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Method" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB5sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Method" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.method_Stereotype_StereotypeLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Method_Stereotype_Stereotype_StereotypeLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB58D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Method" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB6MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype NodeId" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.nodeId_DataType_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.NodeId_DataType_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB6cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::NodeId" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB6sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype NodeId" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.nodeId_DataType_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.NodeId_DataType_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB68D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::NodeId" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB7MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype NodeId" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.nodeId_DataType_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.NodeId_DataType_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB7cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::NodeId" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB7sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ObjectType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.objectType_Class_MetaclassShape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_MetaclassShape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB78D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ObjectType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB8MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ObjectType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.objectType_Class_MetaclassShape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_MetaclassShape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB8cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ObjectType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB8sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ObjectType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.objectType_Class_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB88D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ObjectType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB9MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ObjectType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.objectType_Class_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB9cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ObjectType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB9sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ObjectType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.objectType_Class_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB98D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ObjectType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB-MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ObjectType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.objectType_Stereotype_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Stereotype_Stereotype_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB-cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ObjectType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB-sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ObjectType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.objectType_Stereotype_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Stereotype_Stereotype_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB-8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ObjectType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB_MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ObjectType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.objectType_Stereotype_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Stereotype_Stereotype_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB_cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ObjectType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaB_sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ObjectType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.objectType_Stereotype_StereotypeLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Stereotype_Stereotype_StereotypeLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaB_8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ObjectType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCAMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Object" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.object_Class_MetaclassShape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_MetaclassShape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCAcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Object" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCAsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Object" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.object_Class_MetaclassShape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_MetaclassShape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCA8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Object" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCBMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Object" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.object_Class_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCBcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Object" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCBsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Object" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.object_Class_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCB8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Object" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCCMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Object" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.object_Class_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Class_Class_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCCcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Object" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCCsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Object" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.object_Stereotype_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Stereotype_Stereotype_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCC8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Object" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCDMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Object" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.object_Stereotype_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Stereotype_Stereotype_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCDcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Object" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCDsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Object" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.object_Stereotype_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Stereotype_Stereotype_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCD8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Object" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCEMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Object" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.object_Stereotype_StereotypeLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Object_Stereotype_Stereotype_StereotypeLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCEcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Object" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCEsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype QualifiedName" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.qualifiedName_DataType_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.QualifiedName_DataType_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCE8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::QualifiedName" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCFMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype QualifiedName" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.qualifiedName_DataType_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.QualifiedName_DataType_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCFcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::QualifiedName" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCFsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype QualifiedName" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.qualifiedName_DataType_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.QualifiedName_DataType_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCF8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::DataTypes::QualifiedName" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCGMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ReferenceType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.referenceType_Association_BranchEdge" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Association_Association_BranchEdge">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCGcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ReferenceType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCGsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ReferenceType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.referenceType_Association_Edge" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Association_Association_Edge">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCG8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ReferenceType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCHMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ReferenceType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.referenceType_Association_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Association_Association_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCHcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ReferenceType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCHsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ReferenceType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.referenceType_Association_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Association_Association_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCH8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ReferenceType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCIMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ReferenceType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.referenceType_Stereotype_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Stereotype_Stereotype_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCIcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ReferenceType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCIsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ReferenceType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.referenceType_Stereotype_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Stereotype_Stereotype_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCI8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ReferenceType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYaCJMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ReferenceType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.referenceType_Stereotype_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Stereotype_Stereotype_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYaCJcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ReferenceType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao4MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype ReferenceType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.referenceType_Stereotype_StereotypeLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.ReferenceType_Stereotype_Stereotype_StereotypeLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao4cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::ReferenceType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao4sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype VariableType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variableType_Class_MetaclassShape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_MetaclassShape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao48D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::VariableType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao5MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype VariableType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variableType_Class_MetaclassShape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_MetaclassShape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao5cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::VariableType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao5sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype VariableType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variableType_Class_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao58D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::VariableType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao6MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype VariableType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variableType_Class_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao6cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::VariableType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao6sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype VariableType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variableType_Class_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao68D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::VariableType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao7MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype VariableType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variableType_Stereotype_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Stereotype_Stereotype_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao7cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::VariableType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao7sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype VariableType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variableType_Stereotype_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Stereotype_Stereotype_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao78D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::VariableType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao8MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype VariableType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variableType_Stereotype_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Stereotype_Stereotype_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao8cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::VariableType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao8sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype VariableType" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variableType_Stereotype_StereotypeLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Stereotype_Stereotype_StereotypeLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao88D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::VariableType" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao9MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Variable" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variable_Class_MetaclassShape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_MetaclassShape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao9cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Variable" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao9sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Variable" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variable_Class_MetaclassShape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_MetaclassShape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao98D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Variable" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao-MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Variable" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variable_Class_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao-cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Variable" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao-sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Variable" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variable_Class_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao-8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Variable" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao_MD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Variable" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variable_Class_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Class_Class_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao_cD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Variable" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYao_sD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Variable" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variable_Stereotype_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Stereotype_Stereotype_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYao_8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Variable" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYapAMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Variable" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variable_Stereotype_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Stereotype_Stereotype_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYapAcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Variable" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYapAsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Variable" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variable_Stereotype_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Stereotype_Stereotype_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYapA8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Variable" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYapBMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype Variable" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.variable_Stereotype_StereotypeLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.Variable_Stereotype_Stereotype_StereotypeLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYapBcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::Variable" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYapBsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype View" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.view_Class_MetaclassShape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_MetaclassShape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYapB8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::View" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYapCMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype View" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.view_Class_MetaclassShape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_MetaclassShape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYapCcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::View" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYapCsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype View" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.view_Class_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYapC8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::View" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYapDMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype View" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.view_Class_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYapDcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::View" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYapDsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype View" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.view_Class_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Class_Class_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYapD8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::View" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYapEMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype View" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.view_Stereotype_NestedClassifierLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Stereotype_Stereotype_NestedClassifierLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYapEcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::View" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYapEsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype View" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.view_Stereotype_Shape" target="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Stereotype_Stereotype_Shape">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYapE8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::View" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYapFMD5EeqFn7KyQ8ZKOg" description="Apply Stereotype View" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.view_Stereotype_Shape_CN" target="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Stereotype_Stereotype_Shape_CN">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYapFcD5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::View" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_DYapFsD5EeqFn7KyQ8ZKOg" description="Apply Stereotype View" identifier="org.eclipse.papyrus.opcua.profile.basetypes.di.view_Stereotype_StereotypeLabel" target="org.eclipse.papyrus.opcua.profile.basetypes.di.View_Stereotype_Stereotype_StereotypeLabel">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_DYapF8D5EeqFn7KyQ8ZKOg" stereotypeQualifiedName="OPC-UA_BaseTypes::View" updateName="true">
+      <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+</elementtypesconfigurations:ElementTypeSetConfiguration>

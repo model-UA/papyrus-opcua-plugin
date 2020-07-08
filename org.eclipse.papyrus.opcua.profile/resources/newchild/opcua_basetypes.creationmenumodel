@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ElementCreationMenuModel:Folder xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ElementCreationMenuModel="http://www.eclipse.org/papyrus/infra/newchild/elementcreationmenumodel" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" label="OPC-UA_BaseTypes">
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="DataType DataType">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.DataType_DataType"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="DataType Stereotype">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.DataType_Stereotype"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="LocalizedText">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.LocalizedText"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="Method Operation">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.Method_Operation"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="Method Stereotype">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.Method_Stereotype"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="NodeId">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.NodeId"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="ObjectType Class">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.ObjectType_Class"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="ObjectType Stereotype">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.ObjectType_Stereotype"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="Object Class">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.Object_Class"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="Object Stereotype">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.Object_Stereotype"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="QualifiedName">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.QualifiedName"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="ReferenceType Association">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.ReferenceType_Association_UML__Association"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="ReferenceType Stereotype">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.ReferenceType_Stereotype"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="VariableType Class">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.VariableType_Class"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="VariableType Stereotype">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.VariableType_Stereotype"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="Variable Class">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.Variable_Class"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="Variable Stereotype">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.Variable_Stereotype"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="Variable Variable">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.Variable_Variable"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="View Class">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.View_Class"/>
+  </menu>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="View Stereotype">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../elementtypes/opcua_basetypes.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.View_Stereotype"/>
+  </menu>
+</ElementCreationMenuModel:Folder>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="OPCUA_BaseTypes" nsURI="http://opcfoundation.org" nsPrefix="OPCUA_BaseTypes">
+  <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <details key="originalName" value="OPC-UA_BaseTypes"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="BaseNodeClass">
+    <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <details key="originalName" value="Base Node Class"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="NodeId" ordered="false"
+        lowerBound="1" eType="#//DataTypes/NodeId"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="NodeClass" ordered="false"
+        lowerBound="1" eType="#//DataTypes/_NodeClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="BrowseName" ordered="false"
+        lowerBound="1" eType="#//DataTypes/QualifiedName"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="DisplayName" ordered="false"
+        lowerBound="1" eType="#//DataTypes/LocalizedText"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Description" ordered="false"
+        lowerBound="1" eType="#//DataTypes/LocalizedText"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="WriteMask" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Number/UInteger/UInt32"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//BaseNodeClass">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Value" ordered="false"
+        lowerBound="1" eType="#//ObjectType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="DataType" ordered="false"
+        lowerBound="1" eType="#//DataTypes/NodeId"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ValueRank" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Number/Integer/Int32"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ArrayDimensions" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Number/UInteger/UInt32"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AccessLevel" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Number/UInteger/Byte"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="UserAccessLevel" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Number/UInteger/Byte"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="MinimumSamplingInterval"
+        ordered="false" lowerBound="1" eType="#//DataTypes/Number/Double"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Historizing" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Variable" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Stereotype" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectType" eSuperTypes="#//BaseNodeClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="IsAbstract" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Stereotype" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Object" eSuperTypes="#//BaseNodeClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EventNotifier" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Number/UInteger/Byte"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Stereotype" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Method" eSuperTypes="#//BaseNodeClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Executable" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="UserExecutable" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Operation" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Stereotype" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="#//BaseNodeClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ContainsNoLoops" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EventNotifier" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Number/UInteger/Byte"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Stereotype" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableType" eSuperTypes="#//BaseNodeClass">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Value" ordered="false"
+        lowerBound="1" eType="#//DataTypes/DataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="DataType" ordered="false"
+        lowerBound="1" eType="#//DataTypes/NodeId"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ValueRank" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Number/Integer/Int32"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ArrayDimensions" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Number/UInteger/UInt32"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="IsAbstract" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Stereotype" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReferenceType" eSuperTypes="#//BaseNodeClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="IsAbstract" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Symmetric" ordered="false"
+        lowerBound="1" eType="#//DataTypes/Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="InverseName" ordered="false"
+        eType="#//DataTypes/LocalizedText"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Stereotype" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Association" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
+  </eClassifiers>
+  <eSubpackages name="DataTypes" nsURI="http:///OPCUA_BaseTypes/DataTypes.ecore" nsPrefix="OPCUA_BaseTypes.DataTypes">
+    <eClassifiers xsi:type="ecore:EEnum" name="NodeIdType">
+      <eLiterals name="String" value="1"/>
+      <eLiterals name="Numeric"/>
+      <eLiterals name="GUID" value="2"/>
+      <eLiterals name="Opaque" value="3"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="_NodeClass">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value=" NodeClass"/>
+      </eAnnotations>
+      <eLiterals name="Unspecified"/>
+      <eLiterals name="Object" value="1"/>
+      <eLiterals name="Variable" value="2"/>
+      <eLiterals name="Method" value="4"/>
+      <eLiterals name="ObjectType" value="8"/>
+      <eLiterals name="VariableType" value="16"/>
+      <eLiterals name="ReferenceType" value="32"/>
+      <eLiterals name="DataType" value="64"/>
+      <eLiterals name="View" value="128"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="QualifiedName">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="NamespaceIndex" ordered="false"
+          lowerBound="1" eType="#//DataTypes/Number/Integer/Int32"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" ordered="false"
+          lowerBound="1" eType="#//DataTypes/String"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_DataType" ordered="false"
+          eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="String"/>
+    <eClassifiers xsi:type="ecore:EClass" name="LocalizedText">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Locale" ordered="false"
+          lowerBound="1" eType="#//DataTypes/String"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Text" ordered="false"
+          lowerBound="1" eType="#//DataTypes/String"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_DataType" ordered="false"
+          eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="boolean"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//BaseNodeClass">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="IsAbstract" ordered="false"
+          lowerBound="1" eType="#//DataTypes/Boolean">
+        <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details key="originalName" value="IsAbstract "/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_DataType" ordered="false"
+          eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Stereotype" ordered="false"
+          eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Stereotype16" eSuperTypes="#//DataTypes/QualifiedName"/>
+    <eClassifiers xsi:type="ecore:EClass" name="NodeId">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="NodeIdType" ordered="false"
+          lowerBound="1" eType="#//DataTypes/NodeIdType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="StringNodeId" ordered="false"
+          lowerBound="1" eType="#//DataTypes/String"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="NumericNodeId" ordered="false"
+          lowerBound="1" eType="#//DataTypes/Number/Integer/Int32"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="GuidNodeId" ordered="false"
+          lowerBound="1" eType="#//DataTypes/String"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_DataType" ordered="false"
+          eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
+    </eClassifiers>
+    <eSubpackages name="Number" nsURI="http:///OPCUA_BaseTypes/DataTypes/Number.ecore"
+        nsPrefix="OPCUA_BaseTypes.DataTypes.Number">
+      <eClassifiers xsi:type="ecore:EDataType" name="Double" instanceClassName="double"/>
+      <eSubpackages name="UInteger" nsURI="http:///OPCUA_BaseTypes/DataTypes/Number/UInteger.ecore"
+          nsPrefix="OPCUA_BaseTypes.DataTypes.Number.UInteger">
+        <eClassifiers xsi:type="ecore:EDataType" name="Byte" instanceClassName="byte"/>
+        <eClassifiers xsi:type="ecore:EDataType" name="UInt16" instanceClassName="short"/>
+        <eClassifiers xsi:type="ecore:EDataType" name="UInt32" instanceClassName="int"/>
+        <eClassifiers xsi:type="ecore:EDataType" name="UInt64" instanceClassName="long"/>
+      </eSubpackages>
+      <eSubpackages name="Integer" nsURI="http:///OPCUA_BaseTypes/DataTypes/Number/Integer.ecore"
+          nsPrefix="OPCUA_BaseTypes.DataTypes.Number.Integer">
+        <eClassifiers xsi:type="ecore:EDataType" name="SByte" instanceClassName="byte"/>
+        <eClassifiers xsi:type="ecore:EDataType" name="Int16" instanceClassName="short"/>
+        <eClassifiers xsi:type="ecore:EDataType" name="Int64" instanceClassName="long"/>
+        <eClassifiers xsi:type="ecore:EDataType" name="Int32" instanceClassName="int"/>
+      </eSubpackages>
+    </eSubpackages>
+  </eSubpackages>
+</ecore:EPackage>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paletteconfiguration:PaletteConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" id="infromationmodelpalettemodel" label="InformationModel">
+  <drawerConfigurations xmi:type="paletteconfiguration:DrawerConfiguration" id="org.eclipse.papyrus.opcua.node.BasicTypes" label="ObjectType" description="BasicTypes">
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="org.eclipse.papyrus.opcua.node.BasicTypes.objectType" label="ObjectType" description="Create a ObjectType" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.profile/resources/elementtypes/opcua_basetypes_di.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_Shape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.profile/resources/elementtypes/opcua_basetypes_di.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.di.ObjectType_Class_Class_Shape_CN"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="org.eclipse.papyrus.opcua.node.BasicTypes.variableType" label="VariableType" description="Create a VariableType" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.profile/resources/elementtypes/opcua_basetypes_di.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_Shape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.profile/resources/elementtypes/opcua_basetypes_di.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.basetypes.di.VariableType_Class_Class_Shape_CN"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations xmi:type="paletteconfiguration:DrawerConfiguration" id="org.eclipse.papyrus.opcua.node.References" label="References" description="References">
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="org.eclipse.papyrus.opcua.node.References.HasSubtype" label="HasSubtype" description="Create a HasSubtype relationship" kind="ConnectionTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.papyrus.opcua.basetypes.profile" iconPath="icons/borrows.png"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.profile/resources/elementtypes/opcua_types_di.elementtypesconfigurations#org.eclipse.papyrus.opcua.profile.types.di.HasSubtype_Association_Association_Edge"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <requiredProfiles>OPC-UA_BaseTypes</requiredProfiles>
+  <requiredProfiles>OPC-UA_Types</requiredProfiles>
+</paletteconfiguration:PaletteConfiguration>

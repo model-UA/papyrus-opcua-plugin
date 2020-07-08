@@ -1,0 +1,104 @@
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://OPC_UA_PROFILES/"
+            target="platform:/plugin/org.eclipse.papyrus.opcua.profile/model/">
+      </mapping>
+      <mapping
+            source="pathmap://OPC_UA_LIBRARIES/"
+            target="platform:/plugin/org.eclipse.papyrus.opcua.profile/model/">
+      </mapping>
+   </extension>
+
+	<!-- register the profile so it can be found by the Papyrus Apply profil property view -->
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="OPC-UA Basetypes Profile"
+            name="OPC-UA Basetypes Profile"
+            path="pathmap://OPC_UA_PROFILES/org.eclipse.papyrus.opcua.basetypes.profile.uml"
+            provider="TU-Wien ASG">
+      </profile>
+      <profile
+            description="OPC-UA Types Profile"
+            name="OPC-UA Types Profile"
+            path="pathmap://OPC_UA_PROFILES/org.eclipse.papyrus.opcua.types.profile.uml"
+            provider="TU-Wien ASG">
+      </profile>
+   </extension>
+   
+ <!-- register the profile so it can be found by the Papyrus Import Library menu in the model explorer -->   
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+      <library
+            description="OPC-UA BaseTypes Library"
+            name="OPC-UA BaseTypes Library"
+            path="pathmap://OPC_UA_LIBRARIES/org.eclipse.papyrus.opcua.basetypes.profile.uml"
+            provider="TU-Wien ASG">
+      </library>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+      <library
+            description="OPC-UA Types Library"
+            name="OPC-UA Types Library"
+            path="pathmap://OPC_UA_LIBRARIES/org.eclipse.papyrus.opcua.types.profile.uml"
+            provider="TU-Wien ASG">
+      </library>
+   </extension>
+   
+   <extension point="org.eclipse.papyrus.infra.architecture.models">
+	    <model path="resources/architecture/opcua.architecture"/>
+	 </extension>
+	 
+	<extension
+	      point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+		<clientContext
+	         id="org.eclipse.papyrus.opcua.architecture">
+	      <matcher
+	            class="org.eclipse.papyrus.opcua.profile.architecture.internal.NoContextEnablementMatcher">
+	      </matcher>
+	   	</clientContext>
+		<binding context="org.eclipse.papyrus.opcua.architecture">
+			<!-- ElementType that deals with View deletion when their related model element is deleted -->
+			<elementType ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+			<elementType ref="org.eclipse.gmf.runtime.diagram.core.advice.removeBookmarks"/>
+	        <!-- Check for attempts to edit read-only objects that cannot reasonably be made writeable. -->		
+	        <advice ref="org.eclipse.papyrus.infra.emf.readOnlyAdvice" />
+	        <!-- Delete markers attached to objects being deleted. -->
+		</binding>
+	</extension>
+   
+   <!-- Register "semantic" elementype -->
+   <extension point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+      <elementTypeSet
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+            path="resources/elementtypes/opcua_basetypes.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+   <extension point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+      <elementTypeSet
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+            path="resources/elementtypes/opcua_basetypes_di.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+   <extension point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+      <elementTypeSet
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+            path="resources/elementtypes/opcua_types.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+   <extension point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+      <elementTypeSet
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+            path="resources/elementtypes/opcua_types_di.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+
+    <!-- Reister new chil menu in Model explorer -->
+    <extension point="org.eclipse.papyrus.infra.newchild">
+      <menuCreationModel model="resources/newchild/opcua_basetypes.creationmenumodel"></menuCreationModel>
+      <menuCreationModel
+            model="resources/newchild/opcua_types.creationmenumodel">
+      </menuCreationModel>
+   </extension>  

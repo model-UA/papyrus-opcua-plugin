@@ -280,61 +280,6 @@ public interface DataTypesPackage extends EPackage {
 	int DATA_TYPE_OPERATION_COUNT = basetypesPackage.BASE_NODE_CLASS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.Stereotype16Impl <em>Stereotype16</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.Stereotype16Impl
-	 * @see org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.DataTypesPackageImpl#getStereotype16()
-	 * @generated
-	 */
-	int STEREOTYPE16 = 3;
-
-	/**
-	 * The feature id for the '<em><b>Namespace Index</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE16__NAMESPACE_INDEX = QUALIFIED_NAME__NAMESPACE_INDEX;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE16__NAME = QUALIFIED_NAME__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Base Data Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE16__BASE_DATA_TYPE = QUALIFIED_NAME__BASE_DATA_TYPE;
-
-	/**
-	 * The number of structural features of the '<em>Stereotype16</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE16_FEATURE_COUNT = QUALIFIED_NAME_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Stereotype16</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE16_OPERATION_COUNT = QUALIFIED_NAME_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.NodeIdImpl <em>Node Id</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -342,7 +287,7 @@ public interface DataTypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.DataTypesPackageImpl#getNodeId()
 	 * @generated
 	 */
-	int NODE_ID = 4;
+	int NODE_ID = 3;
 
 	/**
 	 * The feature id for the '<em><b>Node Id Type</b></em>' attribute.
@@ -415,7 +360,7 @@ public interface DataTypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.DataTypesPackageImpl#getNodeIdType()
 	 * @generated
 	 */
-	int NODE_ID_TYPE = 5;
+	int NODE_ID_TYPE = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes._NodeClass <em>Node Class</em>}' enum.
@@ -425,7 +370,7 @@ public interface DataTypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.DataTypesPackageImpl#get_NodeClass()
 	 * @generated
 	 */
-	int _NODE_CLASS = 6;
+	int _NODE_CLASS = 5;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -435,7 +380,7 @@ public interface DataTypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.DataTypesPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 7;
+	int STRING = 6;
 
 	/**
 	 * The meta object id for the '<em>Boolean</em>' data type.
@@ -444,7 +389,7 @@ public interface DataTypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.DataTypesPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 8;
+	int BOOLEAN = 7;
 
 
 	/**
@@ -575,16 +520,6 @@ public interface DataTypesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDataType_Base_Stereotype();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.Stereotype16 <em>Stereotype16</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Stereotype16</em>'.
-	 * @see org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.Stereotype16
-	 * @generated
-	 */
-	EClass getStereotype16();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.NodeId <em>Node Id</em>}'.
@@ -816,16 +751,6 @@ public interface DataTypesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DATA_TYPE__BASE_STEREOTYPE = eINSTANCE.getDataType_Base_Stereotype();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.Stereotype16Impl <em>Stereotype16</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.Stereotype16Impl
-		 * @see org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.DataTypesPackageImpl#getStereotype16()
-		 * @generated
-		 */
-		EClass STEREOTYPE16 = eINSTANCE.getStereotype16();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.impl.NodeIdImpl <em>Node Id</em>}' class.

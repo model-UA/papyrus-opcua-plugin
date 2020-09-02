@@ -14,12 +14,16 @@ package org.eclipse.papyrus.opcua.profile.architecture;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.opcua.profile.OpcUaProfileResources;
+import org.eclipse.papyrus.opcua.profile.OPCUA_BaseTypes.InformationModel;
+import org.eclipse.papyrus.opcua.profile.OPCUA_BaseTypes.impl.InformationModelImpl;
 import org.eclipse.papyrus.uml.diagram.common.commands.ModelCreationCommandBase;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
-
+import org.eclipse.papyrus.opcua.profile.Activator;
 
 /**
  */
@@ -59,6 +63,10 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 		if (typesProfile != null) {
 			PackageUtil.applyProfile(packageOwner, typesProfile, true);
 		}
+		
+		Model model = (Model) owner;
+		model.setViewpoint("InformationModel");
+		Activator.getSynchHandler().registerNewUmlModel(model);
 	}
 
 }

@@ -74,7 +74,7 @@ public class ObjectImpl extends BaseNodeClassImpl implements org.eclipse.papyrus
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ObjectImpl() {
+	public ObjectImpl() {
 		super();
 	}
 

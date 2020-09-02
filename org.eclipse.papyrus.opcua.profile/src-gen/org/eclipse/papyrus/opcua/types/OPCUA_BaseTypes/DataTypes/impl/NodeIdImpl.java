@@ -129,7 +129,7 @@ public class NodeIdImpl extends MinimalEObjectImpl.Container implements NodeId {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NodeIdImpl() {
+	public NodeIdImpl() {
 		super();
 	}
 

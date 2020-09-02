@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.papyrus.opcua.profile.OPCUA_BaseTypes.BaseNodeClass;
+import org.eclipse.papyrus.opcua.profile.OPCUA_BaseTypes.InformationModel;
 import org.eclipse.papyrus.opcua.profile.OPCUA_BaseTypes.Method;
 import org.eclipse.papyrus.opcua.profile.OPCUA_BaseTypes.ObjectType;
 import org.eclipse.papyrus.opcua.profile.OPCUA_BaseTypes.ReferenceType;
@@ -102,6 +103,13 @@ public class basetypesPackageImpl extends EPackageImpl implements basetypesPacka
 	 * @generated
 	 */
 	private EClass referenceTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass informationModelEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -703,6 +711,16 @@ public class basetypesPackageImpl extends EPackageImpl implements basetypesPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getInformationModel() {
+		return informationModelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public basetypesFactory getbasetypesFactory() {
 		return (basetypesFactory)getEFactoryInstance();
 	}
@@ -784,6 +802,8 @@ public class basetypesPackageImpl extends EPackageImpl implements basetypesPacka
 		createEReference(referenceTypeEClass, REFERENCE_TYPE__INVERSE_NAME);
 		createEReference(referenceTypeEClass, REFERENCE_TYPE__BASE_STEREOTYPE);
 		createEReference(referenceTypeEClass, REFERENCE_TYPE__BASE_ASSOCIATION);
+
+		informationModelEClass = createEClass(INFORMATION_MODEL);
 	}
 
 	/**
@@ -831,6 +851,7 @@ public class basetypesPackageImpl extends EPackageImpl implements basetypesPacka
 		viewEClass.getESuperTypes().add(this.getBaseNodeClass());
 		variableTypeEClass.getESuperTypes().add(this.getBaseNodeClass());
 		referenceTypeEClass.getESuperTypes().add(this.getBaseNodeClass());
+		informationModelEClass.getESuperTypes().add(theUMLPackage.getStereotype());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(baseNodeClassEClass, BaseNodeClass.class, "BaseNodeClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -891,6 +912,8 @@ public class basetypesPackageImpl extends EPackageImpl implements basetypesPacka
 		initEReference(getReferenceType_InverseName(), theDataTypesPackage.getLocalizedText(), null, "InverseName", null, 0, 1, ReferenceType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getReferenceType_Base_Stereotype(), theUMLPackage.getStereotype(), null, "base_Stereotype", null, 0, 1, ReferenceType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getReferenceType_Base_Association(), theUMLPackage.getAssociation(), null, "base_Association", null, 0, 1, ReferenceType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(informationModelEClass, InformationModel.class, "InformationModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -110,7 +110,7 @@ public class ReferenceTypeImpl extends BaseNodeClassImpl implements ReferenceTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ReferenceTypeImpl() {
+	public ReferenceTypeImpl() {
 		super();
 	}
 

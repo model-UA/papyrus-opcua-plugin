@@ -94,6 +94,15 @@ public interface basetypesFactory extends EFactory {
 	ReferenceType createReferenceType();
 
 	/**
+	 * Returns a new object of class '<em>Information Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Information Model</em>'.
+	 * @generated
+	 */
+	InformationModel createInformationModel();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

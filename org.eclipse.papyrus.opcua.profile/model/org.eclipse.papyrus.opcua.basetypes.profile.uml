@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
-  <uml:Profile xmi:id="_rV1-ILH5EeqisYZRJ_9eJw" name="OPC-UA_BaseTypes" URI="http://opcfoundation.org" metaclassReference="_lJo1YLILEeqisYZRJ_9eJw _e-HycLLIEeqUPJhXiOF54g _SdyB4LerEeqaw73XGiyHRw _UaK38LuOEeqQ8qejNSycNw _c7W14LuOEeqQ8qejNSycNw _c7Z5MLuOEeqQ8qejNSycNw _-ROegLvHEeq-7YsOA7XNkA _GSrX4L1GEeq1y6QRVp3cww">
+  <uml:Profile xmi:id="_rV1-ILH5EeqisYZRJ_9eJw" name="OPC-UA_BaseTypes" URI="http://opcfoundation.org" metaclassReference="_lJo1YLILEeqisYZRJ_9eJw _e-HycLLIEeqUPJhXiOF54g _SdyB4LerEeqaw73XGiyHRw _UaK38LuOEeqQ8qejNSycNw _c7W14LuOEeqQ8qejNSycNw _c7Z5MLuOEeqQ8qejNSycNw _-ROegLvHEeq-7YsOA7XNkA _GSrX4L1GEeq1y6QRVp3cww _44AMYMv0EeqWSNnhN5KniA">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ypOZQLIGEeqisYZRJ_9eJw" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qu2RwLIIEeqisYZRJ_9eJw" source="PapyrusVersion">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qu2RwbIIEeqisYZRJ_9eJw" key="Version" value="0.0.0"/>
@@ -901,6 +901,9 @@
     <elementImport xmi:type="uml:ElementImport" xmi:id="_GSrX4L1GEeq1y6QRVp3cww" alias="Stereotype">
       <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Stereotype"/>
     </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_44AMYMv0EeqWSNnhN5KniA" alias="Model">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Model"/>
+    </elementImport>
     <packageImport xmi:type="uml:PackageImport" xmi:id="_rcNE0LH5EeqisYZRJ_9eJw">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
@@ -1185,6 +1188,11 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_3AC4oMDlEeqFn7KyQ8ZKOg" name="E_ReferenceType_Association35" memberEnd="_3AGjAMDlEeqFn7KyQ8ZKOg _3AHKEMDlEeqFn7KyQ8ZKOg">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_3AGjAMDlEeqFn7KyQ8ZKOg" name="extension_ReferenceType" type="_lhrT4L0tEeq1y6QRVp3cww" aggregation="composite" association="_3AC4oMDlEeqFn7KyQ8ZKOg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_eVz_wMv3EeqWSNnhN5KniA" name="InformationModel">
+      <generalization xmi:type="uml:Generalization" xmi:id="_n0lx4Mv4EeqWSNnhN5KniA">
+        <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Stereotype"/>
+      </generalization>
     </packagedElement>
   </uml:Profile>
   <Ecore:EDataType xmi:id="_yBWdsLeoEeq_GovhzFeLBw" instanceClassName="boolean" base_PrimitiveType="_WWri8LIBEeqisYZRJ_9eJw"/>

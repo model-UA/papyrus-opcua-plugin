@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.papyrus.opcua.profile.OPCUA_BaseTypes.BaseNodeClass;
+import org.eclipse.papyrus.opcua.profile.OPCUA_BaseTypes.InformationModel;
 import org.eclipse.papyrus.opcua.profile.OPCUA_BaseTypes.Method;
 import org.eclipse.papyrus.opcua.profile.OPCUA_BaseTypes.ObjectType;
 import org.eclipse.papyrus.opcua.profile.OPCUA_BaseTypes.ReferenceType;
@@ -72,6 +73,7 @@ public class basetypesFactoryImpl extends EFactoryImpl implements basetypesFacto
 			case basetypesPackage.VIEW: return createView();
 			case basetypesPackage.VARIABLE_TYPE: return createVariableType();
 			case basetypesPackage.REFERENCE_TYPE: return createReferenceType();
+			case basetypesPackage.INFORMATION_MODEL: return createInformationModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -163,6 +165,17 @@ public class basetypesFactoryImpl extends EFactoryImpl implements basetypesFacto
 	public ReferenceType createReferenceType() {
 		ReferenceTypeImpl referenceType = new ReferenceTypeImpl();
 		return referenceType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public InformationModel createInformationModel() {
+		InformationModelImpl informationModel = new InformationModelImpl();
+		return informationModel;
 	}
 
 	/**

@@ -4,7 +4,7 @@
     modelDirectory="/org.eclipse.papyrus.opcua.profile/src-gen" modelPluginID="org.eclipse.papyrus.opcua.profile"
     modelName="Org.eclipse.papyrus.opcua.basetypes" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="8.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    publicConstructors="true" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
     operationReflection="true" importOrganizing="true">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
@@ -116,6 +116,7 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference OPCUA_BaseTypes.ecore#//ReferenceType/base_Association"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="OPCUA_BaseTypes.ecore#//InformationModel"/>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="DataTypes" basePackage="org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes"
         disposableProviderFactory="true" ecorePackage="OPCUA_BaseTypes.ecore#//DataTypes">
       <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="OPCUA_BaseTypes.ecore#//DataTypes/NodeIdType">
@@ -156,7 +157,6 @@
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             propertySortChoices="true" ecoreFeature="ecore:EReference OPCUA_BaseTypes.ecore#//DataTypes/DataType/base_Stereotype"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OPCUA_BaseTypes.ecore#//DataTypes/Stereotype16"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OPCUA_BaseTypes.ecore#//DataTypes/NodeId">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OPCUA_BaseTypes.ecore#//DataTypes/NodeId/NodeIdType"/>
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OPCUA_BaseTypes.ecore#//DataTypes/NodeId/StringNodeId"/>

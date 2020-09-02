@@ -77,7 +77,7 @@ public class DataTypeImpl extends BaseNodeClassImpl implements DataType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DataTypeImpl() {
+	public DataTypeImpl() {
 		super();
 	}
 

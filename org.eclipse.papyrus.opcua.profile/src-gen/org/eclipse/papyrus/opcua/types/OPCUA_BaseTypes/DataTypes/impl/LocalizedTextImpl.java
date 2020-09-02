@@ -86,7 +86,7 @@ public class LocalizedTextImpl extends MinimalEObjectImpl.Container implements L
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LocalizedTextImpl() {
+	public LocalizedTextImpl() {
 		super();
 	}
 

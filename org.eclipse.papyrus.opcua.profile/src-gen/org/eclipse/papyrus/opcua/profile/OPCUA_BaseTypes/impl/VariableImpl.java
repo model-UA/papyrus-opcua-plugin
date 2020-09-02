@@ -216,7 +216,7 @@ public class VariableImpl extends BaseNodeClassImpl implements Variable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VariableImpl() {
+	public VariableImpl() {
 		super();
 	}
 

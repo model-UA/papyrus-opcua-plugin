@@ -142,7 +142,7 @@ public class VariableTypeImpl extends BaseNodeClassImpl implements VariableType 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VariableTypeImpl() {
+	public VariableTypeImpl() {
 		super();
 	}
 

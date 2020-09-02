@@ -122,7 +122,7 @@ public class BaseNodeClassImpl extends MinimalEObjectImpl.Container implements B
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BaseNodeClassImpl() {
+	public BaseNodeClassImpl() {
 		super();
 	}
 

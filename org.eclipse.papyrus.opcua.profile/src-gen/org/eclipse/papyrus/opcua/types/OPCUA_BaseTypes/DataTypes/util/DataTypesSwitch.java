@@ -87,13 +87,6 @@ public class DataTypesSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DataTypesPackage.STEREOTYPE16: {
-				Stereotype16 stereotype16 = (Stereotype16)theEObject;
-				T result = caseStereotype16(stereotype16);
-				if (result == null) result = caseQualifiedName(stereotype16);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case DataTypesPackage.NODE_ID: {
 				NodeId nodeId = (NodeId)theEObject;
 				T result = caseNodeId(nodeId);
@@ -146,21 +139,6 @@ public class DataTypesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDataType(DataType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Stereotype16</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Stereotype16</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStereotype16(Stereotype16 object) {
 		return null;
 	}
 

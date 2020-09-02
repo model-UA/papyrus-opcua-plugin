@@ -75,7 +75,7 @@ public class ObjectTypeImpl extends BaseNodeClassImpl implements ObjectType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ObjectTypeImpl() {
+	public ObjectTypeImpl() {
 		super();
 	}
 

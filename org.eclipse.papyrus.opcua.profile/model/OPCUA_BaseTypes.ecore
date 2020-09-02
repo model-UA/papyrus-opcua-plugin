@@ -109,6 +109,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Association" ordered="false"
         eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InformationModel" eSuperTypes="../../org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
   <eSubpackages name="DataTypes" nsURI="http:///OPCUA_BaseTypes/DataTypes.ecore" nsPrefix="OPCUA_BaseTypes.DataTypes">
     <eClassifiers xsi:type="ecore:EEnum" name="NodeIdType">
       <eLiterals name="String" value="1"/>
@@ -160,7 +161,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="base_Stereotype" ordered="false"
           eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Stereotype16" eSuperTypes="#//DataTypes/QualifiedName"/>
     <eClassifiers xsi:type="ecore:EClass" name="NodeId">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="NodeIdType" ordered="false"
           lowerBound="1" eType="#//DataTypes/NodeIdType"/>

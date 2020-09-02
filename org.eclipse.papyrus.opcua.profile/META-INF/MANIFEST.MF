@@ -13,7 +13,9 @@ Require-Bundle: org.eclipse.papyrus.uml.extensionpoints,
  org.eclipse.uml2.uml;visibility:=reexport,
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.9.0",
  org.eclipse.papyrus.uml.diagram.common,
- org.eclipse.papyrus.infra.architecture;bundle-version="2.1.0"
+ org.eclipse.papyrus.infra.architecture;bundle-version="2.1.0",
+ org.eclipse.emf.transaction,
+ org.eclipse.papyrus.opcua.nodeset
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.papyrus.opcua.types.OPCUA_Types.DataTypes,
  org.eclipse.papyrus.opcua.types.OPCUA_Types.DataTypes.impl,
@@ -170,3 +172,4 @@ Export-Package: org.eclipse.papyrus.opcua.types.OPCUA_Types.DataTypes,
  org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.util
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: org.eclipse.papyrus.opcua.profile
+Bundle-Activator: org.eclipse.papyrus.opcua.profile.Activator

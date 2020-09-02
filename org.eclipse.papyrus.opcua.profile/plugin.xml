@@ -73,39 +73,6 @@
 	</extension>
    
    <!-- Register "semantic" elementype -->
-   <extension point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-      <elementTypeSet
-            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-            path="resources/elementtypes/opcua_basetypes.elementtypesconfigurations">
-      </elementTypeSet>
-   </extension>
-   <extension point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-      <elementTypeSet
-            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-            path="resources/elementtypes/opcua_basetypes_di.elementtypesconfigurations">
-      </elementTypeSet>
-   </extension>
-   <extension point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-      <elementTypeSet
-            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-            path="resources/elementtypes/opcua_types.elementtypesconfigurations">
-      </elementTypeSet>
-   </extension>
-   <extension point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-      <elementTypeSet
-            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-            path="resources/elementtypes/opcua_types_di.elementtypesconfigurations">
-      </elementTypeSet>
-   </extension>
-
-    <!-- Reister new chil menu in Model explorer -->
-    <extension point="org.eclipse.papyrus.infra.newchild">
-      <menuCreationModel model="resources/newchild/opcua_basetypes.creationmenumodel"></menuCreationModel>
-      <menuCreationModel
-            model="resources/newchild/opcua_types.creationmenumodel">
-      </menuCreationModel>
-   </extension>  
-   
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated org.eclipse.papyrus.opcua.basetypes.profile -->
       <package
@@ -519,5 +486,12 @@
             uri="http:///OPCUA_Types/DataTypes.ecore"
             class="org.eclipse.papyrus.opcua.types.OPCUA_Types.DataTypes.DataTypesPackage"
             genModel="model/org.eclipse.papyrus.opcua.types.profile.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.modelListener">
+      <listener
+            name="org.eclipse.papyrus.opcua.profile.listener1"
+            realization="org.eclipse.papyrus.opcua.profile.parser.ResourceListener">
+      </listener>
    </extension>
 </plugin>

@@ -97,7 +97,7 @@ public class MethodImpl extends BaseNodeClassImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MethodImpl() {
+	public MethodImpl() {
 		super();
 	}
 

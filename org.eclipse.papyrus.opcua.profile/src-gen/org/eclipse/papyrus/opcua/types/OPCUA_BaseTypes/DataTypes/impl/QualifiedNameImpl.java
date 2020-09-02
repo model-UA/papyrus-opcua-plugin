@@ -86,7 +86,7 @@ public class QualifiedNameImpl extends MinimalEObjectImpl.Container implements Q
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected QualifiedNameImpl() {
+	public QualifiedNameImpl() {
 		super();
 	}
 

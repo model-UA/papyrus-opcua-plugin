@@ -82,10 +82,6 @@ public class DataTypesAdapterFactory extends AdapterFactoryImpl {
 				return createDataTypeAdapter();
 			}
 			@Override
-			public Adapter caseStereotype16(Stereotype16 object) {
-				return createStereotype16Adapter();
-			}
-			@Override
 			public Adapter caseNodeId(NodeId object) {
 				return createNodeIdAdapter();
 			}
@@ -152,20 +148,6 @@ public class DataTypesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDataTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.Stereotype16 <em>Stereotype16</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.Stereotype16
-	 * @generated
-	 */
-	public Adapter createStereotype16Adapter() {
 		return null;
 	}
 

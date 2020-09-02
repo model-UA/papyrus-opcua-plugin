@@ -60,7 +60,6 @@ public class DataTypesFactoryImpl extends EFactoryImpl implements DataTypesFacto
 			case DataTypesPackage.QUALIFIED_NAME: return createQualifiedName();
 			case DataTypesPackage.LOCALIZED_TEXT: return createLocalizedText();
 			case DataTypesPackage.DATA_TYPE: return createDataType();
-			case DataTypesPackage.STEREOTYPE16: return createStereotype16();
 			case DataTypesPackage.NODE_ID: return createNodeId();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -140,17 +139,6 @@ public class DataTypesFactoryImpl extends EFactoryImpl implements DataTypesFacto
 	public DataType createDataType() {
 		DataTypeImpl dataType = new DataTypeImpl();
 		return dataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Stereotype16 createStereotype16() {
-		Stereotype16Impl stereotype16 = new Stereotype16Impl();
-		return stereotype16;
 	}
 
 	/**

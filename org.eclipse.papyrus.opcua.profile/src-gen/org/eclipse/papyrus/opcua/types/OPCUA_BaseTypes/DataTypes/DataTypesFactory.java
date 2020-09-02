@@ -49,15 +49,6 @@ public interface DataTypesFactory extends EFactory {
 	DataType createDataType();
 
 	/**
-	 * Returns a new object of class '<em>Stereotype16</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Stereotype16</em>'.
-	 * @generated
-	 */
-	Stereotype16 createStereotype16();
-
-	/**
 	 * Returns a new object of class '<em>Node Id</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

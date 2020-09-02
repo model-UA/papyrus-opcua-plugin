@@ -36,7 +36,6 @@ import org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.Number.UInteger
 import org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.Number.impl.NumberPackageImpl;
 
 import org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.QualifiedName;
-import org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes.Stereotype16;
 import org.eclipse.papyrus.opcua.types.OPCUA_BaseTypes.DataTypes._NodeClass;
 
 import org.eclipse.uml2.types.TypesPackage;
@@ -70,13 +69,6 @@ public class DataTypesPackageImpl extends EPackageImpl implements DataTypesPacka
 	 * @generated
 	 */
 	private EClass dataTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass stereotype16EClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -323,16 +315,6 @@ public class DataTypesPackageImpl extends EPackageImpl implements DataTypesPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getStereotype16() {
-		return stereotype16EClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getNodeId() {
 		return nodeIdEClass;
 	}
@@ -471,8 +453,6 @@ public class DataTypesPackageImpl extends EPackageImpl implements DataTypesPacka
 		createEReference(dataTypeEClass, DATA_TYPE__BASE_DATA_TYPE);
 		createEReference(dataTypeEClass, DATA_TYPE__BASE_STEREOTYPE);
 
-		stereotype16EClass = createEClass(STEREOTYPE16);
-
 		nodeIdEClass = createEClass(NODE_ID);
 		createEAttribute(nodeIdEClass, NODE_ID__NODE_ID_TYPE);
 		createEAttribute(nodeIdEClass, NODE_ID__STRING_NODE_ID);
@@ -527,7 +507,6 @@ public class DataTypesPackageImpl extends EPackageImpl implements DataTypesPacka
 
 		// Add supertypes to classes
 		dataTypeEClass.getESuperTypes().add(thebasetypesPackage.getBaseNodeClass());
-		stereotype16EClass.getESuperTypes().add(this.getQualifiedName());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(qualifiedNameEClass, QualifiedName.class, "QualifiedName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -544,8 +523,6 @@ public class DataTypesPackageImpl extends EPackageImpl implements DataTypesPacka
 		initEAttribute(getDataType_IsAbstract(), this.getBoolean(), "IsAbstract", null, 1, 1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDataType_Base_DataType(), theUMLPackage.getDataType(), null, "base_DataType", null, 0, 1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDataType_Base_Stereotype(), theUMLPackage.getStereotype(), null, "base_Stereotype", null, 0, 1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(stereotype16EClass, Stereotype16.class, "Stereotype16", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(nodeIdEClass, NodeId.class, "NodeId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNodeId_NodeIdType(), this.getNodeIdType(), "NodeIdType", null, 1, 1, NodeId.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

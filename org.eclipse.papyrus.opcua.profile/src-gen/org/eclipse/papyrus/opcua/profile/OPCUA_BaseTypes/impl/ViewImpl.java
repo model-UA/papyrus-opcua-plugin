@@ -96,7 +96,7 @@ public class ViewImpl extends BaseNodeClassImpl implements View {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ViewImpl() {
+	public ViewImpl() {
 		super();
 	}
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paletteconfiguration:PaletteConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" id="infromationmodelpalettemodel" label="InformationModel">
+  <drawerConfigurations xmi:type="paletteconfiguration:DrawerConfiguration" id="org.eclipse.papyrus.opcua.node.BasicTypes" label="ObjectType" description="BasicTypes">
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="org.eclipse.papyrus.opcua.node.BasicTypes.objectType" label="ObjectType" description="Create a ObjectType" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.di.UAObjectType_Class_MetaclassShape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.di.UAObjectType_Class_MetaclassShape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.di.UAObjectType_Class_NestedClassifierLabel"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.di.UAObjectType_Class_Shape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.di.UAObjectType_Class_Shape"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="org.eclipse.papyrus.opcua.node.BasicTypes.variable" label="Variable" description="Create a Variable" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.di.UAVariable_Class_MetaclassShape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.di.UAVariable_Class_MetaclassShape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.di.UAVariable_Class_NestedClassifierLabel"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.di.UAVariable_Class_Shape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.di.UAVariable_Class_Shape"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations xmi:type="paletteconfiguration:DrawerConfiguration" id="org.eclipse.papyrus.opcua.node.References" label="References" description="References">
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="org.eclipse.papyrus.opcua.node.References.Reference" label="Reference" description="Create a Reference relationship" kind="ConnectionTool">
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.di.Reference_Generalization_Edge"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <requiredProfiles>NodeSet</requiredProfiles>
+</paletteconfiguration:PaletteConfiguration>

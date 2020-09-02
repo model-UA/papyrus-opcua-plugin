@@ -10,6 +10,6 @@
 			<accessrule kind="accessible" pattern="*/**"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="org/eclipse/papyrus/designer/languages/opcua/codegen/transformations/OpcUaNodeSetWriter.java" kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

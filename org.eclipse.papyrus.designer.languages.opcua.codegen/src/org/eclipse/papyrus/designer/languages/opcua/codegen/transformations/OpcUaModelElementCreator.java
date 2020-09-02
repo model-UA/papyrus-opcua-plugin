@@ -18,11 +18,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.papyrus.designer.languages.common.base.ILocationStrategy;
 import org.eclipse.papyrus.designer.languages.common.base.ModelElementsCreator;
 import org.eclipse.papyrus.infra.tools.file.IPFileSystemAccess;
+import org.eclipse.papyrus.opcua.nodeset.parser.NodeSetWriter;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
 import org.w3c.dom.Document;
-
 
 public class OpcUaModelElementCreator extends ModelElementsCreator {
 	
@@ -47,8 +48,8 @@ public class OpcUaModelElementCreator extends ModelElementsCreator {
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.newDocument();
         
-        OpcUaNodeSetWriter docWriter = new OpcUaNodeSetWriter(doc); 
-		docWriter.convertToXml(parser.nodeset);
+        NodeSetWriter docWriter = new NodeSetWriter(doc); 
+		docWriter.convertToXml( (UANodeSetType) parser.nodeset);
 
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transf;
@@ -76,7 +77,7 @@ public class OpcUaModelElementCreator extends ModelElementsCreator {
 		}
 
 		//output.concat(OpcUaPackageHeaderGenerator.generateCode(pack).toString());
-		fileSystemAccess.generateFile("InformationModel.xml", writer.toString());
+		fileSystemAccess.generateFile("InformationModel_2.xml", writer.toString());
 	}
 	
 	@Override

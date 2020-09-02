@@ -10,6 +10,8 @@ import javax.xml.namespace.QName;
 import org.eclipse.core.internal.resources.File;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.FeatureMap.Entry;
+import org.eclipse.emf.ecore.util.FeatureMapUtil.EntryImpl;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Behavior;
@@ -36,44 +38,61 @@ import org.eclipse.uml2.uml.internal.impl.DataTypeImpl;
 import org.eclipse.uml2.uml.internal.impl.PackageImpl;
 import org.eclipse.uml2.uml.internal.impl.StateMachineImpl;
 import org.opcfoundation.ua._2008._02.types.Argument;
+import org.opcfoundation.ua._2008._02.types.BodyType;
 import org.opcfoundation.ua._2008._02.types.ExtensionObject;
-import org.opcfoundation.ua._2008._02.types.ExtensionObject.Body;
-import org.opcfoundation.ua._2008._02.types.ListOfExtensionObject;
 import org.opcfoundation.ua._2008._02.types.ListOfUInt32;
-import org.opcfoundation.ua._2008._02.types.LocalizedText;
 import org.opcfoundation.ua._2008._02.types.NodeId;
-import org.opcfoundation.ua._2011._03.uanodeset.ListOfReferences;
-import org.opcfoundation.ua._2011._03.uanodeset.Reference;
-import org.opcfoundation.ua._2011._03.uanodeset.UAMethod;
-import org.opcfoundation.ua._2011._03.uanodeset.UANode;
-import org.opcfoundation.ua._2011._03.uanodeset.UANodeSet;
-import org.opcfoundation.ua._2011._03.uanodeset.UAObject;
-import org.opcfoundation.ua._2011._03.uanodeset.UAObjectType;
-import org.opcfoundation.ua._2011._03.uanodeset.UAReferenceType;
-import org.opcfoundation.ua._2011._03.uanodeset.UAVariable;
-import org.opcfoundation.ua._2011._03.uanodeset.UAVariable.Value;
-import org.opcfoundation.ua._2011._03.uanodeset.UriTable;
+import org.opcfoundation.ua._2008._02.types.TypesFactory;
+import org.opcfoundation.ua._2008._02.types.ValueType;
+import org.opcfoundation.ua._2008._02.types.impl.ArgumentImpl;
+import org.opcfoundation.ua._2008._02.types.impl.BodyTypeImpl;
+import org.opcfoundation.ua._2008._02.types.impl.ExtensionObjectImpl;
+import org.opcfoundation.ua._2008._02.types.impl.ListOfExtensionObjectImpl;
+import org.opcfoundation.ua._2008._02.types.impl.ListOfUInt32Impl;
+import org.opcfoundation.ua._2008._02.types.impl.NodeIdImpl;
+import org.opcfoundation.ua._2008._02.types.impl.TypesFactoryImpl;
+import org.opcfoundation.ua._2008._02.types.util.TypesAdapterFactory;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfReferences;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.LocalizedText;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.Reference;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAMethod;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANode;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAObject;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAObjectType;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariable;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UriTable;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.ValueType1;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ListOfReferencesImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.LocalizedTextImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ReferenceImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAMethodImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UANodeSetTypeImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAObjectImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAObjectTypeImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAVariableImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UriTableImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ValueType1Impl;
 import org.eclipse.papyrus.designer.languages.opcua.codegen.Activator;
 
 public class OpcUaUmlNodeSetConverter {
 	
 	Model model;
-	UANodeSet nodeset;
+	UANodeSetType nodeset;
 	
 	
 	public OpcUaUmlNodeSetConverter(Model model)
 	{
 		this.model = model;
-		this.nodeset = new UANodeSet();
-		
-		UriTable namespace_table = new UriTable();
+		this.nodeset = new UANodeSetTypeImpl();
+		UriTable namespace_table = new UriTableImpl();
 		this.nodeset.setNamespaceUris(namespace_table);
 		List<String> namespaces = namespace_table.getUri();
 		namespaces.add(model.getURI());
 		
 	}
 	
-	public OpcUaUmlNodeSetConverter(Model model, UANodeSet nodeset)
+	public OpcUaUmlNodeSetConverter(Model model, UANodeSetTypeImpl nodeset)
 	{
 		this.model = model;
 		this.nodeset = nodeset;
@@ -81,7 +100,7 @@ public class OpcUaUmlNodeSetConverter {
 		UriTable namespace_table = this.nodeset.getNamespaceUris();
 		if(namespace_table == null )
 		{
-			namespace_table = new UriTable();
+			namespace_table = new UriTableImpl();
 			this.nodeset.setNamespaceUris(namespace_table);
 		}
 		List<String> namespaces = namespace_table.getUri();
@@ -118,7 +137,7 @@ public class OpcUaUmlNodeSetConverter {
 				UriTable namespace_table = this.nodeset.getNamespaceUris();
 				if(namespace_table == null )
 				{
-					namespace_table = new UriTable();
+					namespace_table = new UriTableImpl();
 					this.nodeset.setNamespaceUris(namespace_table);
 				}
 				
@@ -151,17 +170,17 @@ public class OpcUaUmlNodeSetConverter {
 	
 	private void parseClass(org.eclipse.uml2.uml.Class classElement)
 	{
-		UAObjectType uaClass = new UAObjectType();
+		UAObjectTypeImpl uaClass = new UAObjectTypeImpl();
 		String browseName = getNamespaceUriId(classElement) + ":" +classElement.getName() + "Type";
 		uaClass.setBrowseName(browseName);
 		String nodeId = convertQualifiedNameToNodeId(classElement);
 		uaClass.setNodeId(nodeId);
 				
-		org.opcfoundation.ua._2011._03.uanodeset.LocalizedText displayName = new org.opcfoundation.ua._2011._03.uanodeset.LocalizedText();
+		LocalizedTextImpl displayName = new LocalizedTextImpl();
 		displayName.setLocale(classElement.getName() + "Type");
 		uaClass.getDisplayName().add(displayName);
 		
-		ListOfReferences classListOfRefs = new ListOfReferences();
+		ListOfReferencesImpl classListOfRefs = new ListOfReferencesImpl();
 		List<Reference> refList = classListOfRefs.getReference();
 		
 		if(classElement.getGeneralizations().size() > 0)
@@ -169,7 +188,7 @@ public class OpcUaUmlNodeSetConverter {
 			Generalization general = classElement.getGeneralizations().get(0);
 			if(general.getGeneral() instanceof ClassImpl)
 			{
-				Reference subtypeRef = new Reference();
+				Reference subtypeRef = new ReferenceImpl();
 				String refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasSubtype");
 				subtypeRef.setReferenceType(refId);
 				subtypeRef.setIsForward(false);
@@ -179,7 +198,7 @@ public class OpcUaUmlNodeSetConverter {
 			}
 			else
 			{
-				Reference subtypeRef = new Reference();
+				Reference subtypeRef = new ReferenceImpl();
 				String refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasSubtype");
 				subtypeRef.setReferenceType(refId);
 				subtypeRef.setIsForward(false);
@@ -190,7 +209,7 @@ public class OpcUaUmlNodeSetConverter {
 		}
 		else
 		{
-			Reference subtypeRef = new Reference();
+			Reference subtypeRef = new ReferenceImpl();
 			String refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasSubtype");
 			subtypeRef.setReferenceType(refId);
 			subtypeRef.setIsForward(false);
@@ -202,7 +221,7 @@ public class OpcUaUmlNodeSetConverter {
 		uaClass.setReferences(classListOfRefs);
 		
 		
-		List<UANode> extensionList = this.nodeset.getUAObjectOrUAVariableOrUAMethod();
+		List<UAObjectType> extensionList = this.nodeset.getUAObjectType();
 		extensionList.add(uaClass);
 		
 		EList<Property> attributes = classElement.getOwnedAttributes();
@@ -244,10 +263,10 @@ public class OpcUaUmlNodeSetConverter {
 			}	
 			
 			// get data type and check if it is a basic datatype
-			JAXBElement<NodeId> typeNodeId = getDataTypeNodeId(attrib.getType());
-			String baseTypeId = typeNodeId.getValue().getIdentifier().getValue();
+			NodeId baseTypeId = getDataTypeNodeId(attrib.getType());
+			//		typeNodeId.getValue().getIdentifier();
 			// basic data types don't need folder types for multiplicities
-			if( lower == upper || !baseTypeId.startsWith("ns"))
+			if( lower == upper || !baseTypeId.getIdentifier().startsWith("ns"))
 			{
 				// create normal component
 				addSubComponent(attrib, parent.getNodeId(), parentRefList);
@@ -278,28 +297,26 @@ public class OpcUaUmlNodeSetConverter {
 
 	private void addSubComponent(Property attrib,  String parentNodeId, List<Reference> parentRefList, boolean is_optional)
 	{
-		List<UANode> extensionList = this.nodeset.getUAObjectOrUAVariableOrUAMethod();
 		String browseName = getNamespaceUriId(attrib) + ":" +attrib.getName();
 		String attribNodeId = convertQualifiedNameToNodeId(attrib);
 				
-		org.opcfoundation.ua._2011._03.uanodeset.LocalizedText displayName = new org.opcfoundation.ua._2011._03.uanodeset.LocalizedText();
+		LocalizedText displayName = new LocalizedTextImpl();
 		displayName.setLocale(attrib.getName());
 		
-		ListOfReferences attribListOfRefs = new ListOfReferences();
+		ListOfReferencesImpl attribListOfRefs = new ListOfReferencesImpl();
 		List<Reference> attribRefList = attribListOfRefs.getReference();
 		
-		JAXBElement<NodeId> typeNodeId = getDataTypeNodeId(attrib.getType());
-		String baseTypeId = typeNodeId.getValue().getIdentifier().getValue();
+		String baseTypeId = getDataTypeNodeId(attrib.getType()).getIdentifier();
 		if(baseTypeId.startsWith("ns"))
 		{
-			UAObject attribute = new UAObject();
+			UAObject attribute = new UAObjectImpl();
 			attribute.setBrowseName(browseName);
 			attribute.setNodeId(attribNodeId);			
 			attribute.setParentNodeId(parentNodeId);
 			attribute.getDisplayName().add(displayName);
 			
 			// set type definition
-			Reference attribRef = new Reference();
+			Reference attribRef = new ReferenceImpl();
 			String refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasTypeDefinition");
 			attribRef.setReferenceType(refId);
 			attribRef.setValue(baseTypeId); 
@@ -307,11 +324,11 @@ public class OpcUaUmlNodeSetConverter {
 			
 			// list of references
 			attribute.setReferences(attribListOfRefs);
-			extensionList.add(attribute);
+			this.nodeset.getUAObject().add(attribute);
 		}
 		else
 		{
-			UAVariable attribute = new UAVariable();
+			UAVariable attribute = new UAVariableImpl();
 			attribute.setBrowseName(browseName);
 			attribute.setNodeId(attribNodeId);			
 			attribute.setParentNodeId(parentNodeId);
@@ -341,7 +358,7 @@ public class OpcUaUmlNodeSetConverter {
 			}
 			
 			// set type definition
-			Reference attribRef = new Reference();
+			Reference attribRef = new ReferenceImpl();
 			String refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasTypeDefinition");
 			attribRef.setReferenceType(refId);
 			// if attribute is static transform it as property instead of a variable
@@ -358,11 +375,11 @@ public class OpcUaUmlNodeSetConverter {
 			
 			// list of references
 			attribute.setReferences(attribListOfRefs);
-			extensionList.add(attribute);
+			this.nodeset.getUAVariable().add(attribute);
 		}
 		
 		// set reference from class to attribute
-		Reference attribRef = new Reference();
+		Reference attribRef = new ReferenceImpl();
 		String refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasComponent");
 		attribRef.setReferenceType(refId);
 		attribRef.setIsForward(true);
@@ -370,7 +387,7 @@ public class OpcUaUmlNodeSetConverter {
 		parentRefList.add(attribRef);
 		
 		// set reference from attribute to type
-		attribRef = new Reference();
+		attribRef = new ReferenceImpl();
 		refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasComponent");
 		attribRef.setReferenceType(refId);
 		attribRef.setIsForward(false);
@@ -378,7 +395,7 @@ public class OpcUaUmlNodeSetConverter {
 		attribRefList.add(attribRef);
 		
 		// set modelling rule
-		attribRef = new Reference();
+		attribRef = new ReferenceImpl();
 		refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasModellingRule");
 		attribRef.setReferenceType(refId);
 		attribRef.setIsForward(true);
@@ -398,37 +415,37 @@ public class OpcUaUmlNodeSetConverter {
 	
 	private UAObject createFolderType(Property attrib,  String parentNodeId, List<Reference> parentRefList)
 	{
-		UAObject uaFolder = new UAObject();
+		UAObject uaFolder = new UAObjectImpl();
 		String browseName = getNamespaceUriId(attrib) + ":" +attrib.getName() + "Folder";
 		uaFolder.setBrowseName(browseName);
 		String nodeId = convertQualifiedNameToNodeId(attrib)+ "Folder";
 		uaFolder.setNodeId(nodeId);
 				
-		org.opcfoundation.ua._2011._03.uanodeset.LocalizedText displayName = new org.opcfoundation.ua._2011._03.uanodeset.LocalizedText();
+		LocalizedText displayName = new LocalizedTextImpl();
 		displayName.setLocale(attrib.getName() + "Folder");
 		uaFolder.getDisplayName().add(displayName);
 		uaFolder.setParentNodeId(parentNodeId);	
 		
 		// set reference from attribute to type
-		ListOfReferences folderListOfRefs = new ListOfReferences();
+		ListOfReferencesImpl folderListOfRefs = new ListOfReferencesImpl();
 		List<Reference> folderRefList = folderListOfRefs.getReference();
 		
 		// set reference from class to folder
-		Reference folderRef = new Reference();
+		Reference folderRef = new ReferenceImpl();
 		String refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasComponent");
 		folderRef.setReferenceType(refId);
 		folderRef.setIsForward(true);
 		folderRef.setValue(uaFolder.getNodeId());
 		parentRefList.add(folderRef);
 		
-		folderRef = new Reference();
+		folderRef = new ReferenceImpl();
 		refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasComponent");
 		folderRef.setReferenceType(refId);
 		folderRef.setValue(parentNodeId);
 		folderRef.setIsForward(false);
 		folderRefList.add(folderRef);		
 				
-		Reference subtypeRef = new Reference();
+		Reference subtypeRef = new ReferenceImpl();
 		refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasTypeDefinition");
 		subtypeRef.setReferenceType(refId);
 		subtypeRef.setIsForward(false);
@@ -443,7 +460,7 @@ public class OpcUaUmlNodeSetConverter {
 	
 	private void addOptionalSubComponent(Property attrib,  String parentNodeId, List<Reference> parentRefList)
 	{
-		List<UANode> extensionList = this.nodeset.getUAObjectOrUAVariableOrUAMethod();
+		List<UAObject> extensionList = this.nodeset.getUAObject();
 		
 		UAObject uaFolder = createFolderType(attrib, parentNodeId, parentRefList);
 		
@@ -452,7 +469,7 @@ public class OpcUaUmlNodeSetConverter {
 		List<Reference> folderRefList = folderListOfRefs.getReference();
 		
 		// set modelling rule
-		Reference subtypeRef = new Reference();
+		Reference subtypeRef = new ReferenceImpl();
 		String refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasModellingRule");
 		subtypeRef.setReferenceType(refId);
 		subtypeRef.setIsForward(true);
@@ -466,7 +483,7 @@ public class OpcUaUmlNodeSetConverter {
 	
 	private void addOptionalPlaceholder(Property attrib,  String parentNodeId, List<Reference> parentRefList)
 	{
-		List<UANode> extensionList = this.nodeset.getUAObjectOrUAVariableOrUAMethod();
+		List<UAObject> extensionList = this.nodeset.getUAObject();
 		
 		UAObject uaFolder = createFolderType(attrib, parentNodeId, parentRefList);
 		
@@ -475,7 +492,7 @@ public class OpcUaUmlNodeSetConverter {
 		List<Reference> folderRefList = folderListOfRefs.getReference();
 		
 		// set modelling rule
-		Reference subtypeRef = new Reference();
+		Reference subtypeRef = new ReferenceImpl();
 		String refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasModellingRule");
 		subtypeRef.setReferenceType(refId);
 		subtypeRef.setIsForward(true);
@@ -489,7 +506,7 @@ public class OpcUaUmlNodeSetConverter {
 	
 	private void addMandatoryPlaceholder(Property attrib,  String parentNodeId, List<Reference> parentRefList)
 	{
-		List<UANode> extensionList = this.nodeset.getUAObjectOrUAVariableOrUAMethod();
+		List<UAObject> extensionList = this.nodeset.getUAObject();
 		
 		UAObject uaFolder = createFolderType(attrib, parentNodeId, parentRefList);
 		
@@ -498,7 +515,7 @@ public class OpcUaUmlNodeSetConverter {
 		List<Reference> folderRefList = folderListOfRefs.getReference();
 		
 		// set modelling rule
-		Reference subtypeRef = new Reference();
+		Reference subtypeRef = new ReferenceImpl();
 		String refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasModellingRule");
 		subtypeRef.setReferenceType(refId);
 		subtypeRef.setIsForward(true);
@@ -513,29 +530,28 @@ public class OpcUaUmlNodeSetConverter {
 	
 	private void transformOperations(EList<Operation> operations, UAObjectType parent, List<Reference> parentRefList )
 	{
-		List<UANode> extensionList = this.nodeset.getUAObjectOrUAVariableOrUAMethod();
 		for (Operation operation: operations)
 		{
 			// configure method
-			UAMethod method = new UAMethod(); 
+			UAMethod method = new UAMethodImpl(); 
 			String browseName = getNamespaceUriId(operation) + ":" +operation.getName();
 			method.setBrowseName(browseName);
 			String opNodeId = convertQualifiedNameToNodeId(operation);
 			method.setNodeId(opNodeId);
 			method.setParentNodeId(parent.getNodeId());
 			
-			org.opcfoundation.ua._2011._03.uanodeset.LocalizedText displayName = new org.opcfoundation.ua._2011._03.uanodeset.LocalizedText();
+			LocalizedText displayName = new LocalizedTextImpl();
 			displayName.setLocale(operation.getName());
 			method.getDisplayName().add(displayName);
 			
-			ListOfReferences methodListOfRefs = new ListOfReferences();
+			ListOfReferencesImpl methodListOfRefs = new ListOfReferencesImpl();
 			List<Reference> methodRefList = methodListOfRefs.getReference();
 			
 			//configure input arguments
-			UAVariable inputArgs = new UAVariable();
+			UAVariable inputArgs = new UAVariableImpl();
 			inputArgs.setBrowseName("InputArguments");
 			
-			displayName = new org.opcfoundation.ua._2011._03.uanodeset.LocalizedText();
+			displayName = new LocalizedTextImpl();
 			displayName.setLocale(inputArgs.getBrowseName());
 			inputArgs.getDisplayName().add(displayName);
 			
@@ -545,18 +561,18 @@ public class OpcUaUmlNodeSetConverter {
 			int arrayDim = operation.getOwnedParameters().size();
 			inputArgs.setArrayDimensions(String.valueOf(arrayDim)) ;
 			
-			Value inputArgsValue = inputArgs.getValue();
+			ValueType1 inputArgsValue = inputArgs.getValue();
 			if(inputArgsValue == null)
 			{
-				inputArgsValue = new Value();
+				inputArgsValue = new ValueType1Impl();
 				inputArgs.setValue(inputArgsValue);
 			}
 			
 			//configure input arguments
-			UAVariable outputArgs = new UAVariable();
+			UAVariable outputArgs = new UAVariableImpl();
 			outputArgs.setBrowseName("OutputArguments");
 			
-			displayName = new org.opcfoundation.ua._2011._03.uanodeset.LocalizedText();
+			displayName = new LocalizedTextImpl();
 			displayName.setLocale(outputArgs.getBrowseName());
 			outputArgs.getDisplayName().add(displayName);
 			
@@ -564,42 +580,42 @@ public class OpcUaUmlNodeSetConverter {
 			outputArgs.setParentNodeId(method.getNodeId());
 			outputArgs.setDataType( "i="+ OpcUaNodeIdList.getDataTypeNodeId("Argument"));
 			
-			Value outputArgsValue = outputArgs.getValue();
+			ValueType1 outputArgsValue = outputArgs.getValue();
 			if(outputArgsValue == null)
 			{
-				outputArgsValue = new Value();
+				outputArgsValue = new ValueType1Impl();
 				outputArgs.setValue(outputArgsValue);
 			}
 			
-			ListOfExtensionObject inputArgsListOfExtensionObjects = new ListOfExtensionObject();
-			List<ExtensionObject> inputArgList = inputArgsListOfExtensionObjects.getExtensionObject();
+			ListOfExtensionObjectImpl inputArgsListOfExtensionObjectImpls = new ListOfExtensionObjectImpl();
+			List<ExtensionObject> inputArgList = inputArgsListOfExtensionObjectImpls.getExtensionObject();
 			
-			ListOfExtensionObject outputArgsListOfExtensionObjects = new ListOfExtensionObject();
-			List<ExtensionObject> outputArgList = outputArgsListOfExtensionObjects.getExtensionObject();
+			ListOfExtensionObjectImpl outputArgsListOfExtensionObjectImpls = new ListOfExtensionObjectImpl();
+			List<ExtensionObject> outputArgList = outputArgsListOfExtensionObjectImpls.getExtensionObject();
 			
 			setArguments(inputArgList,outputArgList,operation.getOwnedParameters());
 
 			inputArgs.setArrayDimensions(String.valueOf(inputArgList.size())) ;
 			outputArgs.setArrayDimensions(String.valueOf(outputArgList.size())) ;
 			
-			inputArgsValue.setAny(inputArgsListOfExtensionObjects);
-			outputArgsValue.setAny(outputArgsListOfExtensionObjects);
+			inputArgsValue.getAny().setValue(0, inputArgsListOfExtensionObjectImpls);
+			outputArgsValue.getAny().setValue(0,outputArgsListOfExtensionObjectImpls);
 			
-			ListOfReferences inputArgsListOfRefs = new ListOfReferences();
+			ListOfReferencesImpl inputArgsListOfRefs = new ListOfReferencesImpl();
 			List<Reference> inputArgsRefList = inputArgsListOfRefs.getReference();
 			
-			ListOfReferences outputArgsListOfRefs = new ListOfReferences();
+			ListOfReferencesImpl outputArgsListOfRefs = new ListOfReferencesImpl();
 			List<Reference> outputArgsRefList = outputArgsListOfRefs.getReference();
 			
 			// set reference from class to method
-			Reference methodRef = new Reference();
+			Reference methodRef = new ReferenceImpl();
 			String refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasComponent");
 			methodRef.setReferenceType(refId);
 			methodRef.setIsForward(true);
 			methodRef.setValue(method.getNodeId());
 			parentRefList.add(methodRef);
 			
-			methodRef = new Reference();
+			methodRef = new ReferenceImpl();
 			refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasComponent");
 			methodRef.setReferenceType(refId);
 			methodRef.setIsForward(false);
@@ -607,7 +623,7 @@ public class OpcUaUmlNodeSetConverter {
 			methodRefList.add(methodRef);
 						
 			// set Modelling rule
-			methodRef = new Reference();
+			methodRef = new ReferenceImpl();
 			refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasModellingRule");
 			methodRef.setReferenceType(refId);
 			methodRef.setIsForward(true);
@@ -618,14 +634,14 @@ public class OpcUaUmlNodeSetConverter {
 			outputArgsRefList.add(methodRef);
 						
 			// set reference from method to input arguments
-			methodRef = new Reference();
+			methodRef = new ReferenceImpl();
 			refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasProperty");
 			methodRef.setReferenceType(refId);
 			methodRef.setIsForward(true);
 			methodRef.setValue(inputArgs.getNodeId());
 			methodRefList.add(methodRef);
 			
-			methodRef = new Reference();
+			methodRef = new ReferenceImpl();
 			refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasProperty");
 			methodRef.setReferenceType(refId);
 			methodRef.setIsForward(true);
@@ -634,7 +650,7 @@ public class OpcUaUmlNodeSetConverter {
 			
 			
 			// set reference from method to input arguments
-			Reference argsRef = new Reference();
+			Reference argsRef = new ReferenceImpl();
 			refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasProperty");
 			argsRef.setReferenceType(refId);
 			argsRef.setIsForward(false);
@@ -642,7 +658,7 @@ public class OpcUaUmlNodeSetConverter {
 			inputArgsRefList.add(argsRef);
 			outputArgsRefList.add(argsRef);
 			
-			argsRef = new Reference();
+			argsRef = new ReferenceImpl();
 			refId = "i="+ OpcUaNodeIdList.getReferenceTypeNodeId("HasTypeDefinition");
 			argsRef.setReferenceType(refId);
 			argsRef.setIsForward(true);
@@ -656,9 +672,9 @@ public class OpcUaUmlNodeSetConverter {
 			inputArgs.setReferences(inputArgsListOfRefs);
 			outputArgs.setReferences(outputArgsListOfRefs);
 			
-			extensionList.add(method);
-			extensionList.add(inputArgs);
-			extensionList.add(outputArgs);
+			this.nodeset.getUAMethod().add(method);
+			this.nodeset.getUAVariable().add(inputArgs);
+			this.nodeset.getUAVariable().add(outputArgs);
 		}
 	}
 	
@@ -668,13 +684,10 @@ public class OpcUaUmlNodeSetConverter {
 	{
  		for( Parameter param : paramList)
 		{	
-			Argument uaArgument = new Argument();
+			Argument uaArgument = new ArgumentImpl();
 			
 			// set Name of Argument
-			QName qArgName = new QName(param.getName());
-			JAXBElement<String> argName = new JAXBElement<String>(qArgName, String.class, param.getName());
-			argName.setValue(param.getName());
-			uaArgument.setName(argName);
+			uaArgument.setName(param.getName());
 			
 			if(param.getType() == null)
 			{
@@ -687,11 +700,10 @@ public class OpcUaUmlNodeSetConverter {
 			
 			// Set Array Dimension
 			// TODO: check if UML Arrays exist as Parameter
-			ListOfUInt32 argArrayDimension = new ListOfUInt32();
+			ListOfUInt32 argArrayDimension = new ListOfUInt32Impl();
 			List<Long> argArrayDimensionList = argArrayDimension.getUInt32();
 			argArrayDimensionList.add((long) 1);
-			JAXBElement<ListOfUInt32> value = new JAXBElement<ListOfUInt32>(qArgName, ListOfUInt32.class , argArrayDimension);
-			uaArgument.setArrayDimensions(value);
+			uaArgument.setArrayDimensions(argArrayDimension);
 			
 			// Set Value Rank		
 			int upper = param.getUpper();
@@ -709,26 +721,24 @@ public class OpcUaUmlNodeSetConverter {
 			}
 			
 			// Set description
-			LocalizedText descriptionLT = new LocalizedText();
+			LocalizedText descriptionLT = new LocalizedTextImpl();
 			String comments = "";
 			for(Comment comment : param.getOwnedComments())
 			{
 				comments += comment.getBody() + "\n";
 			}
 			
-			JAXBElement<String> descriptionText = new JAXBElement<String>(qArgName, String.class, comments);
-			descriptionLT.setText(descriptionText);
-			JAXBElement<LocalizedText> description = new JAXBElement<LocalizedText>(qArgName, LocalizedText.class, descriptionLT);
-			uaArgument.setDescription(description );
+			descriptionLT.setLocale(comments);
+			uaArgument.setDescription((org.opcfoundation.ua._2008._02.types.LocalizedText) descriptionLT );
 			
-			Body body = new Body();
-			body.setAny(uaArgument);
+			TypesFactory type_fac = new TypesFactoryImpl();
+			BodyType body = type_fac.createBodyType();
+			body.getAny().setValue(0, uaArgument);
 			
-			ExtensionObject argumentExtensionObject = new ExtensionObject();
-			JAXBElement<Body> bodyElem = new JAXBElement<Body>(qArgName, Body.class, body);
-			argumentExtensionObject.setBody(bodyElem);
+			ExtensionObject argumentExtensionObject = new ExtensionObjectImpl();
+			argumentExtensionObject.setBody(body);
  			argumentExtensionObject.setTypeId(getDataTypeNodeId("Argument") );
-			
+ 			
  			ParameterDirectionKind dir = param.getDirection();
  			if(dir.getLiteral().contentEquals("in"))
  			{ 				
@@ -751,9 +761,9 @@ public class OpcUaUmlNodeSetConverter {
 		}
 	}
 	
-	private JAXBElement<NodeId> getDataTypeNodeId(Type dataType)
+	private NodeId getDataTypeNodeId(Type dataType)
 	{
-		NodeId typeId = new NodeId();		
+		NodeId typeId = new NodeIdImpl();		
 		String typeName = dataType.getName();
 		String dataTypeId = "";
 		
@@ -776,21 +786,15 @@ public class OpcUaUmlNodeSetConverter {
 		{
 			Activator.log.error("Got unknown type "+typeName, null);
 		}
-		QName qDataTypeName = new QName(typeName);
-		JAXBElement<String> dataTypeName = new JAXBElement<String>(qDataTypeName, String.class, dataType.getName());
-		dataTypeName.setValue(dataTypeId);
-		
-		typeId.setIdentifier(dataTypeName);
-		
-		
-		JAXBElement<NodeId> dataTypeNodeId = new JAXBElement<NodeId>(qDataTypeName, NodeId.class, typeId);
-		dataTypeNodeId.setValue(typeId);
-		return dataTypeNodeId;
+
+		typeId.setIdentifier(dataTypeId);
+
+		return typeId;
 	}
 	
-	private JAXBElement<NodeId> getDataTypeNodeId(String typeName)
+	private NodeId getDataTypeNodeId(String typeName)
 	{
-		NodeId typeId = new NodeId();
+		NodeId typeId = new NodeIdImpl();
 		String dataTypeId = "";
 		
 		if(typeName.equals("Real"))
@@ -807,16 +811,10 @@ public class OpcUaUmlNodeSetConverter {
 		{
 			//OpcUaDataTypeNodeIdList.addDataType(typeName, type );
 		}
-		QName qDataTypeName = new QName(typeName);
-		JAXBElement<String> dataTypeName = new JAXBElement<String>(qDataTypeName, String.class, typeName);
-		dataTypeName.setValue(dataTypeId);
+
+		typeId.setIdentifier(dataTypeId);
 		
-		typeId.setIdentifier(dataTypeName);
-		
-		
-		JAXBElement<NodeId> dataTypeNodeId = new JAXBElement<NodeId>(qDataTypeName, NodeId.class, typeId);
-		dataTypeNodeId.setValue(typeId);
-		return dataTypeNodeId;
+		return typeId;
 	}
 	
 	private String getNamespaceUriId(EObject elem)

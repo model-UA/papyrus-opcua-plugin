@@ -125,7 +125,7 @@ public class InstanceSyncHandler {
         filename = filename.append(project_path);
         filename = filename.append(this.baseUmlModel.getName() + ".xml");
        
-        NodeSetParser.writeToFile(filename.toOSString(), this.baseNodeset);
+        NodeSetParser.writeNodeSetFile(filename.toOSString(), this.baseNodeset);
         
 		return true;
 	}

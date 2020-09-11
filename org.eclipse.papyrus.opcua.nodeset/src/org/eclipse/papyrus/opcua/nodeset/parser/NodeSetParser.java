@@ -21,7 +21,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.util.NodeSetResourceFactoryIm
 
 public class NodeSetParser {
 
-	public static boolean writeToFile(String filePath, UANodeSetType nodeset)
+	public static boolean writeNodeSetFile(String filePath, UANodeSetType nodeset)
 	{
 		
         // Obtain a new resource set

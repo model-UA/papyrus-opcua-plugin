@@ -8,9 +8,6 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-13
 Export-Package: org.eclipse.papyrus.opcua.nodeset.parser,
- org.opcfoundation.ua._2008._02.types,
- org.opcfoundation.ua._2008._02.types.impl,
- org.opcfoundation.ua._2008._02.types.util,
  org.opcfoundation.ua._2011._03.ua.UANodeSet,
  org.opcfoundation.ua._2011._03.ua.UANodeSet.impl,
  org.opcfoundation.ua._2011._03.ua.UANodeSet.util
@@ -21,3 +18,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore.xmi;visibility:=reexport
 Automatic-Module-Name: org.eclipse.papyrus.opcua.nodeset
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.papyrus.infra.tools.file

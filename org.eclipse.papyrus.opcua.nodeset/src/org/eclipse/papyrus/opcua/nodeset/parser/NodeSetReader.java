@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.opcua.nodeset.parser;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfReferences;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.LocalizedText;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.Reference;
@@ -8,7 +9,6 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAMethod;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAObject;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAObjectType;
-import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAReferenceType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UriTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ListOfReferencesImpl;
@@ -26,6 +26,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 
+@Deprecated
 public class NodeSetReader {
 	
 	Document doc;
@@ -38,6 +39,8 @@ public class NodeSetReader {
 	
 	public UANodeSetType readNodeSet()
 	{
+		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+		
 		UANodeSetTypeImpl nodeset = new UANodeSetTypeImpl();
 		Node child = (Node) this.root.getFirstChild();
 		
@@ -227,9 +230,13 @@ public class NodeSetReader {
 			{
 				String displayName = child.getTextContent();
 				EList<LocalizedText> ltList = uaObjectType.getDisplayName();
-				LocalizedTextImpl displayNameLT = new LocalizedTextImpl();
-				displayNameLT.setValue(displayName);
-				ltList.add(displayNameLT);
+
+				for(String line : displayName.split("\n")) 
+				{
+					LocalizedTextImpl displayNameLT = new LocalizedTextImpl();
+					displayNameLT.setValue(line);
+					ltList.add(displayNameLT);					
+				}
 			}
 			else if(nodeName.equalsIgnoreCase("References"))
 			{

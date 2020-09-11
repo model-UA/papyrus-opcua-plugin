@@ -50,8 +50,11 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	public static SynchHandler getSynchHandler() {
-		// TODO Auto-generated method stub
 		return nodeSetUmlSynchHandler;
+	}
+	
+	public static NodeSetFileChangeListener getNodeSetFileChangeListener() {
+		return nodeSetChangedListener;
 	}
 
 }

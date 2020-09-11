@@ -3,14 +3,18 @@ package org.eclipse.papyrus.opcua.diagram.listener;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.opcua.diagram.Activator;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
 
 public class DiagramChangeListener implements IPapyrusListener {
 	
 	HashMap<Model, Boolean> autotransform_model;
+	private static boolean disabled = false;
 	
 	public DiagramChangeListener() {
 		// TODO Auto-generated constructor stub
@@ -18,9 +22,19 @@ public class DiagramChangeListener implements IPapyrusListener {
 		this.autotransform_model = new HashMap<Model, Boolean>();
 	}
 	
+	public static void disable(boolean disable)
+	{
+		disabled = disable;
+	}
+	
 	@Override
 	public void notifyChanged(Notification notification) {
-
+		
+		if(disabled)
+		{
+			return;
+		}
+		
 		Object notifier = notification.getNotifier();
 		Model currentModel;
 		
@@ -39,7 +53,39 @@ public class DiagramChangeListener implements IPapyrusListener {
 		{
 			System.out.println("Do transformation and Storage");
 			Element elem = (Element) notifier ;
-			Activator.getSynchHandler().updateObject(elem);
+			if(notification.getEventType() == Notification.REMOVE || 
+				notification.getEventType() == Notification.REMOVE_MANY)
+			{
+				Model mod = elem.getModel();
+				elem = (Element)notification.getOldValue();
+				
+				disabled = true;
+				try {
+					Activator.getSynchHandler().removeObject(mod, elem);					
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+				finally {
+					disabled = false;
+				}
+			}
+			else //if(notification.getEventType() == Notification.ADD ||
+				//	notification.getEventType() == Notification.SET )
+			{				
+				disabled = true;
+				try {
+					Activator.getSynchHandler().updateObject(elem);				
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+				finally {
+					disabled = false;
+				}
+			}
 		}
 		else
 		{
@@ -60,6 +106,21 @@ public class DiagramChangeListener implements IPapyrusListener {
 		{
 			this.autotransform_model.put(currentModel, auto_transform);
 			Activator.getSynchHandler().registerNewUmlModel(currentModel);
+			EList<NamedElement> members = new BasicEList<NamedElement>();
+			members.addAll(currentModel.getOwnedMembers());
+
+			disabled = true;
+			try {
+				members.forEach((member) -> Activator.getSynchHandler().updateObject(member));
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+			finally {
+				disabled = false;
+			}
+
 		}
 		else if(! this.autotransform_model.get(currentModel))
 		{
@@ -68,6 +129,21 @@ public class DiagramChangeListener implements IPapyrusListener {
 			if(old_state != auto_transform)
 			{
 				Activator.getSynchHandler().registerNewUmlModel(currentModel);
+				EList<NamedElement> members = currentModel.getOwnedMembers();
+				for(NamedElement member : members )
+				{
+					disabled = true;
+					try {
+						Activator.getSynchHandler().updateObject(member);				
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+					}
+					finally {
+						disabled = false;
+					}
+				}
 			}
 		}
 				

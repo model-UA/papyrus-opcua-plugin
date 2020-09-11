@@ -1,25 +1,20 @@
 package org.eclipse.papyrus.opcua.diagram.transformer;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.StringWriter;
+import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -27,10 +22,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.EEnumLiteralImpl;
 import org.eclipse.emf.ecore.util.EcoreEList;
-import org.eclipse.papyrus.designer.languages.common.base.HierarchyLocationStrategy;
-import org.eclipse.papyrus.designer.languages.common.base.ILocationStrategy;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.tools.file.IPFileSystemAccess;
 import org.eclipse.papyrus.infra.tools.file.ProjectBasedFileAccess;
+import org.eclipse.papyrus.opcua.nodeset.parser.NodeSetParser;
 import org.eclipse.papyrus.opcua.nodeset.parser.NodeSetReader;
 import org.eclipse.papyrus.opcua.nodeset.parser.NodeSetWriter;
 import org.eclipse.uml2.uml.Class;
@@ -39,6 +36,7 @@ import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
@@ -50,11 +48,18 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.Reference;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ReleaseStatus;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.RolePermission;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.StructureTranslationType;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UADataType;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAMethod;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANode;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAObject;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAObjectType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAReferenceType;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAType;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariable;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariableType;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAView;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UriTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.AliasTableImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ListOfReferencesImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ListOfRolePermissionsImpl;
@@ -65,6 +70,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.RolePermissionImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.StructureTranslationTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.TranslationTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UADataTypeImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAInstanceImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAMethodImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UANodeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAObjectImpl;
@@ -72,9 +78,8 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAObjectTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAReferenceTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAVariableImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAVariableTypeImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAViewImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UriTableImpl;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 public class InstanceSyncHandler {
 	
@@ -105,59 +110,34 @@ public class InstanceSyncHandler {
 	public boolean writeToNodeSetFile() throws ParserConfigurationException
 	{
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-
 		IProject[] projects = root.getProjects();
-				
 		IPFileSystemAccess fileSystemAccess = new ProjectBasedFileAccess(projects[0]);
-		ILocationStrategy locStrategy =  new HierarchyLocationStrategy();
-		// get container for the current element
 		
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document doc = builder.newDocument();
-		
-		NodeSetWriter docWriter = new NodeSetWriter(doc); 
-		docWriter.convertToXml(this.baseNodeset);
-
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transf;
-		try {
-			transf = transformerFactory.newTransformer();
-		} catch (TransformerConfigurationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		//output.concat(OpcUaPackageHeaderGenerator.generateCode(pack).toString());
+		if(this.baseUmlModel.getName() == null)
+		{
 			return false;
 		}
-        
-        transf.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-        transf.setOutputProperty(OutputKeys.INDENT, "yes");
-        transf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+		
+        IPath filename = root.getLocation();
+        IPath project_path = projects[0].getFullPath();
+        filename = filename.append(project_path);
+        filename = filename.append(this.baseUmlModel.getName() + ".xml");
        
-        StringWriter writer = new StringWriter();
-        StreamResult streamResult = new StreamResult(writer);
-        		
-        DOMSource source = new DOMSource(doc);
-        try {
-			transf.transform(source, streamResult);
-		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		//output.concat(OpcUaPackageHeaderGenerator.generateCode(pack).toString());
-		fileSystemAccess.generateFile("InformationModel.xml", writer.toString());
+        NodeSetParser.writeToFile(filename.toOSString(), this.baseNodeset);
+        
 		return true;
 	}
-	public boolean readToNodeSetFile(File filepath) throws ParserConfigurationException, SAXException, IOException
+	public boolean readToNodeSetFile(File filepath)
 	{
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder = factory.newDocumentBuilder();
-		Document document = builder.parse(filepath);
-		document.getDocumentElement().normalize();
-		NodeSetReader reader = new NodeSetReader(document);
-		
-		UANodeSetType nodeSet = reader.readNodeSet();
-		
+//		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+//		DocumentBuilder builder = factory.newDocumentBuilder();
+//		Document document = builder.parse(filepath);
+//		document.getDocumentElement().normalize();
+//		NodeSetReader reader = new NodeSetReader(document);
+//		
+//		UANodeSetType nodeSet = reader.readNodeSet();
+//		
 		return false;
 	}
 	public void setNodeSetObject(UANodeSetType nodeset)
@@ -186,7 +166,18 @@ public class InstanceSyncHandler {
 		
 		if(object instanceof Class)
 		{
-			return_val= updateClass((Class) object);
+			//return_val= updateClass((Class) object);
+			
+			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(this.baseUmlModel);
+			
+			// changes to diagrams shall be done inside commands
+			UpdateUMLClassCommand cmd = new UpdateUMLClassCommand(domain);
+			cmd.setClass((Class) object);
+			cmd.registerInstanceSynchHandler(this);
+			
+			domain.getCommandStack().execute(cmd);
+			
+			return_val = cmd.getCommandResult();
 		}
 		else if(object instanceof DataType)
 		{
@@ -200,11 +191,10 @@ public class InstanceSyncHandler {
 		return return_val;
 	}
 	
-	private boolean updateClass(Class object)
+	protected boolean updateClass(Class object)
 	{
 		EList<EObject> stereotype_applications = object.getStereotypeApplications();
-		EList<Classifier> par = object.parents();
-		
+
 		boolean success=false;
 		
 		for(EObject ster : stereotype_applications)
@@ -357,6 +347,54 @@ public class InstanceSyncHandler {
 		
 	}
 	
+	public boolean removeMember(Element obj) {
+		
+		if(!this.matching.containsKey(obj))
+		{
+			return true;
+		}
+		
+		boolean success = false;
+		Object toBeRemoved = this.matching.get(obj);
+		
+		if(toBeRemoved instanceof UADataType)
+		{
+			success = this.baseNodeset.getUADataType().remove(toBeRemoved);
+		}
+		else if(toBeRemoved instanceof UAMethod)
+		{
+			success = this.baseNodeset.getUAMethod().remove(toBeRemoved);
+		}
+		else if(toBeRemoved instanceof UAObjectType)
+		{
+			success = this.baseNodeset.getUAObjectType().remove(toBeRemoved);
+		}
+		else if(toBeRemoved instanceof UAObject)
+		{
+			success = this.baseNodeset.getUAObject().remove(toBeRemoved);
+		}
+		else if(toBeRemoved instanceof UAReferenceType)
+		{
+			success = this.baseNodeset.getUAReferenceType().remove(toBeRemoved);
+		}
+		else if(toBeRemoved instanceof UAVariable)
+		{
+			success = this.baseNodeset.getUAVariable().remove(toBeRemoved);
+		}
+		else if(toBeRemoved instanceof UAVariableType)
+		{
+			success = this.baseNodeset.getUAVariableType().remove(toBeRemoved);
+		}
+		
+		if(success)
+		{
+			this.matching.remove(obj);
+		}
+		
+		return success;
+	}
+	
+	
 	private boolean transformValueType1(Class object,  DynamicEObjectImpl stereotype) {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
@@ -393,7 +431,7 @@ public class InstanceSyncHandler {
 				continue;
 			}
 			
-			if(name.equals("uri"))
+			if(name.equalsIgnoreCase("uri"))
 			{
 				List<String> uris = (List<String>) temp;
 				uriTable.getUri().clear();
@@ -408,7 +446,48 @@ public class InstanceSyncHandler {
 
 	private boolean transformUAView(Class object,  DynamicEObjectImpl stereotype) {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
+		
+		UAViewImpl uaView;
+		if(this.matching.containsKey(object))
+		{
+			uaView = (UAViewImpl) this.matching.get(object);
+		}
+		else
+		{
+			uaView = new UAViewImpl();
+			this.matching.put(object, uaView);
+			this.baseNodeset.getUAView().add(uaView);
+		}
+		
+		boolean success = transformUAInstance(object, stereotype);
+		
+		if(!success)
+		{
+			return success;
+		}
+		
+		for(EStructuralFeature feature : featuresList)
+		{
+			int id = feature.getFeatureID();
+			String name = feature.getName();
+			Object temp = stereotype.dynamicGet(id);
+			if(temp == null)
+			{
+				continue;
+			}
+			
+			if(name.equalsIgnoreCase("containsNoLoops"))
+			{
+				//TODO: Add containsNoLoops
+			}
+			else if(name.equalsIgnoreCase("eventNotifier"))
+			{
+				//TODO: Add executable
+			}
+		}
+		
+
+		return true;
 		
 	}
 
@@ -427,181 +506,7 @@ public class InstanceSyncHandler {
 			this.baseNodeset.getUAVariableType().add(uaVarType);
 		}
 		
-		for(EStructuralFeature feature : featuresList)
-		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			
-			if(temp == null)
-			{
-				continue;
-			}
-			
-			if(name.equals("displayName"))
-			{
-				uaVarType.getDisplayName().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaVarType.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaVarType.getDisplayName().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
-			}
-			else if(name.equals("description"))
-			{
-				uaVarType.getDescription().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					//transformNodeIdAlias(aliasUML);
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaVarType.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaVarType.getDescription().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
-			}
-			else if(name.equals("category"))
-			{
-				List<String> categories = (List<String>) temp;
-				uaVarType.getCategory().clear();
-				uaVarType.getCategory().addAll(categories);
-			}
-			else if(name.equals("documentation"))
-			{
-				List<String> documentation = (List<String>) temp;
-				uaVarType.getCategory().clear();
-				uaVarType.getCategory().addAll(documentation);
-			}
-			else if(name.equals("references"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("rolePermissions"))
-			{
-				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
-				if(this.matching.containsKey(rp_object))
-				{
-					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
-					uaVarType.setRolePermissions(rp);
-				}
-			}
-			else if(name.equals("extensions"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("accessRestrictions"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				short convertedShort = Short.parseShort(stringToConvert);
-				uaVarType.setAccessRestrictions(convertedShort);
-				
-			}
-			else if(name.equals("browseName"))
-			{
-				String browseNameString = (String) temp;
-				
-				if(!browseNameString.startsWith("1:"))
-				{					
-					browseNameString = "1:"+browseNameString;
-					stereotype.dynamicSet(id, browseNameString);
-				}
-				
-				uaVarType.setNodeId(browseNameString);
-				
-			}
-			else if(name.equals("nodeId"))
-			{
-				String nodeIdString = (String) temp;
-				
-				if(!((nodeIdString.startsWith("ns=") || nodeIdString.startsWith("i=")) || nodeIdString.startsWith("i=")))
-				{					
-					nodeIdString = "ns=1;s="+nodeIdString;
-					stereotype.dynamicSet(id, nodeIdString);
-				}
-				
-				uaVarType.setNodeId(nodeIdString);
-			}
-			else if(name.equals("releaseStatus"))
-			{
-				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
-				String value = lit.toString();
-				switch(value)
-				{
-				case "Draft":
-					uaVarType.setReleaseStatus(ReleaseStatus.DRAFT);
-					break;
-				case "Released":
-					uaVarType.setReleaseStatus(ReleaseStatus.RELEASED);
-					break;
-				case "Deprecated":
-					uaVarType.setReleaseStatus(ReleaseStatus.DEPRECATED);
-					break;
-				}
-			}
-			else if(name.equals("symbolicName"))
-			{
-				List<String> symbolicName = (List<String>) temp;
-				uaVarType.getCategory().clear();
-				uaVarType.getCategory().addAll(symbolicName);
-			}
-			else if(name.equals("userWriteMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-		        Long convertedLong = Long.parseLong(stringToConvert);
-				uaVarType.setUserWriteMask(convertedLong);
-			}
-			else if(name.equals("writeMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				Long convertedLong = Long.parseLong(stringToConvert);
-				uaVarType.setWriteMask(convertedLong);
-			}			
-		}
-
-		return true;
+		return transformUAType(object, stereotype);
 	}
 
 	private boolean transformUAVariable(Class object,  DynamicEObjectImpl stereotype) {
@@ -620,7 +525,12 @@ public class InstanceSyncHandler {
 		}
 		
 		EList<Classifier> generals = object.getGenerals();
+		boolean success = transformUAInstance(object, stereotype);
 		
+		if(!success)
+		{
+			return success;
+		}
 		
 		for(EStructuralFeature feature : featuresList)
 		{
@@ -632,208 +542,47 @@ public class InstanceSyncHandler {
 				continue;
 			}
 			
-			if(name.equals("displayName"))
+			if(name.equalsIgnoreCase("value"))
 			{
-				uaVariable.getDisplayName().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaVariable.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaVariable.getDisplayName().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
+				//TODO: Add value
 			}
-			else if(name.equals("description"))
+			else if(name.equalsIgnoreCase("translation"))
 			{
-				uaVariable.getDescription().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					//transformNodeIdAlias(aliasUML);
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaVariable.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaVariable.getDescription().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
+				//TODO: Add translation
 			}
-			else if(name.equals("category"))
-			{
-				List<String> categories = (List<String>) temp;
-				uaVariable.getCategory().clear();
-				uaVariable.getCategory().addAll(categories);
-			}
-			else if(name.equals("documentation"))
-			{
-				List<String> documentation = (List<String>) temp;
-				uaVariable.getCategory().clear();
-				uaVariable.getCategory().addAll(documentation);
-			}
-			else if(name.equals("references"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("rolePermissions"))
-			{
-				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
-				if(this.matching.containsKey(rp_object))
-				{
-					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
-					uaVariable.setRolePermissions(rp);
-				}
-			}
-			else if(name.equals("extensions"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("accessRestrictions"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				short convertedShort = Short.parseShort(stringToConvert);
-				uaVariable.setAccessRestrictions(convertedShort);
-				
-			}
-			else if(name.equals("browseName"))
-			{
-				String browseNameString = (String) temp;
-				
-				if(!browseNameString.startsWith("1:"))
-				{					
-					browseNameString = "1:"+browseNameString;
-					stereotype.dynamicSet(id, browseNameString);
-				}
-				
-				uaVariable.setNodeId(browseNameString);
-				
-			}
-			else if(name.equals("nodeId"))
-			{
-				String nodeIdString = (String) temp;
-				
-				if(!(nodeIdString.startsWith("ns=") || nodeIdString.startsWith("i=")))
-				{					
-					nodeIdString = "ns=1;s="+nodeIdString;
-					stereotype.dynamicSet(id, nodeIdString);
-				}
-				
-				uaVariable.setNodeId(nodeIdString);
-			}
-			else if(name.equals("releaseStatus"))
-			{
-				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
-				String value = lit.toString();
-				switch(value)
-				{
-				case "Draft":
-					uaVariable.setReleaseStatus(ReleaseStatus.DRAFT);
-					break;
-				case "Released":
-					uaVariable.setReleaseStatus(ReleaseStatus.RELEASED);
-					break;
-				case "Deprecated":
-					uaVariable.setReleaseStatus(ReleaseStatus.DEPRECATED);
-					break;
-				}
-			}
-			else if(name.equals("symbolicName"))
-			{
-				List<String> symbolicName = (List<String>) temp;
-				uaVariable.getCategory().clear();
-				uaVariable.getCategory().addAll(symbolicName);
-			}
-			else if(name.equals("userWriteMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-		        Long convertedLong = Long.parseLong(stringToConvert);
-				uaVariable.setUserWriteMask(convertedLong);
-			}
-			else if(name.equals("writeMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				Long convertedLong = Long.parseLong(stringToConvert);
-				uaVariable.setWriteMask(convertedLong);
-			}
-			else if(name.equals("value"))
-			{
-				String test ="asdfSA";
-			}
-			else if(name.equals("translation"))
-			{
-				String test ="asdfSA";
-			}
-			else if(name.equals("accessLevel"))
+			else if(name.equalsIgnoreCase("accessLevel"))
 			{
 				String stringToConvert = String.valueOf(temp);
 				Long convertedLong = Long.parseLong(stringToConvert);
 				uaVariable.setAccessLevel(convertedLong);
 			}
-			else if(name.equals("arrayDimensions"))
+			else if(name.equalsIgnoreCase("arrayDimensions"))
 			{
 				uaVariable.setArrayDimensions(String.valueOf(temp));
 			}
-			else if(name.equals("dataType"))
+			else if(name.equalsIgnoreCase("dataType"))
 			{
 				String nodeIdString = (String) temp;
 				uaVariable.setDataType(nodeIdString);
 			}
-			else if(name.equals("historizing"))
+			else if(name.equalsIgnoreCase("historizing"))
 			{
 				String stringToConvert = String.valueOf(temp);
 				boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
 				uaVariable.setHistorizing(convertedBoolean);
 			}
-			else if(name.equals("minimumSamplingInterval"))
+			else if(name.equalsIgnoreCase("minimumSamplingInterval"))
 			{
 				double intervall = (double ) temp;
 				uaVariable.setMinimumSamplingInterval(intervall);
 			}
-			else if(name.equals("userAccessLevel"))
+			else if(name.equalsIgnoreCase("userAccessLevel"))
 			{
 				String stringToConvert = String.valueOf(temp);
 				Long convertedLong = Long.parseLong(stringToConvert);
 				uaVariable.setUserAccessLevel(convertedLong);
 			}
-			else if(name.equals("valueRank"))
+			else if(name.equalsIgnoreCase("valueRank"))
 			{
 				String stringToConvert = String.valueOf(temp);
 				int convertedInt = Integer.parseInt(stringToConvert);
@@ -841,11 +590,10 @@ public class InstanceSyncHandler {
 			}
 		}
 
-		return true;
+		return success;
 	}
 
 	private boolean transformUAType(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		UAObjectTypeImpl uaObjType;
 		if(this.matching.containsKey(object))
 		{
@@ -857,181 +605,8 @@ public class InstanceSyncHandler {
 			this.matching.put(object, uaObjType);
 			this.baseNodeset.getUAObjectType().add(uaObjType);
 		}
-		
-		for(EStructuralFeature feature : featuresList)
-		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			if(temp == null)
-			{
-				continue;
-			}
-			
-			if(name.equals("displayName"))
-			{
-				uaObjType.getDisplayName().clear();
 				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaObjType.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaObjType.getDisplayName().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
-			}
-			else if(name.equals("description"))
-			{
-				uaObjType.getDescription().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					//transformNodeIdAlias(aliasUML);
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaObjType.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaObjType.getDescription().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
-			}
-			else if(name.equals("category"))
-			{
-				List<String> categories = (List<String>) temp;
-				uaObjType.getCategory().clear();
-				uaObjType.getCategory().addAll(categories);
-			}
-			else if(name.equals("documentation"))
-			{
-				List<String> documentation = (List<String>) temp;
-				uaObjType.getCategory().clear();
-				uaObjType.getCategory().addAll(documentation);
-			}
-			else if(name.equals("references"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("rolePermissions"))
-			{
-				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
-				if(this.matching.containsKey(rp_object))
-				{
-					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
-					uaObjType.setRolePermissions(rp);
-				}
-			}
-			else if(name.equals("extensions"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("accessRestrictions"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				short convertedShort = Short.parseShort(stringToConvert);
-				uaObjType.setAccessRestrictions(convertedShort);
-				
-			}
-			else if(name.equals("browseName"))
-			{
-				String browseNameString = (String) temp;
-				
-				if(!browseNameString.startsWith("1:"))
-				{					
-					browseNameString = "1:"+browseNameString;
-					stereotype.dynamicSet(id, browseNameString);
-				}
-				
-				uaObjType.setNodeId(browseNameString);
-				
-			}
-			else if(name.equals("nodeId"))
-			{
-				String nodeIdString = (String) temp;
-				
-				if(!(nodeIdString.startsWith("ns=") || nodeIdString.startsWith("i=")))
-				{					
-					nodeIdString = "ns=1;s="+nodeIdString;
-					stereotype.dynamicSet(id, nodeIdString);
-				}
-				
-				uaObjType.setNodeId(nodeIdString);
-			}
-			else if(name.equals("releaseStatus"))
-			{
-				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
-				String value = lit.toString();
-				switch(value)
-				{
-				case "Draft":
-					uaObjType.setReleaseStatus(ReleaseStatus.DRAFT);
-					break;
-				case "Released":
-					uaObjType.setReleaseStatus(ReleaseStatus.RELEASED);
-					break;
-				case "Deprecated":
-					uaObjType.setReleaseStatus(ReleaseStatus.DEPRECATED);
-					break;
-				}
-			}
-			else if(name.equals("symbolicName"))
-			{
-				List<String> symbolicName = (List<String>) temp;
-				uaObjType.getCategory().clear();
-				uaObjType.getCategory().addAll(symbolicName);
-			}
-			else if(name.equals("userWriteMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-		        Long convertedLong = Long.parseLong(stringToConvert);
-				uaObjType.setUserWriteMask(convertedLong);
-			}
-			else if(name.equals("writeMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				Long convertedLong = Long.parseLong(stringToConvert);
-				uaObjType.setWriteMask(convertedLong);
-			}			
-		}
-		
-		return true;
+		return transformUANode(object, stereotype);
 	}
 
 	private boolean transformUAReferenceType(Class object,  DynamicEObjectImpl stereotype) {
@@ -1049,6 +624,8 @@ public class InstanceSyncHandler {
 			this.baseNodeset.getUAReferenceType().add(uaRefType);
 		}
 		
+		boolean success = transformUAType(object, stereotype);
+		
 		for(EStructuralFeature feature : featuresList)
 		{
 			int id = feature.getFeatureID();
@@ -1059,179 +636,18 @@ public class InstanceSyncHandler {
 				continue;
 			}
 			
-			if(name.equals("displayName"))
+			if(name.equalsIgnoreCase("inverseName"))
 			{
-				uaRefType.getDisplayName().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaRefType.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaRefType.getDisplayName().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
+				//TODO: add inverserName
 			}
-			else if(name.equals("description"))
+			else if(name.equalsIgnoreCase("symmetric"))
 			{
-				uaRefType.getDescription().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					//transformNodeIdAlias(aliasUML);
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaRefType.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaRefType.getDescription().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
-			}
-			else if(name.equals("category"))
-			{
-				List<String> categories = (List<String>) temp;
-				uaRefType.getCategory().clear();
-				uaRefType.getCategory().addAll(categories);
-			}
-			else if(name.equals("documentation"))
-			{
-				List<String> documentation = (List<String>) temp;
-				uaRefType.getCategory().clear();
-				uaRefType.getCategory().addAll(documentation);
-			}
-			else if(name.equals("references"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("rolePermissions"))
-			{
-				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
-				if(this.matching.containsKey(rp_object))
-				{
-					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
-					uaRefType.setRolePermissions(rp);
-				}
-			}
-			else if(name.equals("extensions"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("accessRestrictions"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				short convertedShort = Short.parseShort(stringToConvert);
-				uaRefType.setAccessRestrictions(convertedShort);
-				
-			}
-			else if(name.equals("browseName"))
-			{
-				String browseNameString = (String) temp;
-				
-				if(!browseNameString.startsWith("1:"))
-				{					
-					browseNameString = "1:"+browseNameString;
-					stereotype.dynamicSet(id, browseNameString);
-				}
-				
-				uaRefType.setNodeId(browseNameString);
-				
-			}
-			else if(name.equals("nodeId"))
-			{
-				String nodeIdString = (String) temp;
-				
-				if(!(nodeIdString.startsWith("ns=") || nodeIdString.startsWith("i=")))
-				{					
-					nodeIdString = "ns=1;s="+nodeIdString;
-					stereotype.dynamicSet(id, nodeIdString);
-				}
-				
-				uaRefType.setNodeId(nodeIdString);
-			}
-			else if(name.equals("releaseStatus"))
-			{
-				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
-				String value = lit.toString();
-				switch(value)
-				{
-				case "Draft":
-					uaRefType.setReleaseStatus(ReleaseStatus.DRAFT);
-					break;
-				case "Released":
-					uaRefType.setReleaseStatus(ReleaseStatus.RELEASED);
-					break;
-				case "Deprecated":
-					uaRefType.setReleaseStatus(ReleaseStatus.DEPRECATED);
-					break;
-				}
-			}
-			else if(name.equals("symbolicName"))
-			{
-				List<String> symbolicName = (List<String>) temp;
-				uaRefType.getCategory().clear();
-				uaRefType.getCategory().addAll(symbolicName);
-			}
-			else if(name.equals("userWriteMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-		        Long convertedLong = Long.parseLong(stringToConvert);
-				uaRefType.setUserWriteMask(convertedLong);
-			}
-			else if(name.equals("writeMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				Long convertedLong = Long.parseLong(stringToConvert);
-				uaRefType.setWriteMask(convertedLong);
-			}	
-			else if(name.equals("inverseName"))
-			{
-				
-			}
-			else if(name.equals("symmetric"))
-			{
-				
+				//TODO: add symmetric
 			}
 		}	
 		
 
-		return true;
+		return success;
 	}
 
 	private boolean transformUAObjectType(Class object,  DynamicEObjectImpl stereotype) {
@@ -1249,178 +665,7 @@ public class InstanceSyncHandler {
 			this.baseNodeset.getUAObjectType().add(uaObjType);
 		}
 		
-		for(EStructuralFeature feature : featuresList)
-		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			if(temp == null)
-			{
-				continue;
-			}
-			
-			if(name.equals("displayName"))
-			{
-				uaObjType.getDisplayName().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaObjType.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaObjType.getDisplayName().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
-			}
-			else if(name.equals("description"))
-			{
-				uaObjType.getDescription().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					//transformNodeIdAlias(aliasUML);
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaObjType.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaObjType.getDescription().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
-			}
-			else if(name.equals("category"))
-			{
-				List<String> categories = (List<String>) temp;
-				uaObjType.getCategory().clear();
-				uaObjType.getCategory().addAll(categories);
-			}
-			else if(name.equals("documentation"))
-			{
-				List<String> documentation = (List<String>) temp;
-				uaObjType.getCategory().clear();
-				uaObjType.getCategory().addAll(documentation);
-			}
-			else if(name.equals("references"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("rolePermissions"))
-			{
-				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
-				if(this.matching.containsKey(rp_object))
-				{
-					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
-					uaObjType.setRolePermissions(rp);
-				}
-			}
-			else if(name.equals("extensions"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("accessRestrictions"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				short convertedShort = Short.parseShort(stringToConvert);
-				uaObjType.setAccessRestrictions(convertedShort);
-				
-			}
-			else if(name.equals("browseName"))
-			{
-				String browseNameString = (String) temp;
-				
-				if(!browseNameString.startsWith("1:"))
-				{					
-					browseNameString = "1:"+browseNameString;
-					stereotype.dynamicSet(id, browseNameString);
-				}
-				
-				uaObjType.setBrowseName(browseNameString);
-				
-			}
-			else if(name.equals("nodeId"))
-			{
-				String nodeIdString = (String) temp;
-				
-				if(!(nodeIdString.startsWith("ns=") || nodeIdString.startsWith("i=")))
-				{					
-					nodeIdString = "ns=1;s="+nodeIdString;
-					stereotype.dynamicSet(id, nodeIdString);
-				}
-				
-				uaObjType.setNodeId(nodeIdString);
-			}
-			else if(name.equals("releaseStatus"))
-			{
-				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
-				String value = lit.toString();
-				switch(value)
-				{
-				case "Draft":
-					uaObjType.setReleaseStatus(ReleaseStatus.DRAFT);
-					break;
-				case "Released":
-					uaObjType.setReleaseStatus(ReleaseStatus.RELEASED);
-					break;
-				case "Deprecated":
-					uaObjType.setReleaseStatus(ReleaseStatus.DEPRECATED);
-					break;
-				}
-			}
-			else if(name.equals("symbolicName"))
-			{
-				List<String> symbolicName = (List<String>) temp;
-				uaObjType.getCategory().clear();
-				uaObjType.getCategory().addAll(symbolicName);
-			}
-			else if(name.equals("userWriteMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-		        Long convertedLong = Long.parseLong(stringToConvert);
-				uaObjType.setUserWriteMask(convertedLong);
-			}
-			else if(name.equals("writeMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				Long convertedLong = Long.parseLong(stringToConvert);
-				uaObjType.setWriteMask(convertedLong);
-			}			
-		}
+		boolean success = transformUAType(object, stereotype);
 		
 		EList<Classifier> generals = object.getGenerals();
 		ListOfReferences listOfReferences = uaObjType.getReferences();
@@ -1440,7 +685,7 @@ public class InstanceSyncHandler {
 			listOfReferences.getReference().add((Reference) this.matching.get(reference));
 
 		}
-		return true;
+		return success;
 	}
 
 	private boolean transformUAObject(Class object,  DynamicEObjectImpl stereotype) {
@@ -1459,6 +704,8 @@ public class InstanceSyncHandler {
 			this.baseNodeset.getUAObject().add(uaObject);
 		}
 		
+		boolean success = transformUAInstance(object, stereotype);
+		
 		for(EStructuralFeature feature : featuresList)
 		{
 			int id = feature.getFeatureID();
@@ -1469,171 +716,13 @@ public class InstanceSyncHandler {
 				continue;
 			}
 			
-			if(name.equals("displayName"))
+			if(name.equalsIgnoreCase("eventNotifier"))
 			{
-				uaObject.getDisplayName().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaObject.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaObject.getDisplayName().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
+				//TODO: Add eventNotifier
 			}
-			else if(name.equals("description"))
-			{
-				uaObject.getDescription().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					//transformNodeIdAlias(aliasUML);
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaObject.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaObject.getDescription().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
-			}
-			else if(name.equals("category"))
-			{
-				List<String> categories = (List<String>) temp;
-				uaObject.getCategory().clear();
-				uaObject.getCategory().addAll(categories);
-			}
-			else if(name.equals("documentation"))
-			{
-				List<String> documentation = (List<String>) temp;
-				uaObject.getCategory().clear();
-				uaObject.getCategory().addAll(documentation);
-			}
-			else if(name.equals("references"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("rolePermissions"))
-			{
-				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
-				if(this.matching.containsKey(rp_object))
-				{
-					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
-					uaObject.setRolePermissions(rp);
-				}
-			}
-			else if(name.equals("extensions"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("accessRestrictions"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				short convertedShort = Short.parseShort(stringToConvert);
-				uaObject.setAccessRestrictions(convertedShort);
-				
-			}
-			else if(name.equals("browseName"))
-			{
-				String browseNameString = (String) temp;
-				
-				if(!browseNameString.startsWith("1:"))
-				{					
-					browseNameString = "1:"+browseNameString;
-					stereotype.dynamicSet(id, browseNameString);
-				}
-				
-				uaObject.setNodeId(browseNameString);
-				
-			}
-			else if(name.equals("nodeId"))
-			{
-				String nodeIdString = (String) temp;
-				
-				if(!(nodeIdString.startsWith("ns=") || nodeIdString.startsWith("i=")))
-				{					
-					nodeIdString = "ns=1;s="+nodeIdString;
-					stereotype.dynamicSet(id, nodeIdString);
-				}
-				
-				uaObject.setNodeId(nodeIdString);
-			}
-			else if(name.equals("releaseStatus"))
-			{
-				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
-				String value = lit.toString();
-				switch(value)
-				{
-				case "Draft":
-					uaObject.setReleaseStatus(ReleaseStatus.DRAFT);
-					break;
-				case "Released":
-					uaObject.setReleaseStatus(ReleaseStatus.RELEASED);
-					break;
-				case "Deprecated":
-					uaObject.setReleaseStatus(ReleaseStatus.DEPRECATED);
-					break;
-				}
-			}
-			else if(name.equals("symbolicName"))
-			{
-				List<String> symbolicName = (List<String>) temp;
-				uaObject.getCategory().clear();
-				uaObject.getCategory().addAll(symbolicName);
-			}
-			else if(name.equals("userWriteMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-		        Long convertedLong = Long.parseLong(stringToConvert);
-				uaObject.setUserWriteMask(convertedLong);
-			}
-			else if(name.equals("writeMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				Long convertedLong = Long.parseLong(stringToConvert);
-				uaObject.setWriteMask(convertedLong);
-			}			
 		}
 		
-
-		return true;
+		return success;
 	}
 
 	private boolean transformUANodeSetType(Class object,  DynamicEObjectImpl stereotype) {
@@ -1648,13 +737,18 @@ public class InstanceSyncHandler {
 			String name = feature.getName();
 			Object temp = stereotype.dynamicGet(id);
 			
-			if(name.equals("nameSpaceUris"))
+			if(name.equalsIgnoreCase("nameSpaceUris"))
 			{
 				if(temp == null)
 				{
+					Class namespaceUriTable = (Class) this.baseUmlModel.getMember("NameSpaces");
 					Stereotype uriTableType  = nodeSetProfile.getOwnedStereotype("UriTable");
-					Class namespaceUriTable = this.baseUmlModel.createOwnedClass("NameSpaces", false);
-					namespaceUriTable.applyStereotype(uriTableType);
+
+					if(namespaceUriTable == null)
+					{
+						namespaceUriTable = this.baseUmlModel.createOwnedClass("NameSpaces", false);
+						namespaceUriTable.applyStereotype(uriTableType);						
+					}
 					object.setValue(nodeSetType, "nameSpaceUris", namespaceUriTable.getStereotypeApplication(uriTableType));
 					updateClass(namespaceUriTable);
 					
@@ -1667,7 +761,7 @@ public class InstanceSyncHandler {
 				{
 					int id2 = feature2.getFeatureID();
 					String name2 = feature2.getName();
-					if(name2.equals("base_Class"))
+					if(name2.equalsIgnoreCase("base_Class"))
 					{
 						Object baseClass = uri_object.dynamicGet(id2);
 						if(this.matching.containsKey(baseClass))
@@ -1686,7 +780,7 @@ public class InstanceSyncHandler {
 					}
 				}
 			}
-			else if(name.equals("serverUris"))
+			else if(name.equalsIgnoreCase("serverUris"))
 			{
 				if(temp == null)
 				{
@@ -1698,7 +792,7 @@ public class InstanceSyncHandler {
 				{
 					int id2 = feature2.getFeatureID();
 					String name2 = feature2.getName();
-					if(name2.equals("base_Class"))
+					if(name2.equalsIgnoreCase("base_Class"))
 					{
 						Object baseClass = uri_object.dynamicGet(id2);
 						if(this.matching.containsKey(baseClass))
@@ -1717,14 +811,14 @@ public class InstanceSyncHandler {
 					}
 				}
 			}
-			else if(name.equals("models"))
+			else if(name.equalsIgnoreCase("models"))
 			{
 				if(temp == null)
 				{
 					continue;
 				}
 			}
-			else if(name.equals("aliases"))
+			else if(name.equalsIgnoreCase("aliases"))
 			{
 				if(temp == null)
 				{
@@ -1737,7 +831,7 @@ public class InstanceSyncHandler {
 				{
 					int id2 = feature2.getFeatureID();
 					String name2 = feature2.getName();
-					if(name2.equals("base_Class"))
+					if(name2.equalsIgnoreCase("base_Class"))
 					{
 						Object baseClass = alias_object.dynamicGet(id2);
 						if(this.matching.containsKey(baseClass))
@@ -1756,7 +850,7 @@ public class InstanceSyncHandler {
 					}
 				}
 			}
-			else if(name.equals("extensions"))
+			else if(name.equalsIgnoreCase("extensions"))
 			{
 				if(temp == null)
 				{
@@ -1765,7 +859,7 @@ public class InstanceSyncHandler {
 				
 				
 			}
-			else if(name.equals("group"))
+			else if(name.equalsIgnoreCase("group"))
 			{
 				if(temp == null)
 				{
@@ -1816,88 +910,45 @@ public class InstanceSyncHandler {
 				continue;
 			}
 			
-			if(name.equals("displayName"))
+			if(name.equalsIgnoreCase("displayName"))
 			{
 				uanode.getDisplayName().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
+				List<String> displayNames = (List<String>) temp;
+				for(String displayName : displayNames)
 				{
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uanode.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uanode.getDisplayName().add(existingLT);
-								break;
-							}
-						}
-					}
+					LocalizedTextImpl lt = new LocalizedTextImpl();
+					lt.setValue(displayName);
+					uanode.getDisplayName().add(lt);
 				}
 			}
-			else if(name.equals("description"))
+			else if(name.equalsIgnoreCase("description"))
 			{
 				uanode.getDescription().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
+				List<String> descriptions = (List<String>) temp;
+				for(String description : descriptions)
 				{
-					//transformNodeIdAlias(aliasUML);
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uanode.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uanode.getDescription().add(existingLT);
-								break;
-							}
-						}
-					}
+					LocalizedTextImpl lt = new LocalizedTextImpl();
+					lt.setValue(description);
+					uanode.getDescription().add(lt);
 				}
 			}
-			else if(name.equals("category"))
+			else if(name.equalsIgnoreCase("category"))
 			{
 				List<String> categories = (List<String>) temp;
 				uanode.getCategory().clear();
 				uanode.getCategory().addAll(categories);
 			}
-			else if(name.equals("documentation"))
+			else if(name.equalsIgnoreCase("documentation"))
 			{
 				List<String> documentation = (List<String>) temp;
 				uanode.getCategory().clear();
 				uanode.getCategory().addAll(documentation);
 			}
-			else if(name.equals("references"))
+			else if(name.equalsIgnoreCase("references"))
 			{
 				System.out.println(name);
 			}
-			else if(name.equals("rolePermissions"))
+			else if(name.equalsIgnoreCase("rolePermissions"))
 			{
 				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
 				if(this.matching.containsKey(rp_object))
@@ -1906,18 +957,18 @@ public class InstanceSyncHandler {
 					uanode.setRolePermissions(rp);
 				}
 			}
-			else if(name.equals("extensions"))
+			else if(name.equalsIgnoreCase("extensions"))
 			{
 				System.out.println(name);
 			}
-			else if(name.equals("accessRestrictions"))
+			else if(name.equalsIgnoreCase("accessRestrictions"))
 			{
 				String stringToConvert = String.valueOf(temp);
 				short convertedShort = Short.parseShort(stringToConvert);
 				uanode.setAccessRestrictions(convertedShort);
 				
 			}
-			else if(name.equals("browseName"))
+			else if(name.equalsIgnoreCase("browseName"))
 			{
 				String browseNameString = (String) temp;
 				
@@ -1927,10 +978,10 @@ public class InstanceSyncHandler {
 					stereotype.dynamicSet(id, browseNameString);
 				}
 				
-				uanode.setNodeId(browseNameString);
+				uanode.setBrowseName(browseNameString);
 				
 			}
-			else if(name.equals("nodeId"))
+			else if(name.equalsIgnoreCase("nodeId"))
 			{
 				String nodeIdString = (String) temp;
 				
@@ -1942,7 +993,7 @@ public class InstanceSyncHandler {
 				
 				uanode.setNodeId(nodeIdString);
 			}
-			else if(name.equals("releaseStatus"))
+			else if(name.equalsIgnoreCase("releaseStatus"))
 			{
 				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
 				String value = lit.toString();
@@ -1959,19 +1010,19 @@ public class InstanceSyncHandler {
 					break;
 				}
 			}
-			else if(name.equals("symbolicName"))
+			else if(name.equalsIgnoreCase("symbolicName"))
 			{
 				List<String> symbolicName = (List<String>) temp;
 				uanode.getCategory().clear();
 				uanode.getCategory().addAll(symbolicName);
 			}
-			else if(name.equals("userWriteMask"))
+			else if(name.equalsIgnoreCase("userWriteMask"))
 			{
 				String stringToConvert = String.valueOf(temp);
 		        Long convertedLong = Long.parseLong(stringToConvert);
 				uanode.setUserWriteMask(convertedLong);
 			}
-			else if(name.equals("writeMask"))
+			else if(name.equalsIgnoreCase("writeMask"))
 			{
 				String stringToConvert = String.valueOf(temp);
 				Long convertedLong = Long.parseLong(stringToConvert);
@@ -1991,16 +1042,23 @@ public class InstanceSyncHandler {
 	private boolean transformUAMethod(Class object,  DynamicEObjectImpl stereotype) {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		
-		UAMethodImpl uaVariable;
+		UAMethodImpl uaMethod;
 		if(this.matching.containsKey(object))
 		{
-			uaVariable = (UAMethodImpl) this.matching.get(object);
+			uaMethod = (UAMethodImpl) this.matching.get(object);
 		}
 		else
 		{
-			uaVariable = new UAMethodImpl();
-			this.matching.put(object, uaVariable);
-			this.baseNodeset.getUAMethod().add(uaVariable);
+			uaMethod = new UAMethodImpl();
+			this.matching.put(object, uaMethod);
+			this.baseNodeset.getUAMethod().add(uaMethod);
+		}
+		
+		boolean success = transformUAInstance(object, stereotype);
+		
+		if(!success)
+		{
+			return success;
 		}
 		
 		for(EStructuralFeature feature : featuresList)
@@ -2013,166 +1071,21 @@ public class InstanceSyncHandler {
 				continue;
 			}
 			
-			if(name.equals("displayName"))
+			if(name.equalsIgnoreCase("argumentDescription"))
 			{
-				uaVariable.getDisplayName().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaVariable.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaVariable.getDisplayName().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
+				//TODO: Add argumentDescription
 			}
-			else if(name.equals("description"))
+			else if(name.equalsIgnoreCase("executable"))
 			{
-				uaVariable.getDescription().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					//transformNodeIdAlias(aliasUML);
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaVariable.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaVariable.getDescription().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
+				//TODO: Add executable
 			}
-			else if(name.equals("category"))
+			else if(name.equalsIgnoreCase("methodDeclarationId"))
 			{
-				List<String> categories = (List<String>) temp;
-				uaVariable.getCategory().clear();
-				uaVariable.getCategory().addAll(categories);
+				//TODO: Add methodDeclarationId
 			}
-			else if(name.equals("documentation"))
+			else if(name.equalsIgnoreCase("userExecutable"))
 			{
-				List<String> documentation = (List<String>) temp;
-				uaVariable.getCategory().clear();
-				uaVariable.getCategory().addAll(documentation);
-			}
-			else if(name.equals("references"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("rolePermissions"))
-			{
-				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
-				if(this.matching.containsKey(rp_object))
-				{
-					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
-					uaVariable.setRolePermissions(rp);
-				}
-			}
-			else if(name.equals("extensions"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("accessRestrictions"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				short convertedShort = Short.parseShort(stringToConvert);
-				uaVariable.setAccessRestrictions(convertedShort);
-				
-			}
-			else if(name.equals("browseName"))
-			{
-				String browseNameString = (String) temp;
-				
-				if(!browseNameString.startsWith("1:"))
-				{					
-					browseNameString = "1:"+browseNameString;
-					stereotype.dynamicSet(id, browseNameString);
-				}
-				
-				uaVariable.setNodeId(browseNameString);
-				
-			}
-			else if(name.equals("nodeId"))
-			{
-				String nodeIdString = (String) temp;
-				
-				if(!(nodeIdString.startsWith("ns=") || nodeIdString.startsWith("i=")))
-				{					
-					nodeIdString = "ns=1;s="+nodeIdString;
-					stereotype.dynamicSet(id, nodeIdString);
-				}
-				
-				uaVariable.setNodeId(nodeIdString);
-			}
-			else if(name.equals("releaseStatus"))
-			{
-				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
-				String value = lit.toString();
-				switch(value)
-				{
-				case "Draft":
-					uaVariable.setReleaseStatus(ReleaseStatus.DRAFT);
-					break;
-				case "Released":
-					uaVariable.setReleaseStatus(ReleaseStatus.RELEASED);
-					break;
-				case "Deprecated":
-					uaVariable.setReleaseStatus(ReleaseStatus.DEPRECATED);
-					break;
-				}
-			}
-			else if(name.equals("symbolicName"))
-			{
-				List<String> symbolicName = (List<String>) temp;
-				uaVariable.getCategory().clear();
-				uaVariable.getCategory().addAll(symbolicName);
-			}
-			else if(name.equals("userWriteMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-		        Long convertedLong = Long.parseLong(stringToConvert);
-				uaVariable.setUserWriteMask(convertedLong);
-			}
-			else if(name.equals("writeMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				Long convertedLong = Long.parseLong(stringToConvert);
-				uaVariable.setWriteMask(convertedLong);
+				//TODO: Add userExecutable
 			}
 		}
 		
@@ -2182,8 +1095,37 @@ public class InstanceSyncHandler {
 
 	private boolean transformUAInstance(Class object,  DynamicEObjectImpl stereotype) {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
 		
+		UAInstanceImpl uaObjType;
+		if(this.matching.containsKey(object))
+		{
+			uaObjType = (UAInstanceImpl) this.matching.get(object);
+		}
+		else
+		{
+			uaObjType = new UAInstanceImpl();
+			this.matching.put(object, uaObjType);
+		}
+				
+		boolean success = transformUANode(object, stereotype);
+		
+		for(EStructuralFeature feature : featuresList)
+		{
+			int id = feature.getFeatureID();
+			String name = feature.getName();
+			Object temp = stereotype.dynamicGet(id);
+			if(temp == null)
+			{
+				continue;
+			}
+			
+			if(name.equalsIgnoreCase("parentNodeId"))
+			{
+				// TODO: add definition
+			}
+		}
+		
+		return success;
 	}
 
 	private boolean transformUADataType(Class object,  DynamicEObjectImpl stereotype) {
@@ -2201,6 +1143,7 @@ public class InstanceSyncHandler {
 			this.matching.put(object, uaDataType);
 			this.baseNodeset.getUADataType().add(uaDataType);
 		}
+		boolean success = transformUAType(object, stereotype);
 		
 		for(EStructuralFeature feature : featuresList)
 		{
@@ -2212,179 +1155,18 @@ public class InstanceSyncHandler {
 				continue;
 			}
 			
-			if(name.equals("displayName"))
+			if(name.equalsIgnoreCase("definition"))
 			{
-				uaDataType.getDisplayName().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaDataType.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaDataType.getDisplayName().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
+				// TODO: add definition
 			}
-			else if(name.equals("description"))
+			else if(name.equalsIgnoreCase("purpose"))
 			{
-				uaDataType.getDescription().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					//transformNodeIdAlias(aliasUML);
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaDataType.getDisplayName().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								uaDataType.getDescription().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
-			}
-			else if(name.equals("category"))
-			{
-				List<String> categories = (List<String>) temp;
-				uaDataType.getCategory().clear();
-				uaDataType.getCategory().addAll(categories);
-			}
-			else if(name.equals("documentation"))
-			{
-				List<String> documentation = (List<String>) temp;
-				uaDataType.getCategory().clear();
-				uaDataType.getCategory().addAll(documentation);
-			}
-			else if(name.equals("references"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("rolePermissions"))
-			{
-				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
-				if(this.matching.containsKey(rp_object))
-				{
-					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
-					uaDataType.setRolePermissions(rp);
-				}
-			}
-			else if(name.equals("extensions"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equals("accessRestrictions"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				short convertedShort = Short.parseShort(stringToConvert);
-				uaDataType.setAccessRestrictions(convertedShort);
-				
-			}
-			else if(name.equals("browseName"))
-			{
-				String browseNameString = (String) temp;
-				
-				if(!browseNameString.startsWith("1:"))
-				{					
-					browseNameString = "1:"+browseNameString;
-					stereotype.dynamicSet(id, browseNameString);
-				}
-				
-				uaDataType.setNodeId(browseNameString);
-				
-			}
-			else if(name.equals("nodeId"))
-			{
-				String nodeIdString = (String) temp;
-				
-				if(!(nodeIdString.startsWith("ns=") || nodeIdString.startsWith("i=")))
-				{					
-					nodeIdString = "ns=1;s="+nodeIdString;
-					stereotype.dynamicSet(id, nodeIdString);
-				}
-				
-				uaDataType.setNodeId(nodeIdString);
-			}
-			else if(name.equals("releaseStatus"))
-			{
-				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
-				String value = lit.toString();
-				switch(value)
-				{
-				case "Draft":
-					uaDataType.setReleaseStatus(ReleaseStatus.DRAFT);
-					break;
-				case "Released":
-					uaDataType.setReleaseStatus(ReleaseStatus.RELEASED);
-					break;
-				case "Deprecated":
-					uaDataType.setReleaseStatus(ReleaseStatus.DEPRECATED);
-					break;
-				}
-			}
-			else if(name.equals("symbolicName"))
-			{
-				List<String> symbolicName = (List<String>) temp;
-				uaDataType.getCategory().clear();
-				uaDataType.getCategory().addAll(symbolicName);
-			}
-			else if(name.equals("userWriteMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-		        Long convertedLong = Long.parseLong(stringToConvert);
-				uaDataType.setUserWriteMask(convertedLong);
-			}
-			else if(name.equals("writeMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				Long convertedLong = Long.parseLong(stringToConvert);
-				uaDataType.setWriteMask(convertedLong);
-			}			
-			else if(name.equals("definition"))
-			{
-				
-			}
-			else if(name.equals("purpose"))
-			{
-				
+				// TODO: add purpose
 			}	
 		}
 		
 
-		return true;
+		return success;
 	}
 
 	private boolean transformTranslationType(Class object,  DynamicEObjectImpl stereotype) {
@@ -2408,39 +1190,19 @@ public class InstanceSyncHandler {
 			String name = feature.getName();
 			Object temp = stereotype.dynamicGet(id);
 			
-			if(name.equals("text"))
+			if(name.equalsIgnoreCase("text"))
 			{
 				tt.getText().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
+				List<String> texts = (List<String>) temp;
+				for(String txt : texts)
 				{
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								tt.getText().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								tt.getText().add(existingLT);
-								break;
-							}
-						}
-					}
+					LocalizedTextImpl lt = new LocalizedTextImpl();
+					lt.setValue(txt);
+					tt.getText().add(lt);
 				}
+			
 			}
-			else if(name.equals("field"))
+			else if(name.equalsIgnoreCase("field"))
 			{
 				tt.getField().clear();
 				
@@ -2452,7 +1214,7 @@ public class InstanceSyncHandler {
 					{
 						int id2 = feature2.getFeatureID();
 						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
+						if(name2.equalsIgnoreCase("base_Class"))
 						{
 							Object baseClass = ltUML.dynamicGet(id2);
 							if(this.matching.containsKey(baseClass))
@@ -2498,39 +1260,19 @@ public class InstanceSyncHandler {
 			String name = feature.getName();
 			Object temp = stereotype.dynamicGet(id);
 			
-			if(name.equals("text"))
+			if(name.equalsIgnoreCase("text"))
 			{
 				stt.getText().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
+				List<String> texts = (List<String>) temp;
+				for(String txt : texts)
 				{
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								stt.getText().add(existingLT);
-								break;
-							}
-							else
-							{
-								updateClass((Class) baseClass);
-								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-								stt.getText().add(existingLT);
-								break;
-							}
-						}
-					}
+					LocalizedTextImpl lt = new LocalizedTextImpl();
+					lt.setValue(txt);
+					stt.getText().add(lt);
 				}
+				
 			}
-			else if(name.equals("name"))
+			else if(name.equalsIgnoreCase("name"))
 			{
 				stt.setName((String) temp);
 			}
@@ -2561,11 +1303,11 @@ public class InstanceSyncHandler {
 			String name = feature.getName();
 			Object temp = stereotype.dynamicGet(id);
 			
-			if(name.equals("value"))
+			if(name.equalsIgnoreCase("value"))
 			{
 				rp.setValue((String) temp);
 			}
-			else if(name.equals("permissions"))
+			else if(name.equalsIgnoreCase("permissions"))
 			{
 				String stringToConvert = String.valueOf(temp);
 		        Long convertedLong = Long.parseLong(stringToConvert);
@@ -2664,7 +1406,7 @@ public class InstanceSyncHandler {
 			String name = feature.getName();
 			Object temp = stereotype.dynamicGet(id);
 			
-			if(name.equals("value"))
+			if(name.equalsIgnoreCase("value"))
 			{
 				if( this.matching.containsKey(object))
 				{
@@ -2706,7 +1448,7 @@ public class InstanceSyncHandler {
 			String name = feature.getName();
 			Object temp = stereotype.dynamicGet(id);
 			
-			if(name.equals("rolePermission"))
+			if(name.equalsIgnoreCase("rolePermission"))
 			{
 				EcoreEList<DynamicEObjectImpl> rpsUML = (EcoreEList<DynamicEObjectImpl>) temp;
 				for(DynamicEObjectImpl rpUML : rpsUML)
@@ -2718,7 +1460,7 @@ public class InstanceSyncHandler {
 						int id2 = feature2.getFeatureID();
 						String name2 = feature2.getName();
 						
-						if(name2.equals("base_Class"))
+						if(name2.equalsIgnoreCase("base_Class"))
 						{
 							Object baseClass = rpUML.dynamicGet(id2);
 							if(this.matching.containsKey(baseClass))
@@ -2789,7 +1531,7 @@ public class InstanceSyncHandler {
 //		EList<Stereotype> stereotypes = object.getAppliedStereotypes();
 //		for(Stereotype ster : stereotypes)
 //		{
-//			if(ster.getName().equals("NodeId"))
+//			if(ster.getName().equalsIgnoreCase("NodeId"))
 //			{
 //				
 //			}
@@ -2797,15 +1539,7 @@ public class InstanceSyncHandler {
 		return false;
 	}
 	
-	public boolean updatedMember(UAObject object)
-	{
-		return false;
-	}
 	
-	public boolean updatedMember(UAObjectType object)
-	{
-		return false;
-	}
 	
 	private boolean transformAliasTable(Class object, DynamicEObjectImpl stereoptype_application) {
 		EList<EStructuralFeature> featuresList = stereoptype_application.eClass().getEAllStructuralFeatures();		
@@ -2824,7 +1558,7 @@ public class InstanceSyncHandler {
 			int id = feature.getFeatureID();
 			String name = feature.getName();
 			
-			if(name.equals("alias"))
+			if(name.equalsIgnoreCase("alias"))
 			{
 				EcoreEList<DynamicEObjectImpl> aliasesUML = (EcoreEList<DynamicEObjectImpl>) stereoptype_application.dynamicGet(id);
 				for(DynamicEObjectImpl aliasUML : aliasesUML)
@@ -2835,7 +1569,7 @@ public class InstanceSyncHandler {
 					{
 						int id2 = feature2.getFeatureID();
 						String name2 = feature2.getName();
-						if(name2.equals("base_Class"))
+						if(name2.equalsIgnoreCase("base_Class"))
 						{
 							Object baseClass = aliasUML.dynamicGet(id2);
 							if(this.matching.containsKey(baseClass))
@@ -2869,12 +1603,12 @@ public class InstanceSyncHandler {
 			int id = feature.getFeatureID();
 			String name = feature.getName();
 			
-			if(name.equals("alias"))
+			if(name.equalsIgnoreCase("alias"))
 			{
 				String aliasString = (String) stereoptype_application.dynamicGet(id);
 				alias.setAlias(aliasString);
 			}
-			else if(name.equals("value"))
+			else if(name.equalsIgnoreCase("value"))
 			{
 				String nodeIdString = (String) stereoptype_application.dynamicGet(id);
 				alias.setValue(nodeIdString);
@@ -2933,18 +1667,18 @@ public class InstanceSyncHandler {
 					String name = feature.getName();
 					Object temp = stereotype.dynamicGet(id);
 					
-					if(name.equals("value"))
+					if(name.equalsIgnoreCase("value"))
 					{
 						String nodeId = getNodeId(target);
 						uaReference.setValue(nodeId);
 					}
-					else if(name.equals("isForward"))
+					else if(name.equalsIgnoreCase("isForward"))
 					{
 						String stringToConvert = String.valueOf(temp);
 						boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
 						uaReference.setIsForward(convertedBoolean);
 					}
-					else if(name.equals("referenceType"))
+					else if(name.equalsIgnoreCase("referenceType"))
 					{
 						DynamicEObjectImpl uri_object = ((DynamicEObjectImpl) temp);
 						EList<EStructuralFeature> featuresList2 = uri_object.eClass().getEAllStructuralFeatures();
@@ -2952,7 +1686,7 @@ public class InstanceSyncHandler {
 						{
 							int id2 = feature2.getFeatureID();
 							String name2 = feature2.getName();
-							if(name2.equals("base_Class"))
+							if(name2.equalsIgnoreCase("base_Class"))
 							{
 								Object baseClass = uri_object.dynamicGet(id2);
 								if(this.matching.containsKey(baseClass))
@@ -3014,5 +1748,280 @@ public class InstanceSyncHandler {
 		}
 		
 		return "";
+	}
+	
+	public boolean updatedMember(UANodeSetType nodeset)
+	{
+		
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(this.baseUmlModel);
+		
+		// changes to diagrams shall be done inside commands
+		UpdateUMLCommand cmd = new UpdateUMLCommand(domain);
+		cmd.setNodeSet(nodeset);
+		cmd.registerInstanceSynchHandler(this);
+		
+		domain.getCommandStack().execute(cmd);
+		
+		return cmd.getCommandResult();
+	}
+	
+	protected boolean updateMember(UANodeSetType nodeset)
+	{
+        // Implement your write operations here,
+    	boolean success = true;
+    	success &= updateNamespaces(nodeset.getNamespaceUris());
+		
+		for(UAObjectType node : nodeset.getUAObjectType())
+		{
+			success &= updateOpcUAObjectType(node);
+		}
+		
+		for(UAMethod node : nodeset.getUAMethod())
+		{
+			success &= updateOpcUAMethod(node);
+		}
+		
+		for(UAObject node : nodeset.getUAObject())
+		{
+			success &= updateOpcUAObject(node);
+		}
+		
+		for(UAVariable node : nodeset.getUAVariable())
+		{
+			success &= updateOpcUAVariable(node);
+		}
+	       
+		return success;
+	}
+	
+	private boolean updateNamespaces(UriTable namespaceUris) {
+		// TODO Auto-generated method stub
+		EList<String> namespaces_new = namespaceUris.getUri();	
+		EList<String> namespaces_old = this.baseNodeset.getNamespaceUris().getUri();
+		
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uriTableType  = nodeSetProfile.getOwnedStereotype("UriTable");
+		
+		NamedElement namespaceUriTable = this.baseUmlModel.getMember("NameSpaces");
+		DynamicEObjectImpl umlUriTable = (DynamicEObjectImpl) namespaceUriTable.getStereotypeApplication(uriTableType);
+		
+		EList<EStructuralFeature> featuresList = umlUriTable.eClass().getEAllStructuralFeatures();
+				
+		for(EStructuralFeature feature : featuresList)
+		{
+			int id = feature.getFeatureID();
+			String name = feature.getName();
+			Object temp = umlUriTable.dynamicGet(id);
+			if(temp == null)
+			{
+				continue;
+			}
+			
+			if(name.equalsIgnoreCase("uri"))
+			{
+				umlUriTable.dynamicSet(id, namespaces_new);
+
+				namespaces_old.clear();
+				namespaces_old.addAll(namespaces_new);
+			}
+			
+		}
+						
+		return true;
+	}
+
+	private boolean updateOpcUAObjectType(UAObjectType node) {
+	
+		Element uaElement = null;
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaObjectTypeType  = nodeSetProfile.getOwnedStereotype("UAObjectType");
+		
+		for(Entry<Element, Object> entry : this.matching.entrySet())
+		{
+			Object uaMember = entry.getValue();
+			if(uaMember instanceof UAObjectType)
+			{
+				UAObjectType uaObjectType = (UAObjectType) uaMember;				
+				if(uaObjectType.getNodeId() != null && uaObjectType.getNodeId().equalsIgnoreCase(node.getNodeId()))
+				{
+					uaElement = entry.getKey();
+					break;
+				}
+			}
+		}
+		
+		if(uaElement == null)
+		{
+			// Element does not exist in Model 
+			// create new UAObjectType Element
+			int separator = node.getBrowseName().lastIndexOf(":")+1;
+			String name = node.getBrowseName().substring(separator);
+
+			uaElement= baseUmlModel.createOwnedClass(name, false);
+			uaElement.applyStereotype(uaObjectTypeType);
+			this.matching.put(uaElement, node);
+			this.baseNodeset.getUAObjectType().add(node);
+		}
+		
+		
+		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaObjectTypeType);
+		if(stereotype == null)
+		{
+			// UAObjectType Stereotype not applied !!!
+			this.matching.remove(uaElement);
+			this.baseNodeset.getUAObjectType().remove(node);
+			return false;
+		}
+		
+		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+		
+		for(EStructuralFeature feature : featuresList)
+		{
+			int id = feature.getFeatureID();
+			String name = feature.getName();
+			
+			if(name.equalsIgnoreCase("displayName"))
+			{
+				
+				List<String> displayNames = new ArrayList<String>();
+				
+				for(LocalizedText displayName : node.getDisplayName())
+				{
+					displayNames.add(displayName.getValue());
+				}
+				
+				stereotype.dynamicSet(id, displayNames);
+				
+			}
+			else if(name.equalsIgnoreCase("description"))
+			{
+//				uaObjType.getDescription().clear();
+//				
+//				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
+//				for(DynamicEObjectImpl ltUML : ltsUML)
+//				{
+//					//transformNodeIdAlias(aliasUML);
+//					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
+//					for(EStructuralFeature feature2 : featuresList2)
+//					{
+//						int id2 = feature2.getFeatureID();
+//						String name2 = feature2.getName();
+//						if(name2.equalsIgnoreCase("base_Class"))
+//						{
+//							Object baseClass = ltUML.dynamicGet(id2);
+//							if(this.matching.containsKey(baseClass))
+//							{
+//								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
+//								uaObjType.getDisplayName().add(existingLT);
+//								break;
+//							}
+//							else
+//							{
+//								updateClass((Class) baseClass);
+//								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
+//								uaObjType.getDescription().add(existingLT);
+//								break;
+//							}
+//						}
+//					}
+//				}
+			}
+			else if(name.equalsIgnoreCase("category"))
+			{
+				stereotype.dynamicSet(id, node.getCategory());
+			}
+			else if(name.equalsIgnoreCase("documentation"))
+			{
+				stereotype.dynamicSet(id, node.getDocumentation());
+			}
+			else if(name.equalsIgnoreCase("rolePermissions"))
+			{
+//				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
+//				if(this.matching.containsKey(rp_object))
+//				{
+//					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
+//					uaObjType.setRolePermissions(rp);
+//				}
+			}
+			else if(name.equalsIgnoreCase("accessRestrictions"))
+			{
+				stereotype.dynamicSet(id, String.valueOf(node.getAccessRestrictions()));	
+			}
+			else if(name.equalsIgnoreCase("browseName"))
+			{
+
+				stereotype.dynamicSet(id,node.getBrowseName());	
+				
+			}
+			else if(name.equalsIgnoreCase("nodeId"))
+			{
+				stereotype.dynamicSet(id,node.getNodeId());	
+			}
+			else if(name.equalsIgnoreCase("releaseStatus"))
+			{
+//				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
+//				String value = lit.toString();
+//				switch(value)
+//				{
+//				case "Draft":
+//					uaObjType.setReleaseStatus(ReleaseStatus.DRAFT);
+//					break;
+//				case "Released":
+//					uaObjType.setReleaseStatus(ReleaseStatus.RELEASED);
+//					break;
+//				case "Deprecated":
+//					uaObjType.setReleaseStatus(ReleaseStatus.DEPRECATED);
+//					break;
+//				}
+			}
+			else if(name.equalsIgnoreCase("symbolicName"))
+			{
+				stereotype.dynamicSet(id,node.getSymbolicName());
+			}
+			else if(name.equalsIgnoreCase("userWriteMask"))
+			{
+				stereotype.dynamicSet(id, String.valueOf(node.getUserWriteMask()));	
+			}
+			else if(name.equalsIgnoreCase("writeMask"))
+			{
+				stereotype.dynamicSet(id, String.valueOf(node.getWriteMask()));	
+			}			
+		}
+		
+//		EList<Classifier> generals = object.getGenerals();
+//		ListOfReferences listOfReferences = uaObjType.getReferences();
+//		if(listOfReferences == null)
+//		{
+//			listOfReferences = new ListOfReferencesImpl();
+//			uaObjType.setReferences(listOfReferences);
+//		}
+//		listOfReferences.getReference().clear();
+//		
+//		for(Generalization reference :object.getGeneralizations())
+//		{
+//			if(! this.matching.containsKey(reference))
+//			{
+//				updatedGeneralization(reference);
+//			}
+//			listOfReferences.getReference().add((Reference) this.matching.get(reference));
+//
+//		}
+		
+		return true;
+	}
+	
+	private boolean updateOpcUAMethod(UAMethod node) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	private boolean updateOpcUAObject(UAObject node) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	private boolean updateOpcUAVariable(UAVariable node) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

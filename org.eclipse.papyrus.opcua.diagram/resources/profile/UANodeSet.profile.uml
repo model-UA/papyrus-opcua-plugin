@@ -31148,7 +31148,7 @@
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bBevctbzEeqhKYpR5A3Lnw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_zMo2cNb0EeqhKYpR5A3Lnw" name="inverseName" isOrdered="true">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_zMo2cNb0EeqhKYpR5A3Lnw" name="inverseName" type="_G_WZoPKZEeq61dJYYZ5Wng" isOrdered="true">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5aopwNb0EeqhKYpR5A3Lnw"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5avXcNb0EeqhKYpR5A3Lnw" value="*"/>
       </ownedAttribute>

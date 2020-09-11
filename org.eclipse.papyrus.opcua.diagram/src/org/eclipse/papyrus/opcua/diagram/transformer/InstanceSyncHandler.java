@@ -76,6 +76,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UANodeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAObjectImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAObjectTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAReferenceTypeImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UATypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAVariableImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAVariableTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAViewImpl;
@@ -594,16 +595,15 @@ public class InstanceSyncHandler {
 	}
 
 	private boolean transformUAType(Class object,  DynamicEObjectImpl stereotype) {
-		UAObjectTypeImpl uaObjType;
+		UAType uaObjType;
 		if(this.matching.containsKey(object))
 		{
-			uaObjType = (UAObjectTypeImpl) this.matching.get(object);
+			uaObjType = (UAType) this.matching.get(object);
 		}
 		else
 		{
-			uaObjType = new UAObjectTypeImpl();
+			uaObjType = new UATypeImpl();
 			this.matching.put(object, uaObjType);
-			this.baseNodeset.getUAObjectType().add(uaObjType);
 		}
 				
 		return transformUANode(object, stereotype);
@@ -1890,41 +1890,20 @@ public class InstanceSyncHandler {
 					displayNames.add(displayName.getValue());
 				}
 				
-				stereotype.dynamicSet(id, displayNames);
+				stereotype.dynamicSet(id, displayNames.toArray());
 				
 			}
 			else if(name.equalsIgnoreCase("description"))
 			{
-//				uaObjType.getDescription().clear();
-//				
-//				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-//				for(DynamicEObjectImpl ltUML : ltsUML)
-//				{
-//					//transformNodeIdAlias(aliasUML);
-//					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-//					for(EStructuralFeature feature2 : featuresList2)
-//					{
-//						int id2 = feature2.getFeatureID();
-//						String name2 = feature2.getName();
-//						if(name2.equalsIgnoreCase("base_Class"))
-//						{
-//							Object baseClass = ltUML.dynamicGet(id2);
-//							if(this.matching.containsKey(baseClass))
-//							{
-//								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-//								uaObjType.getDisplayName().add(existingLT);
-//								break;
-//							}
-//							else
-//							{
-//								updateClass((Class) baseClass);
-//								LocalizedText existingLT = (LocalizedText) this.matching.get(baseClass);
-//								uaObjType.getDescription().add(existingLT);
-//								break;
-//							}
-//						}
-//					}
-//				}
+				
+				List<String> descriptions = new ArrayList<String>();
+				
+				for(LocalizedText displayName : node.getDescription())
+				{
+					descriptions.add(displayName.getValue());
+				}
+				
+				stereotype.dynamicSet(id, descriptions.toArray());
 			}
 			else if(name.equalsIgnoreCase("category"))
 			{

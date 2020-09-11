@@ -115,23 +115,8 @@ public class SynchHandler {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder;
 		UANodeSetType nodeSet = new UANodeSetTypeImpl();
-		try {
-			builder = factory.newDocumentBuilder();
-			Document document = builder.parse(nodesetFile);
-			document.getDocumentElement().normalize();
-			nodeSet = NodeSetParser.readNodeSet(filePath);
-			
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		nodeSet = NodeSetParser.readNodeSet(filePath);
+				
 		return nodeSet;
 	}
 

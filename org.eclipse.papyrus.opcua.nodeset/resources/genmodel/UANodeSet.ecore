@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="UANodeSet" nsURI="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd"
-    nsPrefix="UANodeSet">
+    nsPrefix="">
   <eClassifiers xsi:type="ecore:EDataType" name="AccessLevel" instanceClassName="long">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="AccessLevel"/>
@@ -1118,7 +1118,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UANodeSetType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="UANodeSet_._type"/>
+      <details key="name" value="UANodeSet"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="namespaceUris" eType="#//UriTable"

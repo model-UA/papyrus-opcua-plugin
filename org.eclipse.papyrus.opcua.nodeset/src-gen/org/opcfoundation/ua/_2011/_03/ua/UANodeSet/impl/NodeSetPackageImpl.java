@@ -4265,7 +4265,7 @@ public class NodeSetPackageImpl extends EPackageImpl implements NodeSetPackage {
 		  (uaNodeSetTypeEClass,
 		   source,
 		   new String[] {
-			   "name", "UANodeSet_._type",
+			   "name", "UANodeSet",
 			   "kind", "elementOnly"
 		   });
 		addAnnotation

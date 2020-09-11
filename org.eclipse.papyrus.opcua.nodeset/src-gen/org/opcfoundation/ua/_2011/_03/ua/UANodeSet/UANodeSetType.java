@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  * </ul>
  *
  * @see org.opcfoundation.ua._2011._03.ua.UANodeSet.NodeSetPackage#getUANodeSetType()
- * @model extendedMetaData="name='UANodeSet_._type' kind='elementOnly'"
+ * @model extendedMetaData="name='UANodeSet' kind='elementOnly'"
  * @generated
  */
 public interface UANodeSetType extends EObject {

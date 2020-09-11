@@ -48,7 +48,7 @@ public interface NodeSetPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "UANodeSet";
+	String eNS_PREFIX = "";
 
 	/**
 	 * The singleton instance of the package.

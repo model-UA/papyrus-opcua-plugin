@@ -79,33 +79,5 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 		Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
 		Class nodeSet = model.createOwnedClass("NodeSet", false);
 		nodeSet.applyStereotype(nodeSetType);
-		
-//		Stereotype uriTableType  = nodeSetProfile.getOwnedStereotype("UriTable");
-//		Class namespaceUriTable = model.createOwnedClass("NameSpaces", false);
-//		namespaceUriTable.applyStereotype(uriTableType);
-//				
-//		nodeSet.setValue(nodeSetType, "nameSpaceUris", namespaceUriTable.getStereotypeApplication(uriTableType));
-//		
-//		for(EStructuralFeature feature : featuresList)
-//		{
-//			int id = feature.getFeatureID();
-//			String name = feature.getName();
-//			Object temp = nodeSetApplication.dynamicGet(id);
-//			
-//			if(name.equals("nameSpaceUris"))
-//			{
-//				Object test = nodeSet.getValue(nodeSetType, "nameSpaceUris");
-//				
-//				String tes ="asdfsa";
-//			}
-//			else if(name.equals("permissions"))
-//			{
-//
-//				String tes ="asdfsa";
-//			}
-//		}
-//		
-		
-		
 	}
 }

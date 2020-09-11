@@ -1,326 +1,314 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:applystereotypeadvice="http://www.eclipse.org/papyrus/uml/types/applystereotypeadvice/1.1" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:stereotypematcher="http://www.eclipse.org/papyrus/uml/types/stereotypematcher/1.1" xmi:id="org.eclipse.papyrus.opcua.nodeset.elementTypes" identifier="org.eclipse.papyrus.opcua.nodeset.elementTypes" name="NodeSet" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.AliasTable" identifier="org.eclipse.papyrus.opcua.nodeset.AliasTable" name="AliasTable" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia-b4uedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia-b4-edEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BP_wvKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BP_w_KkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::AliasTable</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.ExtensionType" identifier="org.eclipse.papyrus.opcua.nodeset.ExtensionType" name="ExtensionType" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia-b5eedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia-b5uedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm0PKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm0fKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::ExtensionType</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.ListOfExtensions" identifier="org.eclipse.papyrus.opcua.nodeset.ListOfExtensions" name="ListOfExtensions" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia-b6OedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia-b6eedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm0_KkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm1PKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::ListOfExtensions</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.ListOfReferences" identifier="org.eclipse.papyrus.opcua.nodeset.ListOfReferences" name="ListOfReferences" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia-b6-edEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia-b7OedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm1vKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm1_KkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::ListOfReferences</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.ListOfRolePermissions" identifier="org.eclipse.papyrus.opcua.nodeset.ListOfRolePermissions" name="ListOfRolePermissions" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia-b7uedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia-b7-edEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm2fKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm2vKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::ListOfRolePermissions</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.LocalizedText" identifier="org.eclipse.papyrus.opcua.nodeset.LocalizedText" name="LocalizedText" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia-b8eedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia-b8uedEeqrVeUUGYv5PA">
-      <stereotypesQualifiedNames>NodeSet::LocalizedText</stereotypesQualifiedNames>
-    </matcherConfiguration>
-    <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
-  </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.ModelTable" identifier="org.eclipse.papyrus.opcua.nodeset.ModelTable" name="ModelTable" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia-b9OedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia-b9eedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm3PKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm3fKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::ModelTable</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.ModelTableEntry" identifier="org.eclipse.papyrus.opcua.nodeset.ModelTableEntry" name="ModelTableEntry" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia-b9-edEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia-b-OedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm3_KkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm4PKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::ModelTableEntry</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.NodeIdAlias" identifier="org.eclipse.papyrus.opcua.nodeset.NodeIdAlias" name="NodeIdAlias" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia-b-uedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia-b--edEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm4vKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm4_KkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::NodeIdAlias</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.Reference" identifier="org.eclipse.papyrus.opcua.nodeset.Reference" name="Reference" hint="UML::Generalization" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia-b_eedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Generalization.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia-b_uedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm5fKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Generalization.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm5vKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::Reference</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Generalization"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.RolePermission" identifier="org.eclipse.papyrus.opcua.nodeset.RolePermission" name="RolePermission" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia-cAOedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia-cAeedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm6PKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm6fKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::RolePermission</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.StructureTranslationType" identifier="org.eclipse.papyrus.opcua.nodeset.StructureTranslationType" name="StructureTranslationType" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_C8eedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_C8uedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm6_KkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm7PKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::StructureTranslationType</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.TranslationType" identifier="org.eclipse.papyrus.opcua.nodeset.TranslationType" name="TranslationType" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_C9OedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_C9eedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm7vKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm7_KkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::TranslationType</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UADataType" identifier="org.eclipse.papyrus.opcua.nodeset.UADataType" name="UADataType" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_C9-edEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_C-OedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm8fKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm8vKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UADataType</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UAInstance" identifier="org.eclipse.papyrus.opcua.nodeset.UAInstance" name="UAInstance" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_C-uedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_C--edEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm9PKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm9fKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UAInstance</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UAMethod" identifier="org.eclipse.papyrus.opcua.nodeset.UAMethod" name="UAMethod" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_C_eedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_C_uedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm9_KkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm-PKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UAMethod</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UAMethodArgument" identifier="org.eclipse.papyrus.opcua.nodeset.UAMethodArgument" name="UAMethodArgument" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_DAOedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_DAeedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm-vKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm-_KkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UAMethodArgument</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UANodeSetType" identifier="org.eclipse.papyrus.opcua.nodeset.UANodeSetType" name="UANodeSetType" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_DA-edEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_DBOedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQm_fKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQm_vKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UANodeSetType</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UAObject" identifier="org.eclipse.papyrus.opcua.nodeset.UAObject" name="UAObject" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_DBuedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_DB-edEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQnAPKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQnAfKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UAObject</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UAObjectType" identifier="org.eclipse.papyrus.opcua.nodeset.UAObjectType" name="UAObjectType" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_DCeedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_DCuedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQnA_KkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQnBPKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UAObjectType</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UAReferenceType" identifier="org.eclipse.papyrus.opcua.nodeset.UAReferenceType" name="UAReferenceType" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_DDOedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_DDeedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQnBvKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQnB_KkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UAReferenceType</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UAValueType1" identifier="org.eclipse.papyrus.opcua.nodeset.UAValueType1" name="UAValueType1" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_DD-edEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_DEOedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQnCfKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQnCvKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UAValueType1</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UAVariable" identifier="org.eclipse.papyrus.opcua.nodeset.UAVariable" name="UAVariable" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_DEuedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_DE-edEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQnDPKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQnDfKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UAVariable</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UAVariableType" identifier="org.eclipse.papyrus.opcua.nodeset.UAVariableType" name="UAVariableType" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_DFeedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_DFuedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQnD_KkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQnEPKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UAVariableType</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UAView" identifier="org.eclipse.papyrus.opcua.nodeset.UAView" name="UAView" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_DGOedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_DGeedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQnEvKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQnE_KkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UAView</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.UriTable" identifier="org.eclipse.papyrus.opcua.nodeset.UriTable" name="UriTable" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_DG-edEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_DHOedEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQnFfKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQnFvKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::UriTable</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.opcua.nodeset.ValueType" identifier="org.eclipse.papyrus.opcua.nodeset.ValueType" name="ValueType" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Ia_DHuedEeqrVeUUGYv5PA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_Ia_DH-edEeqrVeUUGYv5PA">
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_-BQnGPKkEeq5-9kd21j7QA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <matcherConfiguration xmi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_-BQnGfKkEeq5-9kd21j7QA">
       <stereotypesQualifiedNames>NodeSet::ValueType</stereotypesQualifiedNames>
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_Ia_DIOedEeqrVeUUGYv5PA" description="Apply Stereotype AliasTable" identifier="org.eclipse.papyrus.opcua.nodeset.aliasTable" target="org.eclipse.papyrus.opcua.nodeset.AliasTable">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_Ia_DIeedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::AliasTable" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnGvKkEeq5-9kd21j7QA" description="Apply Stereotype AliasTable" identifier="org.eclipse.papyrus.opcua.nodeset.aliasTable" target="org.eclipse.papyrus.opcua.nodeset.AliasTable">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnG_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::AliasTable" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_Ia_DIuedEeqrVeUUGYv5PA" description="Apply Stereotype ExtensionType" identifier="org.eclipse.papyrus.opcua.nodeset.extensionType" target="org.eclipse.papyrus.opcua.nodeset.ExtensionType">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_Ia_qAOedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::ExtensionType" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnHPKkEeq5-9kd21j7QA" description="Apply Stereotype ExtensionType" identifier="org.eclipse.papyrus.opcua.nodeset.extensionType" target="org.eclipse.papyrus.opcua.nodeset.ExtensionType">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnHfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::ExtensionType" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_Ia_qAeedEeqrVeUUGYv5PA" description="Apply Stereotype ListOfExtensions" identifier="org.eclipse.papyrus.opcua.nodeset.listOfExtensions" target="org.eclipse.papyrus.opcua.nodeset.ListOfExtensions">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_Ia_qAuedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::ListOfExtensions" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnHvKkEeq5-9kd21j7QA" description="Apply Stereotype ListOfExtensions" identifier="org.eclipse.papyrus.opcua.nodeset.listOfExtensions" target="org.eclipse.papyrus.opcua.nodeset.ListOfExtensions">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnH_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::ListOfExtensions" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_Ia_qA-edEeqrVeUUGYv5PA" description="Apply Stereotype ListOfReferences" identifier="org.eclipse.papyrus.opcua.nodeset.listOfReferences" target="org.eclipse.papyrus.opcua.nodeset.ListOfReferences">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbAREOedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::ListOfReferences" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnIPKkEeq5-9kd21j7QA" description="Apply Stereotype ListOfReferences" identifier="org.eclipse.papyrus.opcua.nodeset.listOfReferences" target="org.eclipse.papyrus.opcua.nodeset.ListOfReferences">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnIfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::ListOfReferences" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbAREeedEeqrVeUUGYv5PA" description="Apply Stereotype ListOfRolePermissions" identifier="org.eclipse.papyrus.opcua.nodeset.listOfRolePermissions" target="org.eclipse.papyrus.opcua.nodeset.ListOfRolePermissions">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbAREuedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::ListOfRolePermissions" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnIvKkEeq5-9kd21j7QA" description="Apply Stereotype ListOfRolePermissions" identifier="org.eclipse.papyrus.opcua.nodeset.listOfRolePermissions" target="org.eclipse.papyrus.opcua.nodeset.ListOfRolePermissions">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnI_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::ListOfRolePermissions" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbARE-edEeqrVeUUGYv5PA" description="Apply Stereotype LocalizedText" identifier="org.eclipse.papyrus.opcua.nodeset.localizedText" target="org.eclipse.papyrus.opcua.nodeset.LocalizedText">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbARFOedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::LocalizedText" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnJPKkEeq5-9kd21j7QA" description="Apply Stereotype ModelTable" identifier="org.eclipse.papyrus.opcua.nodeset.modelTable" target="org.eclipse.papyrus.opcua.nodeset.ModelTable">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnJfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::ModelTable" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbARFeedEeqrVeUUGYv5PA" description="Apply Stereotype ModelTable" identifier="org.eclipse.papyrus.opcua.nodeset.modelTable" target="org.eclipse.papyrus.opcua.nodeset.ModelTable">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbARFuedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::ModelTable" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnJvKkEeq5-9kd21j7QA" description="Apply Stereotype ModelTableEntry" identifier="org.eclipse.papyrus.opcua.nodeset.modelTableEntry" target="org.eclipse.papyrus.opcua.nodeset.ModelTableEntry">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnJ_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::ModelTableEntry" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbARF-edEeqrVeUUGYv5PA" description="Apply Stereotype ModelTableEntry" identifier="org.eclipse.papyrus.opcua.nodeset.modelTableEntry" target="org.eclipse.papyrus.opcua.nodeset.ModelTableEntry">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbARGOedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::ModelTableEntry" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnKPKkEeq5-9kd21j7QA" description="Apply Stereotype NodeIdAlias" identifier="org.eclipse.papyrus.opcua.nodeset.nodeIdAlias" target="org.eclipse.papyrus.opcua.nodeset.NodeIdAlias">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnKfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::NodeIdAlias" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbA4IOedEeqrVeUUGYv5PA" description="Apply Stereotype NodeIdAlias" identifier="org.eclipse.papyrus.opcua.nodeset.nodeIdAlias" target="org.eclipse.papyrus.opcua.nodeset.NodeIdAlias">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbA4IeedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::NodeIdAlias" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnKvKkEeq5-9kd21j7QA" description="Apply Stereotype Reference" identifier="org.eclipse.papyrus.opcua.nodeset.reference" target="org.eclipse.papyrus.opcua.nodeset.Reference">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnK_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::Reference" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbA4IuedEeqrVeUUGYv5PA" description="Apply Stereotype Reference" identifier="org.eclipse.papyrus.opcua.nodeset.reference" target="org.eclipse.papyrus.opcua.nodeset.Reference">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbA4I-edEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::Reference" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnLPKkEeq5-9kd21j7QA" description="Apply Stereotype RolePermission" identifier="org.eclipse.papyrus.opcua.nodeset.rolePermission" target="org.eclipse.papyrus.opcua.nodeset.RolePermission">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnLfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::RolePermission" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbA4JOedEeqrVeUUGYv5PA" description="Apply Stereotype RolePermission" identifier="org.eclipse.papyrus.opcua.nodeset.rolePermission" target="org.eclipse.papyrus.opcua.nodeset.RolePermission">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbA4JeedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::RolePermission" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnLvKkEeq5-9kd21j7QA" description="Apply Stereotype StructureTranslationType" identifier="org.eclipse.papyrus.opcua.nodeset.structureTranslationType" target="org.eclipse.papyrus.opcua.nodeset.StructureTranslationType">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnL_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::StructureTranslationType" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbA4JuedEeqrVeUUGYv5PA" description="Apply Stereotype StructureTranslationType" identifier="org.eclipse.papyrus.opcua.nodeset.structureTranslationType" target="org.eclipse.papyrus.opcua.nodeset.StructureTranslationType">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbA4J-edEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::StructureTranslationType" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnMPKkEeq5-9kd21j7QA" description="Apply Stereotype TranslationType" identifier="org.eclipse.papyrus.opcua.nodeset.translationType" target="org.eclipse.papyrus.opcua.nodeset.TranslationType">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnMfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::TranslationType" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbA4KOedEeqrVeUUGYv5PA" description="Apply Stereotype TranslationType" identifier="org.eclipse.papyrus.opcua.nodeset.translationType" target="org.eclipse.papyrus.opcua.nodeset.TranslationType">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbA4KeedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::TranslationType" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnMvKkEeq5-9kd21j7QA" description="Apply Stereotype UADataType" identifier="org.eclipse.papyrus.opcua.nodeset.uADataType" target="org.eclipse.papyrus.opcua.nodeset.UADataType">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnM_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UADataType" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbA4KuedEeqrVeUUGYv5PA" description="Apply Stereotype UADataType" identifier="org.eclipse.papyrus.opcua.nodeset.uADataType" target="org.eclipse.papyrus.opcua.nodeset.UADataType">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbA4K-edEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UADataType" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnNPKkEeq5-9kd21j7QA" description="Apply Stereotype UAInstance" identifier="org.eclipse.papyrus.opcua.nodeset.uAInstance" target="org.eclipse.papyrus.opcua.nodeset.UAInstance">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnNfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UAInstance" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbA4LOedEeqrVeUUGYv5PA" description="Apply Stereotype UAInstance" identifier="org.eclipse.papyrus.opcua.nodeset.uAInstance" target="org.eclipse.papyrus.opcua.nodeset.UAInstance">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbA4LeedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UAInstance" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnNvKkEeq5-9kd21j7QA" description="Apply Stereotype UAMethod" identifier="org.eclipse.papyrus.opcua.nodeset.uAMethod" target="org.eclipse.papyrus.opcua.nodeset.UAMethod">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnN_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UAMethod" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbA4LuedEeqrVeUUGYv5PA" description="Apply Stereotype UAMethod" identifier="org.eclipse.papyrus.opcua.nodeset.uAMethod" target="org.eclipse.papyrus.opcua.nodeset.UAMethod">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbA4L-edEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UAMethod" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnOPKkEeq5-9kd21j7QA" description="Apply Stereotype UAMethodArgument" identifier="org.eclipse.papyrus.opcua.nodeset.uAMethodArgument" target="org.eclipse.papyrus.opcua.nodeset.UAMethodArgument">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnOfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UAMethodArgument" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbA4MOedEeqrVeUUGYv5PA" description="Apply Stereotype UAMethodArgument" identifier="org.eclipse.papyrus.opcua.nodeset.uAMethodArgument" target="org.eclipse.papyrus.opcua.nodeset.UAMethodArgument">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbBfMOedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UAMethodArgument" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnOvKkEeq5-9kd21j7QA" description="Apply Stereotype UANodeSetType" identifier="org.eclipse.papyrus.opcua.nodeset.uANodeSetType" target="org.eclipse.papyrus.opcua.nodeset.UANodeSetType">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnO_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UANodeSetType" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbBfMeedEeqrVeUUGYv5PA" description="Apply Stereotype UANodeSetType" identifier="org.eclipse.papyrus.opcua.nodeset.uANodeSetType" target="org.eclipse.papyrus.opcua.nodeset.UANodeSetType">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbBfMuedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UANodeSetType" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnPPKkEeq5-9kd21j7QA" description="Apply Stereotype UAObject" identifier="org.eclipse.papyrus.opcua.nodeset.uAObject" target="org.eclipse.papyrus.opcua.nodeset.UAObject">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnPfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UAObject" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbBfM-edEeqrVeUUGYv5PA" description="Apply Stereotype UAObject" identifier="org.eclipse.papyrus.opcua.nodeset.uAObject" target="org.eclipse.papyrus.opcua.nodeset.UAObject">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbBfNOedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UAObject" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnPvKkEeq5-9kd21j7QA" description="Apply Stereotype UAObjectType" identifier="org.eclipse.papyrus.opcua.nodeset.uAObjectType" target="org.eclipse.papyrus.opcua.nodeset.UAObjectType">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnP_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UAObjectType" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbBfNeedEeqrVeUUGYv5PA" description="Apply Stereotype UAObjectType" identifier="org.eclipse.papyrus.opcua.nodeset.uAObjectType" target="org.eclipse.papyrus.opcua.nodeset.UAObjectType">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbBfNuedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UAObjectType" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnQPKkEeq5-9kd21j7QA" description="Apply Stereotype UAReferenceType" identifier="org.eclipse.papyrus.opcua.nodeset.uAReferenceType" target="org.eclipse.papyrus.opcua.nodeset.UAReferenceType">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnQfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UAReferenceType" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbBfN-edEeqrVeUUGYv5PA" description="Apply Stereotype UAReferenceType" identifier="org.eclipse.papyrus.opcua.nodeset.uAReferenceType" target="org.eclipse.papyrus.opcua.nodeset.UAReferenceType">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbBfOOedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UAReferenceType" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnQvKkEeq5-9kd21j7QA" description="Apply Stereotype UAValueType1" identifier="org.eclipse.papyrus.opcua.nodeset.uAValueType1" target="org.eclipse.papyrus.opcua.nodeset.UAValueType1">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnQ_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UAValueType1" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbBfOeedEeqrVeUUGYv5PA" description="Apply Stereotype UAValueType1" identifier="org.eclipse.papyrus.opcua.nodeset.uAValueType1" target="org.eclipse.papyrus.opcua.nodeset.UAValueType1">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbBfOuedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UAValueType1" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnRPKkEeq5-9kd21j7QA" description="Apply Stereotype UAVariable" identifier="org.eclipse.papyrus.opcua.nodeset.uAVariable" target="org.eclipse.papyrus.opcua.nodeset.UAVariable">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnRfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UAVariable" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbBfO-edEeqrVeUUGYv5PA" description="Apply Stereotype UAVariable" identifier="org.eclipse.papyrus.opcua.nodeset.uAVariable" target="org.eclipse.papyrus.opcua.nodeset.UAVariable">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbBfPOedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UAVariable" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnRvKkEeq5-9kd21j7QA" description="Apply Stereotype UAVariableType" identifier="org.eclipse.papyrus.opcua.nodeset.uAVariableType" target="org.eclipse.papyrus.opcua.nodeset.UAVariableType">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnR_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UAVariableType" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbBfPeedEeqrVeUUGYv5PA" description="Apply Stereotype UAVariableType" identifier="org.eclipse.papyrus.opcua.nodeset.uAVariableType" target="org.eclipse.papyrus.opcua.nodeset.UAVariableType">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbBfPuedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UAVariableType" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnSPKkEeq5-9kd21j7QA" description="Apply Stereotype UAView" identifier="org.eclipse.papyrus.opcua.nodeset.uAView" target="org.eclipse.papyrus.opcua.nodeset.UAView">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnSfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UAView" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbBfP-edEeqrVeUUGYv5PA" description="Apply Stereotype UAView" identifier="org.eclipse.papyrus.opcua.nodeset.uAView" target="org.eclipse.papyrus.opcua.nodeset.UAView">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbBfQOedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UAView" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnSvKkEeq5-9kd21j7QA" description="Apply Stereotype UriTable" identifier="org.eclipse.papyrus.opcua.nodeset.uriTable" target="org.eclipse.papyrus.opcua.nodeset.UriTable">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnS_KkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::UriTable" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbBfQeedEeqrVeUUGYv5PA" description="Apply Stereotype UriTable" identifier="org.eclipse.papyrus.opcua.nodeset.uriTable" target="org.eclipse.papyrus.opcua.nodeset.UriTable">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbBfQuedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::UriTable" updateName="true">
-      <requiredProfiles>NodeSet</requiredProfiles>
-    </stereotypesToApply>
-  </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_IbBfQ-edEeqrVeUUGYv5PA" description="Apply Stereotype ValueType" identifier="org.eclipse.papyrus.opcua.nodeset.valueType" target="org.eclipse.papyrus.opcua.nodeset.ValueType">
-    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_IbBfROedEeqrVeUUGYv5PA" stereotypeQualifiedName="NodeSet::ValueType" updateName="true">
+  <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_-BQnTPKkEeq5-9kd21j7QA" description="Apply Stereotype ValueType" identifier="org.eclipse.papyrus.opcua.nodeset.valueType" target="org.eclipse.papyrus.opcua.nodeset.ValueType">
+    <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_-BQnTfKkEeq5-9kd21j7QA" stereotypeQualifiedName="NodeSet::ValueType" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>

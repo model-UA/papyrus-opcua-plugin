@@ -15,9 +15,6 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="ListOfRolePermissions">
     <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.ListOfRolePermissions"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="LocalizedText">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.LocalizedText"/>
-  </menu>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="ModelTable">
     <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.ModelTable"/>
   </menu>

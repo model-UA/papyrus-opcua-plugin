@@ -10,7 +10,10 @@ Bundle-RequiredExecutionEnvironment: JavaSE-13
 Export-Package: org.eclipse.papyrus.opcua.nodeset.parser,
  org.opcfoundation.ua._2011._03.ua.UANodeSet,
  org.opcfoundation.ua._2011._03.ua.UANodeSet.impl,
- org.opcfoundation.ua._2011._03.ua.UANodeSet.util
+ org.opcfoundation.ua._2011._03.ua.UANodeSet.util,
+ org.opcfoundation.ua._2008._02.types,
+ org.opcfoundation.ua._2008._02.types.impl,
+ org.opcfoundation.ua._2008._02.types.util
 Bundle-Activator: org.eclipse.papyrus.opcua.nodeset.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

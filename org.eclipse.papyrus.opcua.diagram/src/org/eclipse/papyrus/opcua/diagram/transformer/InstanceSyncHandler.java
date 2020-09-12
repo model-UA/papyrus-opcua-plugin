@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -1769,28 +1770,80 @@ public class InstanceSyncHandler {
 	{
         // Implement your write operations here,
     	boolean success = true;
-    	success &= updateNamespaces(nodeset.getNamespaceUris());
+    	
+    	if(nodeset.getNamespaceUris() != null) {    		
+    		success &= updateNamespaces(nodeset.getNamespaceUris());
+    	}
 		
-		for(UAObjectType node : nodeset.getUAObjectType())
-		{
-			success &= updateOpcUAObjectType(node);
-		}
+    	if(nodeset.getUAObjectType() != null)
+    	{    		
+    		// adding and removing needs to be done via list otherwise 
+    		// ConcurrentModificationException
+    		EList<UAObjectType> uaObjectTypes = nodeset.getUAObjectType();
+    		List<UAObjectType> nodesToAdd = new ArrayList<UAObjectType>();
+    		List<UAObjectType> nodesToDelete = new ArrayList<UAObjectType>();
+    		
+    		Iterator<UAObjectType> it = uaObjectTypes.iterator(); 
+    		while (it.hasNext()) {
+    		    success &= updateOpcUAObjectType(it.next(), nodesToAdd, nodesToDelete);
+    		}
+    		
+    		this.baseNodeset.getUAObjectType().removeAll(nodesToDelete);
+    		this.baseNodeset.getUAObjectType().addAll(nodesToAdd);
+    	}
 		
-		for(UAMethod node : nodeset.getUAMethod())
-		{
-			success &= updateOpcUAMethod(node);
-		}
+    	if(nodeset.getUAMethod() != null)
+    	{    		
+
+    		// adding and removing needs to be done via list otherwise 
+    		// ConcurrentModificationException
+    		EList<UAMethod> uaMethods = nodeset.getUAMethod();
+    		List<UAMethod> nodesToAdd = new ArrayList<UAMethod>();
+    		List<UAMethod> nodesToDelete = new ArrayList<UAMethod>();
+    		
+    		Iterator<UAMethod> it = uaMethods.iterator(); 
+    		while (it.hasNext()) {
+    		    success &= updateOpcUAMethod(it.next(), nodesToAdd, nodesToDelete);
+    		}
+    		
+    		this.baseNodeset.getUAMethod().removeAll(nodesToDelete);
+    		this.baseNodeset.getUAMethod().addAll(nodesToAdd);
+    		
+    	}
 		
-		for(UAObject node : nodeset.getUAObject())
-		{
-			success &= updateOpcUAObject(node);
-		}
-		
-		for(UAVariable node : nodeset.getUAVariable())
-		{
-			success &= updateOpcUAVariable(node);
-		}
-	       
+    	if(nodeset.getUAObject() != null)
+    	{
+    		// adding and removing needs to be done via list otherwise 
+    		// ConcurrentModificationException
+			EList<UAObject> uaObjects = nodeset.getUAObject();
+    		List<UAObject> nodesToAdd = new ArrayList<UAObject>();
+    		List<UAObject> nodesToDelete = new ArrayList<UAObject>();
+    		
+    		Iterator<UAObject> it = uaObjects.iterator(); 
+    		while (it.hasNext()) {
+    		    success &= updateOpcUAObject(it.next(), nodesToAdd, nodesToDelete);
+    		}
+    		
+    		this.baseNodeset.getUAObject().removeAll(nodesToDelete);
+    		this.baseNodeset.getUAObject().addAll(nodesToAdd);
+    	}
+    	if(nodeset.getUAVariable() != null)
+    	{	
+    		// adding and removing needs to be done via list otherwise 
+    		// ConcurrentModificationException
+			EList<UAVariable> uaVariables = nodeset.getUAVariable();
+    		List<UAVariable> nodesToAdd = new ArrayList<UAVariable>();
+    		List<UAVariable> nodesToDelete = new ArrayList<UAVariable>();
+    		
+    		Iterator<UAVariable> it = uaVariables.iterator(); 
+    		while (it.hasNext()) {
+    		    success &= updateOpcUAVariable(it.next(), nodesToAdd, nodesToDelete);
+    		}
+    		
+    		this.baseNodeset.getUAVariable().removeAll(nodesToDelete);
+    		this.baseNodeset.getUAVariable().addAll(nodesToAdd);
+			
+    	}  
 		return success;
 	}
 	
@@ -1830,7 +1883,7 @@ public class InstanceSyncHandler {
 		return true;
 	}
 
-	private boolean updateOpcUAObjectType(UAObjectType node) {
+	private boolean updateOpcUAObjectType(UAObjectType node, List<UAObjectType> nodesToAdd, List<UAObjectType> nodesToDelete) {
 	
 		Element uaElement = null;
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
@@ -1860,7 +1913,8 @@ public class InstanceSyncHandler {
 			uaElement= baseUmlModel.createOwnedClass(name, false);
 			uaElement.applyStereotype(uaObjectTypeType);
 			this.matching.put(uaElement, node);
-			this.baseNodeset.getUAObjectType().add(node);
+			nodesToAdd.add(node);
+			//this.baseNodeset.getUAObjectType().add(node);
 		}
 		
 		
@@ -1869,7 +1923,8 @@ public class InstanceSyncHandler {
 		{
 			// UAObjectType Stereotype not applied !!!
 			this.matching.remove(uaElement);
-			this.baseNodeset.getUAObjectType().remove(node);
+			//this.baseNodeset.getUAObjectType().remove(node);
+			nodesToDelete.add(node);
 			return false;
 		}
 		
@@ -1989,17 +2044,17 @@ public class InstanceSyncHandler {
 		return true;
 	}
 	
-	private boolean updateOpcUAMethod(UAMethod node) {
+	private boolean updateOpcUAMethod(UAMethod node, List<UAMethod> nodesToAdd, List<UAMethod> nodesToDelete) {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-	private boolean updateOpcUAObject(UAObject node) {
+	private boolean updateOpcUAObject(UAObject node, List<UAObject> nodesToAdd, List<UAObject> nodesToDelete) {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-	private boolean updateOpcUAVariable(UAVariable node) {
+	private boolean updateOpcUAVariable(UAVariable node, List<UAVariable> nodesToAdd, List<UAVariable> nodesToDelete) {
 		// TODO Auto-generated method stub
 		return true;
 	}

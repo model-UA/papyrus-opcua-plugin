@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.opcua.diagram;
 
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.papyrus.opcua.diagram.listener.DiagramChangeListener;
 import org.eclipse.papyrus.opcua.diagram.listener.NodeSetFileChangeListener;
 import org.eclipse.papyrus.opcua.diagram.transformer.SynchHandler;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -38,6 +39,7 @@ public class Activator extends AbstractUIPlugin {
 		plugin = null;
 		super.stop(context);
 		ResourcesPlugin.getWorkspace().removeResourceChangeListener(nodeSetChangedListener);
+		DiagramChangeListener.disable(true);
 	}
 
 	/**

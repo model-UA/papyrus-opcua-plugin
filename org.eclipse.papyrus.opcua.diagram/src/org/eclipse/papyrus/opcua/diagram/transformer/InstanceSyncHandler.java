@@ -20,8 +20,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.EEnumLiteralImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -50,6 +52,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.ReleaseStatus;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.RolePermission;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.StructureTranslationType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UADataType;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAInstance;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAMethod;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANode;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
@@ -88,17 +91,23 @@ public class InstanceSyncHandler {
 	private Model baseUmlModel;
 	private UANodeSetType baseNodeset;
 	private HashMap<Element, Object> matching;
+	private HashMap<String, Element> nodeIdMap;
+	private HashMap<String, String> aliasTable;
 	
 	public InstanceSyncHandler(Model umlModel)
 	{
 		this.baseUmlModel = umlModel;
 		this.matching = new HashMap<Element, Object>();
+		this.nodeIdMap = new HashMap<String, Element>();
+		this.aliasTable = new HashMap<String, String>();
 	}
 	
 	public InstanceSyncHandler(UANodeSetType nodeset)
 	{
 		this.baseNodeset = nodeset;
 		this.matching = new HashMap<Element, Object>();
+		this.nodeIdMap = new HashMap<String, Element>();
+		this.aliasTable = new HashMap<String, String>();
 	}
 	
 	public InstanceSyncHandler(Model umlModel, UANodeSetType nodeset)
@@ -106,6 +115,8 @@ public class InstanceSyncHandler {
 		this.baseUmlModel = umlModel;
 		this.baseNodeset = nodeset;
 		this.matching = new HashMap<Element, Object>();
+		this.nodeIdMap = new HashMap<String, Element>();
+		this.aliasTable = new HashMap<String, String>();
 	}
 	
 
@@ -130,18 +141,8 @@ public class InstanceSyncHandler {
         
 		return true;
 	}
-	public boolean readToNodeSetFile(File filepath)
-	{
-//		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-//		DocumentBuilder builder = factory.newDocumentBuilder();
-//		Document document = builder.parse(filepath);
-//		document.getDocumentElement().normalize();
-//		NodeSetReader reader = new NodeSetReader(document);
-//		
-//		UANodeSetType nodeSet = reader.readNodeSet();
-//		
-		return false;
-	}
+
+	
 	public void setNodeSetObject(UANodeSetType nodeset)
 	{
 		this.baseNodeset = nodeset;
@@ -152,16 +153,6 @@ public class InstanceSyncHandler {
 		this.baseUmlModel = umlModel;
 	}
 		
-	public boolean syncNodeSetToUml()
-	{
-		return false;
-	}
-	
-	public boolean syncUmlToNodeSet()
-	{
-		return false;
-	}
-	
 	public boolean updateMember(Element object)
 	{
 		boolean return_val = false;
@@ -398,15 +389,14 @@ public class InstanceSyncHandler {
 	
 	
 	private boolean transformValueType1(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+		// EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
 		
 	}
 
 	private boolean transformValueType(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+		//EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
-		
 	}
 
 	private boolean transformUriTable(Class object,  DynamicEObjectImpl stereotype) {
@@ -423,6 +413,7 @@ public class InstanceSyncHandler {
 			this.matching.put(object, uriTable);
 		}
 		
+		boolean success = true;
 		for(EStructuralFeature feature : featuresList)
 		{
 			int id = feature.getFeatureID();
@@ -435,14 +426,20 @@ public class InstanceSyncHandler {
 			
 			if(name.equalsIgnoreCase("uri"))
 			{
-				List<String> uris = (List<String>) temp;
-				uriTable.getUri().clear();
-				uriTable.getUri().addAll(uris);
+				try
+				{					
+					List<String> uris = (List<String>) temp;
+					uriTable.getUri().clear();
+					uriTable.getUri().addAll(uris);
+				}
+				catch (Exception e) {
+					success = false;
+				}
 			}
 			
 		}
 		
-		return true;
+		return success;
 		
 	}
 
@@ -480,11 +477,15 @@ public class InstanceSyncHandler {
 			
 			if(name.equalsIgnoreCase("containsNoLoops"))
 			{
-				//TODO: Add containsNoLoops
+				String stringToConvert = String.valueOf(temp);
+				boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
+				uaView.setContainsNoLoops(convertedBoolean);
 			}
 			else if(name.equalsIgnoreCase("eventNotifier"))
 			{
-				//TODO: Add executable
+				String stringToConvert = String.valueOf(temp);
+				short convertedShort = Short.parseShort(stringToConvert);
+				uaView.setEventNotifier(convertedShort);
 			}
 		}
 		
@@ -494,7 +495,6 @@ public class InstanceSyncHandler {
 	}
 
 	private boolean transformUAVariableType(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		
 		UAVariableTypeImpl uaVarType;
 		if(this.matching.containsKey(object))
@@ -526,7 +526,6 @@ public class InstanceSyncHandler {
 			this.baseNodeset.getUAVariable().add(uaVariable);
 		}
 		
-		EList<Classifier> generals = object.getGenerals();
 		boolean success = transformUAInstance(object, stereotype);
 		
 		if(!success)
@@ -652,8 +651,7 @@ public class InstanceSyncHandler {
 	}
 
 	private boolean transformUAObjectType(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-			
+		
 		UAObjectTypeImpl uaObjType;
 		if(this.matching.containsKey(object))
 		{
@@ -668,7 +666,6 @@ public class InstanceSyncHandler {
 		
 		boolean success = transformUAType(object, stereotype);
 		
-		EList<Classifier> generals = object.getGenerals();
 		ListOfReferences listOfReferences = uaObjType.getReferences();
 		if(listOfReferences == null)
 		{
@@ -719,7 +716,9 @@ public class InstanceSyncHandler {
 			
 			if(name.equalsIgnoreCase("eventNotifier"))
 			{
-				//TODO: Add eventNotifier
+				String stringToConvert = String.valueOf(temp);
+				short convertedShort = Short.parseShort(stringToConvert);
+				uaObject.setEventNotifier(convertedShort);
 			}
 		}
 		
@@ -876,13 +875,13 @@ public class InstanceSyncHandler {
 	}
 
 	private boolean transformUANodeSetChangesType(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+//		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
 		
 	}
 
 	private boolean transformUANodeSetChangesStatusType(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+// 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
 		
 	}
@@ -944,10 +943,6 @@ public class InstanceSyncHandler {
 				List<String> documentation = (List<String>) temp;
 				uanode.getCategory().clear();
 				uanode.getCategory().addAll(documentation);
-			}
-			else if(name.equalsIgnoreCase("references"))
-			{
-				System.out.println(name);
 			}
 			else if(name.equalsIgnoreCase("rolePermissions"))
 			{
@@ -1036,7 +1031,7 @@ public class InstanceSyncHandler {
 	}
 
 	private boolean transformUAMethodArgument(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+//		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
 	}
 
@@ -1681,6 +1676,9 @@ public class InstanceSyncHandler {
 					}
 					else if(name.equalsIgnoreCase("referenceType"))
 					{
+						Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+						Stereotype uaReferenceType  = nodeSetProfile.getOwnedStereotype("Reference");
+						
 						DynamicEObjectImpl uri_object = ((DynamicEObjectImpl) temp);
 						EList<EStructuralFeature> featuresList2 = uri_object.eClass().getEAllStructuralFeatures();
 						for(EStructuralFeature feature2 : featuresList2)
@@ -1774,7 +1772,14 @@ public class InstanceSyncHandler {
     	if(nodeset.getNamespaceUris() != null) {    		
     		success &= updateNamespaces(nodeset.getNamespaceUris());
     	}
-		
+    	
+    	if(nodeset.getAliases() != null) {    		
+    		success &= updateOpcUAliasTable(nodeset.getAliases());
+    	}
+    	
+    	
+    	ArrayList<UANode> referenceNodes = new ArrayList<UANode>();
+    	
     	if(nodeset.getUAObjectType() != null)
     	{    		
     		// adding and removing needs to be done via list otherwise 
@@ -1782,35 +1787,86 @@ public class InstanceSyncHandler {
     		EList<UAObjectType> uaObjectTypes = nodeset.getUAObjectType();
     		List<UAObjectType> nodesToAdd = new ArrayList<UAObjectType>();
     		List<UAObjectType> nodesToDelete = new ArrayList<UAObjectType>();
-    		
-    		Iterator<UAObjectType> it = uaObjectTypes.iterator(); 
-    		while (it.hasNext()) {
-    		    success &= updateOpcUAObjectType(it.next(), nodesToAdd, nodesToDelete);
+
+    		for(UAObjectType t : uaObjectTypes)
+    		{
+    			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+    			{
+    				referenceNodes.add(t);
+    			}
+    			success &= updateOpcUAObjectType(t, nodesToAdd, nodesToDelete);
     		}
     		
     		this.baseNodeset.getUAObjectType().removeAll(nodesToDelete);
     		this.baseNodeset.getUAObjectType().addAll(nodesToAdd);
-    	}
-		
-    	if(nodeset.getUAMethod() != null)
-    	{    		
 
+    	}
+    	
+    	if(nodeset.getUAVariableType() != null)
+    	{    		
     		// adding and removing needs to be done via list otherwise 
     		// ConcurrentModificationException
-    		EList<UAMethod> uaMethods = nodeset.getUAMethod();
-    		List<UAMethod> nodesToAdd = new ArrayList<UAMethod>();
-    		List<UAMethod> nodesToDelete = new ArrayList<UAMethod>();
+    		EList<UAVariableType> uaVariableTypes = nodeset.getUAVariableType();
+    		List<UAVariableType> nodesToAdd = new ArrayList<UAVariableType>();
+    		List<UAVariableType> nodesToDelete = new ArrayList<UAVariableType>();
     		
-    		Iterator<UAMethod> it = uaMethods.iterator(); 
-    		while (it.hasNext()) {
-    		    success &= updateOpcUAMethod(it.next(), nodesToAdd, nodesToDelete);
+    		
+    		for(UAVariableType t : uaVariableTypes)
+    		{
+    			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+    			{
+    				referenceNodes.add(t);
+    			}
+    			success &= updateOpcUAVariableType(t, nodesToAdd, nodesToDelete);
     		}
     		
-    		this.baseNodeset.getUAMethod().removeAll(nodesToDelete);
-    		this.baseNodeset.getUAMethod().addAll(nodesToAdd);
+    		this.baseNodeset.getUAVariableType().removeAll(nodesToDelete);
+    		this.baseNodeset.getUAVariableType().addAll(nodesToAdd);
+    	}
+    	
+    	if(nodeset.getUADataType() != null)
+    	{    		
+    		// adding and removing needs to be done via list otherwise 
+    		// ConcurrentModificationException
+    		EList<UADataType> uaDataTypes = nodeset.getUADataType();
+    		List<UADataType> nodesToAdd = new ArrayList<UADataType>();
+    		List<UADataType> nodesToDelete = new ArrayList<UADataType>();
     		
+    		for(UADataType t : uaDataTypes)
+    		{
+    			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+    			{
+    				referenceNodes.add(t);
+    			}
+    			success &= updateOpcUADataType(t, nodesToAdd, nodesToDelete);
+    		}
+    		
+    		this.baseNodeset.getUADataType().removeAll(nodesToDelete);
+    		this.baseNodeset.getUADataType().addAll(nodesToAdd);
     	}
 		
+    	if(nodeset.getUAReferenceType() != null)
+    	{    		
+    		// adding and removing needs to be done via list otherwise 
+    		// ConcurrentModificationException
+    		EList<UAReferenceType> uaDataTypes = nodeset.getUAReferenceType();
+    		List<UAReferenceType> nodesToAdd = new ArrayList<UAReferenceType>();
+    		List<UAReferenceType> nodesToDelete = new ArrayList<UAReferenceType>();
+    		
+    		for(UAReferenceType t : uaDataTypes)
+    		{
+    			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+    			{
+    				referenceNodes.add(t);
+    			}
+    			success &= updateOpcUAReferenceType(t, nodesToAdd, nodesToDelete);
+    		}
+
+    		this.baseNodeset.getUAReferenceType().removeAll(nodesToDelete);
+    		this.baseNodeset.getUAReferenceType().addAll(nodesToAdd);
+    	}
+    	
+    	
     	if(nodeset.getUAObject() != null)
     	{
     		// adding and removing needs to be done via list otherwise 
@@ -1819,9 +1875,13 @@ public class InstanceSyncHandler {
     		List<UAObject> nodesToAdd = new ArrayList<UAObject>();
     		List<UAObject> nodesToDelete = new ArrayList<UAObject>();
     		
-    		Iterator<UAObject> it = uaObjects.iterator(); 
-    		while (it.hasNext()) {
-    		    success &= updateOpcUAObject(it.next(), nodesToAdd, nodesToDelete);
+    		for(UAObject t : uaObjects)
+    		{
+    			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+    			{
+    				referenceNodes.add(t);
+    			}
+    			success &= updateOpcUAObject(t, nodesToAdd, nodesToDelete);
     		}
     		
     		this.baseNodeset.getUAObject().removeAll(nodesToDelete);
@@ -1835,15 +1895,73 @@ public class InstanceSyncHandler {
     		List<UAVariable> nodesToAdd = new ArrayList<UAVariable>();
     		List<UAVariable> nodesToDelete = new ArrayList<UAVariable>();
     		
-    		Iterator<UAVariable> it = uaVariables.iterator(); 
-    		while (it.hasNext()) {
-    		    success &= updateOpcUAVariable(it.next(), nodesToAdd, nodesToDelete);
+    		for(UAVariable t : uaVariables)
+    		{
+    			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+    			{
+    				referenceNodes.add(t);
+    			}
+    			success &= updateOpcUAVariable(t, nodesToAdd, nodesToDelete);
     		}
     		
     		this.baseNodeset.getUAVariable().removeAll(nodesToDelete);
     		this.baseNodeset.getUAVariable().addAll(nodesToAdd);
 			
     	}  
+    	
+    	if(nodeset.getUAMethod() != null)
+    	{    		
+
+    		// adding and removing needs to be done via list otherwise 
+    		// ConcurrentModificationException
+    		EList<UAMethod> uaMethods = nodeset.getUAMethod();
+    		List<UAMethod> nodesToAdd = new ArrayList<UAMethod>();
+    		List<UAMethod> nodesToDelete = new ArrayList<UAMethod>();
+    		
+    		for(UAMethod t : uaMethods)
+    		{
+    			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+    			{
+    				referenceNodes.add(t);
+    			}
+    			success &= updateOpcUAMethod(t, nodesToAdd, nodesToDelete);
+    		}
+    		
+    		this.baseNodeset.getUAMethod().removeAll(nodesToDelete);
+    		this.baseNodeset.getUAMethod().addAll(nodesToAdd);
+    		
+    	}
+    	
+    	if(nodeset.getUAView() != null)
+    	{    		
+
+    		// adding and removing needs to be done via list otherwise 
+    		// ConcurrentModificationException
+    		EList<UAView> uaViews = nodeset.getUAView();
+    		List<UAView> nodesToAdd = new ArrayList<UAView>();
+    		List<UAView> nodesToDelete = new ArrayList<UAView>();
+    		
+    		for(UAView t : uaViews)
+    		{
+    			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+    			{
+    				referenceNodes.add(t);
+    			}
+    			success &= updateOpcUAView(t, nodesToAdd, nodesToDelete);
+    		}
+    		
+
+    		
+    		this.baseNodeset.getUAView().removeAll(nodesToDelete);
+    		this.baseNodeset.getUAView().addAll(nodesToAdd);
+    		
+    	}
+    	
+    	if(success)
+    	{
+    		success &= updateOpcUaReferences(referenceNodes);
+    	}
+    	    	
 		return success;
 	}
 	
@@ -1882,25 +2000,28 @@ public class InstanceSyncHandler {
 						
 		return true;
 	}
-
+	
+	private boolean updateOpcUAliasTable(AliasTable aliasTable)
+	{
+		boolean success = true;
+			
+		for(NodeIdAlias alias : aliasTable.getAlias())
+		{
+			this.aliasTable.put(alias.getAlias(), alias.getValue());
+		}
+		
+		return success;
+	}
+	
 	private boolean updateOpcUAObjectType(UAObjectType node, List<UAObjectType> nodesToAdd, List<UAObjectType> nodesToDelete) {
 	
 		Element uaElement = null;
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
-		Stereotype uaObjectTypeType  = nodeSetProfile.getOwnedStereotype("UAObjectType");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAObjectType");
 		
-		for(Entry<Element, Object> entry : this.matching.entrySet())
+		if(this.nodeIdMap.containsKey(node.getNodeId()))
 		{
-			Object uaMember = entry.getValue();
-			if(uaMember instanceof UAObjectType)
-			{
-				UAObjectType uaObjectType = (UAObjectType) uaMember;				
-				if(uaObjectType.getNodeId() != null && uaObjectType.getNodeId().equalsIgnoreCase(node.getNodeId()))
-				{
-					uaElement = entry.getKey();
-					break;
-				}
-			}
+			uaElement = this.nodeIdMap.get(node.getNodeId());
 		}
 		
 		if(uaElement == null)
@@ -1911,151 +2032,636 @@ public class InstanceSyncHandler {
 			String name = node.getBrowseName().substring(separator);
 
 			uaElement= baseUmlModel.createOwnedClass(name, false);
-			uaElement.applyStereotype(uaObjectTypeType);
+			uaElement.applyStereotype(uaStereoType);
 			this.matching.put(uaElement, node);
 			nodesToAdd.add(node);
-			//this.baseNodeset.getUAObjectType().add(node);
 		}
 		
 		
-		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaObjectTypeType);
+		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
+		if(stereotype == null)
+		{
+			this.matching.remove(uaElement);
+			nodesToDelete.add(node);
+			return true;
+		}
+		
+		boolean success = updateOpcUaType(node, uaStereoType, uaElement);
+				
+		return success;
+	}
+		
+	private boolean updateOpcUAVariableType(UAVariableType node, List<UAVariableType> nodesToAdd, List<UAVariableType> nodesToDelete) {
+		Element uaElement = null;
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAVariableType");
+		
+		if(this.nodeIdMap.containsKey(node.getNodeId()))
+		{
+			uaElement = this.nodeIdMap.get(node.getNodeId());
+		}
+		
+		if(uaElement == null)
+		{
+			// Element does not exist in Model 
+			// create new UAObjectType Element
+			int separator = node.getBrowseName().lastIndexOf(":")+1;
+			String name = node.getBrowseName().substring(separator);
+
+			uaElement= baseUmlModel.createOwnedClass(name, false);
+			uaElement.applyStereotype(uaStereoType);
+			this.matching.put(uaElement, node);
+			nodesToAdd.add(node);
+		}
+		
+		
+		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
 		{
 			// UAObjectType Stereotype not applied !!!
 			this.matching.remove(uaElement);
-			//this.baseNodeset.getUAObjectType().remove(node);
 			nodesToDelete.add(node);
+			return true;
+		}
+		
+		boolean success = updateOpcUaType(node, uaStereoType, uaElement);
+		return success;
+	}
+	
+	private boolean updateOpcUADataType(UADataType node, List<UADataType> nodesToAdd, List<UADataType> nodesToDelete) {
+		Element uaElement = null;
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UADataType");
+		
+		if(this.nodeIdMap.containsKey(node.getNodeId()))
+		{
+			uaElement = this.nodeIdMap.get(node.getNodeId());
+		}
+		
+		if(uaElement == null)
+		{
+			// Element does not exist in Model 
+			// create new UAObjectType Element
+			int separator = node.getBrowseName().lastIndexOf(":")+1;
+			String name = node.getBrowseName().substring(separator);
+
+			uaElement= baseUmlModel.createOwnedClass(name, false);
+			uaElement.applyStereotype(uaStereoType);
+			this.matching.put(uaElement, node);
+			nodesToAdd.add(node);
+		}
+		
+		
+		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
+		if(stereotype == null)
+		{
+			// UAObjectType Stereotype not applied !!!
+			this.matching.remove(uaElement);
+			nodesToDelete.add(node);
+			return true;
+		}
+		
+		boolean success = updateOpcUaType(node, uaStereoType, uaElement);
+		
+//		if(success)
+//		{			
+//			EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+//			
+//			for(EStructuralFeature feature : featuresList)
+//			{
+//				int id = feature.getFeatureID();
+//				String name = feature.getName();
+//				
+//				if(name.equalsIgnoreCase("definition"))
+//				{
+//					// TODO: add definition
+//				}
+//				else if(name.equalsIgnoreCase("purpose"))
+//				{
+//					// TODO: add purpose
+//				}
+//				
+//			}
+//		}
+		
+		return success;
+	}
+	
+	private boolean updateOpcUAReferenceType(UAReferenceType node, List<UAReferenceType> nodesToAdd, List<UAReferenceType> nodesToDelete) {
+		Class uaElement = null;
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
+		
+		if(this.nodeIdMap.containsKey(node.getNodeId()))
+		{
+			uaElement = (Class) this.nodeIdMap.get(node.getNodeId());
+		}
+		
+		if(uaElement == null)
+		{
+			// Element does not exist in Model 
+			// create new UAObjectType Element
+			int separator = node.getBrowseName().lastIndexOf(":")+1;
+			String name = node.getBrowseName().substring(separator);
+
+			uaElement= baseUmlModel.createOwnedClass(name, false);
+			uaElement.applyStereotype(uaStereoType);
+			this.matching.put(uaElement, node);
+			nodesToAdd.add(node);
+		}
+		
+		
+		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
+		if(stereotype == null)
+		{
+			// UAObjectType Stereotype not applied !!!
+			this.matching.remove(uaElement);
+			nodesToDelete.add(node);
+			return true;
+		}
+		
+		boolean success = updateOpcUaType(node, uaStereoType, uaElement);
+		
+		if(success)
+		{			
+			
+			if(node.getInverseName() != null)
+			{
+				
+				EDataTypeUniqueEList<Object> displayNames = (EDataTypeUniqueEList<Object>) uaElement.getValue(uaStereoType, "displayName");
+				for(LocalizedText inverseName : node.getInverseName())
+				{
+					displayNames.add(inverseName.getValue());
+				}
+			}
+			
+			
+			uaElement.setValue(uaStereoType, "symmetric", String.valueOf(node.isSymmetric()));
+		}
+		
+		return success;
+	
+	}
+	
+	private boolean updateOpcUAObject(UAObject node, List<UAObject> nodesToAdd, List<UAObject> nodesToDelete) {
+		Class uaElement = null;
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAObject");
+		
+		if(this.nodeIdMap.containsKey(node.getNodeId()))
+		{
+			uaElement = (Class) this.nodeIdMap.get(node.getNodeId());
+		}
+		
+		if(uaElement == null)
+		{
+			// Element does not exist in Model 
+			// create new UAObjectType Element
+			int separator = node.getBrowseName().lastIndexOf(":")+1;
+			String name = node.getBrowseName().substring(separator);
+
+			uaElement= baseUmlModel.createOwnedClass(name, false);
+			uaElement.applyStereotype(uaStereoType);
+			this.matching.put(uaElement, node);
+			nodesToAdd.add(node);
+		}
+		
+		
+		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
+		if(stereotype == null)
+		{
+			// UAObjectType Stereotype not applied !!!
+			this.matching.remove(uaElement);
+			nodesToDelete.add(node);
+			return true;
+		}
+		 
+		boolean success = updateOpcUaInstance(node, uaStereoType, uaElement);
+		
+		if(success)
+		{			
+			uaElement.setValue(uaStereoType, "eventNotifier", String.valueOf(node.getEventNotifier()));
+		}
+		
+		return success;
+	}
+	
+
+	private boolean updateOpcUAVariable(UAVariable node, List<UAVariable> nodesToAdd, List<UAVariable> nodesToDelete) {
+		Element uaElement = null;
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAVariable");
+		
+		if(this.nodeIdMap.containsKey(node.getNodeId()))
+		{
+			uaElement = this.nodeIdMap.get(node.getNodeId());
+		}
+
+		if(uaElement == null)
+		{
+			// Element does not exist in Model 
+			// create new UAObjectType Element
+			int separator = node.getBrowseName().lastIndexOf(":")+1;
+			String name = node.getBrowseName().substring(separator);
+
+			uaElement= baseUmlModel.createOwnedClass(name, false);
+			uaElement.applyStereotype(uaStereoType);
+			this.matching.put(uaElement, node);
+			nodesToAdd.add(node);
+		}
+		
+		
+		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
+		if(stereotype == null)
+		{
+			// UAObjectType Stereotype not applied !!!
+			this.matching.remove(uaElement);
+			nodesToDelete.add(node);
+			return true;
+		}
+		 
+		boolean success = updateOpcUaInstance(node, uaStereoType, uaElement);
+		
+//		if(success)
+//		{
+//			EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+//			
+//			for(EStructuralFeature feature : featuresList)
+//			{
+//				int id = feature.getFeatureID();
+//				String name = feature.getName();
+//				
+//				if(name.equalsIgnoreCase("value"))
+//				{
+//					//TODO: Add value
+//				}
+//				else if(name.equalsIgnoreCase("translation"))
+//				{
+//					//TODO: Add translation
+//				}
+//				else if(name.equalsIgnoreCase("accessLevel"))
+//				{
+//					//TODO: Add accessLevel
+//
+//				}
+//				else if(name.equalsIgnoreCase("arrayDimensions"))
+//				{
+//					//TODO: Add arrayDimensions
+//
+//				}
+//				else if(name.equalsIgnoreCase("dataType"))
+//				{
+//					//TODO: Add dataType
+//
+//				}
+//				else if(name.equalsIgnoreCase("historizing"))
+//				{
+//					//TODO: Add historizing
+//
+//				}
+//				else if(name.equalsIgnoreCase("minimumSamplingInterval"))
+//				{
+//					//TODO: Add minimumSamplingInterval
+//				}
+//				else if(name.equalsIgnoreCase("userAccessLevel"))
+//				{
+//					//TODO: Add userAccessLevel
+//
+//				}
+//				else if(name.equalsIgnoreCase("valueRank"))
+//				{
+//					//TODO: Add valueRank
+//
+//				}
+//			}
+//		}
+		
+		
+		return success;
+	}
+
+	private boolean updateOpcUAMethod(UAMethod node, List<UAMethod> nodesToAdd, List<UAMethod> nodesToDelete) {
+		Element uaElement = null;
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAMethod");
+		
+		if(this.nodeIdMap.containsKey(node.getNodeId()))
+		{
+			uaElement = this.nodeIdMap.get(node.getNodeId());
+		}
+		
+		if(uaElement == null)
+		{
+			// Element does not exist in Model 
+			// create new UAObjectType Element
+			int separator = node.getBrowseName().lastIndexOf(":")+1;
+			String name = node.getBrowseName().substring(separator);
+
+			uaElement= baseUmlModel.createOwnedClass(name, false);
+			uaElement.applyStereotype(uaStereoType);
+			this.matching.put(uaElement, node);
+			nodesToAdd.add(node);
+		}
+		
+		
+		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
+		if(stereotype == null)
+		{
+			// UAObjectType Stereotype not applied !!!
+			this.matching.remove(uaElement);
+			nodesToDelete.add(node);
+			return true;
+		}
+		 
+		boolean success = updateOpcUaInstance(node, uaStereoType, uaElement);
+		
+//		if(success)
+//		{
+//			EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+//			
+//			for(EStructuralFeature feature : featuresList)
+//			{
+//				int id = feature.getFeatureID();
+//				String name = feature.getName();
+//				Object temp = stereotype.dynamicGet(id);
+//				if(temp == null)
+//				{
+//					continue;
+//				}
+//				
+//				if(name.equalsIgnoreCase("argumentDescription"))
+//				{
+//					//TODO: Add argumentDescription
+//				}
+//				else if(name.equalsIgnoreCase("executable"))
+//				{
+//					//TODO: Add executable
+//				}
+//				else if(name.equalsIgnoreCase("methodDeclarationId"))
+//				{
+//					//TODO: Add methodDeclarationId
+//				}
+//				else if(name.equalsIgnoreCase("userExecutable"))
+//				{
+//					//TODO: Add userExecutable
+//				}
+//			}
+//		}
+//		
+		return success;
+	}
+	
+	private boolean updateOpcUAView(UAView node, List<UAView> nodesToAdd, List<UAView> nodesToDelete) {
+		Element uaElement = null;
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAView");
+		
+		if(this.nodeIdMap.containsKey(node.getNodeId()))
+		{
+			uaElement = this.nodeIdMap.get(node.getNodeId());
+		}
+		
+		if(uaElement == null)
+		{
+			// Element does not exist in Model 
+			// create new UAObjectType Element
+			int separator = node.getBrowseName().lastIndexOf(":")+1;
+			String name = node.getBrowseName().substring(separator);
+
+			uaElement= baseUmlModel.createOwnedClass(name, false);
+			uaElement.applyStereotype(uaStereoType);
+			this.matching.put(uaElement, node);
+			nodesToAdd.add(node);
+		}
+		
+		
+		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
+		if(stereotype == null)
+		{
+			// UAObjectType Stereotype not applied !!!
+			this.matching.remove(uaElement);
+			nodesToDelete.add(node);
+			return true;
+		}
+		 
+		boolean success = updateOpcUaInstance(node, uaStereoType, uaElement);
+		return success;
+	}
+	
+	private boolean updateOpcUaInstance(UAInstance node, Stereotype stereotype, Element uaElement) {
+
+		boolean success = updateOpcUaNode(node, stereotype, uaElement);
+		if(success)
+		{
+			if(node.getParentNodeId() != null) {
+				uaElement.setValue(stereotype, "parentNodeId", node.getParentNodeId());		
+			}
+		}
+		return success;
+	}
+	
+	private boolean updateOpcUaType(UAType node, Stereotype stereotype, Element uaElement) {
+		boolean success = updateOpcUaNode(node, stereotype, uaElement);
+		return success;
+	}
+	
+	private boolean updateOpcUaNode(UANode node, Stereotype stereotype, Element uaElement) {
+
+		
+		if(node.getDisplayName() != null)
+		{			
+			EDataTypeUniqueEList<Object> displayNames = (EDataTypeUniqueEList<Object>) uaElement.getValue(stereotype, "displayName");
+			for(LocalizedText displayName : node.getDisplayName())
+			{
+				displayNames.add(displayName.getValue());
+			}
+		}
+		
+		if(node.getDescription() != null)
+		{			
+			EDataTypeUniqueEList<Object> description = (EDataTypeUniqueEList<Object>) uaElement.getValue(stereotype, "description");
+			for(LocalizedText displayName : node.getDescription())
+			{
+				description.add(displayName.getValue());
+			}
+		}
+		
+		if(node.getCategory() != null)
+		{			
+			uaElement.setValue(stereotype, "category", node.getCategory());
+		}
+		
+		if(node.getDocumentation() != null)
+		{			
+			uaElement.setValue(stereotype, "documentation", node.getDocumentation());
+		}
+		
+//		if(node.getRolePermissions() != null)
+//		{			
+//			// TODO: rolepermissions
+//			EDataTypeUniqueEList<Object> rolePermissions = (EDataTypeUniqueEList<Object>) uaElement.getValue(stereotype, "rolePermissions");
+////				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
+////				if(this.matching.containsKey(rp_object))
+////				{
+////					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
+////					uaObjType.setRolePermissions(rp);
+////				}
+//		}
+//		// short cannot be null
+		uaElement.setValue(stereotype, "accessRestrictions", String.valueOf(node.getAccessRestrictions()));
+		
+		if(node.getBrowseName() != null)
+		{
+			uaElement.setValue(stereotype, "browseName", node.getBrowseName());
+		}
+		if(node.getNodeId() != null) {
+			String nodeId = node.getNodeId();
+			uaElement.setValue(stereotype, "nodeId", nodeId);
+			
+			this.nodeIdMap.put(nodeId, uaElement);			
+		}
+//		
+//		if(node.getReleaseStatus() != null) {
+//			Object releaseStatus = uaElement.getValue(stereotype, "releaseStatus");
+//			String test = "dasfasf";
+////				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
+////				String value = lit.toString();
+////				switch(value)
+////				{
+////				case "Draft":
+////					uaObjType.setReleaseStatus(ReleaseStatus.DRAFT);
+////					break;
+////				case "Released":
+////					uaObjType.setReleaseStatus(ReleaseStatus.RELEASED);
+////					break;
+////				case "Deprecated":
+////					uaObjType.setReleaseStatus(ReleaseStatus.DEPRECATED);
+////					break;
+////				}
+//		}
+//		
+		if(node.getSymbolicName() != null)
+		{			
+			EDataTypeUniqueEList<Object> symbollicName = (EDataTypeUniqueEList<Object>) uaElement.getValue(stereotype, "symbolicName");
+			for(String symbolic : node.getSymbolicName())
+			{
+				symbollicName.add(symbolic);
+			}
+		}
+		// userWriteMask and writeMask cannot be null since they are Shorts
+		uaElement.setValue(stereotype, "userWriteMask", String.valueOf(node.getUserWriteMask()));
+		uaElement.setValue(stereotype, "writeMask", String.valueOf(node.getWriteMask()));
+			
+		return true;
+	}
+	private boolean updateOpcUaReferences(ArrayList<UANode> referenceNodes)
+	{
+		boolean success = true;
+		for(UANode node : referenceNodes)
+		{
+			success &= updateOpcUaNodeReferences(node);
+			if(!success)
+			{
+				break;
+			}
+		}
+		
+		return success;
+	}
+	
+	private boolean updateOpcUaNodeReferences(UANode node)
+	{
+				
+		Class uaElement = null;
+		if(this.nodeIdMap.containsKey(node.getNodeId()))
+		{
+			uaElement = (Class) this.nodeIdMap.get(node.getNodeId());
+		}
+		else
+		{
+			for(Entry<Element, Object> entry : this.matching.entrySet())
+			{
+				Object uaMember = entry.getValue();
+				if(uaMember instanceof UANode)
+				{
+					UANode UANode = (UANode) uaMember;				
+					if(UANode.getNodeId() != null && UANode.getNodeId().equalsIgnoreCase(node.getNodeId()))
+					{
+						uaElement = (Class) entry.getKey();
+						break;
+					}
+				}
+			}
+
+			if(uaElement == null)
+			{
+				return false;
+			}
+			else
+			{
+				this.nodeIdMap.put(node.getNodeId(), uaElement);
+			}
+		}
+		
+		boolean success = true;
+		
+		for(Reference ref: node.getReferences().getReference())
+		{
+			
+			success &= updateOpcUaNodeReference(uaElement, ref);
+		}
+		
+		return success;
+	}
+		
+	private boolean updateOpcUaNodeReference(Class uaElement, Reference ref)
+	{
+		boolean success = true;
+		
+		String refTypeString = ref.getReferenceType();
+		if(this.aliasTable.containsKey(refTypeString))
+		{
+			refTypeString = this.aliasTable.get(refTypeString);
+		}
+
+		String refValueString = ref.getValue();
+		if(this.aliasTable.containsKey(refTypeString))
+		{
+			refValueString = this.aliasTable.get(refTypeString);
+		}
+		
+		
+		if(!this.nodeIdMap.containsKey(refTypeString) ||
+			!this.nodeIdMap.containsKey(refValueString)	)
+		{
 			return false;
 		}
 		
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+		Element refType = this.nodeIdMap.get(refTypeString);
 		
-		for(EStructuralFeature feature : featuresList)
+		Class refValue = (Class) this.nodeIdMap.get(refValueString);
+		
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaReference  = nodeSetProfile.getOwnedStereotype("Reference");
+		Stereotype uaReferenceType  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
+		
+		Generalization reference;
+		if(uaElement.getGenerals().size() > 0 &&
+			uaElement.getGeneralization(refValue) != null)
 		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
+			reference = uaElement.getGeneralization(refValue);
 			
-			if(name.equalsIgnoreCase("displayName"))
-			{
-				
-				List<String> displayNames = new ArrayList<String>();
-				
-				for(LocalizedText displayName : node.getDisplayName())
-				{
-					displayNames.add(displayName.getValue());
-				}
-				
-				stereotype.dynamicSet(id, displayNames.toArray());
-				
-			}
-			else if(name.equalsIgnoreCase("description"))
-			{
-				
-				List<String> descriptions = new ArrayList<String>();
-				
-				for(LocalizedText displayName : node.getDescription())
-				{
-					descriptions.add(displayName.getValue());
-				}
-				
-				stereotype.dynamicSet(id, descriptions.toArray());
-			}
-			else if(name.equalsIgnoreCase("category"))
-			{
-				stereotype.dynamicSet(id, node.getCategory());
-			}
-			else if(name.equalsIgnoreCase("documentation"))
-			{
-				stereotype.dynamicSet(id, node.getDocumentation());
-			}
-			else if(name.equalsIgnoreCase("rolePermissions"))
-			{
-//				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
-//				if(this.matching.containsKey(rp_object))
-//				{
-//					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
-//					uaObjType.setRolePermissions(rp);
-//				}
-			}
-			else if(name.equalsIgnoreCase("accessRestrictions"))
-			{
-				stereotype.dynamicSet(id, String.valueOf(node.getAccessRestrictions()));	
-			}
-			else if(name.equalsIgnoreCase("browseName"))
-			{
-
-				stereotype.dynamicSet(id,node.getBrowseName());	
-				
-			}
-			else if(name.equalsIgnoreCase("nodeId"))
-			{
-				stereotype.dynamicSet(id,node.getNodeId());	
-			}
-			else if(name.equalsIgnoreCase("releaseStatus"))
-			{
-//				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
-//				String value = lit.toString();
-//				switch(value)
-//				{
-//				case "Draft":
-//					uaObjType.setReleaseStatus(ReleaseStatus.DRAFT);
-//					break;
-//				case "Released":
-//					uaObjType.setReleaseStatus(ReleaseStatus.RELEASED);
-//					break;
-//				case "Deprecated":
-//					uaObjType.setReleaseStatus(ReleaseStatus.DEPRECATED);
-//					break;
-//				}
-			}
-			else if(name.equalsIgnoreCase("symbolicName"))
-			{
-				stereotype.dynamicSet(id,node.getSymbolicName());
-			}
-			else if(name.equalsIgnoreCase("userWriteMask"))
-			{
-				stereotype.dynamicSet(id, String.valueOf(node.getUserWriteMask()));	
-			}
-			else if(name.equalsIgnoreCase("writeMask"))
-			{
-				stereotype.dynamicSet(id, String.valueOf(node.getWriteMask()));	
-			}			
 		}
+		else
+		{
+			reference = uaElement.createGeneralization(refValue);
+			reference.applyStereotype(uaReference);	
+		}
+		reference.setValue(uaReference,"value", refValueString);
+		reference.setValue(uaReference,"isForward", String.valueOf(ref.isIsForward()));
+		reference.setValue(uaReference,"referenceType", refType.getStereotypeApplication(uaReferenceType));
 		
-//		EList<Classifier> generals = object.getGenerals();
-//		ListOfReferences listOfReferences = uaObjType.getReferences();
-//		if(listOfReferences == null)
-//		{
-//			listOfReferences = new ListOfReferencesImpl();
-//			uaObjType.setReferences(listOfReferences);
-//		}
-//		listOfReferences.getReference().clear();
-//		
-//		for(Generalization reference :object.getGeneralizations())
-//		{
-//			if(! this.matching.containsKey(reference))
-//			{
-//				updatedGeneralization(reference);
-//			}
-//			listOfReferences.getReference().add((Reference) this.matching.get(reference));
-//
-//		}
 		
-		return true;
-	}
-	
-	private boolean updateOpcUAMethod(UAMethod node, List<UAMethod> nodesToAdd, List<UAMethod> nodesToDelete) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	private boolean updateOpcUAObject(UAObject node, List<UAObject> nodesToAdd, List<UAObject> nodesToDelete) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	private boolean updateOpcUAVariable(UAVariable node, List<UAVariable> nodesToAdd, List<UAVariable> nodesToDelete) {
-		// TODO Auto-generated method stub
-		return true;
+		return success;
 	}
 }

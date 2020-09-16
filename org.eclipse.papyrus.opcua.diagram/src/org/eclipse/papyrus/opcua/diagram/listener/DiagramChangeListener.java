@@ -53,6 +53,8 @@ public class DiagramChangeListener implements IPapyrusListener {
 		{
 			System.out.println("Do transformation and Storage");
 			Element elem = (Element) notifier ;
+			// printNotficationType(notification);
+			
 			if(notification.getEventType() == Notification.REMOVE || 
 				notification.getEventType() == Notification.REMOVE_MANY)
 			{
@@ -70,6 +72,10 @@ public class DiagramChangeListener implements IPapyrusListener {
 				finally {
 					disabled = false;
 				}
+			}
+			else if(notification.getEventType() == Notification.REMOVING_ADAPTER)
+			{
+				return;
 			}
 			else //if(notification.getEventType() == Notification.ADD ||
 				//	notification.getEventType() == Notification.SET )
@@ -181,6 +187,71 @@ public class DiagramChangeListener implements IPapyrusListener {
 		}
 	}
 
-	
+	private void printNotficationType(Notification notification)
+	{
+		if(notification.getEventType() == Notification.ADD)
+		{
+			System.out.println("ADD");
+		}
+		else if( notification.getEventType() == Notification.ADD_MANY)
+		{
+			System.out.println("ADD_MANY");
+		
+		}
+		else if( notification.getEventType() == Notification.CREATE)
+		{
+			System.out.println("CREATE");
+		
+		}
+		else if( notification.getEventType() == Notification.EVENT_TYPE_COUNT)
+		{
+			
+			System.out.println("EVENT_TYPE_COUNT");
+		}
+		else if( notification.getEventType() == Notification.MOVE)
+		{
+			System.out.println("MOVE");
+		
+		}
+		else if( notification.getEventType() == Notification.NO_FEATURE_ID)
+		{
+			System.out.println("NO_FEATURE_ID");
+		
+		}
+		else if( notification.getEventType() == Notification.NO_INDEX)
+		{
+			System.out.println("NO_INDEX");
+		}
+		else if( notification.getEventType() == Notification.REMOVE)
+		{
+			System.out.println("REMOVE");
+		
+		}
+		else if( notification.getEventType() == Notification.REMOVE_MANY)
+		{
+			System.out.println("REMOVE_MANY");
+		
+		}
+		else if( notification.getEventType() == Notification.REMOVING_ADAPTER)
+		{
+			System.out.println("REMOVING_ADAPTER");
+		
+		}
+		else if( notification.getEventType() == Notification.RESOLVE)
+		{
+			System.out.println("RESOLVE");
+		
+		}
+		else if( notification.getEventType() == Notification.SET)
+		{
+			System.out.println("SET");
+		
+		}
+		else if( notification.getEventType() == Notification.UNSET)
+		{
+			System.out.println("UNSET");
+		
+		}
+	}
 
 }

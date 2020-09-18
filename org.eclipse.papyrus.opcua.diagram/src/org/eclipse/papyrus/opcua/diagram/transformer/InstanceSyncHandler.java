@@ -1634,6 +1634,7 @@ public class InstanceSyncHandler {
     	
     	
     	ArrayList<UANode> referenceNodes = new ArrayList<UANode>();
+    	ArrayList<UAInstance> parentNodes = new ArrayList<UAInstance>();
     	
     	if(nodeset.getUAObjectType() != null)
     	{    		
@@ -1736,12 +1737,19 @@ public class InstanceSyncHandler {
     			{
     				referenceNodes.add(t);
     			}
+    			
+    			if(t.getParentNodeId() != null && t.getParentNodeId().length() > 0)
+    			{
+    				parentNodes.add(t);
+    			}
     			success &= updateOpcUAObject(t, nodesToAdd, nodesToDelete);
     		}
     		
     		this.baseNodeset.getUAObject().removeAll(nodesToDelete);
     		this.baseNodeset.getUAObject().addAll(nodesToAdd);
     	}
+    	// Important!
+    	// UAVariable depends on DataTypes --> DataTypes need to be parsed first
     	if(nodeset.getUAVariable() != null)
     	{	
     		// adding and removing needs to be done via list otherwise 
@@ -1755,6 +1763,10 @@ public class InstanceSyncHandler {
     			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
     			{
     				referenceNodes.add(t);
+    			}
+    			if(t.getParentNodeId() != null && t.getParentNodeId().length() > 0)
+    			{
+    				parentNodes.add(t);
     			}
     			success &= updateOpcUAVariable(t, nodesToAdd, nodesToDelete);
     		}
@@ -1779,6 +1791,10 @@ public class InstanceSyncHandler {
     			{
     				referenceNodes.add(t);
     			}
+    			if(t.getParentNodeId() != null && t.getParentNodeId().length() > 0)
+    			{
+    				parentNodes.add(t);
+    			}
     			success &= updateOpcUAMethod(t, nodesToAdd, nodesToDelete);
     		}
     		
@@ -1802,6 +1818,10 @@ public class InstanceSyncHandler {
     			{
     				referenceNodes.add(t);
     			}
+    			if(t.getParentNodeId() != null && t.getParentNodeId().length() > 0)
+    			{
+    				parentNodes.add(t);
+    			}
     			success &= updateOpcUAView(t, nodesToAdd, nodesToDelete);
     		}
     		
@@ -1815,6 +1835,11 @@ public class InstanceSyncHandler {
     	if(success)
     	{
     		success &= updateOpcUaReferences(referenceNodes);
+    	}
+    	
+    	if(success)
+    	{
+    		success &= updateOpcUaParents(parentNodes);
     	}
     	    	
 		return success;
@@ -2137,60 +2162,47 @@ public class InstanceSyncHandler {
 		 
 		boolean success = updateOpcUaInstance(node, uaStereoType, uaElement);
 		
-//		if(success)
-//		{
-//			EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-//			
-//			for(EStructuralFeature feature : featuresList)
-//			{
-//				int id = feature.getFeatureID();
-//				String name = feature.getName();
-//				
-//				if(name.equalsIgnoreCase("value"))
-//				{
-//					//TODO: Add value
-//				}
-//				else if(name.equalsIgnoreCase("translation"))
-//				{
-//					//TODO: Add translation
-//				}
-//				else if(name.equalsIgnoreCase("accessLevel"))
-//				{
-//					//TODO: Add accessLevel
-//
-//				}
-//				else if(name.equalsIgnoreCase("arrayDimensions"))
-//				{
-//					//TODO: Add arrayDimensions
-//
-//				}
-//				else if(name.equalsIgnoreCase("dataType"))
-//				{
-//					//TODO: Add dataType
-//
-//				}
-//				else if(name.equalsIgnoreCase("historizing"))
-//				{
-//					//TODO: Add historizing
-//
-//				}
-//				else if(name.equalsIgnoreCase("minimumSamplingInterval"))
-//				{
-//					//TODO: Add minimumSamplingInterval
-//				}
-//				else if(name.equalsIgnoreCase("userAccessLevel"))
-//				{
-//					//TODO: Add userAccessLevel
-//
-//				}
-//				else if(name.equalsIgnoreCase("valueRank"))
-//				{
-//					//TODO: Add valueRank
-//
-//				}
-//			}
-//		}
-		
+		if(success)
+		{
+			String dataType = node.getDataType();
+			
+			if(dataType == null || dataType.length() == 0)
+			{
+				return false;
+			}
+			
+			if(this.aliasTable.containsKey(dataType))
+			{
+				dataType = this.aliasTable.get(dataType);
+			}
+			
+			if(!this.nodeIdMap.containsKey(dataType))
+			{
+				return false;
+			}
+			
+			Class varElement  = (Class) this.nodeIdMap.get(node.getNodeId());
+			
+			Class varDataType = (Class) this.nodeIdMap.get(dataType);
+			UANode uaDataType = (UANode) matching.get(varDataType);
+			
+			Stereotype uaInstance = getMatchingStereotype(node);
+			Stereotype sterUaDataType = getMatchingStereotype(uaDataType);
+			
+			varElement.setValue(uaInstance, "dataType", varDataType.getStereotypeApplication(sterUaDataType));
+			
+			//TODO: Add value
+			//TODO: Add translation
+			//TODO: Add accessLevel
+			//TODO: Add arrayDimensions
+			//TODO: Add dataType
+			//TODO: Add historizing
+			//TODO: Add minimumSamplingInterval
+			//TODO: Add userAccessLevel
+			//TODO: Add valueRank
+		}
+
+
 		
 		return success;
 	}
@@ -2306,12 +2318,7 @@ public class InstanceSyncHandler {
 	private boolean updateOpcUaInstance(UAInstance node, Stereotype stereotype, Element uaElement) {
 
 		boolean success = updateOpcUaNode(node, stereotype, uaElement);
-		if(success)
-		{
-			if(node.getParentNodeId() != null) {
-				uaElement.setValue(stereotype, "parentNodeId", node.getParentNodeId());		
-			}
-		}
+		// ParentNodeId is parsed in a later step
 		return success;
 	}
 	
@@ -2348,7 +2355,8 @@ public class InstanceSyncHandler {
 		
 		if(node.getDocumentation() != null)
 		{			
-			uaElement.setValue(stereotype, "documentation", node.getDocumentation());
+			EDataTypeUniqueEList<Object> description = (EDataTypeUniqueEList<Object>) uaElement.getValue(stereotype, "description");
+			description.add(node.getDocumentation());
 		}
 		
 //		if(node.getRolePermissions() != null)
@@ -2362,7 +2370,7 @@ public class InstanceSyncHandler {
 ////					uaObjType.setRolePermissions(rp);
 ////				}
 //		}
-//		// short cannot be null
+		// short cannot be null
 		uaElement.setValue(stereotype, "accessRestrictions", String.valueOf(node.getAccessRestrictions()));
 		
 		if(node.getBrowseName() != null)
@@ -2519,4 +2527,91 @@ public class InstanceSyncHandler {
 		
 		return success;
 	}
+	
+	private boolean updateOpcUaParents(ArrayList<UAInstance> parentNodes) {
+		boolean success = true;
+		for(UAInstance var : parentNodes)
+		{
+			success &= updateOpcUaParent(var);
+			if(!success)
+			{
+				break;
+			}
+		}
+		
+		return success;
+	}
+
+	private boolean updateOpcUaParent(UAInstance inst) {
+
+		String parent = inst.getParentNodeId();
+		
+		if(parent == null || parent.length() == 0)
+		{
+			return false;
+		}
+		
+		if(this.aliasTable.containsKey(parent))
+		{
+			parent = this.aliasTable.get(parent);
+		}
+		
+		if(!this.nodeIdMap.containsKey(parent))
+		{
+			return false;
+		}
+		
+		Class varElement  = (Class) this.nodeIdMap.get(inst.getNodeId());
+		
+		Class varParent = (Class) this.nodeIdMap.get(parent);
+		UANode uaVarParent = (UANode) matching.get(varParent);
+		
+		Stereotype uaInstance = getMatchingStereotype(inst);
+		Stereotype uaParent = getMatchingStereotype(uaVarParent);
+		
+		varElement.setValue(uaInstance, "parentNodeId", varParent.getStereotypeApplication(uaParent));
+		
+		return true;
+	}
+	
+	private Stereotype getMatchingStereotype(UANode node)
+	{
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaInstance = null;
+		if(node instanceof UAVariable)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("UAVariable");
+		}
+		else if(node instanceof UAObject)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("UAObject");
+		}
+		else if(node instanceof UAMethod)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("UAMethod");
+		}
+		else if(node instanceof UAView)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("UAView");
+		}
+		else if(node instanceof UADataType)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("UADataType");
+		}
+		else if(node instanceof UAObjectType)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("UAObjectType");
+		}
+		else if(node instanceof UAVariableType)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("UAVariableType");
+		}
+		else if(node instanceof UAReferenceType)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
+		}
+		
+		return uaInstance;
+	}
+	
 }

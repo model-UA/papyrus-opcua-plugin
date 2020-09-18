@@ -172,10 +172,6 @@ public class InstanceSyncHandler {
 			
 			return_val = cmd.getCommandResult();
 		}
-		else if(object instanceof DataType)
-		{
-			return_val= updatedDataType((DataType) object);
-		}
 		else if(object instanceof Generalization)
 		{
 			return_val= updatedGeneralization((Generalization) object);
@@ -205,20 +201,11 @@ public class InstanceSyncHandler {
 			case "DataTypeField":
 				success=transformDataTypeField(object, stereotype);
 				break;
-			case "DataTypePurpose":
-				success=transformDataTypePurpose(object, stereotype);
-				break;
-			case "DocumentRoot":
-				success= transformDocumentRoot(object, stereotype);
-				break;
 			case "ExtensionType":
 				success=transformExtensionType(object, stereotype);
 				break;
 			case "ListOfExtensions":
 				success=transformListOfExtensions(object, stereotype);
-				break;
-			case "ListOfReferences":
-				success=transformListOfReferences(object, stereotype);
 				break;
 			case "ListOfRolePermissions":
 				success=transformListOfRolePermissions(object, stereotype);
@@ -234,39 +221,6 @@ public class InstanceSyncHandler {
 				break;
 			case "NodeIdAlias":
 				success=transformNodeIdAlias(object, stereotype);
-				break;
-			case "NodeSetFactory":
-				success=transformNodeSetFactory(object, stereotype);
-				break;
-			case "NodeSetPackage":
-				success=transformNodeSetPackage(object, stereotype);
-				break;
-			case "NodeSetStatus":
-				success=transformNodeSetStatus(object, stereotype);
-				break;
-			case "NodeSetStatusList":
-				success=transformNodeSetStatusList(object, stereotype);
-				break;
-			case "NodesToAdd":
-				success=transformNodesToAdd(object, stereotype);
-				break;
-			case "NodesToDelete":
-				success=transformNodesToDelete(object, stereotype);
-				break;
-			case "NodeToDelete":
-				success=transformNodeToDelete(object, stereotype);
-				break;
-			case "Reference":
-				success=transformReference(object, stereotype);
-				break;
-			case "ReferenceChange":
-				success=transformReferenceChange(object, stereotype);
-				break;
-			case "ReferencesToChange":
-				success=transformReferencesToChange(object, stereotype);
-				break;
-			case "ReleaseStatus":
-				success=transformReleaseStatus(object, stereotype);
 				break;
 			case "RolePermission":
 				success=transformRolePermission(object, stereotype);
@@ -1316,72 +1270,7 @@ public class InstanceSyncHandler {
 		
 	}
 
-	private boolean transformReleaseStatus(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
-	private boolean transformReferencesToChange(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
-	private boolean transformReferenceChange(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
-	private boolean transformNodesToDelete(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
-	private boolean transformReference(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
-	private boolean transformNodeToDelete(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
-	private boolean transformNodesToAdd(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
-	private boolean transformNodeSetStatusList(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
-	private boolean transformNodeSetStatus(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
-	private boolean transformNodeSetPackage(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
-	private boolean transformNodeSetFactory(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
+	
 	private boolean transformModelTableEntry(Class object,  DynamicEObjectImpl stereotype) {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
@@ -1481,12 +1370,6 @@ public class InstanceSyncHandler {
 		return true;
 	}
 
-	private boolean transformListOfReferences(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
 	private boolean transformListOfExtensions(Class object,  DynamicEObjectImpl stereotype) {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
@@ -1496,21 +1379,8 @@ public class InstanceSyncHandler {
 	private boolean transformExtensionType(Class object,  DynamicEObjectImpl stereotype) {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
-		
 	}
-
-	private boolean transformDocumentRoot(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
-	private boolean transformDataTypePurpose(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
+	
 	private boolean transformDataTypeField(Class object,  DynamicEObjectImpl stereotype) {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
@@ -1521,21 +1391,6 @@ public class InstanceSyncHandler {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
 	}
-
-	private boolean updatedDataType(DataType object)
-	{
-//		EList<Stereotype> stereotypes = object.getAppliedStereotypes();
-//		for(Stereotype ster : stereotypes)
-//		{
-//			if(ster.getName().equalsIgnoreCase("NodeId"))
-//			{
-//				
-//			}
-//		}
-		return false;
-	}
-	
-	
 	
 	private boolean transformAliasTable(Class object, DynamicEObjectImpl stereoptype_application) {
 		EList<EStructuralFeature> featuresList = stereoptype_application.eClass().getEAllStructuralFeatures();		

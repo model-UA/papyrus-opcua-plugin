@@ -31,7 +31,10 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeField;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypePurpose;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfReferences;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfRolePermissions;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.LocalizedText;
@@ -54,6 +57,8 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariableType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAView;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UriTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.AliasTableImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.DataTypeDefinitionImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.DataTypeFieldImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ListOfReferencesImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ListOfRolePermissionsImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.LocalizedTextImpl;
@@ -1002,6 +1007,8 @@ public class InstanceSyncHandler {
 		
 		for(EStructuralFeature feature : featuresList)
 		{
+			
+			
 			int id = feature.getFeatureID();
 			String name = feature.getName();
 			Object temp = stereotype.dynamicGet(id);
@@ -1050,6 +1057,8 @@ public class InstanceSyncHandler {
 		
 		for(EStructuralFeature feature : featuresList)
 		{
+			
+			
 			int id = feature.getFeatureID();
 			String name = feature.getName();
 			Object temp = stereotype.dynamicGet(id);
@@ -1068,8 +1077,6 @@ public class InstanceSyncHandler {
 	}
 
 	private boolean transformUADataType(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		
 
 		UADataTypeImpl uaDataType;
 		if(this.matching.containsKey(object))
@@ -1084,26 +1091,34 @@ public class InstanceSyncHandler {
 		}
 		boolean success = transformUAType(object, stereotype);
 		
-		for(EStructuralFeature feature : featuresList)
+		if(success)
 		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			if(temp == null)
-			{
-				continue;
-			}
+			Stereotype dataTypeSter = getMatchingStereotype(uaDataType);
 			
-			if(name.equalsIgnoreCase("definition"))
+			org.eclipse.uml2.uml.internal.impl.EnumerationLiteralImpl lit = (org.eclipse.uml2.uml.internal.impl.EnumerationLiteralImpl) object.getValue(dataTypeSter, "purpose");
+			String value = lit.toString();
+			switch(value)
 			{
-				// TODO: add definition
+			case "Normal":
+				uaDataType.setPurpose(DataTypePurpose.NORMAL);
+				break;
+			case "CodeGenerator":
+				uaDataType.setPurpose(DataTypePurpose.CODE_GENERATOR);
+				break;
+			case "ServicesOnly":
+				uaDataType.setPurpose(DataTypePurpose.SERVICES_ONLY);
+				break;
 			}
-			else if(name.equalsIgnoreCase("purpose"))
+			// TODO: add definition
+			
+			DynamicEObjectImpl definition = (DynamicEObjectImpl)object.getValue(dataTypeSter, "definition");
+			Class dataTypeDefinition = getStereotypeBaseClass(definition, true);
+			if(dataTypeDefinition != null)
 			{
-				// TODO: add purpose
-			}	
+				DataTypeDefinition dtd = (DataTypeDefinition) this.matching.get(dataTypeDefinition);
+				uaDataType.setDefinition(dtd);
+			}
 		}
-		
 
 		return success;
 	}
@@ -1269,7 +1284,6 @@ public class InstanceSyncHandler {
 	private boolean transformModelTable(Class object,  DynamicEObjectImpl stereotype) {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
-		
 	}
 
 	private boolean transformLocalizedText(Class object,  DynamicEObjectImpl stereotype) {
@@ -1371,14 +1385,203 @@ public class InstanceSyncHandler {
 	}
 	
 	private boolean transformDataTypeField(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
+	
+		DataTypeFieldImpl dtf;
+		if( this.matching.containsKey(object))
+		{
+			dtf = (DataTypeFieldImpl) this.matching.get(object);
+
+		}
+		else
+		{
+			dtf = new DataTypeFieldImpl();
+			this.matching.put(object, dtf);
+		}
+		Stereotype sterDTF = getMatchingStereotype(dtf);
+		
+		if(object.getValue(sterDTF, "displayName") !=null)
+		{			
+
+			EDataTypeUniqueEList<String> displayNameList = (EDataTypeUniqueEList<String>) object.getValue(sterDTF, "displayName");
+			dtf.getDisplayName().clear();
+			
+			for(String displayName : displayNameList)
+			{
+				LocalizedTextImpl lt = new LocalizedTextImpl();
+				lt.setValue(displayName);
+				dtf.getDisplayName().add(lt);
+			}
+			
+		}
+		
+		if(object.getValue(sterDTF, "description") !=null)
+		{			
+
+			EDataTypeUniqueEList<String> descriptionList = (EDataTypeUniqueEList<String>) object.getValue(sterDTF, "description");
+			dtf.getDescription().clear();
+			
+			for(String description : descriptionList)
+			{
+				LocalizedTextImpl lt = new LocalizedTextImpl();
+				lt.setValue(description);
+				dtf.getDescription().add(lt);
+			}
+			
+		}
+		
+		if(object.getValue(sterDTF, "abstractDataType") !=null)
+		{			
+			DynamicEObjectImpl abstractDataType = (DynamicEObjectImpl) object.getValue(sterDTF, "abstractDataType");
+			
+			Class umlUaNode = getStereotypeBaseClass(abstractDataType, true);
+			if(umlUaNode != null)
+			{
+				UANode node = (UANode) this.matching.get(umlUaNode);
+				if(node.getNodeId() != null && node.getNodeId().length() > 0)
+				{					
+					dtf.setAbstractDataType(node.getNodeId());
+				}
+			}
+				
+		}
+		
+		if(object.getValue(sterDTF, "arrayDimensions") !=null)
+		{			
+			String stringArrayDimensions= String.valueOf(object.getValue(sterDTF, "arrayDimensions"));
+			dtf.setArrayDimensions(stringArrayDimensions);
+		}
+		
+		if(object.getValue(sterDTF, "dataType") !=null)
+		{			
+			DynamicEObjectImpl dataType = (DynamicEObjectImpl) object.getValue(sterDTF, "dataType");
+			
+			Class umlUaNode = getStereotypeBaseClass(dataType, true);
+			if(umlUaNode != null)
+			{
+				UANode node = (UANode) this.matching.get(umlUaNode);
+				if(node.getNodeId() != null && node.getNodeId().length() > 0)
+				{	
+					dtf.setAbstractDataType(node.getNodeId());
+				}
+			}
+		}
+		
+		if(object.getValue(sterDTF, "isOptional") !=null)
+		{			
+			String stringToConvert = String.valueOf(object.getValue(sterDTF, "isOptional"));
+			boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
+			dtf.setIsOptional(convertedBoolean);
+		}
+
+		if(object.getValue(sterDTF, "maxStringLength") !=null)
+		{			
+			String stringToConvert = String.valueOf(object.getValue(sterDTF, "maxStringLength"));
+			long convertedLong = Long.parseLong(stringToConvert);
+			dtf.setMaxStringLength(convertedLong);
+		}
+		
+		if(object.getValue(sterDTF, "name") !=null)
+		{			
+			String stringName = String.valueOf(object.getValue(sterDTF, "name"));
+			dtf.setName(stringName);
+		}
+		
+		if(object.getValue(sterDTF, "symbolicName") !=null)
+		{			
+
+			EDataTypeUniqueEList<String> symbolicNameList = (EDataTypeUniqueEList<String>) object.getValue(sterDTF, "symbolicName");
+			dtf.getSymbolicName().clear();
+			
+			for(String symbolicName : symbolicNameList)
+			{
+				dtf.getSymbolicName().add(symbolicName);
+			}
+			
+		}
+		if(object.getValue(sterDTF, "value") !=null)
+		{			
+			String stringToConvert = String.valueOf(object.getValue(sterDTF, "value"));
+			int convertedInt = Integer.parseInt(stringToConvert);
+			dtf.setValue(convertedInt);
+		}
+		
+		if(object.getValue(sterDTF, "valueRank") !=null)
+		{			
+			String stringToConvert = String.valueOf(object.getValue(sterDTF, "valueRank"));
+			int convertedInt = Integer.parseInt(stringToConvert);
+			dtf.setValueRank(convertedInt);
+		}
+		
+		return true;
 		
 	}
 
 	private boolean transformDataTypeDefinition(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
+			
+		DataTypeDefinitionImpl dtd;
+		if( this.matching.containsKey(object))
+		{
+			dtd = (DataTypeDefinitionImpl) this.matching.get(object);
+
+		}
+		else
+		{
+			dtd = new DataTypeDefinitionImpl();
+			this.matching.put(object, dtd);
+		}
+		Stereotype sterDTD = getMatchingStereotype(dtd);
+		
+		if(object.getValue(sterDTD, "field") !=null)
+		{			
+			EcoreEList<DynamicEObjectImpl> field = (EcoreEList<DynamicEObjectImpl>) object.getValue(sterDTD, "field");
+			for(DynamicEObjectImpl fieldEntry : field)
+			{
+				Class dataTypeField = getStereotypeBaseClass(fieldEntry, true);
+				if(dataTypeField != null)
+				{
+					DataTypeField dtf = (DataTypeField) this.matching.get(dataTypeField);
+					if(!dtd.getField().contains(dtf))
+					{						
+						dtd.getField().add(dtf);
+					}
+				}
+			}			
+		}
+		
+		if(object.getValue(sterDTD, "isOptionSet") !=null)
+		{			
+			String stringToConvert = String.valueOf(object.getValue(sterDTD, "isOptionSet"));
+			boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
+			dtd.setIsOptionSet(convertedBoolean);
+		}
+
+		if(object.getValue(sterDTD, "isUnion") !=null)
+		{			
+			String stringToConvert = String.valueOf(object.getValue(sterDTD, "isUnion"));
+			boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
+			dtd.setIsUnion(convertedBoolean);
+		}
+		
+		if(object.getValue(sterDTD, "name") !=null)
+		{			
+			String stringToConvert = String.valueOf(object.getValue(sterDTD, "name"));
+			dtd.setName(stringToConvert);
+		}
+		
+		if(object.getValue(sterDTD, "symbolicName") !=null)
+		{			
+
+			EDataTypeUniqueEList<String> symbolicNameList = (EDataTypeUniqueEList<String>) object.getValue(sterDTD, "symbolicName");
+			dtd.getSymbolicName().clear();
+			
+			for(String symbolicName : symbolicNameList)
+			{
+				dtd.getSymbolicName().add(symbolicName);
+			}
+			
+		}
+		
+		return true;
 	}
 	
 	private boolean transformAliasTable(Class object, DynamicEObjectImpl stereoptype_application) {
@@ -1814,8 +2017,6 @@ public class InstanceSyncHandler {
     			success &= updateOpcUAView(t, nodesToAdd, nodesToDelete);
     		}
     		
-
-    		
     		this.baseNodeset.getUAView().removeAll(nodesToDelete);
     		this.baseNodeset.getUAView().addAll(nodesToAdd);
     		
@@ -1835,7 +2036,7 @@ public class InstanceSyncHandler {
 	}
 	
 	private boolean updateNamespaces(UriTable namespaceUris) {
-		// TODO Auto-generated method stub
+
 		EList<String> namespaces_new = namespaceUris.getUri();	
 		EList<String> namespaces_old = this.baseNodeset.getNamespaceUris().getUri();
 		
@@ -1843,30 +2044,13 @@ public class InstanceSyncHandler {
 		Stereotype uriTableType  = nodeSetProfile.getOwnedStereotype("UriTable");
 		
 		NamedElement namespaceUriTable = this.baseUmlModel.getMember("NameSpaces");
-		DynamicEObjectImpl umlUriTable = (DynamicEObjectImpl) namespaceUriTable.getStereotypeApplication(uriTableType);
-		
-		EList<EStructuralFeature> featuresList = umlUriTable.eClass().getEAllStructuralFeatures();
-				
-		for(EStructuralFeature feature : featuresList)
-		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = umlUriTable.dynamicGet(id);
-			if(temp == null)
-			{
-				continue;
-			}
-			
-			if(name.equalsIgnoreCase("uri"))
-			{
-				umlUriTable.dynamicSet(id, namespaces_new);
 
-				namespaces_old.clear();
-				namespaces_old.addAll(namespaces_new);
-			}
-			
-		}
-						
+		EDataTypeUniqueEList<Object> umlNamespaces = (EDataTypeUniqueEList<Object>) namespaceUriTable.getValue(uriTableType, "uri");
+		umlNamespaces.clear();
+		umlNamespaces.addAll(namespaces_new);
+		namespaces_old.clear();
+		namespaces_old.addAll(namespaces_new);
+		
 		return true;
 	}
 	
@@ -2522,7 +2706,7 @@ public class InstanceSyncHandler {
 		return true;
 	}
 	
-	private Stereotype getMatchingStereotype(UANode node)
+	private Stereotype getMatchingStereotype(Object node)
 	{
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaInstance = null;
@@ -2558,8 +2742,38 @@ public class InstanceSyncHandler {
 		{
 			uaInstance  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
 		}
+		else if(node instanceof DataTypeDefinition)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("DataTypeDefinition");
+		}
+		else if(node instanceof DataTypeField)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("DataTypeField");
+		}
 		
 		return uaInstance;
 	}
 	
+	private Class getStereotypeBaseClass(DynamicEObjectImpl eObject, boolean addIfNotExists)
+	{
+		Class baseClass = null;
+		EList<EStructuralFeature> featuresList2 = eObject.eClass().getEAllStructuralFeatures();
+		for(EStructuralFeature feature2 : featuresList2)
+		{
+			int id2 = feature2.getFeatureID();
+			String name2 = feature2.getName();
+			if(name2.equalsIgnoreCase("base_Class"))
+			{
+				baseClass= (Class)eObject.dynamicGet(id2);
+				
+				if(!this.matching.containsKey(baseClass) && addIfNotExists)
+				{
+					updateClass(baseClass);
+					break;
+				}
+			}
+		}
+		
+		return baseClass;
+	}
 }

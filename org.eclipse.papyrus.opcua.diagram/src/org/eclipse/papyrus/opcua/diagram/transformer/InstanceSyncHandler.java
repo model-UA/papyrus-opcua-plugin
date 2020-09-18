@@ -2005,23 +2005,8 @@ public class InstanceSyncHandler {
 		
 //		if(success)
 //		{			
-//			EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-//			
-//			for(EStructuralFeature feature : featuresList)
-//			{
-//				int id = feature.getFeatureID();
-//				String name = feature.getName();
-//				
-//				if(name.equalsIgnoreCase("definition"))
-//				{
-//					// TODO: add definition
-//				}
-//				else if(name.equalsIgnoreCase("purpose"))
-//				{
-//					// TODO: add purpose
-//				}
-//				
-//			}
+			// TODO: add definition
+			// TODO: add purpose
 //		}
 		
 		return success;
@@ -2244,37 +2229,11 @@ public class InstanceSyncHandler {
 		
 //		if(success)
 //		{
-//			EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-//			
-//			for(EStructuralFeature feature : featuresList)
-//			{
-//				int id = feature.getFeatureID();
-//				String name = feature.getName();
-//				Object temp = stereotype.dynamicGet(id);
-//				if(temp == null)
-//				{
-//					continue;
-//				}
-//				
-//				if(name.equalsIgnoreCase("argumentDescription"))
-//				{
-//					//TODO: Add argumentDescription
-//				}
-//				else if(name.equalsIgnoreCase("executable"))
-//				{
-//					//TODO: Add executable
-//				}
-//				else if(name.equalsIgnoreCase("methodDeclarationId"))
-//				{
-//					//TODO: Add methodDeclarationId
-//				}
-//				else if(name.equalsIgnoreCase("userExecutable"))
-//				{
-//					//TODO: Add userExecutable
-//				}
-//			}
+					//TODO: Add argumentDescription
+					//TODO: Add executable
+					//TODO: Add methodDeclarationId
+					//TODO: Add userExecutable
 //		}
-//		
 		return success;
 	}
 	

@@ -89,7 +89,14 @@ public class SynchHandler {
 		String filePath = resource.getLocation().toString();
 		String fileName = resource.getLocation().removeFileExtension().lastSegment();
 			
-		UANodeSetType nodeSet = readNodeset(filePath);
+		
+		if(!resource.exists())
+		{
+			this.projectMapping.remove(fileName);
+			return false;
+		}
+		
+		UANodeSetType nodeSet = NodeSetParser.readNodeSet(filePath);
 		
 		DiagramChangeListener.disable(true);
 		try
@@ -105,19 +112,7 @@ public class SynchHandler {
 			DiagramChangeListener.disable(false);
 		}
 		     
-		return false;
-	}
-	
-	private UANodeSetType readNodeset(String filePath)
-	{
-		File nodesetFile = new File(filePath);
-        
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder;
-		UANodeSetType nodeSet = new UANodeSetTypeImpl();
-		nodeSet = NodeSetParser.readNodeSet(filePath);
-				
-		return nodeSet;
+		return true;
 	}
 
 	public boolean removeObject(Model model, Element obj) {

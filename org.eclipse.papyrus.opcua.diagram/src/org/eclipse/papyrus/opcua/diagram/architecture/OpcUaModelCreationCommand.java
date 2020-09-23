@@ -77,7 +77,8 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 	private void initializeNodeSet(Model model, Profile nodeSetProfile)
 	{
 		Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
-		Class nodeSet = model.createOwnedClass("NodeSet", false);
-		nodeSet.applyStereotype(nodeSetType);
+		model.applyStereotype(nodeSetType);
+//		Class nodeSet = model.createOwnedClass("NodeSet", false);
+//		nodeSet.applyStereotype(nodeSetType);
 	}
 }

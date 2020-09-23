@@ -66,10 +66,10 @@ public class SynchHandler {
 			{
 				try {
 					// disable the resource listener as we're going to change the NodeSet File
-					Activator.getNodeSetFileChangeListener().disable(true);
+					Activator.getFileChangeListener().disable(true);
 					success = this.modelNodeSetMapping.get(model).writeToNodeSetFile();
 					// enable resource listener again
-					Activator.getNodeSetFileChangeListener().disable(false);
+					Activator.getFileChangeListener().disable(false);
 				} catch (ParserConfigurationException e) {
 					// TODO Auto-generated catch block
 					return false;
@@ -124,7 +124,7 @@ public class SynchHandler {
 			{
 				try {
 					// disable the resource listener as we're going to change the NodeSet File
-					Activator.getNodeSetFileChangeListener().disable(true);
+					Activator.getFileChangeListener().disable(true);
 					success = this.modelNodeSetMapping.get(model).writeToNodeSetFile();			
 				} catch (ParserConfigurationException e) {
 					// TODO Auto-generated catch block
@@ -133,7 +133,7 @@ public class SynchHandler {
 				finally
 				{			
 					// enable resource listener again
-					Activator.getNodeSetFileChangeListener().disable(false);
+					Activator.getFileChangeListener().disable(false);
 				}
 			}
 			return success;

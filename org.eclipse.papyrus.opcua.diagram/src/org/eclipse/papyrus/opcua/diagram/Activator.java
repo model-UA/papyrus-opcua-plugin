@@ -2,7 +2,7 @@ package org.eclipse.papyrus.opcua.diagram;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.papyrus.opcua.diagram.listener.DiagramChangeListener;
-import org.eclipse.papyrus.opcua.diagram.listener.NodeSetFileChangeListener;
+import org.eclipse.papyrus.opcua.diagram.listener.FileChangeListener;
 import org.eclipse.papyrus.opcua.diagram.transformer.SynchHandler;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -18,7 +18,7 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 	private static SynchHandler nodeSetUmlSynchHandler;
-	private static NodeSetFileChangeListener nodeSetChangedListener;
+	private static FileChangeListener nodeSetChangedListener;
 	/**
 	 * The constructor
 	 */
@@ -30,7 +30,7 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		nodeSetUmlSynchHandler = new SynchHandler();
-		nodeSetChangedListener = new NodeSetFileChangeListener();
+		nodeSetChangedListener = new FileChangeListener();
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(nodeSetChangedListener);
 	}
 
@@ -55,7 +55,7 @@ public class Activator extends AbstractUIPlugin {
 		return nodeSetUmlSynchHandler;
 	}
 	
-	public static NodeSetFileChangeListener getNodeSetFileChangeListener() {
+	public static FileChangeListener getFileChangeListener() {
 		return nodeSetChangedListener;
 	}
 

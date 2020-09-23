@@ -2,6 +2,7 @@ package org.eclipse.papyrus.opcua.diagram.transformer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -11,12 +12,14 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.EEnumLiteralImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -26,11 +29,16 @@ import org.eclipse.papyrus.infra.tools.file.ProjectBasedFileAccess;
 import org.eclipse.papyrus.opcua.nodeset.parser.NodeSetParser;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.StringExpression;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeField;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
@@ -170,6 +178,17 @@ public class InstanceSyncHandler {
 		{
 			return_val= updatedGeneralization((Generalization) object);
 		}
+		else if(object instanceof Model)
+		{
+			Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+			Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
+			
+//			DynamicEObjectImpl stereotype = (DynamicEObjectImpl) object.getStereotypeApplication(nodeSetType);
+//			if(stereotype != null)
+//			{
+//				return_val=transformUANodeSetType((Model) object, stereotype);				
+//			}
+		}
 		
 		return return_val;
 	}
@@ -245,9 +264,6 @@ public class InstanceSyncHandler {
 				break;
 			case "UANodeSetChangesType":
 				success=transformUANodeSetChangesType(object, stereotype);
-				break;
-			case "UANodeSetType":
-				success=transformUANodeSetType(object, stereotype);
 				break;
 			case "UAObject":
 				success=transformUAObject(object, stereotype);
@@ -673,12 +689,51 @@ public class InstanceSyncHandler {
 		return success;
 	}
 
-	private boolean transformUANodeSetType(Class object,  DynamicEObjectImpl stereotype) {
+	private boolean transformUANodeSetType(Model object,  DynamicEObjectImpl stereotype) {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype nodeSetType = object.getAppliedStereotype("NodeSet::UANodeSetType");
-				
+		
+		if(object.getValue(nodeSetType, "nameSpaceUris") == null)
+		{
+			Class namespaceUriTable = (Class) this.baseUmlModel.getMember("NameSpaces");
+			Stereotype uriTableType  = nodeSetProfile.getOwnedStereotype("UriTable");
+
+			if(namespaceUriTable == null)
+			{
+				namespaceUriTable = this.baseUmlModel.createOwnedClass("NameSpaces", false);
+				namespaceUriTable.applyStereotype(uriTableType);						
+			}
+			object.setValue(nodeSetType, "nameSpaceUris", namespaceUriTable.getStereotypeApplication(uriTableType));
+			updateClass(namespaceUriTable);
+			
+			
+		}
+		 
+		Object namespaceUris = object.getValue(nodeSetType, "namespaces") ;
+		
+		
+//		
+//		if(object.getValue(nodeSetType, "serverUris") != null)
+//		{
+//				EDataTypeUniqueEList<String> serverUris = (EDataTypeUniqueEList<String>) object.getValue(nodeSetType, "serverUris");
+//		}
+//		if(object.getValue(nodeSetType, "models") != null)
+//		{
+//				EDataTypeUniqueEList<String> models = (EDataTypeUniqueEList<String>) object.getValue(nodeSetType, "models");
+//		}
+//		if(object.getValue(nodeSetType, "aliases") != null)
+//		{
+//				EDataTypeUniqueEList<String> aliases = (EDataTypeUniqueEList<String>) object.getValue(nodeSetType, "aliases");
+//		}
+//		
+//		if(object.getValue(nodeSetType, "extensions") != null)
+//		{
+//			EDataTypeUniqueEList<String> extensions = (EDataTypeUniqueEList<String>) object.getValue(nodeSetType, "extensions");
+//		}
+		
+		
 		for(EStructuralFeature feature : featuresList)
 		{
 			int id = feature.getFeatureID();
@@ -1845,6 +1900,7 @@ public class InstanceSyncHandler {
     			success &= updateOpcUAObjectType(t, nodesToAdd, nodesToDelete);
     		}
     		
+    		// Important first remove old elements than add new ones
     		this.baseNodeset.getUAObjectType().removeAll(nodesToDelete);
     		this.baseNodeset.getUAObjectType().addAll(nodesToAdd);
 
@@ -1868,6 +1924,7 @@ public class InstanceSyncHandler {
     			success &= updateOpcUAVariableType(t, nodesToAdd, nodesToDelete);
     		}
     		
+    		// Important first remove old elements than add new ones
     		this.baseNodeset.getUAVariableType().removeAll(nodesToDelete);
     		this.baseNodeset.getUAVariableType().addAll(nodesToAdd);
     	}
@@ -1889,6 +1946,7 @@ public class InstanceSyncHandler {
     			success &= updateOpcUADataType(t, nodesToAdd, nodesToDelete);
     		}
     		
+    		// Important first remove old elements than add new ones
     		this.baseNodeset.getUADataType().removeAll(nodesToDelete);
     		this.baseNodeset.getUADataType().addAll(nodesToAdd);
     	}
@@ -1909,7 +1967,8 @@ public class InstanceSyncHandler {
     			}
     			success &= updateOpcUAReferenceType(t, nodesToAdd, nodesToDelete);
     		}
-
+    		
+    		// Important first remove old elements than add new ones
     		this.baseNodeset.getUAReferenceType().removeAll(nodesToDelete);
     		this.baseNodeset.getUAReferenceType().addAll(nodesToAdd);
     	}
@@ -1937,6 +1996,7 @@ public class InstanceSyncHandler {
     			success &= updateOpcUAObject(t, nodesToAdd, nodesToDelete);
     		}
     		
+    		// Important first remove old elements than add new ones
     		this.baseNodeset.getUAObject().removeAll(nodesToDelete);
     		this.baseNodeset.getUAObject().addAll(nodesToAdd);
     	}
@@ -1963,9 +2023,9 @@ public class InstanceSyncHandler {
     			success &= updateOpcUAVariable(t, nodesToAdd, nodesToDelete);
     		}
     		
+    		// Important first remove old elements than add new ones
     		this.baseNodeset.getUAVariable().removeAll(nodesToDelete);
     		this.baseNodeset.getUAVariable().addAll(nodesToAdd);
-			
     	}  
     	
     	if(nodeset.getUAMethod() != null)
@@ -1989,7 +2049,7 @@ public class InstanceSyncHandler {
     			}
     			success &= updateOpcUAMethod(t, nodesToAdd, nodesToDelete);
     		}
-    		
+    		// Important first remove old elements than add new ones
     		this.baseNodeset.getUAMethod().removeAll(nodesToDelete);
     		this.baseNodeset.getUAMethod().addAll(nodesToAdd);
     		
@@ -2017,6 +2077,7 @@ public class InstanceSyncHandler {
     			success &= updateOpcUAView(t, nodesToAdd, nodesToDelete);
     		}
     		
+    		// Important first remove old elements than add new ones
     		this.baseNodeset.getUAView().removeAll(nodesToDelete);
     		this.baseNodeset.getUAView().addAll(nodesToAdd);
     		
@@ -2038,17 +2099,68 @@ public class InstanceSyncHandler {
 	private boolean updateNamespaces(UriTable namespaceUris) {
 
 		EList<String> namespaces_new = namespaceUris.getUri();	
-		EList<String> namespaces_old = this.baseNodeset.getNamespaceUris().getUri();
+		
 		
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
-		Stereotype uriTableType  = nodeSetProfile.getOwnedStereotype("UriTable");
+		Stereotype uaNodeSetType  = nodeSetProfile.getOwnedStereotype("UANodeSetType");
+		Stereotype uaNamespace  = nodeSetProfile.getOwnedStereotype("NameSpace");
 		
-		NamedElement namespaceUriTable = this.baseUmlModel.getMember("NameSpaces");
+		
+		EList<Package> umlNamespaces = (EList<Package>) this.baseUmlModel.getValue(uaNodeSetType, "nameSpaceUris");
+		
+		ArrayList<Package> toDelete = new ArrayList<Package>();
+		HashMap<String, Package> nameSpacePackageMapping = new HashMap<String, Package>();
 
-		EDataTypeUniqueEList<Object> umlNamespaces = (EDataTypeUniqueEList<Object>) namespaceUriTable.getValue(uriTableType, "uri");
-		umlNamespaces.clear();
-		umlNamespaces.addAll(namespaces_new);
-		namespaces_old.clear();
+		for(Package umlNameSpace : umlNamespaces)
+		{
+			String uri = umlNameSpace.getName();
+			
+			if(!namespaces_new.contains(uri))
+			{
+				toDelete.add(umlNameSpace);
+			}
+			else
+			{				
+				nameSpacePackageMapping.put(uri, umlNameSpace);
+			}
+		}
+		
+		while(!toDelete.isEmpty())
+		{
+			toDelete.get(0).destroy();
+			toDelete.remove(0);
+		}
+		
+		
+		for(String namespace : namespaceUris.getUri())
+		{
+			if(!nameSpacePackageMapping.containsKey(namespace))
+			{
+				Package ns = this.baseUmlModel.createNestedPackage(namespace);
+				ns.applyStereotype(uaNamespace);
+				ns.setURI(namespace);
+				umlNamespaces.add(ns);
+				nameSpacePackageMapping.put(namespace, ns);
+			}
+		}
+		
+		// update List
+		umlNamespaces = (EList<Package>) this.baseUmlModel.getValue(uaNodeSetType, "nameSpaceUris");
+		
+		
+		for(int i=0; i<namespaces_new.size();i++)
+		{
+			String nsString = namespaces_new.get(i);
+			Package nsUml = nameSpacePackageMapping.get(nsString);
+			umlNamespaces.move(i, nsUml);
+		}
+
+		if(this.baseNodeset.getNamespaceUris() == null)
+		{
+			this.baseNodeset.setNamespaceUris(new UriTableImpl());
+		}
+		
+		EList<String> namespaces_old = this.baseNodeset.getNamespaceUris().getUri();
 		namespaces_old.addAll(namespaces_new);
 		
 		return true;
@@ -2067,26 +2179,15 @@ public class InstanceSyncHandler {
 	}
 	
 	private boolean updateOpcUAObjectType(UAObjectType node, List<UAObjectType> nodesToAdd, List<UAObjectType> nodesToDelete) {
-	
-		Element uaElement = null;
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAObjectType");
 		
-		if(this.nodeIdMap.containsKey(node.getNodeId()))
-		{
-			uaElement = this.nodeIdMap.get(node.getNodeId());
-		}
+		Element uaElement = getElement(node);
 		
 		if(uaElement == null)
 		{
-			// Element does not exist in Model 
-			// create new UAObjectType Element
-			int separator = node.getBrowseName().lastIndexOf(":")+1;
-			String name = node.getBrowseName().substring(separator);
-
-			uaElement= baseUmlModel.createOwnedClass(name, false);
-			uaElement.applyStereotype(uaStereoType);
-			this.matching.put(uaElement, node);
+			uaElement = createElement(node, uaStereoType);
+			nodesToDelete.add(node); // delete old element if namespace is different
 			nodesToAdd.add(node);
 		}
 		
@@ -2105,25 +2206,15 @@ public class InstanceSyncHandler {
 	}
 		
 	private boolean updateOpcUAVariableType(UAVariableType node, List<UAVariableType> nodesToAdd, List<UAVariableType> nodesToDelete) {
-		Element uaElement = null;
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAVariableType");
 		
-		if(this.nodeIdMap.containsKey(node.getNodeId()))
-		{
-			uaElement = this.nodeIdMap.get(node.getNodeId());
-		}
+		Element uaElement = getElement(node);
 		
 		if(uaElement == null)
 		{
-			// Element does not exist in Model 
-			// create new UAObjectType Element
-			int separator = node.getBrowseName().lastIndexOf(":")+1;
-			String name = node.getBrowseName().substring(separator);
-
-			uaElement= baseUmlModel.createOwnedClass(name, false);
-			uaElement.applyStereotype(uaStereoType);
-			this.matching.put(uaElement, node);
+			uaElement = createElement(node, uaStereoType);
+			nodesToDelete.add(node); // delete old element if namespace is different
 			nodesToAdd.add(node);
 		}
 		
@@ -2142,28 +2233,17 @@ public class InstanceSyncHandler {
 	}
 	
 	private boolean updateOpcUADataType(UADataType node, List<UADataType> nodesToAdd, List<UADataType> nodesToDelete) {
-		Element uaElement = null;
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UADataType");
 		
-		if(this.nodeIdMap.containsKey(node.getNodeId()))
-		{
-			uaElement = this.nodeIdMap.get(node.getNodeId());
-		}
+		Element uaElement = getElement(node);
 		
 		if(uaElement == null)
 		{
-			// Element does not exist in Model 
-			// create new UAObjectType Element
-			int separator = node.getBrowseName().lastIndexOf(":")+1;
-			String name = node.getBrowseName().substring(separator);
-
-			uaElement= baseUmlModel.createOwnedClass(name, false);
-			uaElement.applyStereotype(uaStereoType);
-			this.matching.put(uaElement, node);
+			uaElement = createElement(node, uaStereoType);
+			nodesToDelete.add(node); // delete old element if namespace is different
 			nodesToAdd.add(node);
 		}
-		
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -2186,28 +2266,17 @@ public class InstanceSyncHandler {
 	}
 	
 	private boolean updateOpcUAReferenceType(UAReferenceType node, List<UAReferenceType> nodesToAdd, List<UAReferenceType> nodesToDelete) {
-		Class uaElement = null;
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
 		
-		if(this.nodeIdMap.containsKey(node.getNodeId()))
-		{
-			uaElement = (Class) this.nodeIdMap.get(node.getNodeId());
-		}
+		Element uaElement = getElement(node);
 		
 		if(uaElement == null)
 		{
-			// Element does not exist in Model 
-			// create new UAObjectType Element
-			int separator = node.getBrowseName().lastIndexOf(":")+1;
-			String name = node.getBrowseName().substring(separator);
-
-			uaElement= baseUmlModel.createOwnedClass(name, false);
-			uaElement.applyStereotype(uaStereoType);
-			this.matching.put(uaElement, node);
+			uaElement = createElement(node, uaStereoType);
+			nodesToDelete.add(node); // delete old element if namespace is different
 			nodesToAdd.add(node);
 		}
-		
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -2242,28 +2311,18 @@ public class InstanceSyncHandler {
 	}
 	
 	private boolean updateOpcUAObject(UAObject node, List<UAObject> nodesToAdd, List<UAObject> nodesToDelete) {
-		Class uaElement = null;
+		
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAObject");
 		
-		if(this.nodeIdMap.containsKey(node.getNodeId()))
-		{
-			uaElement = (Class) this.nodeIdMap.get(node.getNodeId());
-		}
+		Element uaElement = getElement(node);
 		
 		if(uaElement == null)
 		{
-			// Element does not exist in Model 
-			// create new UAObjectType Element
-			int separator = node.getBrowseName().lastIndexOf(":")+1;
-			String name = node.getBrowseName().substring(separator);
-
-			uaElement= baseUmlModel.createOwnedClass(name, false);
-			uaElement.applyStereotype(uaStereoType);
-			this.matching.put(uaElement, node);
+			uaElement = createElement(node, uaStereoType);
+			nodesToDelete.add(node); // delete old element if namespace is different
 			nodesToAdd.add(node);
 		}
-		
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -2286,28 +2345,17 @@ public class InstanceSyncHandler {
 	
 
 	private boolean updateOpcUAVariable(UAVariable node, List<UAVariable> nodesToAdd, List<UAVariable> nodesToDelete) {
-		Element uaElement = null;
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAVariable");
 		
-		if(this.nodeIdMap.containsKey(node.getNodeId()))
-		{
-			uaElement = this.nodeIdMap.get(node.getNodeId());
-		}
-
+		Element uaElement = getElement(node);
+		
 		if(uaElement == null)
 		{
-			// Element does not exist in Model 
-			// create new UAObjectType Element
-			int separator = node.getBrowseName().lastIndexOf(":")+1;
-			String name = node.getBrowseName().substring(separator);
-
-			uaElement= baseUmlModel.createOwnedClass(name, false);
-			uaElement.applyStereotype(uaStereoType);
-			this.matching.put(uaElement, node);
+			uaElement = createElement(node, uaStereoType);
+			nodesToDelete.add(node); // delete old element if namespace is different
 			nodesToAdd.add(node);
 		}
-		
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -2366,28 +2414,18 @@ public class InstanceSyncHandler {
 	}
 
 	private boolean updateOpcUAMethod(UAMethod node, List<UAMethod> nodesToAdd, List<UAMethod> nodesToDelete) {
-		Element uaElement = null;
+
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAMethod");
 		
-		if(this.nodeIdMap.containsKey(node.getNodeId()))
-		{
-			uaElement = this.nodeIdMap.get(node.getNodeId());
-		}
+		Element uaElement = getElement(node);
 		
 		if(uaElement == null)
 		{
-			// Element does not exist in Model 
-			// create new UAObjectType Element
-			int separator = node.getBrowseName().lastIndexOf(":")+1;
-			String name = node.getBrowseName().substring(separator);
-
-			uaElement= baseUmlModel.createOwnedClass(name, false);
-			uaElement.applyStereotype(uaStereoType);
-			this.matching.put(uaElement, node);
+			uaElement = createElement(node, uaStereoType);
+			nodesToDelete.add(node); // delete old element if namespace is different
 			nodesToAdd.add(node);
 		}
-		
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -2411,28 +2449,17 @@ public class InstanceSyncHandler {
 	}
 	
 	private boolean updateOpcUAView(UAView node, List<UAView> nodesToAdd, List<UAView> nodesToDelete) {
-		Element uaElement = null;
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAView");
-		
-		if(this.nodeIdMap.containsKey(node.getNodeId()))
-		{
-			uaElement = this.nodeIdMap.get(node.getNodeId());
-		}
+				
+		Element uaElement = getElement(node);
 		
 		if(uaElement == null)
 		{
-			// Element does not exist in Model 
-			// create new UAObjectType Element
-			int separator = node.getBrowseName().lastIndexOf(":")+1;
-			String name = node.getBrowseName().substring(separator);
-
-			uaElement= baseUmlModel.createOwnedClass(name, false);
-			uaElement.applyStereotype(uaStereoType);
-			this.matching.put(uaElement, node);
+			uaElement = createElement(node, uaStereoType);
+			nodesToDelete.add(node); // delete old element if namespace is different
 			nodesToAdd.add(node);
 		}
-		
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -2461,6 +2488,18 @@ public class InstanceSyncHandler {
 	
 	private boolean updateOpcUaNode(UANode node, Stereotype stereotype, Element uaElement) {
 
+		
+		if(node.getNodeId() != null) {
+			String nodeId = node.getNodeId();
+			uaElement.setValue(stereotype, "nodeId", nodeId);
+			
+			this.nodeIdMap.put(nodeId, uaElement);			
+		}
+		else
+		{
+			// node id is mandatory
+			return false;
+		}
 		
 		if(node.getDisplayName() != null)
 		{			
@@ -2509,12 +2548,7 @@ public class InstanceSyncHandler {
 		{
 			uaElement.setValue(stereotype, "browseName", node.getBrowseName());
 		}
-		if(node.getNodeId() != null) {
-			String nodeId = node.getNodeId();
-			uaElement.setValue(stereotype, "nodeId", nodeId);
-			
-			this.nodeIdMap.put(nodeId, uaElement);			
-		}
+
 //		
 //		if(node.getReleaseStatus() != null) {
 //			Object releaseStatus = uaElement.getValue(stereotype, "releaseStatus");
@@ -2549,6 +2583,103 @@ public class InstanceSyncHandler {
 			
 		return true;
 	}
+		
+	private Element getElement(UANode node)
+	{
+		Element uaElement = null;
+		String nodeId = node.getNodeId();
+		int namespaceId=0;
+		String namespace="";
+		
+		// check if node is inside a ns
+		if(nodeId.contains(";"))
+		{				
+			// extraced namespace id
+			String namespaceString = nodeId.split(";")[0].substring(3);
+			namespaceId = Integer.parseInt(namespaceString);	
+			if(this.baseUmlModel.getNestedPackages().size() < namespaceId)
+			{
+				// Namespace does not exists 
+				return null;
+			}
+			Package nameSpacePackage = this.baseUmlModel.getNestedPackages().get(namespaceId -1); // Arrays start at 0 not 1
+			namespace = nameSpacePackage.getURI();
+		}
+
+		if(this.nodeIdMap.containsKey(node.getNodeId()))
+		{
+			uaElement = this.nodeIdMap.get(node.getNodeId());
+			
+			Element parent = uaElement.getOwner();
+			if(parent instanceof Package)
+			{
+				Package parentNS = (Package) parent;
+				if(parentNS == null || !parentNS.getURI().equals(namespace))
+				{
+					// Element in wrong Namespace 
+					uaElement = null;
+					this.matching.remove(uaElement);
+				}
+			}
+			else
+			{
+				// parent is model => ns 0
+				if(namespaceId != 0)
+				{
+					// Element not in default Namespace
+					uaElement = null;
+					this.matching.remove(uaElement);
+				}
+			}
+		}
+		return uaElement;
+	}
+	
+	private Element createElement(UANode node, Stereotype uaStereoType)
+	{
+		Element uaElement = null;
+		
+		Package namespace = getNamespacePackage(node.getNodeId());
+		
+		// Element does not exist in Model 
+		// create new UAObjectType Element
+		int separator = node.getBrowseName().lastIndexOf(":")+1;
+		String name = node.getBrowseName().substring(separator);
+		
+		if(namespace == null)
+		{			
+			uaElement= baseUmlModel.createOwnedClass(name, false);
+		}
+		else
+		{
+			uaElement = namespace.createOwnedClass(name, false);
+		}
+		
+		uaElement.applyStereotype(uaStereoType);
+		this.matching.put(uaElement, node);
+		
+		return uaElement;
+	}
+	
+	private Package getNamespacePackage(String nodeId)
+	{
+		Package namespace = null;
+		if(nodeId.contains(";"))
+		{				
+			// extraced namespace id
+			String namespaceString = nodeId.split(";")[0].substring(3);
+			int namespaceId = Integer.parseInt(namespaceString);	
+			if(this.baseUmlModel.getNestedPackages().size() < namespaceId)
+			{
+				// Namespace does not exists 
+				return null;
+			}
+			namespace = this.baseUmlModel.getNestedPackages().get(namespaceId -1); // Arrays start at 0 not 1
+		}
+		
+		return namespace;
+	}
+	
 	private boolean updateOpcUaReferences(ArrayList<UANode> referenceNodes)
 	{
 		boolean success = true;

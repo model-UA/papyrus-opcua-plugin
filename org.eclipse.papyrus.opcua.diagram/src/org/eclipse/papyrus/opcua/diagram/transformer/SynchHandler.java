@@ -14,6 +14,7 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.papyrus.opcua.diagram.Activator;
 import org.eclipse.papyrus.opcua.diagram.listener.DiagramChangeListener;
+import org.eclipse.papyrus.opcua.diagram.listener.FileChangeListener;
 import org.eclipse.papyrus.opcua.nodeset.parser.NodeSetParser;
 import org.eclipse.papyrus.opcua.nodeset.parser.NodeSetReader;
 import org.eclipse.uml2.uml.Element;
@@ -55,14 +56,51 @@ public class SynchHandler {
 		this.projectMapping.put(umlModel.getName(), instance);
 	}
 	
+	public boolean writeToNodeSet(IResourceDelta nodeSetDelta)
+	{
+		IResource resource = nodeSetDelta.getResource();
+		String fileName = resource.getLocation().removeFileExtension().lastSegment();
+
+		if(!this.projectMapping.containsKey(fileName))
+		{
+			return false;
+		}
+		
+		boolean success = true;
+		
+		DiagramChangeListener.disable(true);
+		Activator.getFileChangeListener().disable(true);
+		try
+		{
+			this.projectMapping.get(fileName).writeToNodeSetFile();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			success = false;
+		}
+		finally
+		{			
+			DiagramChangeListener.disable(false);
+			Activator.getFileChangeListener().disable(false);
+		}
+		     
+		return success;
+	}
+	
 	public boolean updateObject(Element obj)
+	{
+		return updateObject(obj, false);
+	}
+		
+	public boolean updateObject(Element obj, boolean writeToFile)	
 	{
 		Model model = obj.getModel();
 		if(this.modelNodeSetMapping.containsKey(model))
 		{
 			boolean success = this.modelNodeSetMapping.get(model).updateMember(obj);
 			
-			if(success)
+			if(success && writeToFile)
 			{
 				try {
 					// disable the resource listener as we're going to change the NodeSet File
@@ -88,15 +126,14 @@ public class SynchHandler {
 		IResource resource = nodeSetDelta.getResource();
 		String filePath = resource.getLocation().toString();
 		String fileName = resource.getLocation().removeFileExtension().lastSegment();
-			
 		
-		if(!resource.exists())
+		if(!this.projectMapping.containsKey(fileName))
 		{
-			this.projectMapping.remove(fileName);
 			return false;
 		}
 		
-		UANodeSetType nodeSet = NodeSetParser.readNodeSet(filePath);
+		UANodeSetType nodeSet = readNodeset(filePath);
+		boolean success = true;
 		
 		DiagramChangeListener.disable(true);
 		try
@@ -106,13 +143,23 @@ public class SynchHandler {
 		catch (Exception e)
 		{
 			e.printStackTrace();
+			success = false;
 		}
 		finally
 		{			
 			DiagramChangeListener.disable(false);
 		}
 		     
-		return true;
+		return success;
+	}
+	
+	private UANodeSetType readNodeset(String filePath)
+	{
+
+		UANodeSetType nodeSet = new UANodeSetTypeImpl();
+		nodeSet = NodeSetParser.readNodeSet(filePath);
+				
+		return nodeSet;
 	}
 
 	public boolean removeObject(Model model, Element obj) {

@@ -33,11 +33,27 @@ public class FileChangeListener implements IResourceChangeListener{
 			{
 				if(affectedObject.getFullPath().getFileExtension().equalsIgnoreCase("xml"))
 				{
-					Activator.getSynchHandler().updateNodeSet(affectedObject);
+					boolean success = Activator.getSynchHandler().updateNodeSet(affectedObject);
+					if(success)
+					{
+						System.out.println("NodeSet updated succesfully");
+					}
+					else
+					{
+						System.err.print("Error when updating NodeSet");
+					}
 				}
 				else if(affectedObject.getFullPath().getFileExtension().equalsIgnoreCase("uml"))
 				{
-					Activator.getSynchHandler().writeToNodeSet(affectedObject);
+					boolean success = Activator.getSynchHandler().writeToNodeSet(affectedObject);
+					if(success)
+					{
+						System.out.println("NodeSet written succesfully");
+					}
+					else
+					{
+						System.err.print("Error when writing NodeSet");
+					}
 				}
 				
 			}

@@ -98,6 +98,10 @@ public class NodeSetParser {
 					DocumentRoot docRoot = (DocumentRoot) eObject;
 					nodeset = docRoot.getUANodeSet();
 				}
+				else
+				{
+					printDiagnostic(diagnostic, "");
+				}
 			}
 			
 		}
@@ -108,5 +112,13 @@ public class NodeSetParser {
 		
 		
 		return nodeset;
+	}
+	
+	private static void printDiagnostic(Diagnostic diagnostic, String indent) {
+		System.out.print(indent);
+		System.out.println(diagnostic.getMessage());
+		for (Diagnostic child : diagnostic.getChildren()) {
+			printDiagnostic(child, indent + "  ");
+		}
 	}
 }

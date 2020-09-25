@@ -133,6 +133,10 @@ public class SynchHandler {
 		}
 		
 		UANodeSetType nodeSet = readNodeset(filePath);
+		if(nodeSet == null)
+		{
+			return false;
+		}
 		boolean success = true;
 		
 		DiagramChangeListener.disable(true);

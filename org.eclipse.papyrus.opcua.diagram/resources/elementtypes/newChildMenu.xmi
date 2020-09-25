@@ -21,8 +21,8 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="ModelTableEntry">
     <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.ModelTableEntry"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="Namespace">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.Namespace"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="NameSpace">
+    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.NameSpace"/>
   </menu>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="NodeIdAlias">
     <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#org.eclipse.papyrus.opcua.nodeset.NodeIdAlias"/>

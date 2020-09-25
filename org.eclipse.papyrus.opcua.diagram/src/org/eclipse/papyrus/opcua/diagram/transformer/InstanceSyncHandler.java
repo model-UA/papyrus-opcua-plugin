@@ -2,7 +2,6 @@ package org.eclipse.papyrus.opcua.diagram.transformer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -12,36 +11,27 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
-import org.eclipse.emf.ecore.impl.EEnumLiteralImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.papyrus.infra.tools.file.IPFileSystemAccess;
-import org.eclipse.papyrus.infra.tools.file.ProjectBasedFileAccess;
 import org.eclipse.papyrus.opcua.nodeset.parser.NodeSetParser;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.StringExpression;
+import org.eclipse.uml2.uml.internal.impl.EnumerationLiteralImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeField;
-import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypePurpose;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfReferences;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfRolePermissions;
@@ -126,8 +116,7 @@ public class InstanceSyncHandler {
 	{
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		IProject[] projects = root.getProjects();
-		IPFileSystemAccess fileSystemAccess = new ProjectBasedFileAccess(projects[0]);
-		
+	
 		//output.concat(OpcUaPackageHeaderGenerator.generateCode(pack).toString());
 		if(this.baseUmlModel.getName() == null)
 		{
@@ -183,16 +172,38 @@ public class InstanceSyncHandler {
 			Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 			Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
 			
-//			DynamicEObjectImpl stereotype = (DynamicEObjectImpl) object.getStereotypeApplication(nodeSetType);
-//			if(stereotype != null)
-//			{
-//				return_val=transformUANodeSetType((Model) object, stereotype);				
-//			}
+			DynamicEObjectImpl stereotype = (DynamicEObjectImpl) object.getStereotypeApplication(nodeSetType);
+			if(stereotype != null)
+			{
+				return_val=transformUANodeSetType((Model) object, stereotype);				
+			}
+		}
+		else if(object instanceof Package)
+		{
+			return_val = transformNamespace((Package) object);
 		}
 		
 		return return_val;
 	}
 	
+	private boolean transformNamespace(Package namespace) {
+		
+		if(this.baseNodeset.getNamespaceUris() == null)
+		{
+			UriTableImpl nsTable = new UriTableImpl();
+			this.baseNodeset.setNamespaceUris(nsTable);
+		}
+		
+		this.baseNodeset.getNamespaceUris().getUri().clear();
+		
+		for(Package ns : this.baseUmlModel.getNestedPackages())
+		{
+			this.baseNodeset.getNamespaceUris().getUri().add(ns.getURI());
+		}
+		
+		return true;
+	}
+
 	protected boolean updateClass(Class object)
 	{
 		EList<EObject> stereotype_applications = object.getStereotypeApplications();
@@ -694,27 +705,8 @@ public class InstanceSyncHandler {
 		
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype nodeSetType = object.getAppliedStereotype("NodeSet::UANodeSetType");
-		
-		if(object.getValue(nodeSetType, "nameSpaceUris") == null)
-		{
-			Class namespaceUriTable = (Class) this.baseUmlModel.getMember("NameSpaces");
-			Stereotype uriTableType  = nodeSetProfile.getOwnedStereotype("UriTable");
-
-			if(namespaceUriTable == null)
-			{
-				namespaceUriTable = this.baseUmlModel.createOwnedClass("NameSpaces", false);
-				namespaceUriTable.applyStereotype(uriTableType);						
-			}
-			object.setValue(nodeSetType, "nameSpaceUris", namespaceUriTable.getStereotypeApplication(uriTableType));
-			updateClass(namespaceUriTable);
 			
-			
-		}
-		 
-		Object namespaceUris = object.getValue(nodeSetType, "namespaces") ;
 		
-		
-//		
 //		if(object.getValue(nodeSetType, "serverUris") != null)
 //		{
 //				EDataTypeUniqueEList<String> serverUris = (EDataTypeUniqueEList<String>) object.getValue(nodeSetType, "serverUris");
@@ -740,50 +732,51 @@ public class InstanceSyncHandler {
 			String name = feature.getName();
 			Object temp = stereotype.dynamicGet(id);
 			
-			if(name.equalsIgnoreCase("nameSpaceUris"))
-			{
-				if(temp == null)
-				{
-					Class namespaceUriTable = (Class) this.baseUmlModel.getMember("NameSpaces");
-					Stereotype uriTableType  = nodeSetProfile.getOwnedStereotype("UriTable");
-
-					if(namespaceUriTable == null)
-					{
-						namespaceUriTable = this.baseUmlModel.createOwnedClass("NameSpaces", false);
-						namespaceUriTable.applyStereotype(uriTableType);						
-					}
-					object.setValue(nodeSetType, "nameSpaceUris", namespaceUriTable.getStereotypeApplication(uriTableType));
-					updateClass(namespaceUriTable);
-					
-					temp = stereotype.dynamicGet(id);
-				}
-				
-				DynamicEObjectImpl uri_object = ((DynamicEObjectImpl) temp);
-				EList<EStructuralFeature> featuresList2 = uri_object.eClass().getEAllStructuralFeatures();
-				for(EStructuralFeature feature2 : featuresList2)
-				{
-					int id2 = feature2.getFeatureID();
-					String name2 = feature2.getName();
-					if(name2.equalsIgnoreCase("base_Class"))
-					{
-						Object baseClass = uri_object.dynamicGet(id2);
-						if(this.matching.containsKey(baseClass))
-						{
-							UriTableImpl uritable = (UriTableImpl) this.matching.get(baseClass);
-							this.baseNodeset.setNamespaceUris(uritable);
-							break;
-						}
-						else
-						{
-							updateClass((Class) baseClass);
-							UriTableImpl uritable = (UriTableImpl) this.matching.get(baseClass);
-							this.baseNodeset.setNamespaceUris(uritable);
-							break;
-						}
-					}
-				}
-			}
-			else if(name.equalsIgnoreCase("serverUris"))
+//			if(name.equalsIgnoreCase("nameSpaceUris"))
+//			{
+//				if(temp == null)
+//				{
+//					Class namespaceUriTable = (Class) this.baseUmlModel.getMember("NameSpaces");
+//					Stereotype uriTableType  = nodeSetProfile.getOwnedStereotype("UriTable");
+//
+//					if(namespaceUriTable == null)
+//					{
+//						namespaceUriTable = this.baseUmlModel.createOwnedClass("NameSpaces", false);
+//						namespaceUriTable.applyStereotype(uriTableType);						
+//					}
+//					object.setValue(nodeSetType, "nameSpaceUris", namespaceUriTable.getStereotypeApplication(uriTableType));
+//					updateClass(namespaceUriTable);
+//					
+//					temp = stereotype.dynamicGet(id);
+//				}
+//				
+//				DynamicEObjectImpl uri_object = ((DynamicEObjectImpl) temp);
+//				EList<EStructuralFeature> featuresList2 = uri_object.eClass().getEAllStructuralFeatures();
+//				for(EStructuralFeature feature2 : featuresList2)
+//				{
+//					int id2 = feature2.getFeatureID();
+//					String name2 = feature2.getName();
+//					if(name2.equalsIgnoreCase("base_Class"))
+//					{
+//						Object baseClass = uri_object.dynamicGet(id2);
+//						if(this.matching.containsKey(baseClass))
+//						{
+//							UriTableImpl uritable = (UriTableImpl) this.matching.get(baseClass);
+//							this.baseNodeset.setNamespaceUris(uritable);
+//							break;
+//						}
+//						else
+//						{
+//							updateClass((Class) baseClass);
+//							UriTableImpl uritable = (UriTableImpl) this.matching.get(baseClass);
+//							this.baseNodeset.setNamespaceUris(uritable);
+//							break;
+//						}
+//					}
+//				}
+//			}
+//			else 
+			if(name.equalsIgnoreCase("serverUris"))
 			{
 				if(temp == null)
 				{
@@ -903,131 +896,149 @@ public class InstanceSyncHandler {
 			this.matching.put(object, uanode);
 		}
 		
-		for(EStructuralFeature feature : featuresList)
+		Stereotype uaStereotype = getMatchingStereotype(uanode);
+
+		if(object.hasValue(uaStereotype, "nodeId"))
 		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			if(temp == null)
+			String nodeId = getNodeId(object);	
+
+			if(nodeId != null && nodeId.length() > 0)
+			{					
+				uanode.setNodeId(nodeId);
+			}
+		
+		}
+		else
+		{
+			return false;
+		}
+		
+		if(object.hasValue(uaStereotype, "displayName"))
+		{
+			EDataTypeUniqueEList<String> displayName = (EDataTypeUniqueEList<String>) object.getValue(uaStereotype, "displayName");
+			uanode.getDisplayName().clear();
+			for(String dnEntry : displayName)
 			{
-				continue;
+				LocalizedTextImpl lt = new LocalizedTextImpl();
+				lt.setValue(dnEntry);
+				uanode.getDisplayName().add(lt);
+			}
+		}
+		
+		if(object.hasValue(uaStereotype, "description"))
+		{
+			EDataTypeUniqueEList<String> description = (EDataTypeUniqueEList<String>) object.getValue(uaStereotype, "description");
+			uanode.getDescription().clear();
+			for(String dEntry : description)
+			{
+				LocalizedTextImpl lt = new LocalizedTextImpl();
+				lt.setValue(dEntry);
+				uanode.getDescription().add(lt);
+			}
+		}
+		
+		if(object.hasValue(uaStereotype, "category"))
+		{
+			EDataTypeUniqueEList<String> category = (EDataTypeUniqueEList<String>) object.getValue(uaStereotype, "category");
+			uanode.getCategory().clear();
+			uanode.getCategory().addAll(category);
+		}
+		
+		if(object.hasValue(uaStereotype, "documentation"))
+		{
+			String documentation = (String) object.getValue(uaStereotype, "documentation");
+			uanode.setDocumentation( documentation);
+		}
+
+		if(object.hasValue(uaStereotype, "rolePermissions"))
+		{
+			// TODO: optimize this
+			for(EStructuralFeature feature : featuresList)
+			{
+				int id = feature.getFeatureID();
+				String name = feature.getName();
+				Object temp = stereotype.dynamicGet(id);
+				if(temp == null)
+				{
+					continue;
+				}
+				
+				if(name.equalsIgnoreCase("rolePermissions"))
+				{
+					Object rp_object = ((DynamicEObjectImpl) temp).getClass();
+					if(this.matching.containsKey(rp_object))
+					{
+						ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
+						uanode.setRolePermissions(rp);
+					}
+				}
+				
+			}
+		}
+
+
+		
+		if(object.hasValue(uaStereotype, "accessRestrictions"))
+		{
+			Object temp = object.getValue(uaStereotype, "accessRestrictions");
+			String stringToConvert = String.valueOf(temp);
+			short convertedShort = Short.parseShort(stringToConvert);
+			uanode.setAccessRestrictions(convertedShort);
+		}
+		
+		if(object.hasValue(uaStereotype, "browseName"))
+		{
+			String browseName = (String) object.getValue(uaStereotype, "browseName");
+			
+			Package namespace = object.getPackage();
+			if(namespace != null)
+			{
+				int namespaceId = this.baseUmlModel.getNestedPackages().indexOf(namespace);
+				namespaceId++; // arrays start at 0
+				browseName = String.valueOf(namespaceId) + ":" +browseName;
 			}
 			
-			if(name.equalsIgnoreCase("displayName"))
+			uanode.setBrowseName( browseName);		
+		}
+		
+		if(object.hasValue(uaStereotype, "releaseStatus")) {
+			EnumerationLiteralImpl releaseStatus = (EnumerationLiteralImpl) object.getValue(uaStereotype, "releaseStatus");
+			String value = releaseStatus.getLabel();
+			switch(value)
 			{
-				uanode.getDisplayName().clear();
-				List<String> displayNames = (List<String>) temp;
-				for(String displayName : displayNames)
-				{
-					LocalizedTextImpl lt = new LocalizedTextImpl();
-					lt.setValue(displayName);
-					uanode.getDisplayName().add(lt);
-				}
+			case "Draft":
+				uanode.setReleaseStatus(ReleaseStatus.DRAFT);
+				break;
+			case "Released":
+				uanode.setReleaseStatus(ReleaseStatus.RELEASED);
+				break;
+			case "Deprecated":
+				uanode.setReleaseStatus(ReleaseStatus.DEPRECATED);
+				break;
 			}
-			else if(name.equalsIgnoreCase("description"))
-			{
-				uanode.getDescription().clear();
-				List<String> descriptions = (List<String>) temp;
-				for(String description : descriptions)
-				{
-					LocalizedTextImpl lt = new LocalizedTextImpl();
-					lt.setValue(description);
-					uanode.getDescription().add(lt);
-				}
-			}
-			else if(name.equalsIgnoreCase("category"))
-			{
-				List<String> categories = (List<String>) temp;
-				uanode.getCategory().clear();
-				uanode.getCategory().addAll(categories);
-			}
-			else if(name.equalsIgnoreCase("documentation"))
-			{
-				List<String> documentation = (List<String>) temp;
-				uanode.getCategory().clear();
-				uanode.getCategory().addAll(documentation);
-			}
-			else if(name.equalsIgnoreCase("rolePermissions"))
-			{
-				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
-				if(this.matching.containsKey(rp_object))
-				{
-					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
-					uanode.setRolePermissions(rp);
-				}
-			}
-			else if(name.equalsIgnoreCase("extensions"))
-			{
-				System.out.println(name);
-			}
-			else if(name.equalsIgnoreCase("accessRestrictions"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				short convertedShort = Short.parseShort(stringToConvert);
-				uanode.setAccessRestrictions(convertedShort);
-				
-			}
-			else if(name.equalsIgnoreCase("browseName"))
-			{
-				String browseNameString = (String) temp;
-				
-				if(!browseNameString.startsWith("1:"))
-				{					
-					browseNameString = "1:"+browseNameString;
-					stereotype.dynamicSet(id, browseNameString);
-				}
-				
-				uanode.setBrowseName(browseNameString);
-				
-			}
-			else if(name.equalsIgnoreCase("nodeId"))
-			{
-				String nodeIdString = (String) temp;
-				
-				if(!(nodeIdString.startsWith("ns=") || nodeIdString.startsWith("i=")))
-				{					
-					nodeIdString = "ns=1;s="+nodeIdString;
-					stereotype.dynamicSet(id, nodeIdString);
-				}
-				
-				uanode.setNodeId(nodeIdString);
-			}
-			else if(name.equalsIgnoreCase("releaseStatus"))
-			{
-				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
-				String value = lit.toString();
-				switch(value)
-				{
-				case "Draft":
-					uanode.setReleaseStatus(ReleaseStatus.DRAFT);
-					break;
-				case "Released":
-					uanode.setReleaseStatus(ReleaseStatus.RELEASED);
-					break;
-				case "Deprecated":
-					uanode.setReleaseStatus(ReleaseStatus.DEPRECATED);
-					break;
-				}
-			}
-			else if(name.equalsIgnoreCase("symbolicName"))
-			{
-				List<String> symbolicName = (List<String>) temp;
-				uanode.getCategory().clear();
-				uanode.getCategory().addAll(symbolicName);
-			}
-			else if(name.equalsIgnoreCase("userWriteMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-		        Long convertedLong = Long.parseLong(stringToConvert);
-				uanode.setUserWriteMask(convertedLong);
-			}
-			else if(name.equalsIgnoreCase("writeMask"))
-			{
-				String stringToConvert = String.valueOf(temp);
-				Long convertedLong = Long.parseLong(stringToConvert);
-				uanode.setWriteMask(convertedLong);
-			}
-			
+		}
+		
+
+		if(object.hasValue(uaStereotype, "symbolicName"))
+		{
+			EDataTypeUniqueEList<String> symbolicName = (EDataTypeUniqueEList<String>) object.getValue(uaStereotype, "symbolicName");
+			uanode.setSymbolicName(symbolicName);
+		}
+		
+		if(object.hasValue(uaStereotype, "userWriteMask"))
+		{
+			Object temp = object.getValue(uaStereotype, "userWriteMask");
+			String stringToConvert = String.valueOf(temp);
+			long convertedLong = Long.parseLong(stringToConvert);
+			uanode.setUserWriteMask(convertedLong);
+		}
+		
+		if(object.hasValue(uaStereotype, "writeMask"))
+		{
+			Object temp = object.getValue(uaStereotype, "writeMask");
+			String stringToConvert = String.valueOf(temp);
+			long convertedLong = Long.parseLong(stringToConvert);
+			uanode.setWriteMask(convertedLong);
 		}
 
 		return true;
@@ -1110,24 +1121,24 @@ public class InstanceSyncHandler {
 				
 		boolean success = transformUANode(object, stereotype);
 		
-		for(EStructuralFeature feature : featuresList)
+		Stereotype uaStereotype = getMatchingStereotype(uaObjType);
+		if(object.hasValue(uaStereotype, "parentNodeId"))
 		{
+			DynamicEObjectImpl parentNode = (DynamicEObjectImpl) object.getValue(uaStereotype, "parentNodeId");
+
+			Class parentClass = getStereotypeBaseClass(parentNode, true);
 			
-			
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			if(temp == null)
-			{
-				continue;
+			String nodeId = getNodeId(parentClass);	
+
+			if(nodeId != null && nodeId.length() > 0)
+			{					
+				uaObjType.setParentNodeId(nodeId);
 			}
 			
-			if(name.equalsIgnoreCase("parentNodeId"))
-			{
-				// TODO: add definition
-			}
+		
 		}
 		
+				
 		return success;
 	}
 
@@ -1150,7 +1161,7 @@ public class InstanceSyncHandler {
 		{
 			Stereotype dataTypeSter = getMatchingStereotype(uaDataType);
 			
-			org.eclipse.uml2.uml.internal.impl.EnumerationLiteralImpl lit = (org.eclipse.uml2.uml.internal.impl.EnumerationLiteralImpl) object.getValue(dataTypeSter, "purpose");
+			EnumerationLiteralImpl lit = (EnumerationLiteralImpl) object.getValue(dataTypeSter, "purpose");
 			String value = lit.toString();
 			switch(value)
 			{
@@ -1489,13 +1500,21 @@ public class InstanceSyncHandler {
 			DynamicEObjectImpl abstractDataType = (DynamicEObjectImpl) object.getValue(sterDTF, "abstractDataType");
 			
 			Class umlUaNode = getStereotypeBaseClass(abstractDataType, true);
+			
+			if(!this.matching.containsKey(umlUaNode))
+			{
+				updateClass(umlUaNode);
+			}
+			
 			if(umlUaNode != null)
 			{
-				UANode node = (UANode) this.matching.get(umlUaNode);
-				if(node.getNodeId() != null && node.getNodeId().length() > 0)
+				String nodeId = getNodeId(umlUaNode);	
+
+				if(nodeId != null && nodeId.length() > 0)
 				{					
-					dtf.setAbstractDataType(node.getNodeId());
+					dtf.setAbstractDataType(nodeId);
 				}
+				
 			}
 				
 		}
@@ -1508,16 +1527,33 @@ public class InstanceSyncHandler {
 		
 		if(object.getValue(sterDTF, "dataType") !=null)
 		{			
-			DynamicEObjectImpl dataType = (DynamicEObjectImpl) object.getValue(sterDTF, "dataType");
 			
-			Class umlUaNode = getStereotypeBaseClass(dataType, true);
+			DynamicEObjectImpl abstractDataType = (DynamicEObjectImpl) object.getValue(sterDTF, "dataType");
+			
+			Class umlUaNode = getStereotypeBaseClass(abstractDataType, true);
+			
+			if(!this.matching.containsKey(umlUaNode))
+			{
+				updateClass(umlUaNode);
+			}
+			
 			if(umlUaNode != null)
 			{
 				UANode node = (UANode) this.matching.get(umlUaNode);
-				if(node.getNodeId() != null && node.getNodeId().length() > 0)
-				{	
-					dtf.setAbstractDataType(node.getNodeId());
+
+				Package namespace = umlUaNode.getPackage();
+				Stereotype uaStereotype = getMatchingStereotype(this.matching.get(umlUaNode));
+				
+				if(umlUaNode.hasValue(uaStereotype, "nodeId"))
+				{
+					String nodeId = getNodeId(umlUaNode);			
+					if(nodeId != null && nodeId.length() > 0)
+					{					
+						dtf.setDataType(nodeId);
+					}
+					
 				}
+				
 			}
 		}
 		
@@ -2100,20 +2136,17 @@ public class InstanceSyncHandler {
 
 		EList<String> namespaces_new = namespaceUris.getUri();	
 		
-		
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
-		Stereotype uaNodeSetType  = nodeSetProfile.getOwnedStereotype("UANodeSetType");
 		Stereotype uaNamespace  = nodeSetProfile.getOwnedStereotype("NameSpace");
 		
-		
-		EList<Package> umlNamespaces = (EList<Package>) this.baseUmlModel.getValue(uaNodeSetType, "nameSpaceUris");
+		EList<Package> umlNamespaces = (EList<Package>) this.baseUmlModel.getNestedPackages();
 		
 		ArrayList<Package> toDelete = new ArrayList<Package>();
 		HashMap<String, Package> nameSpacePackageMapping = new HashMap<String, Package>();
 
 		for(Package umlNameSpace : umlNamespaces)
 		{
-			String uri = umlNameSpace.getName();
+			String uri = umlNameSpace.getURI();
 			
 			if(!namespaces_new.contains(uri))
 			{
@@ -2131,6 +2164,8 @@ public class InstanceSyncHandler {
 			toDelete.remove(0);
 		}
 		
+		// update List
+		umlNamespaces = (EList<Package>) this.baseUmlModel.getNestedPackages();
 		
 		for(String namespace : namespaceUris.getUri())
 		{
@@ -2139,20 +2174,23 @@ public class InstanceSyncHandler {
 				Package ns = this.baseUmlModel.createNestedPackage(namespace);
 				ns.applyStereotype(uaNamespace);
 				ns.setURI(namespace);
-				umlNamespaces.add(ns);
 				nameSpacePackageMapping.put(namespace, ns);
 			}
 		}
 		
+		EList<String> namespaces_old = this.baseNodeset.getNamespaceUris().getUri();
+		namespaces_old.clear();
+		namespaces_old.addAll(namespaces_new);
+
 		// update List
-		umlNamespaces = (EList<Package>) this.baseUmlModel.getValue(uaNodeSetType, "nameSpaceUris");
-		
+		umlNamespaces = (EList<Package>) this.baseUmlModel.getNestedPackages();
 		
 		for(int i=0; i<namespaces_new.size();i++)
 		{
 			String nsString = namespaces_new.get(i);
 			Package nsUml = nameSpacePackageMapping.get(nsString);
 			umlNamespaces.move(i, nsUml);
+			namespaces_old.move(i, nsUml.getURI());
 		}
 
 		if(this.baseNodeset.getNamespaceUris() == null)
@@ -2160,8 +2198,6 @@ public class InstanceSyncHandler {
 			this.baseNodeset.setNamespaceUris(new UriTableImpl());
 		}
 		
-		EList<String> namespaces_old = this.baseNodeset.getNamespaceUris().getUri();
-		namespaces_old.addAll(namespaces_new);
 		
 		return true;
 	}
@@ -2491,8 +2527,20 @@ public class InstanceSyncHandler {
 		
 		if(node.getNodeId() != null) {
 			String nodeId = node.getNodeId();
-			uaElement.setValue(stereotype, "nodeId", nodeId);
 			
+			if(nodeId.contains("s="))
+			{
+				int seperator = nodeId.lastIndexOf("s=")+2;
+				nodeId = nodeId.substring(seperator);
+			}
+			else if(nodeId.contains("i="))
+			{
+				int seperator = nodeId.lastIndexOf("i=")+2;
+				nodeId = nodeId.substring(seperator);
+			} 
+			
+			uaElement.setValue(stereotype, "nodeId", nodeId);
+						
 			this.nodeIdMap.put(nodeId, uaElement);			
 		}
 		else
@@ -2504,6 +2552,7 @@ public class InstanceSyncHandler {
 		if(node.getDisplayName() != null)
 		{			
 			EDataTypeUniqueEList<Object> displayNames = (EDataTypeUniqueEList<Object>) uaElement.getValue(stereotype, "displayName");
+			displayNames.clear();
 			for(LocalizedText displayName : node.getDisplayName())
 			{
 				displayNames.add(displayName.getValue());
@@ -2513,6 +2562,7 @@ public class InstanceSyncHandler {
 		if(node.getDescription() != null)
 		{			
 			EDataTypeUniqueEList<Object> description = (EDataTypeUniqueEList<Object>) uaElement.getValue(stereotype, "description");
+			description.clear();
 			for(LocalizedText displayName : node.getDescription())
 			{
 				description.add(displayName.getValue());
@@ -2546,7 +2596,14 @@ public class InstanceSyncHandler {
 		
 		if(node.getBrowseName() != null)
 		{
-			uaElement.setValue(stereotype, "browseName", node.getBrowseName());
+			String browseName = node.getBrowseName();
+			if(browseName.contains(":"))
+			{
+				int seperator = browseName.indexOf(":")+1;
+				browseName = browseName.substring(seperator);
+			}
+
+			uaElement.setValue(stereotype, "browseName", browseName);
 		}
 
 //		
@@ -2572,6 +2629,7 @@ public class InstanceSyncHandler {
 		if(node.getSymbolicName() != null)
 		{			
 			EDataTypeUniqueEList<Object> symbollicName = (EDataTypeUniqueEList<Object>) uaElement.getValue(stereotype, "symbolicName");
+			symbollicName.clear();
 			for(String symbolic : node.getSymbolicName())
 			{
 				symbollicName.add(symbolic);
@@ -2594,7 +2652,7 @@ public class InstanceSyncHandler {
 		// check if node is inside a ns
 		if(nodeId.contains(";"))
 		{				
-			// extraced namespace id
+			// extract namespace id
 			String namespaceString = nodeId.split(";")[0].substring(3);
 			namespaceId = Integer.parseInt(namespaceString);	
 			if(this.baseUmlModel.getNestedPackages().size() < namespaceId)
@@ -2657,7 +2715,7 @@ public class InstanceSyncHandler {
 		
 		uaElement.applyStereotype(uaStereoType);
 		this.matching.put(uaElement, node);
-		
+		this.nodeIdMap.put(node.getNodeId(), uaElement);
 		return uaElement;
 	}
 	
@@ -2907,4 +2965,34 @@ public class InstanceSyncHandler {
 		
 		return baseClass;
 	}
+	
+	private String getNodeId(Class umlUaNode)
+	{
+		String nodeId = "";
+		UANode node = (UANode) this.matching.get(umlUaNode);
+
+		Package namespace = umlUaNode.getPackage();
+		Stereotype uaStereotype = getMatchingStereotype(this.matching.get(umlUaNode));
+		
+		if(umlUaNode.hasValue(uaStereotype, "nodeId"))
+		{
+			nodeId = (String) umlUaNode.getValue(uaStereotype, "nodeId");
+			
+			try {
+		        double d = Double.parseDouble(nodeId);
+		        nodeId = "i=" + nodeId;
+		    } catch (NumberFormatException nfe) {
+		    	nodeId = "s=" + nodeId;
+		    }
+			
+			if(namespace != null)
+			{
+				int namespaceId = this.baseUmlModel.getNestedPackages().indexOf(namespace);
+				namespaceId++; // arrays start at 0
+				nodeId = "ns=" +String.valueOf(namespaceId) + ";" +nodeId;
+			}
+		}
+		return nodeId;
+	}
+
 }

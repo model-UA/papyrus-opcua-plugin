@@ -188,17 +188,52 @@ public class InstanceSyncHandler {
 	
 	private boolean transformNamespace(Package namespace) {
 		
+		if(namespace.getURI() == null || namespace.getURI().length() == 0)
+		{
+			// no namespace Uir set
+			return false;
+		}
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
+		
 		if(this.baseNodeset.getNamespaceUris() == null)
 		{
 			UriTableImpl nsTable = new UriTableImpl();
 			this.baseNodeset.setNamespaceUris(nsTable);
 		}
 		
+		EcoreEList<DynamicEObjectImpl> nsList = (EcoreEList<DynamicEObjectImpl>) this.baseUmlModel.getValue(nodeSetType, "nameSpaceUris");
 		this.baseNodeset.getNamespaceUris().getUri().clear();
+		boolean already_added = false;
 		
-		for(Package ns : this.baseUmlModel.getNestedPackages())
+		for(DynamicEObjectImpl nsObject : nsList )
 		{
-			this.baseNodeset.getNamespaceUris().getUri().add(ns.getURI());
+			Package ns = (Package) nsObject.dynamicGet(0);
+			
+			if(namespace.equals(ns))
+			{
+				already_added = true;
+			}
+			
+			if(ns.getURI() != null)
+			{
+				this.baseNodeset.getNamespaceUris().getUri().add(ns.getURI());
+			}
+			else
+			{
+				this.baseNodeset.getNamespaceUris().getUri().add("");
+			}
+		}
+		
+		if(!already_added)
+		{
+			Stereotype nameSpaceType   = nodeSetProfile.getOwnedStereotype("NameSpace");
+			nsList.add((DynamicEObjectImpl) namespace.getStereotypeApplication(nameSpaceType));
+		}
+		
+		if(!this.baseNodeset.getNamespaceUris().getUri().contains(namespace.getURI()))
+		{
+			this.baseNodeset.getNamespaceUris().getUri().add(namespace.getURI());
 		}
 		
 		return true;
@@ -2027,16 +2062,22 @@ public class InstanceSyncHandler {
 
 		EList<String> namespaces_new = namespaceUris.getUri();	
 		
-		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
-		Stereotype uaNamespace  = nodeSetProfile.getOwnedStereotype("NameSpace");
-		
-		EList<Package> umlNamespaces = (EList<Package>) this.baseUmlModel.getNestedPackages();
-		
-		ArrayList<Package> toDelete = new ArrayList<Package>();
-		HashMap<String, Package> nameSpacePackageMapping = new HashMap<String, Package>();
-
-		for(Package umlNameSpace : umlNamespaces)
+		if(this.baseNodeset.getNamespaceUris() == null)
 		{
+			this.baseNodeset.setNamespaceUris(new UriTableImpl());
+		}
+		
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaNodeSetType  = nodeSetProfile.getOwnedStereotype("UANodeSetType");
+		Stereotype uaNameSpaceType  = nodeSetProfile.getOwnedStereotype("NameSpace");
+		
+		EcoreEList<DynamicEObjectImpl> nsList = (EcoreEList<DynamicEObjectImpl>) this.baseUmlModel.getValue(uaNodeSetType, "nameSpaceUris");
+		ArrayList<Package> toDelete = new ArrayList<Package>();
+		HashMap<String, DynamicEObjectImpl> nameSpacePackageMapping = new HashMap<String, DynamicEObjectImpl>();
+		
+		for(DynamicEObjectImpl nsObject : nsList )
+		{
+			Package umlNameSpace = (Package) nsObject.dynamicGet(0);
 			String uri = umlNameSpace.getURI();
 			
 			if(!namespaces_new.contains(uri))
@@ -2045,7 +2086,7 @@ public class InstanceSyncHandler {
 			}
 			else
 			{				
-				nameSpacePackageMapping.put(uri, umlNameSpace);
+				nameSpacePackageMapping.put(uri, nsObject);
 			}
 		}
 		
@@ -2055,17 +2096,16 @@ public class InstanceSyncHandler {
 			toDelete.remove(0);
 		}
 		
-		// update List
-		umlNamespaces = (EList<Package>) this.baseUmlModel.getNestedPackages();
-		
 		for(String namespace : namespaceUris.getUri())
 		{
 			if(!nameSpacePackageMapping.containsKey(namespace))
 			{
 				Package ns = this.baseUmlModel.createNestedPackage(namespace);
-				ns.applyStereotype(uaNamespace);
+				ns.applyStereotype(uaNameSpaceType);
 				ns.setURI(namespace);
-				nameSpacePackageMapping.put(namespace, ns);
+				DynamicEObjectImpl temp = (DynamicEObjectImpl)ns.getStereotypeApplication(uaNameSpaceType);
+				nameSpacePackageMapping.put(namespace, temp);
+				nsList.add(temp);
 			}
 		}
 		
@@ -2073,23 +2113,16 @@ public class InstanceSyncHandler {
 		namespaces_old.clear();
 		namespaces_old.addAll(namespaces_new);
 
-		// update List
-		umlNamespaces = (EList<Package>) this.baseUmlModel.getNestedPackages();
-		
 		for(int i=0; i<namespaces_new.size();i++)
 		{
 			String nsString = namespaces_new.get(i);
-			Package nsUml = nameSpacePackageMapping.get(nsString);
-			umlNamespaces.move(i, nsUml);
-			namespaces_old.move(i, nsUml.getURI());
+			DynamicEObjectImpl nsSterApp = nameSpacePackageMapping.get(nsString);
+			Package umlNs = (Package) nsSterApp.dynamicGet(0);
+			
+			nsList.move(i, nsSterApp);
+			namespaces_old.move(i, umlNs.getURI());
 		}
 
-		if(this.baseNodeset.getNamespaceUris() == null)
-		{
-			this.baseNodeset.setNamespaceUris(new UriTableImpl());
-		}
-		
-		
 		return true;
 	}
 	
@@ -2877,7 +2910,17 @@ public class InstanceSyncHandler {
 			
 			if(namespace != null)
 			{
-				int namespaceId = this.baseUmlModel.getNestedPackages().indexOf(namespace);
+				if(this.baseNodeset.getNamespaceUris() == null)
+				{
+					this.baseNodeset.setNamespaceUris(new UriTableImpl());
+				}
+				
+				if(!this.baseNodeset.getNamespaceUris().getUri().contains(namespace.getURI()))
+				{
+					this.baseNodeset.getNamespaceUris().getUri().add(namespace.getURI());
+				}
+				
+				int namespaceId = this.baseNodeset.getNamespaceUris().getUri().indexOf(namespace.getURI());
 				namespaceId++; // arrays start at 0
 				nodeId = "ns=" +String.valueOf(namespaceId) + ";" +nodeId;
 			}

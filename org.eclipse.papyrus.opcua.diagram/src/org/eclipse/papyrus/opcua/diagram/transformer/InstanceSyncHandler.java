@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.opcua.diagram.transformer;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,24 +12,35 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.opcua.nodeset.parser.NodeSetParser;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 import org.eclipse.uml2.uml.internal.impl.EnumerationLiteralImpl;
+import org.eclipse.uml2.uml.internal.impl.PropertyImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeField;
@@ -405,35 +417,25 @@ public class InstanceSyncHandler {
 		
 		boolean success = transformUAInstance(object, stereotype);
 		
-		if(!success)
+		if(success)
 		{
-			return success;
-		}
-		
-		for(EStructuralFeature feature : featuresList)
-		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			if(temp == null)
-			{
-				continue;
-			}
+			Stereotype uaStereotype = getMatchingStereotype(uaView);
 			
-			if(name.equalsIgnoreCase("containsNoLoops"))
+
+			if(object.hasValue(uaStereotype, "containsNoLoops"))
 			{
-				String stringToConvert = String.valueOf(temp);
+				String stringToConvert = String.valueOf(object.getValue(uaStereotype, "containsNoLoops"));
 				boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
 				uaView.setContainsNoLoops(convertedBoolean);
 			}
-			else if(name.equalsIgnoreCase("eventNotifier"))
+			else if(object.hasValue(uaStereotype, "eventNotifier"))
 			{
-				String stringToConvert = String.valueOf(temp);
+				String stringToConvert = String.valueOf(object.getValue(uaStereotype, "eventNotifier"));
 				short convertedShort = Short.parseShort(stringToConvert);
 				uaView.setEventNotifier(convertedShort);
 			}
+			
 		}
-		
 
 		return true;
 		
@@ -473,69 +475,83 @@ public class InstanceSyncHandler {
 		
 		boolean success = transformUAInstance(object, stereotype);
 		
-		if(!success)
+
+		if(success)
 		{
-			return success;
-		}
-		
-		for(EStructuralFeature feature : featuresList)
-		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			if(temp == null)
+			Stereotype uaStereotype = getMatchingStereotype(uaVariable);
+			
+			if(object.hasValue(uaStereotype, "value"))
 			{
-				continue;
+				//TODO: add value
+				Object inverseNameList = object.getValue(uaStereotype, "value");
+
 			}
 			
-			if(name.equalsIgnoreCase("value"))
+			if(object.hasValue(uaStereotype, "translation"))
 			{
-				//TODO: Add value
+				//TODO: add translation
+				Object inverseNameList = object.getValue(uaStereotype, "translation");
+
 			}
-			else if(name.equalsIgnoreCase("translation"))
+			
+			if(object.hasValue(uaStereotype, "accessLevel"))
 			{
-				//TODO: Add translation
-			}
-			else if(name.equalsIgnoreCase("accessLevel"))
-			{
-				String stringToConvert = String.valueOf(temp);
+				String stringToConvert = String.valueOf(object.getValue(uaStereotype, "accessLevel"));
 				Long convertedLong = Long.parseLong(stringToConvert);
 				uaVariable.setAccessLevel(convertedLong);
 			}
-			else if(name.equalsIgnoreCase("arrayDimensions"))
+			
+			if(object.hasValue(uaStereotype, "arrayDimensions"))
 			{
-				uaVariable.setArrayDimensions(String.valueOf(temp));
+				String arrayDimensions = String.valueOf(object.getValue(uaStereotype, "arrayDimensions"));
+				uaVariable.setArrayDimensions(arrayDimensions);
 			}
-			else if(name.equalsIgnoreCase("dataType"))
+			
+			if(object.hasValue(uaStereotype, "dataType"))
 			{
-				String nodeIdString = (String) temp;
-				uaVariable.setDataType(nodeIdString);
+				DynamicEObjectImpl dataType = (DynamicEObjectImpl) object.getValue(uaStereotype, "dataType");
+
+				Class parentClass = getStereotypeBaseClass(dataType, true);
+				
+				String nodeId = getNodeId(parentClass);	
+
+				if(nodeId != null && nodeId.length() > 0)
+				{					
+					uaVariable.setDataType(nodeId);
+				}
+
 			}
-			else if(name.equalsIgnoreCase("historizing"))
+			
+			if(object.hasValue(uaStereotype, "historizing"))
 			{
-				String stringToConvert = String.valueOf(temp);
+				String stringToConvert = String.valueOf(object.getValue(uaStereotype, "historizing"));
 				boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
 				uaVariable.setHistorizing(convertedBoolean);
+
 			}
-			else if(name.equalsIgnoreCase("minimumSamplingInterval"))
+
+			if(object.hasValue(uaStereotype, "minimumSamplingInterval"))
 			{
-				double intervall = (double ) temp;
+				double intervall = (double ) object.getValue(uaStereotype, "minimumSamplingInterval");
 				uaVariable.setMinimumSamplingInterval(intervall);
+
 			}
-			else if(name.equalsIgnoreCase("userAccessLevel"))
+			if(object.hasValue(uaStereotype, "userAccessLevel"))
 			{
-				String stringToConvert = String.valueOf(temp);
+				String stringToConvert = String.valueOf(object.getValue(uaStereotype, "userAccessLevel"));
 				Long convertedLong = Long.parseLong(stringToConvert);
 				uaVariable.setUserAccessLevel(convertedLong);
+
 			}
-			else if(name.equalsIgnoreCase("valueRank"))
+			if(object.hasValue(uaStereotype, "valueRank"))
 			{
-				String stringToConvert = String.valueOf(temp);
+				String stringToConvert = String.valueOf(object.getValue(uaStereotype, "valueRank"));
 				int convertedInt = Integer.parseInt(stringToConvert);
 				uaVariable.setValueRank(convertedInt);
+
 			}
 		}
-
+		
 		return success;
 	}
 
@@ -571,26 +587,31 @@ public class InstanceSyncHandler {
 		
 		boolean success = transformUAType(object, stereotype);
 		
-		for(EStructuralFeature feature : featuresList)
+		if(success)
 		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			if(temp == null)
-			{
-				continue;
-			}
-			
-			if(name.equalsIgnoreCase("inverseName"))
+			Stereotype uaStereotype = getMatchingStereotype(uaRefType);
+			if(object.hasValue(uaStereotype, "inverseName"))
 			{
 				//TODO: add inverserName
+				EList<String> inverseNameList = (EList<String>) object.getValue(uaStereotype, "inverseName");
+				uaRefType.getInverseName().clear();
+				
+				for(String inverseName : inverseNameList)
+				{
+					LocalizedTextImpl lt = new LocalizedTextImpl();
+					lt.setValue(inverseName);
+					uaRefType.getInverseName().add(lt);
+				}
 			}
-			else if(name.equalsIgnoreCase("symmetric"))
+			
+			if(object.hasValue(uaStereotype, "symmetric"))
 			{
 				//TODO: add symmetric
+				boolean symmetric = (boolean) object.getValue(uaStereotype, "symmetric");
+				uaRefType.setSymmetric(symmetric);
 			}
-		}	
-		
+		}
+
 
 		return success;
 	}
@@ -611,23 +632,6 @@ public class InstanceSyncHandler {
 		
 		boolean success = transformUAType(object, stereotype);
 		
-		ListOfReferences listOfReferences = uaObjType.getReferences();
-		if(listOfReferences == null)
-		{
-			listOfReferences = new ListOfReferencesImpl();
-			uaObjType.setReferences(listOfReferences);
-		}
-		listOfReferences.getReference().clear();
-		
-		for(Generalization reference :object.getGeneralizations())
-		{
-			if(! this.matching.containsKey(reference))
-			{
-				updatedGeneralization(reference);
-			}
-			listOfReferences.getReference().add((Reference) this.matching.get(reference));
-
-		}
 		return success;
 	}
 
@@ -674,13 +678,45 @@ public class InstanceSyncHandler {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
-		Stereotype nodeSetType = object.getAppliedStereotype("NodeSet::UANodeSetType");
-			
+		Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
 		
-//		if(object.getValue(nodeSetType, "serverUris") != null)
-//		{
-//				EDataTypeUniqueEList<String> serverUris = (EDataTypeUniqueEList<String>) object.getValue(nodeSetType, "serverUris");
-//		}
+		if(this.baseUmlModel.hasValue(nodeSetType, "nameSpaceUris"))
+		{			
+			EcoreEList<DynamicEObjectImpl> nsList = (EcoreEList<DynamicEObjectImpl>) this.baseUmlModel.getValue(nodeSetType, "nameSpaceUris");
+			
+			for(DynamicEObjectImpl nsObject : nsList )
+			{
+				Package ns = (Package) nsObject.dynamicGet(0);
+				
+				if(ns.getURI() != null)
+				{
+					this.baseNodeset.getNamespaceUris().getUri().add(ns.getURI());
+				}
+				else
+				{
+					this.baseNodeset.getNamespaceUris().getUri().add("");
+				}
+			}
+		}
+		
+		if(this.baseUmlModel.hasValue(nodeSetType, "serverUris"))
+		{
+			EcoreEList<String> serverUriList = (EcoreEList<String>) this.baseUmlModel.getValue(nodeSetType, "serverUris");
+			
+			if(this.baseNodeset.getServerUris() == null)
+			{
+				this.baseNodeset.setServerUris(new UriTableImpl());
+			}
+			
+			this.baseNodeset.getServerUris().getUri().clear();
+			
+			for(String serverUri : serverUriList)
+			{
+				this.baseNodeset.getServerUris().getUri().add(serverUri);
+			}
+		}
+		
+		
 //		if(object.getValue(nodeSetType, "models") != null)
 //		{
 //				EDataTypeUniqueEList<String> models = (EDataTypeUniqueEList<String>) object.getValue(nodeSetType, "models");
@@ -702,82 +738,7 @@ public class InstanceSyncHandler {
 			String name = feature.getName();
 			Object temp = stereotype.dynamicGet(id);
 			
-//			if(name.equalsIgnoreCase("nameSpaceUris"))
-//			{
-//				if(temp == null)
-//				{
-//					Class namespaceUriTable = (Class) this.baseUmlModel.getMember("NameSpaces");
-//					Stereotype uriTableType  = nodeSetProfile.getOwnedStereotype("UriTable");
-//
-//					if(namespaceUriTable == null)
-//					{
-//						namespaceUriTable = this.baseUmlModel.createOwnedClass("NameSpaces", false);
-//						namespaceUriTable.applyStereotype(uriTableType);						
-//					}
-//					object.setValue(nodeSetType, "nameSpaceUris", namespaceUriTable.getStereotypeApplication(uriTableType));
-//					updateClass(namespaceUriTable);
-//					
-//					temp = stereotype.dynamicGet(id);
-//				}
-//				
-//				DynamicEObjectImpl uri_object = ((DynamicEObjectImpl) temp);
-//				EList<EStructuralFeature> featuresList2 = uri_object.eClass().getEAllStructuralFeatures();
-//				for(EStructuralFeature feature2 : featuresList2)
-//				{
-//					int id2 = feature2.getFeatureID();
-//					String name2 = feature2.getName();
-//					if(name2.equalsIgnoreCase("base_Class"))
-//					{
-//						Object baseClass = uri_object.dynamicGet(id2);
-//						if(this.matching.containsKey(baseClass))
-//						{
-//							UriTableImpl uritable = (UriTableImpl) this.matching.get(baseClass);
-//							this.baseNodeset.setNamespaceUris(uritable);
-//							break;
-//						}
-//						else
-//						{
-//							updateClass((Class) baseClass);
-//							UriTableImpl uritable = (UriTableImpl) this.matching.get(baseClass);
-//							this.baseNodeset.setNamespaceUris(uritable);
-//							break;
-//						}
-//					}
-//				}
-//			}
-//			else 
-			if(name.equalsIgnoreCase("serverUris"))
-			{
-				if(temp == null)
-				{
-					continue;
-				}
-				DynamicEObjectImpl uri_object = ((DynamicEObjectImpl) temp);
-				EList<EStructuralFeature> featuresList2 = uri_object.eClass().getEAllStructuralFeatures();
-				for(EStructuralFeature feature2 : featuresList2)
-				{
-					int id2 = feature2.getFeatureID();
-					String name2 = feature2.getName();
-					if(name2.equalsIgnoreCase("base_Class"))
-					{
-						Object baseClass = uri_object.dynamicGet(id2);
-						if(this.matching.containsKey(baseClass))
-						{
-							UriTableImpl uritable = (UriTableImpl) this.matching.get(baseClass);
-							this.baseNodeset.setNamespaceUris(uritable);
-							break;
-						}
-						else
-						{
-							updateClass((Class) baseClass);
-							UriTableImpl uritable = (UriTableImpl) this.matching.get(baseClass);
-							this.baseNodeset.setNamespaceUris(uritable);
-							break;
-						}
-					}
-				}
-			}
-			else if(name.equalsIgnoreCase("models"))
+			if(name.equalsIgnoreCase("models"))
 			{
 				if(temp == null)
 				{
@@ -822,17 +783,6 @@ public class InstanceSyncHandler {
 				{
 					continue;
 				}
-				
-				
-			}
-			else if(name.equalsIgnoreCase("group"))
-			{
-				if(temp == null)
-				{
-					continue;
-				}
-				
-				
 			}
 		}
 		
@@ -853,7 +803,7 @@ public class InstanceSyncHandler {
 			uanode = new UANodeImpl();
 			this.matching.put(object, uanode);
 		}
-		
+
 		Stereotype uaStereotype = getMatchingStereotype(uanode);
 
 		if(object.hasValue(uaStereotype, "nodeId"))
@@ -864,7 +814,7 @@ public class InstanceSyncHandler {
 			{					
 				uanode.setNodeId(nodeId);
 			}
-		
+			this.nodeIdMap.put(nodeId, object);
 		}
 		else
 		{
@@ -907,30 +857,34 @@ public class InstanceSyncHandler {
 			String documentation = (String) object.getValue(uaStereotype, "documentation");
 			uanode.setDocumentation( documentation);
 		}
-
+		
+		
 		if(object.hasValue(uaStereotype, "rolePermissions"))
 		{
-			// TODO: optimize this
-			for(EStructuralFeature feature : featuresList)
+
+			EList<Classifier> classifierList = object.getNestedClassifiers();
+			EcoreEList<DynamicEObjectImpl> rolePermissions = (EcoreEList<DynamicEObjectImpl>) object.getValue(uaStereotype, "rolePermissions");
+			
+			for(DynamicEObjectImpl rolePermission : rolePermissions)
 			{
-				int id = feature.getFeatureID();
-				String name = feature.getName();
-				Object temp = stereotype.dynamicGet(id);
-				if(temp == null)
+				Class rolePermissionsClass = getStereotypeBaseClass(rolePermission, true);
+				
+				
+				if(!classifierList.contains(rolePermissionsClass))
 				{
-					continue;
+					classifierList.add(rolePermissionsClass);
 				}
 				
-				if(name.equalsIgnoreCase("rolePermissions"))
+				if(uanode.getRolePermissions() == null)
 				{
-					Object rp_object = ((DynamicEObjectImpl) temp).getClass();
-					if(this.matching.containsKey(rp_object))
-					{
-						ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
-						uanode.setRolePermissions(rp);
-					}
+					uanode.setRolePermissions(new ListOfRolePermissionsImpl());
 				}
 				
+				if(this.matching.containsKey(rolePermissionsClass))
+				{
+					RolePermission uaRolePermission = (RolePermission) this.matching.get(rolePermissionsClass);
+					uanode.getRolePermissions().getRolePermission().add(uaRolePermission);
+				}
 			}
 		}
 
@@ -997,6 +951,24 @@ public class InstanceSyncHandler {
 			String stringToConvert = String.valueOf(temp);
 			long convertedLong = Long.parseLong(stringToConvert);
 			uanode.setWriteMask(convertedLong);
+		}
+		
+		ListOfReferences listOfReferences = uanode.getReferences();
+		if(listOfReferences == null)
+		{
+			listOfReferences = new ListOfReferencesImpl();
+			uanode.setReferences(listOfReferences);
+		}
+		listOfReferences.getReference().clear();
+		
+		for(Generalization reference :object.getGeneralizations())
+		{
+			if(! this.matching.containsKey(reference))
+			{
+				updatedGeneralization(reference);
+			}
+			listOfReferences.getReference().add((Reference) this.matching.get(reference));
+
 		}
 
 		return true;
@@ -1274,26 +1246,30 @@ public class InstanceSyncHandler {
 			rp = new RolePermissionImpl();
 			this.matching.put(object, rp);
 		}
+
+		Stereotype uaStereotype = getMatchingStereotype(rp);
 		
-		for(EStructuralFeature feature : featuresList)
+		if(object.hasValue( uaStereotype, "value"))
 		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
+			DynamicEObjectImpl dataType = (DynamicEObjectImpl) object.getValue(uaStereotype, "value");
+
+			Class parentClass = getStereotypeBaseClass(dataType, true);
 			
-			if(name.equalsIgnoreCase("value"))
-			{
-				rp.setValue((String) temp);
-			}
-			else if(name.equalsIgnoreCase("permissions"))
-			{
-				String stringToConvert = String.valueOf(temp);
-		        Long convertedLong = Long.parseLong(stringToConvert);
-				rp.setPermissions(convertedLong);
+			String nodeId = getNodeId(parentClass);	
+
+			if(nodeId != null && nodeId.length() > 0)
+			{					
+				rp.setValue(nodeId);
 			}
 		}
 		
-
+		if(object.hasValue( uaStereotype, "permissions"))
+		{
+			String stringToConvert = String.valueOf(object.getValue( uaStereotype, "permissions"));
+	        Long convertedLong = Long.parseLong(stringToConvert);
+			rp.setPermissions(convertedLong);
+		}
+				
 		return true;
 		
 	}

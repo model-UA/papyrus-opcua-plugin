@@ -1019,7 +1019,7 @@ public class InstanceSyncHandler {
 			}
 			else if(name.equalsIgnoreCase("executable"))
 			{
-				//TODO: Add executable
+				// 
 			}
 			else if(name.equalsIgnoreCase("methodDeclarationId"))
 			{
@@ -1065,7 +1065,6 @@ public class InstanceSyncHandler {
 				uaObjType.setParentNodeId(nodeId);
 			}
 			
-		
 		}
 		
 				
@@ -1344,7 +1343,6 @@ public class InstanceSyncHandler {
 	private boolean transformListOfExtensions(Class object,  DynamicEObjectImpl stereotype) {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
-		
 	}
 
 	private boolean transformExtensionType(Class object,  DynamicEObjectImpl stereotype) {
@@ -1819,6 +1817,7 @@ public class InstanceSyncHandler {
     	
     	
     	ArrayList<UANode> referenceNodes = new ArrayList<UANode>();
+    	ArrayList<UANode> rolePermissionNodes = new ArrayList<UANode>();
     	ArrayList<UAInstance> parentNodes = new ArrayList<UAInstance>();
     	
     	if(nodeset.getUAObjectType() != null)
@@ -1835,6 +1834,12 @@ public class InstanceSyncHandler {
     			{
     				referenceNodes.add(t);
     			}
+    			
+    			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+    			{
+    				rolePermissionNodes.add(t);
+    			}
+    			
     			success &= updateOpcUAObjectType(t, nodesToAdd, nodesToDelete);
     		}
     		
@@ -1859,6 +1864,12 @@ public class InstanceSyncHandler {
     			{
     				referenceNodes.add(t);
     			}
+    			
+    			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+    			{
+    				rolePermissionNodes.add(t);
+    			}
+    			
     			success &= updateOpcUAVariableType(t, nodesToAdd, nodesToDelete);
     		}
     		
@@ -1880,6 +1891,11 @@ public class InstanceSyncHandler {
     			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
     			{
     				referenceNodes.add(t);
+    			}
+    			
+    			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+    			{
+    				rolePermissionNodes.add(t);
     			}
     			success &= updateOpcUADataType(t, nodesToAdd, nodesToDelete);
     		}
@@ -1903,6 +1919,12 @@ public class InstanceSyncHandler {
     			{
     				referenceNodes.add(t);
     			}
+    			
+    			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+    			{
+    				rolePermissionNodes.add(t);
+    			}
+    			
     			success &= updateOpcUAReferenceType(t, nodesToAdd, nodesToDelete);
     		}
     		
@@ -1931,6 +1953,12 @@ public class InstanceSyncHandler {
     			{
     				parentNodes.add(t);
     			}
+    			
+    			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+    			{
+    				rolePermissionNodes.add(t);
+    			}
+    			
     			success &= updateOpcUAObject(t, nodesToAdd, nodesToDelete);
     		}
     		
@@ -1958,6 +1986,12 @@ public class InstanceSyncHandler {
     			{
     				parentNodes.add(t);
     			}
+    			
+    			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+    			{
+    				rolePermissionNodes.add(t);
+    			}
+    			
     			success &= updateOpcUAVariable(t, nodesToAdd, nodesToDelete);
     		}
     		
@@ -1984,6 +2018,10 @@ public class InstanceSyncHandler {
     			if(t.getParentNodeId() != null && t.getParentNodeId().length() > 0)
     			{
     				parentNodes.add(t);
+    			}
+    			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+    			{
+    				rolePermissionNodes.add(t);
     			}
     			success &= updateOpcUAMethod(t, nodesToAdd, nodesToDelete);
     		}
@@ -2012,6 +2050,10 @@ public class InstanceSyncHandler {
     			{
     				parentNodes.add(t);
     			}
+    			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+    			{
+    				rolePermissionNodes.add(t);
+    			}
     			success &= updateOpcUAView(t, nodesToAdd, nodesToDelete);
     		}
     		
@@ -2030,10 +2072,15 @@ public class InstanceSyncHandler {
     	{
     		success &= updateOpcUaParents(parentNodes);
     	}
+    	
+    	if(success || true)
+    	{
+    		success &= updateOpcUaRolePermissions(rolePermissionNodes);
+    	}
     	    	
 		return success;
 	}
-	
+
 	private boolean updateNamespaces(UriTable namespaceUris) {
 
 		EList<String> namespaces_new = namespaceUris.getUri();	
@@ -2479,17 +2526,8 @@ public class InstanceSyncHandler {
 			description.add(node.getDocumentation());
 		}
 		
-//		if(node.getRolePermissions() != null)
-//		{			
-//			// TODO: rolepermissions
-//			EDataTypeUniqueEList<Object> rolePermissions = (EDataTypeUniqueEList<Object>) uaElement.getValue(stereotype, "rolePermissions");
-////				Object rp_object = ((DynamicEObjectImpl) temp).getClass();
-////				if(this.matching.containsKey(rp_object))
-////				{
-////					ListOfRolePermissions rp = (ListOfRolePermissions) this.matching.get(rp_object);
-////					uaObjType.setRolePermissions(rp);
-////				}
-//		}
+		// rolepermissions are not done here because references are needed
+
 		// short cannot be null
 		uaElement.setValue(stereotype, "accessRestrictions", String.valueOf(node.getAccessRestrictions()));
 		
@@ -2566,7 +2604,7 @@ public class InstanceSyncHandler {
 		if(this.nodeIdMap.containsKey(node.getNodeId()))
 		{
 			uaElement = this.nodeIdMap.get(node.getNodeId());
-			
+
 			Element parent = uaElement.getOwner();
 			if(parent instanceof Package)
 			{
@@ -2626,6 +2664,7 @@ public class InstanceSyncHandler {
 			// extraced namespace id
 			String namespaceString = nodeId.split(";")[0].substring(3);
 			int namespaceId = Integer.parseInt(namespaceString);	
+			// TODO: fix the check, if packages get imported, not all are inside the nested package
 			if(this.baseUmlModel.getNestedPackages().size() < namespaceId)
 			{
 				// Namespace does not exists 
@@ -2656,6 +2695,7 @@ public class InstanceSyncHandler {
 	{
 				
 		Class uaElement = null;
+		
 		if(this.nodeIdMap.containsKey(node.getNodeId()))
 		{
 			uaElement = (Class) this.nodeIdMap.get(node.getNodeId());
@@ -2794,6 +2834,105 @@ public class InstanceSyncHandler {
 		return true;
 	}
 	
+	private boolean updateOpcUaRolePermissions(ArrayList<UANode> rolePermissionNodes) {
+		boolean success = true;
+				
+		for(UANode node : rolePermissionNodes)
+		{
+			success &= updateOpcUaRolePermission(node);
+			if(!success)
+			{
+				break;
+			}
+		}
+		
+		return success;
+	}
+	
+	private boolean updateOpcUaRolePermission(UANode rolePermissionNode) {
+		
+		Class parent = (Class) getElement(rolePermissionNode);
+		Stereotype uaNodeStereotype = getMatchingStereotype(rolePermissionNode);
+		Stereotype uaRpStereotype = getMatchingStereotype(new RolePermissionImpl());
+		EList<DynamicEObjectImpl> rpList = (EList<DynamicEObjectImpl>) parent.getValue(uaNodeStereotype, "rolePermissions");
+		ArrayList<RolePermission> existingRpList = new ArrayList<RolePermission>();
+		ArrayList<Class> elementsToDelete = new ArrayList<Class>();
+		
+		for(DynamicEObjectImpl rpObject : rpList)
+		{
+			Class rpClass = getStereotypeBaseClass(rpObject, true);
+			DynamicEObjectImpl rpValue = (DynamicEObjectImpl) rpClass.getValue(uaRpStereotype, "value");
+			if(rpValue == null)
+			{
+				elementsToDelete.add(rpClass);
+				continue;
+			}
+			Class rpValueClass = getStereotypeBaseClass(rpValue, true);
+			String rpValueNodeId = getNodeId(rpValueClass);
+			
+			boolean exists = false;
+			
+			for(RolePermission rp : rolePermissionNode.getRolePermissions().getRolePermission())
+			{
+				if(rp.getValue().equalsIgnoreCase(rpValueNodeId))
+				{
+					rpClass.setValue(uaRpStereotype, "permissions", rp.getPermissions());
+					existingRpList.add(rp);
+					exists=true;
+					break;
+				}				
+			}
+			
+			if(!exists)
+			{
+				elementsToDelete.add(rpClass);
+			}
+		}
+		
+		while(!elementsToDelete.isEmpty())
+		{
+			elementsToDelete.get(0).destroy();
+			elementsToDelete.remove(0);
+		}
+		
+		for(RolePermission rp : rolePermissionNode.getRolePermissions().getRolePermission())
+		{
+			
+			if(!existingRpList.contains(rp))
+			{
+				Package ns = parent.getNearestPackage();
+				Class rpValue = (Class) this.nodeIdMap.get(rp.getValue());
+				UANode uaRpValue = (UANode) matching.get(rpValue);
+				Stereotype rpValueStereotype = getMatchingStereotype(uaRpValue);
+				
+				String name = "RolePermissions_"+rpValue.getName();
+				
+				Class rpClass;
+				if(ns == null)
+				{
+					Model model = parent.getModel();
+					rpClass = model.createOwnedClass(name, false);
+				}
+				else
+				{
+					rpClass = ns.createOwnedClass(name, false);
+				}
+				
+				parent.getNestedClassifiers().add(rpClass);
+				rpClass.applyStereotype(uaRpStereotype);
+				rpClass.setValue(uaRpStereotype, "value", rpValue.getStereotypeApplication(rpValueStereotype));
+				rpClass.setValue(uaRpStereotype, "permissions", rp.getPermissions());
+				
+				rpList.add((DynamicEObjectImpl) rpClass.getStereotypeApplication(uaRpStereotype));
+			}
+			
+		}
+		
+		
+		return true;
+	}
+	
+	
 	private Stereotype getMatchingStereotype(Object node)
 	{
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
@@ -2837,6 +2976,10 @@ public class InstanceSyncHandler {
 		else if(node instanceof DataTypeField)
 		{
 			uaInstance  = nodeSetProfile.getOwnedStereotype("DataTypeField");
+		}
+		else if(node instanceof RolePermission)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("RolePermission");
 		}
 		
 		return uaInstance;

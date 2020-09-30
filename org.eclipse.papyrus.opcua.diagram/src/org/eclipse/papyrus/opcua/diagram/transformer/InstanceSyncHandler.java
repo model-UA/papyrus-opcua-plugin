@@ -228,18 +228,6 @@ public class InstanceSyncHandler {
 			case "ExtensionType":
 				success=transformExtensionType(object, stereotype);
 				break;
-			case "ListOfExtensions":
-				success=transformListOfExtensions(object, stereotype);
-				break;
-			case "ListOfRolePermissions":
-				success=transformListOfRolePermissions(object, stereotype);
-				break;
-			case "LocalizedText":
-				success=transformLocalizedText(object, stereotype);
-				break;
-			case "ModelTable":
-				success=transformModelTable(object, stereotype);
-				break;
 			case "ModelTableEntry":
 				success=transformModelTableEntry(object, stereotype);
 				break;
@@ -270,12 +258,6 @@ public class InstanceSyncHandler {
 			case "UANode":
 				success=transformUANode(object, stereotype);
 				break;
-			case "UANodeSetChangesStatusType":
-				success=transformUANodeSetChangesStatusType(object, stereotype);
-				break;
-			case "UANodeSetChangesType":
-				success=transformUANodeSetChangesType(object, stereotype);
-				break;
 			case "UAObject":
 				success=transformUAObject(object, stereotype);
 				break;
@@ -296,9 +278,6 @@ public class InstanceSyncHandler {
 				break;
 			case "UAView":
 				success=transformUAView(object, stereotype);
-				break;
-			case "UriTable":
-				success=transformUriTable(object, stereotype);
 				break;
 			case "ValueType":
 				success=transformValueType(object, stereotype);
@@ -372,50 +351,6 @@ public class InstanceSyncHandler {
 	private boolean transformValueType(Class object,  DynamicEObjectImpl stereotype) {
 		//EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
-	}
-
-	private boolean transformUriTable(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		
-		UriTableImpl uriTable;
-		if(this.matching.containsKey(object))
-		{
-			uriTable = (UriTableImpl) this.matching.get(object);
-		}
-		else
-		{
-			uriTable = new UriTableImpl();
-			this.matching.put(object, uriTable);
-		}
-		
-		boolean success = true;
-		for(EStructuralFeature feature : featuresList)
-		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			if(temp == null)
-			{
-				continue;
-			}
-			
-			if(name.equalsIgnoreCase("uri"))
-			{
-				try
-				{					
-					List<String> uris = (List<String>) temp;
-					uriTable.getUri().clear();
-					uriTable.getUri().addAll(uris);
-				}
-				catch (Exception e) {
-					success = false;
-				}
-			}
-			
-		}
-		
-		return success;
-		
 	}
 
 	private boolean transformUAView(Class object,  DynamicEObjectImpl stereotype) {
@@ -867,18 +802,6 @@ public class InstanceSyncHandler {
 		}
 		
 		return true;
-		
-	}
-
-	private boolean transformUANodeSetChangesType(Class object,  DynamicEObjectImpl stereotype) {
-//		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-		
-	}
-
-	private boolean transformUANodeSetChangesStatusType(Class object,  DynamicEObjectImpl stereotype) {
-// 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
 		
 	}
 
@@ -1345,38 +1268,6 @@ public class InstanceSyncHandler {
 		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
 		
-	}
-
-	private boolean transformModelTable(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-	}
-
-	private boolean transformLocalizedText(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		for(EStructuralFeature feature : featuresList)
-		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			
-			if(name.equalsIgnoreCase("value"))
-			{
-				if( this.matching.containsKey(object))
-				{
-					LocalizedTextImpl lt = (LocalizedTextImpl) this.matching.get(object);
-					lt.setValue((String)temp);
-				}
-				else
-				{
-					LocalizedTextImpl lt = new LocalizedTextImpl();
-					lt.setValue((String) temp);
-					this.matching.put(object, lt);
-				}
-			}
-		}	
-
-		return true;
 	}
 
 	private boolean transformListOfRolePermissions(Class object,  DynamicEObjectImpl stereotype) {

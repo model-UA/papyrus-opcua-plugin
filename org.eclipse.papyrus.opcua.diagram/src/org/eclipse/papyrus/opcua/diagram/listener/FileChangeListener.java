@@ -3,6 +3,7 @@ package org.eclipse.papyrus.opcua.diagram.listener;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.papyrus.opcua.diagram.Activator;
 
 public class FileChangeListener implements IResourceChangeListener{
@@ -23,41 +24,46 @@ public class FileChangeListener implements IResourceChangeListener{
 		{
 			return;
 		}
-		IResourceDelta[] affectedProjects = rootDelta.getAffectedChildren();
 		
-		for (IResourceDelta affectedProject : affectedProjects)
+		checkChildren(rootDelta);
+		
+	}
+	
+	private void checkChildren( IResourceDelta affectedObject)
+	{
+
+		IPath filePath = affectedObject.getFullPath();
+		if(filePath.getFileExtension() != null)
 		{
-			IResourceDelta[] affectedObjects = affectedProject.getAffectedChildren();
-			
-			for(IResourceDelta affectedObject : affectedObjects)
+			String fileExtension = filePath.getFileExtension();
+			if(fileExtension.equalsIgnoreCase("xml"))
 			{
-				if(affectedObject.getFullPath().getFileExtension().equalsIgnoreCase("xml"))
+				boolean success = Activator.getSynchHandler().updateNodeSet(affectedObject);
+				if(success)
 				{
-					boolean success = Activator.getSynchHandler().updateNodeSet(affectedObject);
-					if(success)
-					{
-						System.out.println("NodeSet updated succesfully");
-					}
-					else
-					{
-						System.err.print("Error when updating NodeSet");
-					}
+					System.out.println("NodeSet updated succesfully");
 				}
-				else if(affectedObject.getFullPath().getFileExtension().equalsIgnoreCase("uml"))
+				else
 				{
-					boolean success = Activator.getSynchHandler().writeToNodeSet(affectedObject);
-					if(success)
-					{
-						System.out.println("NodeSet written succesfully");
-					}
-					else
-					{
-						System.err.print("Error when writing NodeSet");
-					}
+					System.err.print("Error when updating NodeSet");
 				}
-				
 			}
-			
+			else if(fileExtension.equalsIgnoreCase("uml"))
+			{
+				boolean success = Activator.getSynchHandler().writeToNodeSet(affectedObject);
+				if(success)
+				{
+					System.out.println("NodeSet written succesfully");
+				}
+				else
+				{
+					System.err.print("Error when writing NodeSet");
+				}
+			}
+		}
+		for (IResourceDelta affectedChild : affectedObject.getAffectedChildren())
+		{
+			checkChildren(affectedChild);
 		}
 	}
 	

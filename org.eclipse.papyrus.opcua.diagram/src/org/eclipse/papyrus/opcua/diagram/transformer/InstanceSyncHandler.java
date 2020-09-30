@@ -2408,20 +2408,19 @@ public class InstanceSyncHandler {
 		{
 			String dataType = node.getDataType();
 			
-			if(dataType == null || dataType.length() == 0)
+			if(dataType != null && dataType.length() > 0)
 			{
-				return false;
+				if(this.aliasTable.containsKey(dataType))
+				{
+					dataType = this.aliasTable.get(dataType);
+				}
+				
+				if(!this.nodeIdMap.containsKey(dataType))
+				{
+					return false;
+				}
 			}
 			
-			if(this.aliasTable.containsKey(dataType))
-			{
-				dataType = this.aliasTable.get(dataType);
-			}
-			
-			if(!this.nodeIdMap.containsKey(dataType))
-			{
-				return false;
-			}
 			
 			Class varElement  = (Class) this.nodeIdMap.get(node.getNodeId());
 			
@@ -2528,14 +2527,14 @@ public class InstanceSyncHandler {
 		if(node.getNodeId() != null) {
 			String nodeId = node.getNodeId();
 			
-			if(nodeId.contains("s="))
+			if(nodeId.contains(";s="))
 			{
-				int seperator = nodeId.lastIndexOf("s=")+2;
+				int seperator = nodeId.lastIndexOf(";s=")+3;
 				nodeId = nodeId.substring(seperator);
 			}
-			else if(nodeId.contains("i="))
+			else if(nodeId.contains(";i="))
 			{
-				int seperator = nodeId.lastIndexOf("i=")+2;
+				int seperator = nodeId.lastIndexOf(";i=")+3;
 				nodeId = nodeId.substring(seperator);
 			} 
 			

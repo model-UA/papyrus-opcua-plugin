@@ -11,7 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.opcua.diagram;
 
-public class OpcUaProfileResources {
+import java.util.HashMap;
+
+public class OpcUaDiagramResources {
 	
 	public static final String PROFILES_PATHMAP = "pathmap://OPC_UA_PROFILES/"; //$NON-NLS-1$	
 
@@ -21,7 +23,13 @@ public class OpcUaProfileResources {
 
 	public static final String UANODESET_LIBRARY_PATH = LIBRARIES_PATHMAP+"UANodeSet.uml";
 	
-	private OpcUaProfileResources() {
+	public static final HashMap<String, String> NAMESPACE_PACKAGE_MAPPING = new HashMap<String, String>()
+	{{
+		
+	}};
+	
+	
+	private OpcUaDiagramResources() {
 	}
 		
 }

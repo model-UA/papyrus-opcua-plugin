@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.opcua.diagram.Activator;
-import org.eclipse.papyrus.opcua.diagram.OpcUaProfileResources;
+import org.eclipse.papyrus.opcua.diagram.OpcUaDiagramResources;
 import org.eclipse.papyrus.uml.diagram.common.commands.ModelCreationCommandBase;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Class;
@@ -54,7 +54,7 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 		super.initializeModel(owner);
 		Package packageOwner = (Package) owner;
 		// Retrieve profiles and apply it
-		URI uri_path = URI.createURI(OpcUaProfileResources.UANODESET_PROFILE_PATH);
+		URI uri_path = URI.createURI(OpcUaDiagramResources.UANODESET_PROFILE_PATH);
 		ResourceSet owner_resource = owner.eResource().getResourceSet(); 
 		Profile basetypesProfile = (Profile) PackageUtil.loadPackage(uri_path, owner_resource);
 		if (basetypesProfile != null) {
@@ -62,7 +62,7 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 		}
 		Model model = (Model) owner;
 		
-		URI lib_path = URI.createURI(OpcUaProfileResources.UANODESET_LIBRARY_PATH);
+		URI lib_path = URI.createURI(OpcUaDiagramResources.UANODESET_LIBRARY_PATH);
 		Package pack = PackageUtil.loadPackage(lib_path, owner_resource);
 		if (pack != null) {
 			model.createPackageImport(pack);

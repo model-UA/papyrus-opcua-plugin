@@ -1090,28 +1090,39 @@ public class InstanceSyncHandler {
 		{
 			Stereotype dataTypeSter = getMatchingStereotype(uaDataType);
 			
-			EnumerationLiteralImpl lit = (EnumerationLiteralImpl) object.getValue(dataTypeSter, "purpose");
-			String value = lit.toString();
-			switch(value)
+			if(object.hasValue(dataTypeSter, "purpose"))
 			{
-			case "Normal":
-				uaDataType.setPurpose(DataTypePurpose.NORMAL);
-				break;
-			case "CodeGenerator":
-				uaDataType.setPurpose(DataTypePurpose.CODE_GENERATOR);
-				break;
-			case "ServicesOnly":
-				uaDataType.setPurpose(DataTypePurpose.SERVICES_ONLY);
-				break;
+				EnumerationLiteralImpl lit = (EnumerationLiteralImpl) object.getValue(dataTypeSter, "purpose");
+				String value = lit.toString();
+				switch(value)
+				{
+				case "Normal":
+					uaDataType.setPurpose(DataTypePurpose.NORMAL);
+					break;
+				case "CodeGenerator":
+					uaDataType.setPurpose(DataTypePurpose.CODE_GENERATOR);
+					break;
+				case "ServicesOnly":
+					uaDataType.setPurpose(DataTypePurpose.SERVICES_ONLY);
+					break;
+				}
 			}
-			// TODO: add definition
 			
-			DynamicEObjectImpl definition = (DynamicEObjectImpl)object.getValue(dataTypeSter, "definition");
-			Class dataTypeDefinition = getStereotypeBaseClass(definition, true);
-			if(dataTypeDefinition != null)
+			if(object.hasValue(dataTypeSter, "definition"))
 			{
-				DataTypeDefinition dtd = (DataTypeDefinition) this.matching.get(dataTypeDefinition);
-				uaDataType.setDefinition(dtd);
+				DynamicEObjectImpl definition = (DynamicEObjectImpl)object.getValue(dataTypeSter, "definition");
+				Class dataTypeDefinition = getStereotypeBaseClass(definition, true);
+				if(dataTypeDefinition != null)
+				{
+					DataTypeDefinition dtd = (DataTypeDefinition) this.matching.get(dataTypeDefinition);
+					uaDataType.setDefinition(dtd);
+					
+					EList<Classifier> children = object.getNestedClassifiers();
+					if(!children.contains(definition))
+					{
+						children.add(dataTypeDefinition);
+					}
+				}
 			}
 		}
 
@@ -1481,6 +1492,10 @@ public class InstanceSyncHandler {
 		{			
 
 			EDataTypeUniqueEList<String> symbolicNameList = (EDataTypeUniqueEList<String>) object.getValue(sterDTF, "symbolicName");
+			if(dtf.getSymbolicName() == null)
+			{
+				dtf.setSymbolicName(new ArrayList<String>());
+			}
 			dtf.getSymbolicName().clear();
 			
 			for(String symbolicName : symbolicNameList)
@@ -1535,6 +1550,13 @@ public class InstanceSyncHandler {
 					{						
 						dtd.getField().add(dtf);
 					}
+					
+					EList<Classifier> children = object.getNestedClassifiers();
+					if(!children.contains(dataTypeField))
+					{
+						children.add(dataTypeField);
+					}
+				
 				}
 			}			
 		}
@@ -1819,6 +1841,7 @@ public class InstanceSyncHandler {
     	ArrayList<UANode> referenceNodes = new ArrayList<UANode>();
     	ArrayList<UANode> rolePermissionNodes = new ArrayList<UANode>();
     	ArrayList<UAInstance> parentNodes = new ArrayList<UAInstance>();
+    	ArrayList<UADataType> dataTypeDefinitions = new ArrayList<UADataType>();
     	
     	if(nodeset.getUAObjectType() != null)
     	{    		
@@ -1897,6 +1920,12 @@ public class InstanceSyncHandler {
     			{
     				rolePermissionNodes.add(t);
     			}
+    			
+    			if(t.getDefinition() != null )
+    			{
+    				dataTypeDefinitions.add(t);
+    			}
+    			
     			success &= updateOpcUADataType(t, nodesToAdd, nodesToDelete);
     		}
     		
@@ -2239,14 +2268,252 @@ public class InstanceSyncHandler {
 		
 		boolean success = updateOpcUaType(node, uaStereoType, uaElement);
 		
-//		if(success)
-//		{			
-			// TODO: add definition
-			// TODO: add purpose
-//		}
+		if(success)
+		{			
+			// DataTypeDefinition is parsed later
+//			 TODO: add purpose
+		}
 		
 		return success;
 	}
+	
+	private boolean updateDataTypeDefinitions( ArrayList<UADataType> dataTypes)
+	{
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UADataType");
+		boolean success = true;
+		
+		for(UADataType datatype : dataTypes)
+		{
+			Class uaElement = (Class) getElement(datatype);
+			
+			DynamicEObjectImpl definition;
+			Class definitionClass, dataTypeClass;
+			dataTypeClass = (Class) uaElement;
+					
+			if(uaElement.hasValue(uaStereoType, "definition"))
+			{
+				definition = (DynamicEObjectImpl) uaElement.getValue(uaStereoType, "definition");
+				definitionClass = getStereotypeBaseClass(definition, true);
+			}
+			else
+			{
+				Package ns = uaElement.getNearestPackage();
+				if(ns == null)
+				{
+					Model model = uaElement.getModel();
+					definitionClass = model.createOwnedClass("DataTypeDefinition", false);
+				}
+				else
+				{
+					definitionClass = ns.createOwnedClass("DataTypeDefinition", false);
+				}
+				
+				Stereotype uaDefinitionType = nodeSetProfile.getOwnedStereotype("DataTypeDefinition");
+				definitionClass.applyStereotype(uaDefinitionType);
+				definition = (DynamicEObjectImpl) definitionClass.getStereotypeApplication(uaDefinitionType);
+			}
+			
+			EList<Classifier> classifiers = dataTypeClass.getNestedClassifiers();
+			if(!classifiers.contains(definition))
+			{
+				classifiers.add(definitionClass);
+			}
+					
+			success &= updateOpcUaDataTypeDefinition(datatype.getDefinition(), definitionClass);
+			
+		}
+		
+		return success;
+	}
+	
+	private boolean updateOpcUaDataTypeDefinition(DataTypeDefinition dtd, Class definition)
+	{
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("DataTypeDefinition");
+		boolean success = true;
+		
+		if(dtd.getBaseType() != null)
+		{
+			definition.setValue(uaStereoType, "baseType", dtd.getBaseType());
+		}
+		
+		if(dtd.getField() != null)
+		{
+			success &= updateOpcUaDataTypeDefinition_Field(dtd, definition);
+		}
+		
+		if(dtd.getName() != null)
+		{
+			definition.setValue(uaStereoType, "name", dtd.getName());
+		}
+		
+		if(dtd.getSymbolicName() != null)
+		{
+			EDataTypeUniqueEList<Object> symbollicName = (EDataTypeUniqueEList<Object>) definition.getValue(uaStereoType, "symbolicName");
+			symbollicName.clear();
+			for(String symbolic : dtd.getSymbolicName())
+			{
+				symbollicName.add(symbolic);
+			}
+		}
+		
+		definition.setValue(uaStereoType, "isOptionSet", dtd.isIsOptionSet() );
+		definition.setValue(uaStereoType, "isUnion", dtd.isIsUnion() );
+		
+		
+		return success;
+	}
+	
+	private boolean updateOpcUaDataTypeDefinition_Field(DataTypeDefinition dtd, Class definition)
+	{
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("DataTypeDefinition");
+		Stereotype uaDtfType  = nodeSetProfile.getOwnedStereotype("DataTypeField");
+		
+		EcoreEList<DynamicEObjectImpl> field = (EcoreEList<DynamicEObjectImpl>) definition.getValue(uaStereoType, "field");
+		EList<Classifier> children = definition.getNestedClassifiers();
+		
+		ArrayList<DataTypeField> existingDTF = new ArrayList<DataTypeField>();
+		ArrayList<Class> deleteDTF = new ArrayList<Class>();
+		
+		boolean success = true;
+
+		for(DynamicEObjectImpl fieldEntry : field)
+		{
+			Class dataTypeField = getStereotypeBaseClass(fieldEntry, true);
+			if(dataTypeField != null)
+			{
+				DataTypeField dtf = (DataTypeField) this.matching.get(dataTypeField);
+				if(dtd.getField().contains(dtf))
+				{						
+					existingDTF.add(dtf);
+					if(!children.contains(dataTypeField))
+					{
+						children.add(dataTypeField);
+					}
+					success &= updateOpcUaDataTypeField(dtf, dataTypeField);
+				}
+				else
+				{
+					deleteDTF.add(dataTypeField);
+				}				
+			}
+		}	
+		
+		while(!deleteDTF.isEmpty())
+		{
+			deleteDTF.get(0).destroy();
+			deleteDTF.get(0);
+		}
+		
+		
+		for(DataTypeField dtf : dtd.getField())
+		{
+			if(! existingDTF.contains(dtf))
+			{
+				Package ns = definition.getNearestPackage();
+				Class dtfClass;
+				
+				if(dtf.getDataType() == null || dtf.getDataType().length() == 0)
+				{
+					success = false;
+					break;
+				}
+				
+				Class datatype = (Class) this.nodeIdMap.get(dtf.getDataType());
+				
+				if(datatype ==null || datatype.getName() == null || datatype.getName().length() ==0)
+				{						
+					success =  false;
+					break;
+				}
+
+				String name = "DataTypeField_"+datatype.getName();
+
+				if(ns == null)
+				{
+					Model model = definition.getModel();	
+					dtfClass = model.createOwnedClass(name, false);
+				}
+				else
+				{
+					dtfClass = ns.createOwnedClass(name, false);
+				}
+				children.add(dtfClass);
+				
+				dtfClass.applyStereotype(uaDtfType);
+				success &= updateOpcUaDataTypeField(dtf, dtfClass);
+			}
+		}
+		return success;
+	}
+	
+	private boolean updateOpcUaDataTypeField(DataTypeField dtf, Class field)
+	{
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("DataTypeField");
+		
+		if(dtf.getDisplayName() != null)
+		{
+			EDataTypeUniqueEList<Object> displayName = (EDataTypeUniqueEList<Object>) field.getValue(uaStereoType, "displayName");
+			displayName.clear();
+			for(LocalizedText display : dtf.getDisplayName())
+			{
+				displayName.add(display.getValue());
+			}
+		}
+		
+		if(dtf.getDescription() != null)
+		{
+			EDataTypeUniqueEList<Object> descriptionList= (EDataTypeUniqueEList<Object>) field.getValue(uaStereoType, "description");
+			descriptionList.clear();
+			for(LocalizedText description : dtf.getDescription())
+			{
+				descriptionList.add(description.getValue());
+			}
+		}
+		
+		if(dtf.getAbstractDataType() != null)
+		{
+			// TODO: abstract Data Type
+		}
+		
+		if(dtf.getArrayDimensions() != null)
+		{
+			field.setValue(uaStereoType, "arrayDimensions", dtf.getArrayDimensions() );
+		}
+
+		if(dtf.getDataType() != null)
+		{
+			// TODO:  Data Type
+		}
+		
+		field.setValue(uaStereoType, "isOptional", dtf.isIsOptional());
+		field.setValue(uaStereoType, "maxStringLength", dtf.getMaxStringLength());
+				
+		if(dtf.getName() != null)
+		{
+			field.setValue(uaStereoType, "name", dtf.getName());
+		}
+		
+		if(dtf.getSymbolicName() != null)
+		{
+			EDataTypeUniqueEList<Object> symbollicName = (EDataTypeUniqueEList<Object>) field.getValue(uaStereoType, "symbolicName");
+			symbollicName.clear();
+			for(String symbolic : dtf.getSymbolicName())
+			{
+				symbollicName.add(symbolic);
+			}
+		}
+		field.setValue(uaStereoType, "value", dtf.getValue());
+		field.setValue(uaStereoType, "valueRank", dtf.getValueRank());
+		
+		return false;
+	}
+	
+	
+	
 	
 	private boolean updateOpcUAReferenceType(UAReferenceType node, List<UAReferenceType> nodesToAdd, List<UAReferenceType> nodesToDelete) {
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");

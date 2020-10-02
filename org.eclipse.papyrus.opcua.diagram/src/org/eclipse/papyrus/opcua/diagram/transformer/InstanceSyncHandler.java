@@ -53,6 +53,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.Reference;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ReleaseStatus;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.RolePermission;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.StructureTranslationType;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.TranslationType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UADataType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAInstance;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAMethod;
@@ -2451,6 +2452,7 @@ public class InstanceSyncHandler {
 	
 	private boolean updateOpcUaDataTypeField(DataTypeField dtf, Class field)
 	{
+		boolean success = true;
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("DataTypeField");
 		
@@ -2476,7 +2478,15 @@ public class InstanceSyncHandler {
 		
 		if(dtf.getAbstractDataType() != null)
 		{
-			// TODO: abstract Data Type
+			Object abstractDataType = getUmlNodeReference(dtf.getAbstractDataType());
+			if(abstractDataType == null)
+			{
+				success = false;
+			}
+			else
+			{				
+				field.setValue(uaStereoType, "abstractDataType", abstractDataType);
+			}
 		}
 		
 		if(dtf.getArrayDimensions() != null)
@@ -2486,7 +2496,15 @@ public class InstanceSyncHandler {
 
 		if(dtf.getDataType() != null)
 		{
-			// TODO:  Data Type
+			Object dataType = getUmlNodeReference(dtf.getDataType());
+			if(dataType == null)
+			{
+				success = false;
+			}
+			else
+			{				
+				field.setValue(uaStereoType, "dataType", dataType);
+			}
 		}
 		
 		field.setValue(uaStereoType, "isOptional", dtf.isIsOptional());
@@ -2509,11 +2527,8 @@ public class InstanceSyncHandler {
 		field.setValue(uaStereoType, "value", dtf.getValue());
 		field.setValue(uaStereoType, "valueRank", dtf.getValueRank());
 		
-		return false;
+		return success;
 	}
-	
-	
-	
 	
 	private boolean updateOpcUAReferenceType(UAReferenceType node, List<UAReferenceType> nodesToAdd, List<UAReferenceType> nodesToDelete) {
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
@@ -2541,7 +2556,6 @@ public class InstanceSyncHandler {
 		
 		if(success)
 		{			
-			
 			if(node.getInverseName() != null)
 			{
 				
@@ -2551,7 +2565,6 @@ public class InstanceSyncHandler {
 					displayNames.add(inverseName.getValue());
 				}
 			}
-			
 			
 			uaElement.setValue(uaStereoType, "symmetric", String.valueOf(node.isSymmetric()));
 		}
@@ -2646,15 +2659,42 @@ public class InstanceSyncHandler {
 			
 			varElement.setValue(uaInstance, "dataType", varDataType.getStereotypeApplication(sterUaDataType));
 			
-			//TODO: Add value
-			//TODO: Add translation
-			//TODO: Add accessLevel
-			//TODO: Add arrayDimensions
-			//TODO: Add dataType
-			//TODO: Add historizing
-			//TODO: Add minimumSamplingInterval
-			//TODO: Add userAccessLevel
-			//TODO: Add valueRank
+			if(node.getValue() != null)
+			{				
+				//TODO: Add value
+			}
+
+			uaElement.setValue(sterUaDataType, "accessLevel", node.getAccessLevel());
+			uaElement.setValue(sterUaDataType, "arrayDimensions", node.getArrayDimensions());
+						
+			if(node.getDataType() != null)
+			{				
+				Object dataTypeObject = getUmlNodeReference(node.getDataType());
+				if(dataType == null)
+				{
+					success = false;
+				}
+				else
+				{				
+					uaElement.setValue(uaStereoType, "dataType", dataTypeObject);
+				}
+			}
+			
+			uaElement.setValue(sterUaDataType, "historizing", node.isHistorizing());
+			uaElement.setValue(sterUaDataType, "minimumSamplingInterval", node.getMinimumSamplingInterval());
+			
+			if(node.getTranslation() != null)
+			{				
+				//TODO: Add translation
+//				EList<TranslationType> tt = node.getTranslation();
+//				for(TranslationType transType : tt)
+//				{
+//					transType.
+//				}
+			}
+			
+			uaElement.setValue(sterUaDataType, "userAccessLevel", node.getUserAccessLevel());
+			uaElement.setValue(sterUaDataType, "valueRank", node.getValueRank());
 		}
 
 
@@ -2687,13 +2727,23 @@ public class InstanceSyncHandler {
 		 
 		boolean success = updateOpcUaInstance(node, uaStereoType, uaElement);
 		
-//		if(success)
-//		{
-					//TODO: Add argumentDescription
-					//TODO: Add executable
-					//TODO: Add methodDeclarationId
-					//TODO: Add userExecutable
-//		}
+		if(success)
+		{
+			Stereotype uaMethodSter = getMatchingStereotype(node);
+			
+			if(node.getArgumentDescription() != null)
+			{				
+				//TODO: Add argumentDescription
+			}
+			uaElement.setValue(uaMethodSter, "executable", node.isExecutable());
+			
+			if(node.getMethodDeclarationId() != null)
+			{
+				//TODO: Add methodDeclarationId				
+			}
+			
+			uaElement.setValue(uaMethodSter, "userExecutable", node.isUserExecutable());
+		}
 		return success;
 	}
 	
@@ -3007,33 +3057,27 @@ public class InstanceSyncHandler {
 	private boolean updateOpcUaNodeReference(Class uaElement, Reference ref)
 	{
 		boolean success = true;
-		
-		String refTypeString = ref.getReferenceType();
-		if(this.aliasTable.containsKey(refTypeString))
-		{
-			refTypeString = this.aliasTable.get(refTypeString);
-		}
-
+	
 		String refValueString = ref.getValue();
-		if(this.aliasTable.containsKey(refTypeString))
-		{
-			refValueString = this.aliasTable.get(refTypeString);
-		}
-		
-		
-		if(!this.nodeIdMap.containsKey(refTypeString) ||
-			!this.nodeIdMap.containsKey(refValueString)	)
+
+		if(!this.nodeIdMap.containsKey(refValueString)	)
 		{
 			return false;
 		}
 		
-		Element refType = this.nodeIdMap.get(refTypeString);
-		
-		Class refValue = (Class) this.nodeIdMap.get(refValueString);
-		
+		Object refType = getUmlNodeReference(ref.getReferenceType());
+		if(refType == null)
+		{
+			return false;
+		}
+		Class refValue = getUmlNode(ref.getValue());
+		if(refValue == null)
+		{
+			return false;
+		}
+				
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaReference  = nodeSetProfile.getOwnedStereotype("Reference");
-		Stereotype uaReferenceType  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
 		
 		Generalization reference;
 		if(uaElement.getGenerals().size() > 0 &&
@@ -3047,9 +3091,10 @@ public class InstanceSyncHandler {
 			reference = uaElement.createGeneralization(refValue);
 			reference.applyStereotype(uaReference);	
 		}
+		
 		reference.setValue(uaReference,"value", refValueString);
 		reference.setValue(uaReference,"isForward", String.valueOf(ref.isIsForward()));
-		reference.setValue(uaReference,"referenceType", refType.getStereotypeApplication(uaReferenceType));
+		reference.setValue(uaReference,"referenceType", refType);
 		
 		
 		return success;
@@ -3071,34 +3116,52 @@ public class InstanceSyncHandler {
 
 	private boolean updateOpcUaParent(UAInstance inst) {
 
-		String parent = inst.getParentNodeId();
-		
-		if(parent == null || parent.length() == 0)
-		{
-			return false;
-		}
-		
-		if(this.aliasTable.containsKey(parent))
-		{
-			parent = this.aliasTable.get(parent);
-		}
-		
-		if(!this.nodeIdMap.containsKey(parent))
-		{
-			return false;
-		}
-		
-		Class varElement  = (Class) this.nodeIdMap.get(inst.getNodeId());
-		
-		Class varParent = (Class) this.nodeIdMap.get(parent);
-		UANode uaVarParent = (UANode) matching.get(varParent);
+		Object parent = getUmlNodeReference(inst.getParentNodeId());
+		Class varElement = getUmlNode(inst.getNodeId());
 		
 		Stereotype uaInstance = getMatchingStereotype(inst);
-		Stereotype uaParent = getMatchingStereotype(uaVarParent);
-		
-		varElement.setValue(uaInstance, "parentNodeId", varParent.getStereotypeApplication(uaParent));
+		varElement.setValue(uaInstance, "parentNodeId", parent);
 		
 		return true;
+	}
+	
+	private Class getUmlNode(String nodeId)
+	{		
+		if(nodeId == null || nodeId.length() == 0)
+		{
+			return null;
+		}
+		
+		if(this.aliasTable.containsKey(nodeId))
+		{
+			nodeId = this.aliasTable.get(nodeId);
+		}
+		
+		if(!this.nodeIdMap.containsKey(nodeId))
+		{
+			return null;
+		}
+				
+		Class umlElement = (Class) this.nodeIdMap.get(nodeId);
+		
+		return umlElement;
+	}
+	
+	private Object getUmlNodeReference(String nodeId)
+	{
+		Class umlElement = getUmlNode(nodeId);
+		if(umlElement == null)
+		{
+			return null;
+		}
+		UANode uaElement = (UANode) matching.get(umlElement);
+		Stereotype stereotype = getMatchingStereotype(uaElement);
+		if(stereotype == null)
+		{
+			return null;
+		}
+		
+		return umlElement.getStereotypeApplication(stereotype);		
 	}
 	
 	private boolean updateOpcUaRolePermissions(ArrayList<UANode> rolePermissionNodes) {

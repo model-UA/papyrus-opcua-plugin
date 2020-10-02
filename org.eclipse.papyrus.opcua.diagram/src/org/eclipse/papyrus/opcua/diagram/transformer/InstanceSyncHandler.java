@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
+import org.eclipse.emf.edit.command.ChildrenToCopyProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.opcua.nodeset.parser.NodeSetParser;
@@ -45,6 +46,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeField;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypePurpose;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfExtensions;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfReferences;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfRolePermissions;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.LocalizedText;
@@ -67,6 +69,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariableType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAView;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UriTable;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.ValueType1;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.AliasTableImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.DataTypeDefinitionImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.DataTypeFieldImpl;
@@ -1841,7 +1844,7 @@ public class InstanceSyncHandler {
     	
     	ArrayList<UANode> referenceNodes = new ArrayList<UANode>();
     	ArrayList<UANode> rolePermissionNodes = new ArrayList<UANode>();
-    	ArrayList<UAInstance> parentNodes = new ArrayList<UAInstance>();
+    	ArrayList<UAInstance> uaInstanceReferences = new ArrayList<UAInstance>();
     	ArrayList<UADataType> dataTypeDefinitions = new ArrayList<UADataType>();
     	
     	if(nodeset.getUAObjectType() != null)
@@ -1865,6 +1868,11 @@ public class InstanceSyncHandler {
     			}
     			
     			success &= updateOpcUAObjectType(t, nodesToAdd, nodesToDelete);
+    			if(!success)
+    			{
+    				success &= updateOpcUAObjectType(t, nodesToAdd, nodesToDelete);
+    				break;
+    			}
     		}
     		
     		// Important first remove old elements than add new ones
@@ -1895,6 +1903,11 @@ public class InstanceSyncHandler {
     			}
     			
     			success &= updateOpcUAVariableType(t, nodesToAdd, nodesToDelete);
+    			if(!success)
+    			{
+    				success &= updateOpcUAVariableType(t, nodesToAdd, nodesToDelete);
+    				break;
+    			}
     		}
     		
     		// Important first remove old elements than add new ones
@@ -1928,6 +1941,11 @@ public class InstanceSyncHandler {
     			}
     			
     			success &= updateOpcUADataType(t, nodesToAdd, nodesToDelete);
+    			if(!success)
+    			{
+    				success &= updateOpcUADataType(t, nodesToAdd, nodesToDelete);
+    				break;
+    			}
     		}
     		
     		// Important first remove old elements than add new ones
@@ -1956,6 +1974,11 @@ public class InstanceSyncHandler {
     			}
     			
     			success &= updateOpcUAReferenceType(t, nodesToAdd, nodesToDelete);
+    			if(!success)
+    			{
+    				success &= updateOpcUAReferenceType(t, nodesToAdd, nodesToDelete);
+    				break;
+    			}
     		}
     		
     		// Important first remove old elements than add new ones
@@ -1981,7 +2004,7 @@ public class InstanceSyncHandler {
     			
     			if(t.getParentNodeId() != null && t.getParentNodeId().length() > 0)
     			{
-    				parentNodes.add(t);
+    				uaInstanceReferences.add(t);
     			}
     			
     			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
@@ -1990,6 +2013,11 @@ public class InstanceSyncHandler {
     			}
     			
     			success &= updateOpcUAObject(t, nodesToAdd, nodesToDelete);
+    			if(!success)
+    			{
+    				success &= updateOpcUAObject(t, nodesToAdd, nodesToDelete);
+    				break;
+    			}
     		}
     		
     		// Important first remove old elements than add new ones
@@ -2012,9 +2040,10 @@ public class InstanceSyncHandler {
     			{
     				referenceNodes.add(t);
     			}
-    			if(t.getParentNodeId() != null && t.getParentNodeId().length() > 0)
+    			if((t.getParentNodeId() != null && t.getParentNodeId().length() > 0) ||
+					t.getDataType() != null && t.getDataType().length() > 0)
     			{
-    				parentNodes.add(t);
+    				uaInstanceReferences.add(t);
     			}
     			
     			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
@@ -2023,6 +2052,11 @@ public class InstanceSyncHandler {
     			}
     			
     			success &= updateOpcUAVariable(t, nodesToAdd, nodesToDelete);
+    			if(!success)
+    			{
+    				success &= updateOpcUAVariable(t, nodesToAdd, nodesToDelete);
+    				break;
+    			}
     		}
     		
     		// Important first remove old elements than add new ones
@@ -2047,13 +2081,18 @@ public class InstanceSyncHandler {
     			}
     			if(t.getParentNodeId() != null && t.getParentNodeId().length() > 0)
     			{
-    				parentNodes.add(t);
+    				uaInstanceReferences.add(t);
     			}
     			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
     			{
     				rolePermissionNodes.add(t);
     			}
     			success &= updateOpcUAMethod(t, nodesToAdd, nodesToDelete);
+    			if(!success)
+    			{
+    				success &= updateOpcUAMethod(t, nodesToAdd, nodesToDelete);
+    				break;
+    			}
     		}
     		// Important first remove old elements than add new ones
     		this.baseNodeset.getUAMethod().removeAll(nodesToDelete);
@@ -2078,13 +2117,18 @@ public class InstanceSyncHandler {
     			}
     			if(t.getParentNodeId() != null && t.getParentNodeId().length() > 0)
     			{
-    				parentNodes.add(t);
+    				uaInstanceReferences.add(t);
     			}
     			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
     			{
     				rolePermissionNodes.add(t);
     			}
     			success &= updateOpcUAView(t, nodesToAdd, nodesToDelete);
+    			if(!success)
+    			{
+    				success &= updateOpcUAView(t, nodesToAdd, nodesToDelete);
+    				break;
+    			}
     		}
     		
     		// Important first remove old elements than add new ones
@@ -2100,7 +2144,7 @@ public class InstanceSyncHandler {
     	
     	if(success)
     	{
-    		success &= updateOpcUaParents(parentNodes);
+    		success &= updateOpcUaInstanceReferences(uaInstanceReferences);
     	}
     	
     	if(success || true)
@@ -2633,55 +2677,74 @@ public class InstanceSyncHandler {
 		
 		if(success)
 		{
-			String dataType = node.getDataType();
-			
-			if(dataType != null && dataType.length() > 0)
-			{
-				if(this.aliasTable.containsKey(dataType))
-				{
-					dataType = this.aliasTable.get(dataType);
-				}
-				
-				if(!this.nodeIdMap.containsKey(dataType))
-				{
-					return false;
-				}
-			}
-			
-			
 			Class varElement  = (Class) this.nodeIdMap.get(node.getNodeId());
-			
-			Class varDataType = (Class) this.nodeIdMap.get(dataType);
-			UANode uaDataType = (UANode) matching.get(varDataType);
-			
 			Stereotype uaInstance = getMatchingStereotype(node);
-			Stereotype sterUaDataType = getMatchingStereotype(uaDataType);
-			
-			varElement.setValue(uaInstance, "dataType", varDataType.getStereotypeApplication(sterUaDataType));
+
+//			String dataType = node.getDataType();
+//			
+//			if(dataType != null && dataType.length() > 0)
+//			{
+//				if(this.aliasTable.containsKey(dataType))
+//				{
+//					dataType = this.aliasTable.get(dataType);
+//				}
+//				
+//				if(!this.nodeIdMap.containsKey(dataType))
+//				{
+//					return false;
+//				}
+//			}
+//			else
+//			{
+//				return false;
+//			}
+//			
+//			
+//			
+//			Class varDataType = (Class) this.nodeIdMap.get(dataType);
+//			UANode uaDataType = (UANode) matching.get(varDataType);
+//			
+//			Stereotype sterUaDataType = getMatchingStereotype(uaDataType);
+//			
+//			varElement.setValue(uaInstance, "dataType", varDataType.getStereotypeApplication(sterUaDataType));
 			
 			if(node.getValue() != null)
-			{				
+			{		
+				DynamicEObjectImpl value;
+				if(varElement.hasValue(uaInstance, "value"))
+				{
+					value = (DynamicEObjectImpl) varElement.getValue(uaInstance, "value");
+				}
+				else
+				{
+					
+				}
+				
 				//TODO: Add value
+				ValueType1 test = node.getValue();
+				
+				String asf = "=asdfasfd";
+				
 			}
 
-			uaElement.setValue(sterUaDataType, "accessLevel", node.getAccessLevel());
-			uaElement.setValue(sterUaDataType, "arrayDimensions", node.getArrayDimensions());
+			
+			uaElement.setValue(uaStereoType, "accessLevel", node.getAccessLevel());
+			
+			if(node.getArrayDimensions() != null && node.getArrayDimensions().length() > 0)
+			{
+				// TODO: fix ArrayDimensions
+//				String stringToConvert = node.getArrayDimensions();
+//				Long convertedLong = Long.valueOf(stringToConvert);
+//				uaElement.setValue(uaStereoType, "arrayDimensions", convertedLong);
+			}
 						
 			if(node.getDataType() != null)
 			{				
-				Object dataTypeObject = getUmlNodeReference(node.getDataType());
-				if(dataType == null)
-				{
-					success = false;
-				}
-				else
-				{				
-					uaElement.setValue(uaStereoType, "dataType", dataTypeObject);
-				}
+				
 			}
 			
-			uaElement.setValue(sterUaDataType, "historizing", node.isHistorizing());
-			uaElement.setValue(sterUaDataType, "minimumSamplingInterval", node.getMinimumSamplingInterval());
+			uaElement.setValue(uaStereoType, "historizing", node.isHistorizing());
+			uaElement.setValue(uaStereoType, "minimumSamplingInterval", node.getMinimumSamplingInterval());
 			
 			if(node.getTranslation() != null)
 			{				
@@ -2693,8 +2756,8 @@ public class InstanceSyncHandler {
 //				}
 			}
 			
-			uaElement.setValue(sterUaDataType, "userAccessLevel", node.getUserAccessLevel());
-			uaElement.setValue(sterUaDataType, "valueRank", node.getValueRank());
+			uaElement.setValue(uaStereoType, "userAccessLevel", node.getUserAccessLevel());
+			uaElement.setValue(uaStereoType, "valueRank", node.getValueRank());
 		}
 
 
@@ -2892,7 +2955,13 @@ public class InstanceSyncHandler {
 		// userWriteMask and writeMask cannot be null since they are Shorts
 		uaElement.setValue(stereotype, "userWriteMask", String.valueOf(node.getUserWriteMask()));
 		uaElement.setValue(stereotype, "writeMask", String.valueOf(node.getWriteMask()));
-			
+		
+		if(node.getExtensions() != null)
+		{
+			ListOfExtensions test = node.getExtensions();
+			String asf = "=asdfasfd";
+		}
+		
 		return true;
 	}
 		
@@ -2926,7 +2995,7 @@ public class InstanceSyncHandler {
 			if(parent instanceof Package)
 			{
 				Package parentNS = (Package) parent;
-				if(parentNS == null || !parentNS.getURI().equals(namespace))
+				if(parentNS == null || parentNS.getURI()==null || !parentNS.getURI().equals(namespace))
 				{
 					// Element in wrong Namespace 
 					uaElement = null;
@@ -3100,7 +3169,7 @@ public class InstanceSyncHandler {
 		return success;
 	}
 	
-	private boolean updateOpcUaParents(ArrayList<UAInstance> parentNodes) {
+	private boolean updateOpcUaInstanceReferences(ArrayList<UAInstance> parentNodes) {
 		boolean success = true;
 		for(UAInstance var : parentNodes)
 		{
@@ -3109,6 +3178,16 @@ public class InstanceSyncHandler {
 			{
 				break;
 			}
+			if(var instanceof UAVariable)
+			{
+				success &= updateOpcUaDatatype((UAVariable) var);
+				if(!success)
+				{
+					break;
+				}
+				
+			}
+			
 		}
 		
 		return success;
@@ -3117,12 +3196,40 @@ public class InstanceSyncHandler {
 	private boolean updateOpcUaParent(UAInstance inst) {
 
 		Object parent = getUmlNodeReference(inst.getParentNodeId());
+		
 		Class varElement = getUmlNode(inst.getNodeId());
 		
 		Stereotype uaInstance = getMatchingStereotype(inst);
 		varElement.setValue(uaInstance, "parentNodeId", parent);
 		
+		Class varParent = getUmlNode(inst.getParentNodeId());
+		EList<Classifier> children = varParent.getNestedClassifiers();
+		if(!children.contains(varElement))
+		{
+			children.add(varElement);
+		}
 		return true;
+	}
+	
+	private boolean updateOpcUaDatatype(UAVariable var)
+	{
+		
+		Class varElement  = (Class) this.nodeIdMap.get(var.getNodeId());
+		Stereotype uaInstance = getMatchingStereotype(var);
+		
+		Object dataTypeObject = getUmlNodeReference(var.getDataType());
+		boolean success = true;
+		
+		if(dataTypeObject == null)
+		{
+			success = false;
+		}
+		else
+		{				
+			varElement.setValue(uaInstance, "dataType", dataTypeObject);
+		}
+		
+		return success;
 	}
 	
 	private Class getUmlNode(String nodeId)

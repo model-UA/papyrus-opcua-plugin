@@ -1,9 +1,11 @@
 package org.eclipse.papyrus.opcua.diagram.transformer;
 
 import java.lang.reflect.InvocationTargetException;
+import java.net.http.HttpResponse.BodyHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map.Entry;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -26,12 +28,14 @@ import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
+import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.edit.command.ChildrenToCopyProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.opcua.nodeset.parser.NodeSetParser;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Model;
@@ -42,10 +46,14 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 import org.eclipse.uml2.uml.internal.impl.EnumerationLiteralImpl;
 import org.eclipse.uml2.uml.internal.impl.PropertyImpl;
+import org.opcfoundation.ua._2008._02.types.BodyType;
+import org.opcfoundation.ua._2008._02.types.ExtensionObject;
+import org.opcfoundation.ua._2008._02.types.ListOfExtensionObject;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeField;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypePurpose;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.ExtensionType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfExtensions;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfReferences;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfRolePermissions;
@@ -1023,7 +1031,7 @@ public class InstanceSyncHandler {
 			}
 			else if(name.equalsIgnoreCase("executable"))
 			{
-				// 
+				// TODO: executable
 			}
 			else if(name.equalsIgnoreCase("methodDeclarationId"))
 			{
@@ -1841,11 +1849,11 @@ public class InstanceSyncHandler {
     		success &= updateOpcUAliasTable(nodeset.getAliases());
     	}
     	
-    	
     	ArrayList<UANode> referenceNodes = new ArrayList<UANode>();
     	ArrayList<UANode> rolePermissionNodes = new ArrayList<UANode>();
     	ArrayList<UAInstance> uaInstanceReferences = new ArrayList<UAInstance>();
     	ArrayList<UADataType> dataTypeDefinitions = new ArrayList<UADataType>();
+    	ArrayList<UAReferenceType> referenceTypes = new ArrayList<UAReferenceType>();
     	
     	if(nodeset.getUAObjectType() != null)
     	{    		
@@ -1957,16 +1965,13 @@ public class InstanceSyncHandler {
     	{    		
     		// adding and removing needs to be done via list otherwise 
     		// ConcurrentModificationException
-    		EList<UAReferenceType> uaDataTypes = nodeset.getUAReferenceType();
+    		EList<UAReferenceType> uaReferenceTypes = nodeset.getUAReferenceType();
     		List<UAReferenceType> nodesToAdd = new ArrayList<UAReferenceType>();
     		List<UAReferenceType> nodesToDelete = new ArrayList<UAReferenceType>();
     		
-    		for(UAReferenceType t : uaDataTypes)
+    		for(UAReferenceType t : uaReferenceTypes)
     		{
-    			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
-    			{
-    				referenceNodes.add(t);
-    			}
+    			referenceTypes.add(t);
     			
     			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
     			{
@@ -1974,6 +1979,7 @@ public class InstanceSyncHandler {
     			}
     			
     			success &= updateOpcUAReferenceType(t, nodesToAdd, nodesToDelete);
+
     			if(!success)
     			{
     				success &= updateOpcUAReferenceType(t, nodesToAdd, nodesToDelete);
@@ -2139,6 +2145,11 @@ public class InstanceSyncHandler {
     	
     	if(success)
     	{
+    		success &= updateOpcUaReferenceTypesReferences(referenceTypes);
+    	}
+    	
+    	if(success)
+    	{
     		success &= updateOpcUaReferences(referenceNodes);
     	}
     	
@@ -2154,6 +2165,7 @@ public class InstanceSyncHandler {
     	    	
 		return success;
 	}
+
 
 	private boolean updateNamespaces(UriTable namespaceUris) {
 
@@ -2839,6 +2851,7 @@ public class InstanceSyncHandler {
 	private boolean updateOpcUaInstance(UAInstance node, Stereotype stereotype, Element uaElement) {
 
 		boolean success = updateOpcUaNode(node, stereotype, uaElement);
+		
 		// ParentNodeId is parsed in a later step
 		return success;
 	}
@@ -3062,6 +3075,109 @@ public class InstanceSyncHandler {
 		return namespace;
 	}
 	
+	private boolean updateOpcUaReferenceTypesReferences(ArrayList<UAReferenceType> referenceTypes) {
+		boolean success = true;
+		// create references between ReferenceTypes
+		for(UAReferenceType rt : referenceTypes)
+		{
+			success &= updateOpcUaNodeReferences(rt);
+			if(!success)
+			{
+				break;
+			}
+		}
+		// Analyse if reference Type is a hierachical Reference Type
+		for(UAReferenceType rt : referenceTypes)
+		{
+			success &= handleHierachicalTypes(rt);
+			if(!success)
+			{
+				break;
+			}
+		}
+		
+		return success;
+	}
+	
+	private boolean handleHierachicalTypes(UAReferenceType referenceType)
+	{
+		
+ 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaReference  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
+		Class uaElement = (Class) this.nodeIdMap.get(referenceType.getNodeId());
+	
+		if(uaElement.getName().equalsIgnoreCase("HierarchicalReferences"))
+		{
+			uaElement.setValue(uaReference, "isHierachical", true);
+		}
+		else if(uaElement.getName().equalsIgnoreCase("References"))
+		{
+			uaElement.setValue(uaReference, "isHierachical", false);
+		}
+		
+		for(Generalization reference : uaElement.getGeneralizations())
+		{
+			for(Element target :reference.getTargets())
+			{
+				Class uaRefType = (Class)target;
+				if(!uaRefType.hasValue(uaReference, "isHierachical") &&
+				   !uaElement.hasValue(uaReference, "isHierachical"))
+				{
+					handleHierachicalTypes(uaRefType,uaReference);
+				}
+
+				EList<Classifier> children = uaRefType.getNestedClassifiers();
+				if(!children.contains(uaElement))
+				{
+					children.add(uaElement);
+				}
+				
+				if(!uaElement.hasValue(uaReference, "isHierachical"))
+				{
+					boolean isHierachical = (boolean) uaRefType.getValue(uaReference, "isHierachical");
+					uaElement.setValue(uaReference, "isHierachical", isHierachical);
+				}
+			}
+		}
+		
+		return true;
+	}
+	
+	private boolean handleHierachicalTypes(Class referenceType, Stereotype uaReference)
+	{
+	    
+		if(!referenceType.getName().equalsIgnoreCase("HierarchicalReferences") &&
+		   !referenceType.getName().equalsIgnoreCase("References"))
+		{
+			for(Generalization reference : referenceType.getGeneralizations() )
+			{
+				for(Element target :reference.getTargets())
+				{
+					Class uaRefType = (Class)target;
+					if(!uaRefType.hasValue(uaReference, "isHierachical") &&
+					   !referenceType.hasValue(uaReference, "isHierachical"))
+					{
+						handleHierachicalTypes(uaRefType,uaReference);
+					}
+	
+					EList<Classifier> children = uaRefType.getNestedClassifiers();
+					if(!children.contains(referenceType))
+					{
+						children.add(referenceType);
+					}
+					
+					if(!referenceType.hasValue(uaReference, "isHierachical"))
+					{
+						boolean isHierachical = (boolean) uaRefType.getValue(uaReference, "isHierachical");
+						referenceType.setValue(uaReference, "isHierachical", isHierachical);
+					}
+				}
+			}
+		}
+		return true;
+	}
+	
+		
 	private boolean updateOpcUaReferences(ArrayList<UANode> referenceNodes)
 	{
 		boolean success = true;
@@ -3164,7 +3280,22 @@ public class InstanceSyncHandler {
 		reference.setValue(uaReference,"value", refValueString);
 		reference.setValue(uaReference,"isForward", String.valueOf(ref.isIsForward()));
 		reference.setValue(uaReference,"referenceType", refType);
+				
+		Class uaReferenceType = getUmlNode(ref.getReferenceType());
+		uaReference  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
 		
+		boolean isHierachicalReference = (boolean) uaReferenceType.getValue(uaReference, "isHierachical");
+		if(isHierachicalReference)
+		{
+			if(ref.isIsForward())
+			{
+				uaElement.getNestedClassifiers().add(refValue);
+			}
+			else
+			{				
+				refValue.getNestedClassifiers().add(uaElement);
+			}
+		}
 		
 		return success;
 	}
@@ -3173,11 +3304,17 @@ public class InstanceSyncHandler {
 		boolean success = true;
 		for(UAInstance var : parentNodes)
 		{
-			success &= updateOpcUaParent(var);
-			if(!success)
+			// check if parent node id is set
+			if(var.getParentNodeId() != null && var.getParentNodeId().length() > 0)
 			{
-				break;
+				success &= updateOpcUaParent(var);
+				if(!success)
+				{
+					break;
+				}
 			}
+			
+			// check if UAVariable and set the datatype
 			if(var instanceof UAVariable)
 			{
 				success &= updateOpcUaDatatype((UAVariable) var);
@@ -3194,7 +3331,7 @@ public class InstanceSyncHandler {
 	}
 
 	private boolean updateOpcUaParent(UAInstance inst) {
-
+		// get stereotype Application of parent element
 		Object parent = getUmlNodeReference(inst.getParentNodeId());
 		
 		Class varElement = getUmlNode(inst.getNodeId());
@@ -3202,7 +3339,9 @@ public class InstanceSyncHandler {
 		Stereotype uaInstance = getMatchingStereotype(inst);
 		varElement.setValue(uaInstance, "parentNodeId", parent);
 		
+		// get UML Element of parent to add UAInstance as child
 		Class varParent = getUmlNode(inst.getParentNodeId());
+		
 		EList<Classifier> children = varParent.getNestedClassifiers();
 		if(!children.contains(varElement))
 		{

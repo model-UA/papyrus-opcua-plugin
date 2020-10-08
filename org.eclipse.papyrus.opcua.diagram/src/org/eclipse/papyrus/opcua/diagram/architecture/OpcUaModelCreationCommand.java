@@ -62,11 +62,6 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 		}
 		Model model = (Model) owner;
 		
-		URI lib_path = URI.createURI(OpcUaDiagramResources.UANODESET_LIBRARY_PATH);
-		Package pack = PackageUtil.loadPackage(lib_path, owner_resource);
-		if (pack != null) {
-			model.createPackageImport(pack);
-		}
 		model.setViewpoint("InformationModel");
 		
 		Activator.getSynchHandler().registerNewUmlModel(model);

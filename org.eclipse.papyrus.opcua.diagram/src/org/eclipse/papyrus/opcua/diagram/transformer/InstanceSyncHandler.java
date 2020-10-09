@@ -2892,21 +2892,29 @@ public class InstanceSyncHandler {
 		
 		if(node.getNodeId() != null) {
 			String nodeId = node.getNodeId();
+
+			this.nodeIdMap.put(nodeId, uaElement);			
 			
-			if(nodeId.contains(";s="))
+			if(nodeId.startsWith("ns="))
 			{
-				int seperator = nodeId.lastIndexOf(";s=")+3;
+				// remove namespace indicator if existing
+				int seperator = nodeId.indexOf(";")+1;
 				nodeId = nodeId.substring(seperator);
 			}
-			else if(nodeId.contains(";i="))
+			
+			if(nodeId.contains("s="))
 			{
-				int seperator = nodeId.lastIndexOf(";i=")+3;
+				int seperator = nodeId.lastIndexOf("s=")+2;
+				nodeId = nodeId.substring(seperator);
+			}
+			else if(nodeId.contains("i="))
+			{
+				int seperator = nodeId.lastIndexOf("i=")+2;
 				nodeId = nodeId.substring(seperator);
 			} 
 			
 			uaElement.setValue(stereotype, "nodeId", nodeId);
 						
-			this.nodeIdMap.put(nodeId, uaElement);			
 		}
 		else
 		{
@@ -3025,22 +3033,22 @@ public class InstanceSyncHandler {
 			uaElement = this.nodeIdMap.get(node.getNodeId());
 
 			Element parent = uaElement.getOwner();
-			if(parent instanceof Package)
-			{
-				Package parentNS = (Package) parent;
-				if(parentNS == null || parentNS.getURI()==null || !parentNS.getURI().equals(namespace))
-				{
-					// Element in wrong Namespace 
-					uaElement = null;
-					this.matching.remove(uaElement);
-				}
-			}
-			else
+			if(parent instanceof Model)
 			{
 				// parent is model => ns 0
 				if(namespaceId != 0)
 				{
 					// Element not in default Namespace
+					uaElement = null;
+					this.matching.remove(uaElement);
+				}
+			}
+			else if(parent instanceof Package)
+			{
+				Package parentNS = (Package) parent;
+				if(parentNS == null || parentNS.getURI()==null || !parentNS.getURI().equals(namespace))
+				{
+					// Element in wrong Namespace 
 					uaElement = null;
 					this.matching.remove(uaElement);
 				}

@@ -1,12 +1,9 @@
 package org.eclipse.papyrus.opcua.diagram.transformer;
 
-import java.lang.reflect.InvocationTargetException;
-import java.net.http.HttpResponse.BodyHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map.Entry;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -15,14 +12,9 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
@@ -30,41 +22,31 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.edit.command.ChildrenToCopyProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.opcua.nodeset.parser.NodeSetParser;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 import org.eclipse.uml2.uml.internal.impl.EnumerationLiteralImpl;
-import org.eclipse.uml2.uml.internal.impl.PropertyImpl;
-import org.opcfoundation.ua._2008._02.types.BodyType;
-import org.opcfoundation.ua._2008._02.types.ExtensionObject;
-import org.opcfoundation.ua._2008._02.types.ListOfExtensionObject;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeField;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypePurpose;
-import org.opcfoundation.ua._2011._03.ua.UANodeSet.ExtensionType;
-import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfExtensions;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfReferences;
-import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfRolePermissions;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.LocalizedText;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.NodeIdAlias;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.Reference;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ReleaseStatus;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.RolePermission;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.StructureTranslationType;
-import org.opcfoundation.ua._2011._03.ua.UANodeSet.TranslationType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UADataType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAInstance;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAMethod;
@@ -425,7 +407,10 @@ public class InstanceSyncHandler {
 		{
 			uaView = new UAViewImpl();
 			this.matching.put(object, uaView);
-			this.baseNodeset.getUAView().add(uaView);
+			if(object.getModel().equals(this.baseUmlModel))
+			{
+				this.baseNodeset.getUAView().add(uaView);
+			}
 		}
 		
 		boolean success = transformUAInstance(object, stereotype);
@@ -465,7 +450,10 @@ public class InstanceSyncHandler {
 		{
 			uaVarType = new UAVariableTypeImpl();
 			this.matching.put(object, uaVarType);
-			this.baseNodeset.getUAVariableType().add(uaVarType);
+			if(object.getModel().equals(this.baseUmlModel))
+			{
+				this.baseNodeset.getUAVariableType().add(uaVarType);
+			}
 		}
 		
 		return transformUAType(object, stereotype);
@@ -483,7 +471,10 @@ public class InstanceSyncHandler {
 		{
 			uaVariable = new UAVariableImpl();
 			this.matching.put(object, uaVariable);
-			this.baseNodeset.getUAVariable().add(uaVariable);
+			if(object.getModel().equals(this.baseUmlModel))
+			{
+				this.baseNodeset.getUAVariable().add(uaVariable);
+			}
 		}
 		
 		boolean success = transformUAInstance(object, stereotype);
@@ -595,7 +586,10 @@ public class InstanceSyncHandler {
 		{
 			uaRefType = new UAReferenceTypeImpl();
 			this.matching.put(object, uaRefType);
-			this.baseNodeset.getUAReferenceType().add(uaRefType);
+			if(object.getModel().equals(this.baseUmlModel))
+			{
+				this.baseNodeset.getUAReferenceType().add(uaRefType);
+			}
 		}
 		
 		boolean success = transformUAType(object, stereotype);
@@ -639,7 +633,10 @@ public class InstanceSyncHandler {
 		{
 			uaObjType = new UAObjectTypeImpl();
 			this.matching.put(object, uaObjType);
-			this.baseNodeset.getUAObjectType().add(uaObjType);
+			if(object.getModel().equals(this.baseUmlModel))
+			{
+				this.baseNodeset.getUAObjectType().add(uaObjType);
+			}
 		}
 		
 		boolean success = transformUAType(object, stereotype);
@@ -660,7 +657,10 @@ public class InstanceSyncHandler {
 		{
 			uaObject = new UAObjectImpl();
 			this.matching.put(object, uaObject);
-			this.baseNodeset.getUAObject().add(uaObject);
+			if(object.getModel().equals(this.baseUmlModel))
+			{
+				this.baseNodeset.getUAObject().add(uaObject);
+			}
 		}
 		
 		boolean success = transformUAInstance(object, stereotype);
@@ -1003,7 +1003,10 @@ public class InstanceSyncHandler {
 		{
 			uaMethod = new UAMethodImpl();
 			this.matching.put(object, uaMethod);
-			this.baseNodeset.getUAMethod().add(uaMethod);
+			if(object.getModel().equals(this.baseUmlModel))
+			{				
+				this.baseNodeset.getUAMethod().add(uaMethod);
+			}
 		}
 		
 		boolean success = transformUAInstance(object, stereotype);
@@ -1094,7 +1097,10 @@ public class InstanceSyncHandler {
 		{
 			uaDataType = new UADataTypeImpl();
 			this.matching.put(object, uaDataType);
-			this.baseNodeset.getUADataType().add(uaDataType);
+			if(object.getModel().equals(this.baseUmlModel))
+			{				
+				this.baseNodeset.getUADataType().add(uaDataType);
+			}
 		}
 		boolean success = transformUAType(object, stereotype);
 		
@@ -1722,11 +1728,15 @@ public class InstanceSyncHandler {
 		
 		Class target = (Class) general.getTargets().get(0);
 		Class source = (Class) general.getSources().get(0);
-		
+
 		String nodeId = getNodeId(target);
 		uaReference.setValue(nodeId);
 		
-		boolean isForward =(boolean) general.getValue(uaStereoType,"isForward");
+		boolean isForward = true;
+		if(general.hasValue(uaStereoType,"isForward"))
+		{
+			isForward =(boolean) general.getValue(uaStereoType,"isForward");
+		}
 		uaReference.setIsForward(isForward);
 
 		if(general.hasValue(uaStereoType,"referenceType"))
@@ -1779,12 +1789,18 @@ public class InstanceSyncHandler {
 				if(isForward)
 				{
 					boolean isHierachicalReferenceType = (boolean) source.getValue(uaReferenceType, "isHierachical");
-					target.setValue(uaReferenceType, "isHierachical", isHierachicalReferenceType);
+					if(this.baseUmlModel.equals(target.getModel()))
+					{
+						target.setValue(uaReferenceType, "isHierachical", isHierachicalReferenceType);
+					}
 				}
 				else
 				{
 					boolean isHierachicalReferenceType = (boolean) target.getValue(uaReferenceType, "isHierachical");
-					source.setValue(uaReferenceType, "isHierachical", isHierachicalReferenceType);
+					if(this.baseUmlModel.equals(source.getModel()))
+					{
+						source.setValue(uaReferenceType, "isHierachical", isHierachicalReferenceType);
+					}
 				}
 				
 			}
@@ -3185,24 +3201,27 @@ public class InstanceSyncHandler {
 				}
 				
 				boolean isForward = (boolean) reference.getValue(uaReference, "isForward");
-
-				if(isForward)
+				
+				if(uaRefType.getModel().equals(uaElement.getModel()))
 				{
-					EList<Classifier> children = uaElement.getNestedClassifiers();
-					if(!children.contains(uaRefType))
+					if(isForward)
 					{
-						children.add(uaRefType);
+						EList<Classifier> children = uaElement.getNestedClassifiers();
+						if(!children.contains(uaRefType))
+						{
+							children.add(uaRefType);
+						}
 					}
-				}
-				else
-				{					
-					EList<Classifier> children = uaRefType.getNestedClassifiers();
-					if(!children.contains(uaElement))
-					{
-						children.add(uaElement);
+					else
+					{					
+						EList<Classifier> children = uaRefType.getNestedClassifiers();
+						if(!children.contains(uaElement))
+						{
+							children.add(uaElement);
+						}
 					}
-				}
-												
+				}	
+				
 				if(!uaElement.hasValue(uaReferenceType, "isHierachical"))
 				{
 					boolean isHierachical = (boolean) uaRefType.getValue(uaReferenceType, "isHierachical");
@@ -3655,12 +3674,13 @@ public class InstanceSyncHandler {
 			if(name2.equalsIgnoreCase("base_Class"))
 			{
 				baseClass= (Class)eObject.dynamicGet(id2);
-				
+								
 				if(!this.matching.containsKey(baseClass) && addIfNotExists)
 				{
 					updateClass(baseClass);
-					break;
 				}
+
+				break;
 			}
 		}
 		
@@ -3672,6 +3692,10 @@ public class InstanceSyncHandler {
 		String nodeId = "";
 		
 		Package namespace = umlUaNode.getPackage();
+		if(!this.matching.containsKey(umlUaNode))
+		{
+			updateClass(umlUaNode);
+		}
 		Stereotype uaStereotype = getMatchingStereotype(this.matching.get(umlUaNode));
 		
 		if(umlUaNode.hasValue(uaStereotype, "nodeId"))

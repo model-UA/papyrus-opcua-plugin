@@ -41,11 +41,11 @@ public class FileChangeListener implements IResourceChangeListener{
 				boolean success = Activator.getSynchHandler().updateNodeSet(affectedObject);
 				if(success)
 				{
-					System.out.println("NodeSet updated succesfully");
+					System.out.println("UML NodeSet backend updated succesfully");
 				}
 				else
 				{
-					System.err.print("Error when updating NodeSet");
+					System.err.print("Error when updating UML NodeSet backend");
 				}
 			}
 			else if(fileExtension.equalsIgnoreCase("uml"))
@@ -53,11 +53,11 @@ public class FileChangeListener implements IResourceChangeListener{
 				boolean success = Activator.getSynchHandler().writeToNodeSet(affectedObject);
 				if(success)
 				{
-					System.out.println("NodeSet written succesfully");
+					System.out.println("NodeSet file written succesfully");
 				}
 				else
 				{
-					System.err.print("Error when writing NodeSet");
+					System.err.print("Error when writing NodeSet file");
 				}
 			}
 		}

@@ -2559,9 +2559,11 @@ public class InstanceSyncHandler {
 			}
 		}
 		
-		if(dtf.getArrayDimensions() != null)
+		if(dtf.getArrayDimensions() != null && dtf.getArrayDimensions().length() > 0)
 		{
-			field.setValue(uaStereoType, "arrayDimensions", dtf.getArrayDimensions() );
+			String stringToConvert = dtf.getArrayDimensions();
+			long convertedLong = Long.valueOf(stringToConvert);
+			field.setValue(uaStereoType, "arrayDimensions", convertedLong );
 		}
 
 		if(dtf.getDataType() != null)

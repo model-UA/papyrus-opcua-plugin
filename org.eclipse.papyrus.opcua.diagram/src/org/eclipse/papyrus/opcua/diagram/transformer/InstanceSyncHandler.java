@@ -605,7 +605,6 @@ public class InstanceSyncHandler {
 			Stereotype uaStereotype = getMatchingStereotype(uaRefType);
 			if(object.hasValue(uaStereotype, "inverseName"))
 			{
-				//TODO: add inverserName
 				EList<String> inverseNameList = (EList<String>) object.getValue(uaStereotype, "inverseName");
 				uaRefType.getInverseName().clear();
 				
@@ -1721,106 +1720,77 @@ public class InstanceSyncHandler {
 			this.matching.put(general, uaReference);
 		}
 		
-		Element target = general.getTargets().get(0);
-		Element source = general.getSources().get(0);
+		Class target = (Class) general.getTargets().get(0);
+		Class source = (Class) general.getSources().get(0);
 		
 		String nodeId = getNodeId(target);
 		uaReference.setValue(nodeId);
 		
-		boolean convertedBoolean =(boolean) general.getValue(uaStereoType,"isForward");
-		uaReference.setIsForward(convertedBoolean);
-//		if(general.hasValue(uaStereoType,"isForward"))
-//		{
-//		}
-		
+		boolean isForward =(boolean) general.getValue(uaStereoType,"isForward");
+		uaReference.setIsForward(isForward);
+
 		if(general.hasValue(uaStereoType,"referenceType"))
 		{
+			Stereotype uaReferenceType  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
+			
 			DynamicEObjectImpl referenceTypeSterAppl = (DynamicEObjectImpl) general.getValue(uaStereoType,"referenceType");
 			Class referenceType = getStereotypeBaseClass(referenceTypeSterAppl, true);
 			String referenceTypeNode = getNodeId(referenceType);
 			uaReference.setReferenceType(referenceTypeNode);
 			
-//			Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
-//			Stereotype uaReferenceType  = nodeSetProfile.getOwnedStereotype("Reference");
-//			
-//			DynamicEObjectImpl uri_object = ((DynamicEObjectImpl) temp);
-//			EList<EStructuralFeature> featuresList2 = uri_object.eClass().getEAllStructuralFeatures();
-//			for(EStructuralFeature feature2 : featuresList2)
-//			{
-//				int id2 = feature2.getFeatureID();
-//				String name2 = feature2.getName();
-//				if(name2.equalsIgnoreCase("base_Class"))
-//				{
-//					Object baseClass = uri_object.dynamicGet(id2);
-//					if(this.matching.containsKey(baseClass))
-//					{
-//						UAReferenceType uaRefType = (UAReferenceType) this.matching.get(baseClass);
-//						uaReference.setReferenceType(uaRefType.getNodeId());
-//						break;
-//					}
-//					else
-//					{
-//						updateClass((Class) baseClass);
-//						UAReferenceType uaRefType = (UAReferenceType) this.matching.get(baseClass);
-//						uaReference.setReferenceType(uaRefType.getNodeId());
-//						break;
-//					}
-//				}
-//			}
+			boolean isHierachicalReference = (boolean) referenceType.getValue(uaReferenceType, "isHierachical");
+			
+			Package sourcePackage = source.getNearestPackage();
+			String sourceNs = sourcePackage.getURI();
+			if(sourceNs == null)
+			{
+				sourceNs = "";
+			}
+			
+			Package targetPackage = target.getNearestPackage();
+			String targetNs = targetPackage.getURI();
+			if(targetNs == null)
+			{
+				targetNs = "";
+			}
+			
+			if(isHierachicalReference && sourceNs.equals(targetNs))
+			{
+				if(isForward)
+				{
+					EList<Classifier> children = source.getNestedClassifiers();
+					if(!children.contains(target))
+					{
+						children.add(target);
+					}
+				}
+				else
+				{
+					EList<Classifier> children = target.getNestedClassifiers();
+					if(!children.contains(source))
+					{
+						children.add(source);
+					}
+				}
+			}
+			
+			if(source.isStereotypeApplied(uaReferenceType) && target.isStereotypeApplied(uaReferenceType))
+			{
+				if(isForward)
+				{
+					boolean isHierachicalReferenceType = (boolean) source.getValue(uaReferenceType, "isHierachical");
+					target.setValue(uaReferenceType, "isHierachical", isHierachicalReferenceType);
+				}
+				else
+				{
+					boolean isHierachicalReferenceType = (boolean) target.getValue(uaReferenceType, "isHierachical");
+					source.setValue(uaReferenceType, "isHierachical", isHierachicalReferenceType);
+				}
+				
+			}
+			
 		}
-
-//		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-//		
-//		for(EStructuralFeature feature : featuresList)
-//		{
-//			int id = feature.getFeatureID();
-//			String name = feature.getName();
-//			Object temp = stereotype.dynamicGet(id);
-//			
-//			if(name.equalsIgnoreCase("value"))
-//			{
-//				String nodeId = getNodeId(target);
-//				uaReference.setValue(nodeId);
-//			}
-//			else if(name.equalsIgnoreCase("isForward"))
-//			{
-//				String stringToConvert = String.valueOf(temp);
-//				boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
-//				uaReference.setIsForward(convertedBoolean);
-//			}
-//			else if(name.equalsIgnoreCase("referenceType"))
-//			{
-//				Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
-//				Stereotype uaReferenceType  = nodeSetProfile.getOwnedStereotype("Reference");
-//				
-//				DynamicEObjectImpl uri_object = ((DynamicEObjectImpl) temp);
-//				EList<EStructuralFeature> featuresList2 = uri_object.eClass().getEAllStructuralFeatures();
-//				for(EStructuralFeature feature2 : featuresList2)
-//				{
-//					int id2 = feature2.getFeatureID();
-//					String name2 = feature2.getName();
-//					if(name2.equalsIgnoreCase("base_Class"))
-//					{
-//						Object baseClass = uri_object.dynamicGet(id2);
-//						if(this.matching.containsKey(baseClass))
-//						{
-//							UAReferenceType uaRefType = (UAReferenceType) this.matching.get(baseClass);
-//							uaReference.setReferenceType(uaRefType.getNodeId());
-//							break;
-//						}
-//						else
-//						{
-//							updateClass((Class) baseClass);
-//							UAReferenceType uaRefType = (UAReferenceType) this.matching.get(baseClass);
-//							uaReference.setReferenceType(uaRefType.getNodeId());
-//							break;
-//						}
-//					}
-//				}
-//			}
-//		}
 		
-
 		if(!this.matching.containsKey(source))
 		{
 			updateClass((Class) source);
@@ -1834,7 +1804,6 @@ public class InstanceSyncHandler {
 		{
 			refList.getReference().add(uaReference);
 		}
-		
 		
 		return true;
 	}
@@ -3157,7 +3126,9 @@ public class InstanceSyncHandler {
 		Stereotype uaReferenceType  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
 		Stereotype uaReference  = nodeSetProfile.getOwnedStereotype("Reference");
 		Class uaElement = (Class) this.nodeIdMap.get(referenceType.getNodeId());
-	
+
+		boolean isSubtype = false;
+		
 		if(uaElement.getName().equalsIgnoreCase("HierarchicalReferences"))
 		{
 			uaElement.setValue(uaReferenceType, "isHierachical", true);
@@ -3165,9 +3136,10 @@ public class InstanceSyncHandler {
 		else if(uaElement.getName().equalsIgnoreCase("References"))
 		{
 			uaElement.setValue(uaReferenceType, "isHierachical", false);
+			// Reference for References ReferenceType is not set at this point.
+			// Nonetheless it exists
+			isSubtype = true;
 		}
-		
-		boolean isSubtype = false;
 		
 		for(Generalization reference : uaElement.getGeneralizations())
 		{
@@ -3236,7 +3208,8 @@ public class InstanceSyncHandler {
 	{
 	    
 		if(!referenceType.getName().equalsIgnoreCase("HierarchicalReferences") &&
-		   !referenceType.getName().equalsIgnoreCase("References"))
+		   !referenceType.getName().equalsIgnoreCase("References		String test =\"asdfasf\";\n" + 
+		   		"		EList<Generalization> aas = uaElement.getGeneralizations();"))
 		{
 			for(Generalization reference : referenceType.getGeneralizations() )
 			{
@@ -3269,7 +3242,7 @@ public class InstanceSyncHandler {
 					
 					if(!referenceType.hasValue(uaReferenceType, "isHierachical"))
 					{
-						boolean isHierachical = (boolean) uaRefType.getValue(uaReference, "isHierachical");
+						boolean isHierachical = (boolean) uaRefType.getValue(uaReferenceType, "isHierachical");
 						referenceType.setValue(uaReferenceType, "isHierachical", isHierachical);
 					}
 				}

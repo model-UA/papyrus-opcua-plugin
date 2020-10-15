@@ -60,7 +60,14 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 		if (basetypesProfile != null) {
 			PackageUtil.applyProfile(packageOwner, basetypesProfile, true);
 		}
+		
 		Model model = (Model) owner;
+		
+		URI lib_path = URI.createURI(OpcUaDiagramResources.BASENAMESPACE_LIBRARY);
+		Package defaultNs = PackageUtil.loadPackage(lib_path, owner_resource);
+		if (defaultNs != null) {
+			model.createPackageImport(defaultNs);
+		}
 		
 		model.setViewpoint("InformationModel");
 		

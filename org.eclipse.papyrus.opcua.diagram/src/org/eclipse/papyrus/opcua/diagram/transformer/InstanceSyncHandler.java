@@ -1812,17 +1812,17 @@ public class InstanceSyncHandler {
 			{
 				if(isForward)
 				{
-					boolean isHierachicalReferenceType = (boolean) source.getValue(uaReferenceType, "isHierachical");
 					if(this.baseUmlModel.equals(target.getModel()))
 					{
+						boolean isHierachicalReferenceType = (boolean) source.getValue(uaReferenceType, "isHierachical");
 						target.setValue(uaReferenceType, "isHierachical", isHierachicalReferenceType);
 					}
 				}
 				else
 				{
-					boolean isHierachicalReferenceType = (boolean) target.getValue(uaReferenceType, "isHierachical");
 					if(this.baseUmlModel.equals(source.getModel()))
 					{
+						boolean isHierachicalReferenceType = (boolean) target.getValue(uaReferenceType, "isHierachical");
 						source.setValue(uaReferenceType, "isHierachical", isHierachicalReferenceType);
 					}
 				}

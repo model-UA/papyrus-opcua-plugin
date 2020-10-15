@@ -387,6 +387,9 @@ public class InstanceSyncHandler {
 		else if(toBeRemoved instanceof UAVariableType)
 		{
 			success = this.baseNodeset.getUAVariableType().remove(toBeRemoved);
+		}else if(toBeRemoved instanceof Reference)
+		{
+			success = deleteUAReference((Reference) toBeRemoved, (Generalization) obj);
 		}
 		
 		if(success)
@@ -398,6 +401,18 @@ public class InstanceSyncHandler {
 	}
 	
 	
+	private boolean deleteUAReference(Reference reference, Generalization general) {
+		EList<Element> sources = general.getSources();
+		
+		for(Element source : sources)
+		{
+			UANode node = (UANode) this.matching.get(source);
+			node.getReferences().getReference().remove(reference);
+		}
+		
+		return true;
+	}
+
 	private boolean transformValueType1(Class object,  DynamicEObjectImpl stereotype) {
 		// EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;

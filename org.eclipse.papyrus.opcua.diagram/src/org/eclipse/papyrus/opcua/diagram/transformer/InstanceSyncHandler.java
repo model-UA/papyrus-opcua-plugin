@@ -151,7 +151,7 @@ public class InstanceSyncHandler {
 		this.baseUmlModel = umlModel;
 	}
 		
-	public boolean updateMember(Element object)
+	public boolean transformMember(Element object)
 	{
 		boolean return_val = false;
 		
@@ -246,7 +246,7 @@ public class InstanceSyncHandler {
 		return true;
 	}
 
-	protected boolean updateClass(Class object)
+	protected boolean transformClass(Class object)
 	{
 		EList<EObject> stereotype_applications = object.getStereotypeApplications();
 
@@ -612,7 +612,6 @@ public class InstanceSyncHandler {
 			
 			if(object.hasValue(uaStereotype, "symmetric"))
 			{
-				//TODO: add symmetric
 				boolean symmetric = (boolean) object.getValue(uaStereotype, "symmetric");
 				uaRefType.setSymmetric(symmetric);
 			}
@@ -781,7 +780,7 @@ public class InstanceSyncHandler {
 						}
 						else
 						{
-							updateClass((Class) baseClass);
+							transformClass((Class) baseClass);
 							AliasTableImpl aliasTable = (AliasTableImpl) this.matching.get(baseClass);
 							this.baseNodeset.setAliases(aliasTable);
 							break;
@@ -1203,7 +1202,7 @@ public class InstanceSyncHandler {
 							}
 							else
 							{
-								updateClass((Class) baseClass);
+								transformClass((Class) baseClass);
 								StructureTranslationType existingLT = (StructureTranslationType) this.matching.get(baseClass);
 								tt.getField().add(existingLT);
 								break;
@@ -1355,7 +1354,7 @@ public class InstanceSyncHandler {
 							}
 							else
 							{
-								updateClass((Class) baseClass);
+								transformClass((Class) baseClass);
 								RolePermission rp = (RolePermission) this.matching.get(baseClass);
 								lorp.getRolePermission().add(rp);
 								break;
@@ -1432,7 +1431,7 @@ public class InstanceSyncHandler {
 			
 			if(!this.matching.containsKey(umlUaNode))
 			{
-				updateClass(umlUaNode);
+				transformClass(umlUaNode);
 			}
 			
 			if(umlUaNode != null)
@@ -1463,7 +1462,7 @@ public class InstanceSyncHandler {
 			
 			if(!this.matching.containsKey(umlUaNode))
 			{
-				updateClass(umlUaNode);
+				transformClass(umlUaNode);
 			}
 			
 			if(umlUaNode != null)
@@ -1654,7 +1653,7 @@ public class InstanceSyncHandler {
 							}
 							else
 							{
-								updateClass((Class) baseClass);
+								transformClass((Class) baseClass);
 								NodeIdAlias existingAlias = (NodeIdAlias) this.matching.get(baseClass);
 								aliasTable.getAlias().add(existingAlias);
 								break;
@@ -1809,7 +1808,7 @@ public class InstanceSyncHandler {
 		
 		if(!this.matching.containsKey(source))
 		{
-			updateClass((Class) source);
+			transformClass((Class) source);
 		}
 		
 		UANode src = (UANode) this.matching.get(source);

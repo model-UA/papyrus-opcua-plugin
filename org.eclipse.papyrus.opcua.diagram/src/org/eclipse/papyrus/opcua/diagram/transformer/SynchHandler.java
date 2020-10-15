@@ -98,7 +98,7 @@ public class SynchHandler {
 		Model model = obj.getModel();
 		if(this.modelNodeSetMapping.containsKey(model))
 		{
-			boolean success = this.modelNodeSetMapping.get(model).updateMember(obj);
+			boolean success = this.modelNodeSetMapping.get(model).transformMember(obj);
 			
 			if(success && writeToFile)
 			{

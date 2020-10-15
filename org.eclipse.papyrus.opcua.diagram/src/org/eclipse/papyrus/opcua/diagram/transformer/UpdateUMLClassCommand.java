@@ -28,7 +28,7 @@ public class UpdateUMLClassCommand extends RecordingCommand {
 	@Override
 	protected void doExecute() {
 		// TODO Auto-generated method stub
-		this.success = this.handler.updateClass(this.obj);
+		this.success = this.handler.transformClass(this.obj);
 	}
 	
 	public boolean getCommandResult()

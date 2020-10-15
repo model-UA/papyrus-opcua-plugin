@@ -112,9 +112,9 @@ public class DiagramChangeListener implements IPapyrusListener {
 		{
 			this.autotransform_model.put(currentModel, auto_transform);
 			Activator.getSynchHandler().registerNewUmlModel(currentModel);
-			EList<NamedElement> members = new BasicEList<NamedElement>();
-			members.addAll(currentModel.getOwnedMembers());
-
+			EList<Element> members = new BasicEList<Element>();
+			members.addAll(currentModel.allOwnedElements());
+			
 			disabled = true;
 			try {
 				members.forEach((member) -> Activator.getSynchHandler().updateObject(member));

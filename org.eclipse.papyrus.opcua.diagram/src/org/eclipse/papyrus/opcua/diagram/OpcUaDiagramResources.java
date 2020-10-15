@@ -12,6 +12,9 @@
 package org.eclipse.papyrus.opcua.diagram;
 
 import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.core.internal.preferences.ImmutableMap;
 
 public class OpcUaDiagramResources {
 	
@@ -21,13 +24,11 @@ public class OpcUaDiagramResources {
 	
 	public static final String LIBRARIES_PATHMAP = "pathmap://OPC_UA_LIBRARIES/"; //$NON-NLS-1$	
 
-	public static final String UANODESET_LIBRARY_PATH = LIBRARIES_PATHMAP+"UANodeSet.uml";
-	
-	public static final HashMap<String, String> NAMESPACE_PACKAGE_MAPPING = new HashMap<String, String>()
-	{{
+	public static final String BASENAMESPACE_LIBRARY = LIBRARIES_PATHMAP+"Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml";
 		
+	public static final Map<String , String> NAMESPACE_PACKAGE_MAPPING = new HashMap<String , String>() {{
+		put("http://opcfoundation.org/UA/Safety", LIBRARIES_PATHMAP+"Opc.Ua.Safety.NodeSet2/Opc.Ua.Safety.NodeSet2.uml");
 	}};
-	
 	
 	private OpcUaDiagramResources() {
 	}

@@ -154,7 +154,7 @@ public class InstanceSyncHandler {
 	public boolean transformMember(Element object)
 	{
 		boolean return_val = false;
-		
+				
 		if(object instanceof Class)
 		{
 			//return_val= updateClass((Class) object);
@@ -243,10 +243,6 @@ public class InstanceSyncHandler {
 			if(ns.getURI() != null)
 			{
 				this.baseNodeset.getNamespaceUris().getUri().add(ns.getURI());
-			}
-			else
-			{
-				this.baseNodeset.getNamespaceUris().getUri().add("");
 			}
 		}
 		
@@ -720,10 +716,6 @@ public class InstanceSyncHandler {
 				if(ns.getURI() != null)
 				{
 					this.baseNodeset.getNamespaceUris().getUri().add(ns.getURI());
-				}
-				else
-				{
-					this.baseNodeset.getNamespaceUris().getUri().add("");
 				}
 			}
 		}

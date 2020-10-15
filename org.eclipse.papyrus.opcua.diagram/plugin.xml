@@ -9,7 +9,7 @@
       </mapping>
       <mapping
             source="pathmap://OPC_UA_LIBRARIES/"
-            target="platform:/plugin/org.eclipse.papyrus.opcua.nodeset/resources/model/">
+            target="platform:/plugin/org.eclipse.papyrus.opcua.diagram/resources/libraries/">
       </mapping>
    </extension>
 
@@ -17,8 +17,8 @@
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
-            description="OPC-UA NodeSet Profile"
-            name="OPC-UA NodeSet Profile"
+            description="OPC UA NodeSet Profile"
+            name="OPC UA NodeSet Profile"
             path="pathmap://OPC_UA_PROFILES/UANodeSet.profile.uml"
             provider="TU-Wien ASG">
       </profile>
@@ -28,9 +28,18 @@
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
       <library
-            description="OPC-UA NodeSet Library"
-            name="OPC-UA NodeSet Library"
-            path="pathmap://OPC_UA_LIBRARIES/UANodeSet.uml"
+            description="OPC UA Base Nodeset"
+            name="OPC UA Base NodeSet"
+            path="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml"
+            provider="TU-Wien ASG">
+      </library>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+      <library
+            description="OPC UA Safety Extension Nodeset"
+            name="OPC UA Safety Extension Nodeset"
+            path="pathmap://OPC_UA_LIBRARIES/Opc.Ua.Safety.NodeSet2/Opc.Ua.Safety.NodeSet2.uml"
             provider="TU-Wien ASG">
       </library>
    </extension>

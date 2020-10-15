@@ -182,7 +182,11 @@ public class InstanceSyncHandler {
 			DynamicEObjectImpl stereotype = (DynamicEObjectImpl) object.getStereotypeApplication(nodeSetType);
 			if(stereotype != null)
 			{
-				return_val=transformUANodeSetType((Model) object, stereotype);				
+				return_val=transformUANodeSetType((Model) object, stereotype);
+				if(return_val)
+				{
+					return_val &= transformModel((Model) object);
+				}
 			}
 		}
 		else if(object instanceof Package)
@@ -193,6 +197,20 @@ public class InstanceSyncHandler {
 		return return_val;
 	}
 	
+	private boolean transformModel(Model model) {
+		boolean success = true;
+		
+		for(Element member : model.getOwnedElements())
+		{
+			if(!this.matching.containsKey(member))
+			{
+				success &= transformMember(member);
+			}
+		}
+		
+		return success;
+	}
+
 	private boolean transformNamespace(Package namespace) {
 		
 		if(namespace.getURI() == null || namespace.getURI().length() == 0)

@@ -51,7 +51,6 @@ public class NodeSetParser {
 			resource.save(options);
 	        System.out.println("Nodeset written to " + filePath);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 	        System.err.println("Nodeset not written to " + filePath);
 		}

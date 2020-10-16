@@ -42,7 +42,6 @@ public class NodeSetWriter {
 			builder = factory.newDocumentBuilder();
 			this.doc = builder.newDocument();
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		initDocument();
@@ -74,7 +73,6 @@ public class NodeSetWriter {
 		try {
 			transf = transformerFactory.newTransformer();
 		} catch (TransformerConfigurationException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return false;
 		}
@@ -90,7 +88,6 @@ public class NodeSetWriter {
         try {
 			transf.transform(source, streamResult);
 		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -293,8 +290,7 @@ public class NodeSetWriter {
 	}
 	
 	private void addDisplayName(Element uaObjType, EList<LocalizedText> eList) {
-		// TODO Auto-generated method stub
-		
+
 		Element displayElement = this.doc.createElement("DisplayName");
 		String text ="";
 		

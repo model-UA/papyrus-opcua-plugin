@@ -1,29 +1,20 @@
 package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformer;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UANodeSetTypeImpl;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.Activator;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.listener.DiagramChangeListener;
-import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.listener.FileChangeListener;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.parser.NodeSetParser;
-import at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.parser.NodeSetReader;
 
 public class SynchHandler {
 
@@ -110,7 +101,6 @@ public class SynchHandler {
 					// enable resource listener again
 					Activator.getFileChangeListener().disable(false);
 				} catch (ParserConfigurationException e) {
-					// TODO Auto-generated catch block
 					return false;
 				}
 			}
@@ -179,8 +169,7 @@ public class SynchHandler {
 					Activator.getFileChangeListener().disable(true);
 					success = this.modelNodeSetMapping.get(model).writeToNodeSetFile();			
 				} catch (ParserConfigurationException e) {
-					// TODO Auto-generated catch block
-					return false;
+					success = false;
 				}
 				finally
 				{			

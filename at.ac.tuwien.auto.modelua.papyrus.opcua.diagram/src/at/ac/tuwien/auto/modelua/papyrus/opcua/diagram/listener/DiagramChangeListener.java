@@ -18,7 +18,6 @@ public class DiagramChangeListener implements IPapyrusListener {
 	private static boolean disabled = false;
 	
 	public DiagramChangeListener() {
-		// TODO Auto-generated constructor stub
 		super();
 		this.autotransform_model = new HashMap<Model, Boolean>();
 	}

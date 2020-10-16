@@ -12,7 +12,6 @@ public class UpdateUMLClassCommand extends RecordingCommand {
 	
 	public UpdateUMLClassCommand(TransactionalEditingDomain domain) {
 		super(domain);
-		// TODO Auto-generated constructor stub
 	}
 
 	public void registerInstanceSynchHandler(InstanceSyncHandler handler)
@@ -27,7 +26,6 @@ public class UpdateUMLClassCommand extends RecordingCommand {
 	
 	@Override
 	protected void doExecute() {
-		// TODO Auto-generated method stub
 		this.success = this.handler.transformClass(this.obj);
 	}
 	

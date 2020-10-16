@@ -19,7 +19,6 @@ public class FileChangeListener implements IResourceChangeListener{
 			return;
 		}
 		
-		// TODO Auto-generated method stub
 		IResourceDelta rootDelta = event.getDelta();
 		if(rootDelta == null)
 		{

@@ -939,21 +939,19 @@ public class InstanceSyncHandler {
 			uanode.setBrowseName( browseName);		
 		}
 		
-		if(object.hasValue(uaStereotype, "releaseStatus")) {
-			EnumerationLiteralImpl releaseStatus = (EnumerationLiteralImpl) object.getValue(uaStereotype, "releaseStatus");
-			String value = releaseStatus.getLabel();
-			switch(value)
-			{
-			case "Draft":
-				uanode.setReleaseStatus(ReleaseStatus.DRAFT);
-				break;
-			case "Released":
-				uanode.setReleaseStatus(ReleaseStatus.RELEASED);
-				break;
-			case "Deprecated":
-				uanode.setReleaseStatus(ReleaseStatus.DEPRECATED);
-				break;
-			}
+		EnumerationLiteral releaseStatus = (EnumerationLiteral) object.getValue(uaStereotype, "releaseStatus");
+		String value = releaseStatus.getLabel();
+		switch(value)
+		{
+		case "Draft":
+			uanode.setReleaseStatus(ReleaseStatus.DRAFT);
+			break;
+		case "Released":
+			uanode.setReleaseStatus(ReleaseStatus.RELEASED);
+			break;
+		case "Deprecated":
+			uanode.setReleaseStatus(ReleaseStatus.DEPRECATED);
+			break;
 		}
 		
 
@@ -2480,7 +2478,28 @@ public class InstanceSyncHandler {
 		if(success)
 		{			
 			// DataTypeDefinition is parsed later
-//			 TODO: add purpose
+			if(node.getPurpose() != null )
+			{
+				Object releaseStatus = uaElement.getValue(uaStereoType, "purpose");
+				
+				EnumerationLiteral lit = (EnumerationLiteral) releaseStatus;
+				Enumeration uaEnum = lit.getEnumeration();
+				
+				switch(node.getPurpose().getValue())
+				{
+				case DataTypePurpose.NORMAL_VALUE :
+					uaElement.setValue(uaStereoType, "purpose", uaEnum.getOwnedLiteral("Normal"));
+					break;
+				case DataTypePurpose.SERVICES_ONLY_VALUE:
+					uaElement.setValue(uaStereoType, "purpose", uaEnum.getOwnedLiteral("ServicesOnly"));
+					break;
+				case DataTypePurpose.CODE_GENERATOR_VALUE:
+					uaElement.setValue(uaStereoType, "purpose", uaEnum.getOwnedLiteral( "CodeGenerator"));
+					break;
+				}
+			}
+			
+			
 		}
 		
 		return success;
@@ -3153,26 +3172,28 @@ public class InstanceSyncHandler {
 			uaElement.setValue(stereotype, "browseName", browseName);
 		}
 
-//		
-//		if(node.getReleaseStatus() != null) {
-//			Object releaseStatus = uaElement.getValue(stereotype, "releaseStatus");
-//			String test = "dasfasf";
-////				EEnumLiteralImpl lit = (EEnumLiteralImpl) temp;
-////				String value = lit.toString();
-////				switch(value)
-////				{
-////				case "Draft":
-////					uaObjType.setReleaseStatus(ReleaseStatus.DRAFT);
-////					break;
-////				case "Released":
-////					uaObjType.setReleaseStatus(ReleaseStatus.RELEASED);
-////					break;
-////				case "Deprecated":
-////					uaObjType.setReleaseStatus(ReleaseStatus.DEPRECATED);
-////					break;
-////				}
-//		}
-//		
+	
+		if(node.getReleaseStatus() != null) {
+		
+			Object releaseStatus = uaElement.getValue(stereotype, "releaseStatus");
+			
+			EnumerationLiteral lit = (EnumerationLiteral) releaseStatus;
+			Enumeration uaEnum = lit.getEnumeration();
+			
+			switch(node.getReleaseStatus().getValue())
+			{
+			case ReleaseStatus.DRAFT_VALUE :
+				uaElement.setValue(stereotype, "releaseStatus", uaEnum.getOwnedLiteral("Draft"));
+				break;
+			case ReleaseStatus.RELEASED_VALUE:
+				uaElement.setValue(stereotype, "releaseStatus", uaEnum.getOwnedLiteral("Released"));
+				break;
+			case ReleaseStatus.DEPRECATED_VALUE:
+				uaElement.setValue(stereotype, "releaseStatus", uaEnum.getOwnedLiteral("Deprecated"));
+				break;
+			}
+		}
+		
 		if(node.getSymbolicName() != null)
 		{			
 			EDataTypeUniqueEList<Object> symbollicName = (EDataTypeUniqueEList<Object>) uaElement.getValue(stereotype, "symbolicName");
@@ -3295,13 +3316,6 @@ public class InstanceSyncHandler {
 			
 			namespace = (Package) nsList.get(namespaceId-1).dynamicGet(0);
 			
-//			// TODO: fix the check, if packages get imported, not all are inside the nested package
-//			if(this.baseUmlModel.getNestedPackages().size() < namespaceId)
-//			{
-//				// Namespace does not exists 
-//				return null;
-//			}
-//			namespace = this.baseUmlModel.getNestedPackages().get(namespaceId -1); // Arrays start at 0 not 1
 		}
 		
 		return namespace;

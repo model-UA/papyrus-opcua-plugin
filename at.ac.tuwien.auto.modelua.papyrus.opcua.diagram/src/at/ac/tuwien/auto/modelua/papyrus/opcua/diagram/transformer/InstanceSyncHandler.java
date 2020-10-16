@@ -1805,7 +1805,10 @@ public class InstanceSyncHandler {
 		{
 			uaReference = new ReferenceImpl();
 			this.matching.put(general, uaReference);
-			uaReference.setIsForward((boolean) general.getValue(uaStereoType,"isForward"));
+			if(general.hasValue(uaStereoType,"isForward"))
+			{
+				uaReference.setIsForward((boolean) general.getValue(uaStereoType,"isForward"));
+			}
 		}
 		
 		Class target = (Class) general.getTargets().get(0);
@@ -1816,8 +1819,11 @@ public class InstanceSyncHandler {
 		
 		boolean isForward = uaReference.isIsForward();
 		boolean isForwardOld = isForward;
-		
-		isForward =(boolean) general.getValue(uaStereoType,"isForward");
+		//if(general.hasValue(uaStereoType,"isForward"))
+		{
+			isForward =(boolean) general.getValue(uaStereoType,"isForward");
+		}
+//		isForward =(boolean) general.getValue(uaStereoType,"isForward");
 		
 		boolean directionChanged = isForwardOld ^ isForward;
 		uaReference.setIsForward(isForward);
@@ -1850,8 +1856,7 @@ public class InstanceSyncHandler {
 			
 			if(isHierachicalReference && sourceNs.equals(targetNs))
 			{
-				// TODO: if isForward changes after nested classifier is set : java.lang.IllegalStateException: There is a cycle in the containment hierarchy
-				directionChanged = false;
+				//directionChanged = false;
 				if(isForward)
 				{
 					if(directionChanged)
@@ -1860,14 +1865,14 @@ public class InstanceSyncHandler {
 						if(owner instanceof Class)
 						{
 							Class ownerClass = (Class)owner;
-							// TODO : something does not work here 
 							ownerClass.getNestedClassifiers().add(source);
 						}
 						else
 						{
 							// owner is package of Model
 							Package ownerPackage = (Package) owner;
-							ownerPackage.allOwnedElements().add(source);
+							target.getNestedClassifiers().remove(source);
+							source.setPackage(ownerPackage);
 						}
 						source.getNestedClassifiers().add(target);
 					}
@@ -1884,19 +1889,18 @@ public class InstanceSyncHandler {
 				{
 					if(directionChanged)
 					{
-						
 						Element owner = source.getOwner();
 						if(owner instanceof Class)
 						{
 							Class ownerClass = (Class)owner;
-							// TODO : something does not work here 
 							ownerClass.getNestedClassifiers().add(target);
 						}
 						else
 						{
 							// owner is package of Model
 							Package ownerPackage = (Package) owner;
-							ownerPackage.allOwnedElements().add(target);
+							source.getNestedClassifiers().remove(target);
+							target.setPackage(ownerPackage);
 						}
 						target.getNestedClassifiers().add(source);
 					}

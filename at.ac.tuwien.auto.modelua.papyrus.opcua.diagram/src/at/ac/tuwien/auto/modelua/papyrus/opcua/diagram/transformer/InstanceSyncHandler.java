@@ -1789,6 +1789,7 @@ public class InstanceSyncHandler {
 		{
 			uaReference = new ReferenceImpl();
 			this.matching.put(general, uaReference);
+			uaReference.setIsForward(true);
 		}
 		
 		Class target = (Class) general.getTargets().get(0);
@@ -1797,11 +1798,14 @@ public class InstanceSyncHandler {
 		String nodeId = getNodeId(target);
 		uaReference.setValue(nodeId);
 		
-		boolean isForward = true;
+		boolean isForward = uaReference.isIsForward();
+		boolean isForwardOld = isForward;
+		
 		if(general.hasValue(uaStereoType,"isForward"))
 		{
 			isForward =(boolean) general.getValue(uaStereoType,"isForward");
 		}
+		boolean directionChanged = isForwardOld ^ isForward;
 		uaReference.setIsForward(isForward);
 
 		if(general.hasValue(uaStereoType,"referenceType"))
@@ -1810,6 +1814,7 @@ public class InstanceSyncHandler {
 			
 			DynamicEObjectImpl referenceTypeSterAppl = (DynamicEObjectImpl) general.getValue(uaStereoType,"referenceType");
 			Class referenceType = getStereotypeBaseClass(referenceTypeSterAppl, true);
+			
 			String referenceTypeNode = getNodeId(referenceType);
 			uaReference.setReferenceType(referenceTypeNode);
 			
@@ -1831,20 +1836,64 @@ public class InstanceSyncHandler {
 			
 			if(isHierachicalReference && sourceNs.equals(targetNs))
 			{
+				// TODO: if isForward changes after nested classifier is set : java.lang.IllegalStateException: There is a cycle in the containment hierarchy
+				directionChanged = false;
 				if(isForward)
 				{
-					EList<Classifier> children = source.getNestedClassifiers();
-					if(!children.contains(target))
+					if(directionChanged)
 					{
-						children.add(target);
+						Element owner = target.getOwner();
+						if(owner instanceof Class)
+						{
+							Class ownerClass = (Class)owner;
+							// TODO : something does not work here 
+							ownerClass.getNestedClassifiers().add(source);
+						}
+						else
+						{
+							// owner is package of Model
+							Package ownerPackage = (Package) owner;
+							ownerPackage.allOwnedElements().add(source);
+						}
+						source.getNestedClassifiers().add(target);
+					}
+					else
+					{
+						EList<Classifier> children = source.getNestedClassifiers();
+						if(!children.contains(target))
+						{
+							children.add(target);
+						}
 					}
 				}
 				else
 				{
-					EList<Classifier> children = target.getNestedClassifiers();
-					if(!children.contains(source))
+					if(directionChanged)
 					{
-						children.add(source);
+						
+						Element owner = source.getOwner();
+						if(owner instanceof Class)
+						{
+							Class ownerClass = (Class)owner;
+							// TODO : something does not work here 
+							ownerClass.getNestedClassifiers().add(target);
+						}
+						else
+						{
+							// owner is package of Model
+							Package ownerPackage = (Package) owner;
+							ownerPackage.allOwnedElements().add(target);
+						}
+						target.getNestedClassifiers().add(source);
+					}
+					else
+					{						
+						EList<Classifier> children = target.getNestedClassifiers();
+						
+						if(!children.contains(source))
+						{
+							children.add(source);
+						}
 					}
 				}
 			}

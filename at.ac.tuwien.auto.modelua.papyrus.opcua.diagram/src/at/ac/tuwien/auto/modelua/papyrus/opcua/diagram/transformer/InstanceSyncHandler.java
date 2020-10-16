@@ -44,6 +44,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.Reference;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ReleaseStatus;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.RolePermission;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.StructureTranslationType;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.TranslationType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UADataType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAInstance;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAMethod;
@@ -506,14 +507,29 @@ public class InstanceSyncHandler {
 			if(object.hasValue(uaStereotype, "value"))
 			{
 				//TODO: add value
-				Object inverseNameList = object.getValue(uaStereotype, "value");
+				Object value = object.getValue(uaStereotype, "value");
 
 			}
 			
 			if(object.hasValue(uaStereotype, "translation"))
 			{
-				//TODO: add translation
-				Object inverseNameList = object.getValue(uaStereotype, "translation");
+				EList<DynamicEObjectImpl> translationList = (EList<DynamicEObjectImpl> )object.getValue(uaStereotype, "translation");
+				uaVariable.getTranslation().clear();
+				for(DynamicEObjectImpl translation : translationList)
+				{					
+					Class translationClass = getStereotypeBaseClass(translation, true);
+					if(translationClass != null)
+					{
+						TranslationType tt = (TranslationType) this.matching.get(translationClass);
+						uaVariable.getTranslation().add(tt);
+						
+						EList<Classifier> children = object.getNestedClassifiers();
+						if(!children.contains(translationClass))
+						{
+							children.add(translationClass);
+						}
+					}
+				}
 
 			}
 			
@@ -2937,13 +2953,61 @@ public class InstanceSyncHandler {
 			uaElement.setValue(uaStereoType, "minimumSamplingInterval", node.getMinimumSamplingInterval());
 			
 			if(node.getTranslation() != null)
-			{				
-				//TODO: Add translation
-//				EList<TranslationType> tt = node.getTranslation();
-//				for(TranslationType transType : tt)
-//				{
-//					transType.
-//				}
+			{
+				Stereotype ttStereoType  = nodeSetProfile.getOwnedStereotype("TranslationType");
+				Stereotype sttStereoType  = nodeSetProfile.getOwnedStereotype("StructureTranslationType");
+				
+				EList<TranslationType> tt = node.getTranslation();				
+				
+				if(uaElement.hasValue(uaStereoType, "translation"))
+				{
+					
+					EList<DynamicEObjectImpl> translations = (EList<DynamicEObjectImpl>) uaElement.getValue(uaStereoType, "translation");
+					while(!translations.isEmpty())
+					{
+						Class ttClass = getStereotypeBaseClass(translations.get(0), false);
+						ttClass.destroy();
+					}
+				}
+				
+				Package container = uaElement.getNearestPackage();
+				Class variable = (Class)uaElement;
+						
+				for(TranslationType transType : tt)
+				{
+					Class ttClass = container.createOwnedClass("TranslationType", false);
+					ttClass.applyStereotype(ttStereoType);
+					variable.getNestedClassifiers().add(ttClass);
+					
+					EList<String> text = (EList<String>) ttClass.getValue(ttStereoType, "text");
+					for(LocalizedText lt : transType.getText())
+					{
+						text.add(lt.getValue());
+					}
+
+					EList<DynamicEObjectImpl> field = (EList<DynamicEObjectImpl>) ttClass.getValue(ttStereoType, "field");
+					
+					for(StructureTranslationType stt : transType.getField())
+					{
+						if(stt.getName() != null && stt.getName().length() >0 )
+						{							
+							Class sttClass = container.createOwnedClass(stt.getName(), false);
+							sttClass.applyStereotype(sttStereoType);
+							ttClass.getNestedClassifiers().add(sttClass);
+							
+							sttClass.setValue(sttStereoType, "name",stt.getName());
+							text = (EList<String>) sttClass.getValue(sttStereoType, "text");
+							
+							for(LocalizedText lt : stt.getText())
+							{
+								text.add(lt.getValue());
+							}
+							field.add((DynamicEObjectImpl) sttClass.getStereotypeApplication(sttStereoType));
+						}
+					}
+					
+				}
+				
 			}
 			
 			uaElement.setValue(uaStereoType, "userAccessLevel", node.getUserAccessLevel());

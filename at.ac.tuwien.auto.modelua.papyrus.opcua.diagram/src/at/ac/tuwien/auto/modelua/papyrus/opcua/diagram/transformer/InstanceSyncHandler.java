@@ -2574,7 +2574,6 @@ public class InstanceSyncHandler {
 					
 			if(uaElement == null || uaStereoType == null)
 			{
-				String test ="asdf";
 				uaElement = (Class) getElement(datatype);
 			}
 			

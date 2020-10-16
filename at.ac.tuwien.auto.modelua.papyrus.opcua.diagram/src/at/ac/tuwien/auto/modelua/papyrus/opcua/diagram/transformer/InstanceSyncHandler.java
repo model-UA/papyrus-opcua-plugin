@@ -2,7 +2,6 @@ package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -16,26 +15,24 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
-import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.internal.impl.EnumerationLiteralImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeField;
@@ -50,6 +47,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.StructureTranslationType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UADataType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAInstance;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAMethod;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAMethodArgument;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANode;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAObject;
@@ -60,7 +58,6 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariableType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAView;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UriTable;
-import org.opcfoundation.ua._2011._03.ua.UANodeSet.ValueType1;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.AliasTableImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.DataTypeDefinitionImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.DataTypeFieldImpl;
@@ -74,6 +71,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.StructureTranslationType
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.TranslationTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UADataTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAInstanceImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAMethodArgumentImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAMethodImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UANodeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAObjectImpl;
@@ -303,40 +301,31 @@ public class InstanceSyncHandler {
 				success=transformTranslationType(object, stereotype);
 				break;
 			case "UADataType":
-				success=transformUADataType(object, stereotype);
-				break;
-			case "UAInstance":
-				success=transformUAInstance(object, stereotype);
+				success=transformUADataType(object);
 				break;
 			case "UAMethod":
-				success=transformUAMethod(object, stereotype);
+				success=transformUAMethod(object);
 				break;
 			case "UAMethodArgument":
-				success=transformUAMethodArgument(object, stereotype);
-				break;
-			case "UANode":
-				success=transformUANode(object, stereotype);
+				success=transformUAMethodArgument(object);
 				break;
 			case "UAObject":
 				success=transformUAObject(object, stereotype);
 				break;
 			case "UAObjectType":
-				success=transformUAObjectType(object, stereotype);
+				success=transformUAObjectType(object);
 				break;
 			case "UAReferenceType":
-				success=transformUAReferenceType(object, stereotype);
-				break;
-			case "UAType":
-				success=transformUAType(object, stereotype);
+				success=transformUAReferenceType(object);
 				break;
 			case "UAVariable":
-				success=transformUAVariable(object, stereotype);
+				success=transformUAVariable(object);
 				break;
 			case "UAVariableType":
-				success=transformUAVariableType(object, stereotype);
+				success=transformUAVariableType(object);
 				break;
 			case "UAView":
-				success=transformUAView(object, stereotype);
+				success=transformUAView(object);
 				break;
 			case "ValueType":
 				success=transformValueType(object, stereotype);
@@ -427,8 +416,7 @@ public class InstanceSyncHandler {
 		return false;
 	}
 
-	private boolean transformUAView(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+	private boolean transformUAView(Class object) {
 		
 		UAViewImpl uaView;
 		if(this.matching.containsKey(object))
@@ -445,7 +433,7 @@ public class InstanceSyncHandler {
 			}
 		}
 		
-		boolean success = transformUAInstance(object, stereotype);
+		boolean success = transformUAInstance(object);
 		
 		if(success)
 		{
@@ -471,7 +459,7 @@ public class InstanceSyncHandler {
 		
 	}
 
-	private boolean transformUAVariableType(Class object,  DynamicEObjectImpl stereotype) {
+	private boolean transformUAVariableType(Class object) {
 		
 		UAVariableTypeImpl uaVarType;
 		if(this.matching.containsKey(object))
@@ -488,11 +476,10 @@ public class InstanceSyncHandler {
 			}
 		}
 		
-		return transformUAType(object, stereotype);
+		return transformUAType(object);
 	}
 
-	private boolean transformUAVariable(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+	private boolean transformUAVariable(Class object) {
 		
 		UAVariableImpl uaVariable;
 		if(this.matching.containsKey(object))
@@ -509,7 +496,7 @@ public class InstanceSyncHandler {
 			}
 		}
 		
-		boolean success = transformUAInstance(object, stereotype);
+		boolean success = transformUAInstance(object);
 		
 
 		if(success)
@@ -591,7 +578,7 @@ public class InstanceSyncHandler {
 		return success;
 	}
 
-	private boolean transformUAType(Class object,  DynamicEObjectImpl stereotype) {
+	private boolean transformUAType(Class object) {
 		UAType uaObjType;
 		if(this.matching.containsKey(object))
 		{
@@ -603,11 +590,10 @@ public class InstanceSyncHandler {
 			this.matching.put(object, uaObjType);
 		}
 				
-		return transformUANode(object, stereotype);
+		return transformUANode(object);
 	}
 
-	private boolean transformUAReferenceType(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+	private boolean transformUAReferenceType(Class object) {
 		
 		UAReferenceTypeImpl uaRefType;
 		if(this.matching.containsKey(object))
@@ -624,7 +610,7 @@ public class InstanceSyncHandler {
 			}
 		}
 		
-		boolean success = transformUAType(object, stereotype);
+		boolean success = transformUAType(object);
 		
 		if(success)
 		{
@@ -653,7 +639,7 @@ public class InstanceSyncHandler {
 		return success;
 	}
 
-	private boolean transformUAObjectType(Class object,  DynamicEObjectImpl stereotype) {
+	private boolean transformUAObjectType(Class object) {
 		
 		UAObjectTypeImpl uaObjType;
 		if(this.matching.containsKey(object))
@@ -670,7 +656,7 @@ public class InstanceSyncHandler {
 			}
 		}
 		
-		boolean success = transformUAType(object, stereotype);
+		boolean success = transformUAType(object);
 		
 		return success;
 	}
@@ -694,7 +680,7 @@ public class InstanceSyncHandler {
 			}
 		}
 		
-		boolean success = transformUAInstance(object, stereotype);
+		boolean success = transformUAInstance(object);
 		
 		for(EStructuralFeature feature : featuresList)
 		{
@@ -829,8 +815,7 @@ public class InstanceSyncHandler {
 		
 	}
 
-	private boolean transformUANode(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+	private boolean transformUANode(Class object) {
 		
 		UANodeImpl uanode;
 		if(this.matching.containsKey(object))
@@ -1015,13 +1000,9 @@ public class InstanceSyncHandler {
 		return true;
 	}
 
-	private boolean transformUAMethodArgument(Class object,  DynamicEObjectImpl stereotype) {
-//		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
-	}
 
-	private boolean transformUAMethod(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+
+	private boolean transformUAMethod(Class object) {
 		
 		UAMethodImpl uaMethod;
 		if(this.matching.containsKey(object))
@@ -1093,7 +1074,7 @@ public class InstanceSyncHandler {
 			this.matching.put(object, uaObjType);
 		}
 				
-		boolean success = transformUANode(object, stereotype);
+		boolean success = transformUANode(object);
 		
 		Stereotype uaStereotype = getMatchingStereotype(uaObjType);
 		if(object.hasValue(uaStereotype, "parentNodeId"))
@@ -1115,7 +1096,7 @@ public class InstanceSyncHandler {
 		return success;
 	}
 
-	private boolean transformUADataType(Class object,  DynamicEObjectImpl stereotype) {
+	private boolean transformUADataType(Class object) {
 
 		UADataTypeImpl uaDataType;
 		if(this.matching.containsKey(object))
@@ -1131,7 +1112,7 @@ public class InstanceSyncHandler {
 				this.baseNodeset.getUADataType().add(uaDataType);
 			}
 		}
-		boolean success = transformUAType(object, stereotype);
+		boolean success = transformUAType(object);
 		
 		if(success)
 		{
@@ -1139,7 +1120,7 @@ public class InstanceSyncHandler {
 			
 			if(object.hasValue(dataTypeSter, "purpose"))
 			{
-				EnumerationLiteralImpl lit = (EnumerationLiteralImpl) object.getValue(dataTypeSter, "purpose");
+				EnumerationLiteral lit = (EnumerationLiteral) object.getValue(dataTypeSter, "purpose");
 				String value = lit.toString();
 				switch(value)
 				{
@@ -1497,9 +1478,6 @@ public class InstanceSyncHandler {
 			
 			if(umlUaNode != null)
 			{
-				UANode node = (UANode) this.matching.get(umlUaNode);
-
-				Package namespace = umlUaNode.getPackage();
 				Stereotype uaStereotype = getMatchingStereotype(this.matching.get(umlUaNode));
 				
 				if(umlUaNode.hasValue(uaStereotype, "nodeId"))
@@ -1774,7 +1752,6 @@ public class InstanceSyncHandler {
 			
 			DynamicEObjectImpl referenceTypeSterAppl = (DynamicEObjectImpl) general.getValue(uaStereoType,"referenceType");
 			Class referenceType = getStereotypeBaseClass(referenceTypeSterAppl, true);
-			String test ="asdfa";
 			String referenceTypeNode = getNodeId(referenceType);
 			uaReference.setReferenceType(referenceTypeNode);
 			
@@ -2582,7 +2559,7 @@ public class InstanceSyncHandler {
 		while(!deleteDTF.isEmpty())
 		{
 			deleteDTF.get(0).destroy();
-			deleteDTF.get(0);
+			deleteDTF.remove(0);
 		}
 		
 		
@@ -2812,69 +2789,8 @@ public class InstanceSyncHandler {
 		
 		if(success)
 		{
-			Class varElement  = (Class) this.nodeIdMap.get(node.getNodeId());
-			Stereotype uaInstance = getMatchingStereotype(node);
+			//TODO: Add value
 
-
-			if(node.getValue() != null)
-			{	
-				ValueType1 value = node.getValue();
-				FeatureMap any = value.getAny();
-				Iterator<org.eclipse.emf.ecore.util.FeatureMap.Entry> iterator = any.iterator();
-				while(iterator.hasNext())
-				{
-					org.eclipse.emf.ecore.util.FeatureMap.Entry entry = iterator.next();
-					EStructuralFeature feature = entry.getEStructuralFeature();
-//					System.out.println(feature.getName().toString());
-					
-					String test="asdfasdfassf";
-				}
-				
-				EStructuralFeature containingFeat = node.getValue().eContainingFeature();
-				EReference containerFeat = node.getValue().eContainmentFeature();
-				EList<EObject> content = node.getValue().eContents();
-				Resource resource = node.getValue().eResource();
-				for(EObject contentEntry : content)
-				{
-					
-				}
-						
-//				System.out.println("asdfa");
-//				DynamicEObjectImpl value;
-//				if(varElement.hasValue(uaInstance, "value"))
-//				{
-//					value = (DynamicEObjectImpl) varElement.getValue(uaInstance, "value");
-//				}
-//				else
-//				{
-//					
-//				}
-//				
-//				//TODO: Add value
-//				ValueType1 test = node.getValue();
-//				FeatureMap val = test.getAny();
-//				ListIterator<org.eclipse.emf.ecore.util.FeatureMap.Entry> entries = val.listIterator();
-//				
-//				while(entries.hasNext())
-//				{
-//					org.eclipse.emf.ecore.util.FeatureMap.Entry entry = entries.next();
-//					ListOfExtensionObject entry_value = (ListOfExtensionObject) entry.getValue();
-//					for(ExtensionObject extension :  entry_value.getExtensionObject())
-//					{
-//						BodyType body = extension.getBody();
-//						for(int i=0; i <body.getAny().size(); i++)
-//						{
-//							Object bodyValue = body.getAny().getValue(i);
-//							org.eclipse.emf.ecore.util.FeatureMap.Entry bodyGet = body.getAny().get(i);
-//
-//							String asf = "=asdfasfd";
-//						}
-//						
-//					}
-//				}
-			}
-
-			
 			uaElement.setValue(uaStereoType, "accessLevel", node.getAccessLevel());
 			
 			if(node.getArrayDimensions() != null && node.getArrayDimensions().length() > 0)
@@ -2884,12 +2800,8 @@ public class InstanceSyncHandler {
 //				Long convertedLong = Long.valueOf(stringToConvert);
 //				uaElement.setValue(uaStereoType, "arrayDimensions", convertedLong);
 			}
-						
-			if(node.getDataType() != null)
-			{				
 				
-			}
-			
+						
 			uaElement.setValue(uaStereoType, "historizing", node.isHistorizing());
 			uaElement.setValue(uaStereoType, "minimumSamplingInterval", node.getMinimumSamplingInterval());
 			

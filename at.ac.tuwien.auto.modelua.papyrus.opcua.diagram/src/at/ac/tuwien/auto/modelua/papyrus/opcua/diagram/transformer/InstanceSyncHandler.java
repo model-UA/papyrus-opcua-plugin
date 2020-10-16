@@ -1019,49 +1019,109 @@ public class InstanceSyncHandler {
 			}
 		}
 		
-		boolean success = transformUAInstance(object, stereotype);
+		boolean success = transformUAInstance(object);
 		
-		if(!success)
+		if(success)
 		{
+			Stereotype uaStereotype = getMatchingStereotype(uaMethod);
+
+			if(object.hasValue(uaStereotype, "argumentDescription"))
+			{
+				EcoreEList<DynamicEObjectImpl> argumentDescriptionList = (EcoreEList<DynamicEObjectImpl>) object.getValue(uaStereotype, "argumentDescription");
+				for(DynamicEObjectImpl argumentDescriptionEntry : argumentDescriptionList)
+				{
+					Class argumentDescription = getStereotypeBaseClass(argumentDescriptionEntry, true);
+					if(argumentDescription != null)
+					{
+						UAMethodArgument uaMethArg = (UAMethodArgument) this.matching.get(argumentDescription);
+						if(!uaMethod.getArgumentDescription().contains(uaMethArg))
+						{						
+							uaMethod.getArgumentDescription().add(uaMethArg);
+						}
+						
+						EList<Classifier> children = object.getNestedClassifiers();
+						if(!children.contains(argumentDescription))
+						{
+							children.add(argumentDescription);
+						}
+					
+					}
+				}		
+			}
+			
+			if(object.hasValue(uaStereotype, "executable"))
+			{
+				boolean executable = (boolean) object.getValue(uaStereotype, "executable");
+				uaMethod.setExecutable(executable);
+			}
+			
+			if(object.hasValue(uaStereotype, "methodDeclarationId"))
+			{
+				DynamicEObjectImpl methodDeclarationId = (DynamicEObjectImpl) object.getValue(uaStereotype, "methodDeclarationId");
+
+				Class methodDeclarationClass = getStereotypeBaseClass(methodDeclarationId, true);
+				
+				String nodeId = getNodeId(methodDeclarationClass);	
+
+				if(nodeId != null && nodeId.length() > 0)
+				{					
+					uaMethod.setMethodDeclarationId(nodeId);
+				}
+			}
+			
+			if(object.hasValue(uaStereotype, "userExecutable"))
+			{
+				boolean userExecutable = (boolean) object.getValue(uaStereotype, "executable");
+				uaMethod.setUserExecutable(userExecutable);
+			}
 			return success;
 		}
-		
-		for(EStructuralFeature feature : featuresList)
-		{
-			
-			
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			if(temp == null)
-			{
-				continue;
-			}
-			
-			if(name.equalsIgnoreCase("argumentDescription"))
-			{
-				//TODO: Add argumentDescription
-			}
-			else if(name.equalsIgnoreCase("executable"))
-			{
-				// TODO: executable
-			}
-			else if(name.equalsIgnoreCase("methodDeclarationId"))
-			{
-				//TODO: Add methodDeclarationId
-			}
-			else if(name.equalsIgnoreCase("userExecutable"))
-			{
-				//TODO: Add userExecutable
-			}
-		}
+
 		
 
 		return true;
 	}
 
-	private boolean transformUAInstance(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+	private boolean transformUAMethodArgument(Class object) {
+	
+		UAMethodArgumentImpl uaMethArg;
+		
+		if(this.matching.containsKey(object))
+		{
+			uaMethArg = (UAMethodArgumentImpl) this.matching.get(object);
+		}
+		else
+		{
+			uaMethArg = new UAMethodArgumentImpl();
+			this.matching.put(object, uaMethArg);
+		}
+		
+		Stereotype uaStereotype = getMatchingStereotype(uaMethArg);
+
+		if(object.hasValue(uaStereotype, "name"))
+		{
+			String name = String.valueOf(object.getValue(uaStereotype, "name"));
+			uaMethArg.setName(name);
+		}
+		
+		if(object.hasValue(uaStereotype, "description"))
+		{
+			EDataTypeUniqueEList<String> descriptionList = (EDataTypeUniqueEList<String>) object.getValue(uaStereotype, "description");
+			uaMethArg.getDescription().clear();
+			
+			for(String description : descriptionList)
+			{
+				LocalizedTextImpl lt = new LocalizedTextImpl();
+				lt.setValue(description);
+				uaMethArg.getDescription().add(lt);
+			}
+			
+		}
+		
+		return false;
+	}
+	
+	private boolean transformUAInstance(Class object) {
 		
 		UAInstanceImpl uaObjType;
 		if(this.matching.containsKey(object))
@@ -2125,6 +2185,12 @@ public class InstanceSyncHandler {
     			{
     				rolePermissionNodes.add(t);
     			}
+    			if(t.getMethodDeclarationId() != null && t.getMethodDeclarationId().length() > 0 && 
+    				!uaInstanceReferences.contains(t))
+    			{
+    				uaInstanceReferences.add(t);
+    			}
+    			
     			success &= updateOpcUAMethod(t, nodesToAdd, nodesToDelete);
     			if(!success)
     			{
@@ -2855,20 +2921,116 @@ public class InstanceSyncHandler {
 			
 			if(node.getArgumentDescription() != null)
 			{				
-				//TODO: Add argumentDescription
+
+				success &= updateOpcUaMethodArgument(node, (Class) uaElement);
+				
 			}
-			uaElement.setValue(uaMethodSter, "executable", node.isExecutable());
-			
-			if(node.getMethodDeclarationId() != null)
-			{
-				//TODO: Add methodDeclarationId				
-			}
-			
+			uaElement.setValue(uaMethodSter, "executable", node.isExecutable());			
 			uaElement.setValue(uaMethodSter, "userExecutable", node.isUserExecutable());
 		}
 		return success;
 	}
 	
+	
+	
+	private boolean updateOpcUaMethodArgument(UAMethod uaMethod, Class uaElement) {
+		
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaMethodStereotype  = nodeSetProfile.getOwnedStereotype("UAMethod");
+		Stereotype uaMethodArgumentStereotype  = nodeSetProfile.getOwnedStereotype("UAMethodArgument");
+		
+		EcoreEList<DynamicEObjectImpl> methodArguments = (EcoreEList<DynamicEObjectImpl>) uaElement.getValue(uaMethodStereotype, "field");
+		EList<Classifier> children = uaElement.getNestedClassifiers();
+		
+		ArrayList<UAMethodArgument> existingUaMethArg = new ArrayList<UAMethodArgument>();
+		ArrayList<Class> deleteUaMethArg = new ArrayList<Class>();
+		
+		boolean success = true;
+		
+		for(DynamicEObjectImpl methodArgumentEntry : methodArguments)
+		{
+			Class methodArgument = getStereotypeBaseClass(methodArgumentEntry, true);
+			if(methodArgument != null)
+			{
+				UAMethodArgument uaMethArg = (UAMethodArgument) this.matching.get(methodArgument);
+				if(uaMethod.getArgumentDescription().contains(uaMethArg))
+				{						
+					existingUaMethArg.add(uaMethArg);
+					if(!children.contains(methodArgument))
+					{
+						children.add(methodArgument);
+					}
+					updateOpcUaMethodArgumentEntry(uaMethArg, methodArgument);
+				}
+				else
+				{
+					deleteUaMethArg.add(methodArgument);
+				}		
+			}
+		}
+		
+		while(!deleteUaMethArg.isEmpty())
+		{
+			deleteUaMethArg.get(0).destroy();
+			deleteUaMethArg.remove(0);
+		}
+		
+		for( UAMethodArgument uaMethArg : uaMethod.getArgumentDescription())
+		{
+			if(!existingUaMethArg.contains(uaMethArg))
+			{
+				Package ns = uaElement.getNearestPackage();
+
+				Class uaMethArgClass;
+				
+				if(uaMethArg.getName() == null || uaMethArg.getName().length() == 0)
+				{
+					success = false;
+					break;
+				}
+				
+				String name = "UAMethodArgument_"+uaMethArg.getName();
+				
+				if(ns == null)
+				{
+					Model model = uaElement.getModel();	
+					uaMethArgClass = model.createOwnedClass(name, false);
+				}
+				else
+				{
+					uaMethArgClass = ns.createOwnedClass(name, false);
+				}
+				children.add(uaMethArgClass);
+				uaMethArgClass.applyStereotype(uaMethodArgumentStereotype);
+				updateOpcUaMethodArgumentEntry(uaMethArg, uaMethArgClass);
+			}
+		}
+		
+		return success;
+	}
+	
+	private boolean updateOpcUaMethodArgumentEntry(UAMethodArgument uaMethodArgument, Class uaElement) {
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAMethodArgument");
+		
+		if(uaMethodArgument.getName() != null && uaMethodArgument.getName().length() > 0 )
+		{
+			uaElement.setValue(uaStereoType, "name", uaMethodArgument.getName());
+		}
+		
+		if(uaMethodArgument.getDescription() != null && uaMethodArgument.getDescription().size() > 0 )
+		{
+			EDataTypeUniqueEList<Object> descriptionList= (EDataTypeUniqueEList<Object>) uaElement.getValue(uaStereoType, "description");
+			descriptionList.clear();
+			for(LocalizedText description : uaMethodArgument.getDescription())
+			{
+				descriptionList.add(description.getValue());
+			}
+		}
+		
+		return true;
+	}
+
 	private boolean updateOpcUAView(UAView node, List<UAView> nodesToAdd, List<UAView> nodesToDelete) {
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAView");
@@ -3446,10 +3608,30 @@ public class InstanceSyncHandler {
 				}
 				
 			}
+			else if(var instanceof UAMethod)
+			{
+				success &= updateOpcUaMethodDeclarationId((UAMethod) var);
+				if(!success)
+				{
+					break;
+				}	
+			}
 			
 		}
 		
 		return success;
+	}
+
+	private boolean updateOpcUaMethodDeclarationId(UAMethod inst) {
+		// get stereotype Application of parent element
+		Object methodDeclarationId = getUmlNodeReference(inst.getMethodDeclarationId());
+		
+		Class varElement = getUmlNode(inst.getNodeId());
+		
+		Stereotype uaInstance = getMatchingStereotype(inst);
+		varElement.setValue(uaInstance, "methodDeclarationId", methodDeclarationId);
+
+		return true;
 	}
 
 	private boolean updateOpcUaParent(UAInstance inst) {
@@ -3826,6 +4008,10 @@ public class InstanceSyncHandler {
 		else if(node instanceof RolePermission)
 		{
 			uaInstance  = nodeSetProfile.getOwnedStereotype("RolePermission");
+		}
+		else if(node instanceof UAMethodArgument)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("UAMethodArgument");
 		}
 		
 		return uaInstance;

@@ -220,6 +220,9 @@ public class InstanceSyncHandler {
 			// no namespace Uir set
 			return false;
 		}
+		
+		namespace.setName(namespace.getURI());
+		
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
 		
@@ -941,6 +944,7 @@ public class InstanceSyncHandler {
 		if(object.hasValue(uaStereotype, "browseName"))
 		{
 			String browseName = (String) object.getValue(uaStereotype, "browseName");
+			object.setName(browseName);
 			
 			Package namespace = object.getNearestPackage();
 			if(namespace != null && namespace.getURI() != null && namespace.getURI().length() > 0)

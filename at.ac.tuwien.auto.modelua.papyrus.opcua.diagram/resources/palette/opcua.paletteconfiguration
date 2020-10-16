@@ -20,7 +20,7 @@
       </elementDescriptors>
     </ownedConfigurations>
     <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UATypes.UAVariableType" label="VariableType" description="Create a UAVariableType" kind="CreationTool">
-    	<icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
       <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
         <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAVariableType_Class_MetaclassShape_CN"/>
       </elementDescriptors>
@@ -36,9 +36,9 @@
       <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
         <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAVariableType_Class_Shape"/>
       </elementDescriptors>
-    </ownedConfigurations> 
+    </ownedConfigurations>
     <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UATypes.UAReferenceType" label="ReferenceType" description="Create a UAReferenceType" kind="CreationTool">
-    	<icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
       <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
         <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAReferenceType_Class_MetaclassShape_CN"/>
       </elementDescriptors>
@@ -56,7 +56,7 @@
       </elementDescriptors>
     </ownedConfigurations>
     <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UATypes.UADataType" label="DataType" description="Create a UADataType" kind="CreationTool">
-    	<icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
       <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
         <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UADataType_Class_MetaclassShape_CN"/>
       </elementDescriptors>
@@ -94,7 +94,7 @@
       </elementDescriptors>
     </ownedConfigurations>
     <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UAInstances.UAMethod" label="Method" description="Create a UAMethod" kind="CreationTool">
-    	<icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
       <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
         <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAMethod_Class_MetaclassShape_CN"/>
       </elementDescriptors>
@@ -112,7 +112,7 @@
       </elementDescriptors>
     </ownedConfigurations>
     <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UAInstances.UAObject" label="Object" description="Create a UAObject" kind="CreationTool">
-    	<icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
       <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
         <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAObject_Class_MetaclassShape_CN"/>
       </elementDescriptors>
@@ -130,7 +130,7 @@
       </elementDescriptors>
     </ownedConfigurations>
     <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UAInstances.UAView" label="View" description="Create a UAView" kind="CreationTool">
-    	<icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
       <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
         <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAView_Class_MetaclassShape_CN"/>
       </elementDescriptors>

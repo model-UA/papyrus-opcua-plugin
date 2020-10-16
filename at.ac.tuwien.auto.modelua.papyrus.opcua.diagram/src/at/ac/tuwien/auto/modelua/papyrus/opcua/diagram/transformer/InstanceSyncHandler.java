@@ -1789,7 +1789,7 @@ public class InstanceSyncHandler {
 		{
 			uaReference = new ReferenceImpl();
 			this.matching.put(general, uaReference);
-			uaReference.setIsForward(true);
+			uaReference.setIsForward((boolean) general.getValue(uaStereoType,"isForward"));
 		}
 		
 		Class target = (Class) general.getTargets().get(0);
@@ -1801,10 +1801,8 @@ public class InstanceSyncHandler {
 		boolean isForward = uaReference.isIsForward();
 		boolean isForwardOld = isForward;
 		
-		if(general.hasValue(uaStereoType,"isForward"))
-		{
-			isForward =(boolean) general.getValue(uaStereoType,"isForward");
-		}
+		isForward =(boolean) general.getValue(uaStereoType,"isForward");
+		
 		boolean directionChanged = isForwardOld ^ isForward;
 		uaReference.setIsForward(isForward);
 

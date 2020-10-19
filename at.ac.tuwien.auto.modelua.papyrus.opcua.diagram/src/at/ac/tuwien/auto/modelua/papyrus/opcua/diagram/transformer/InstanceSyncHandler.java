@@ -3091,7 +3091,7 @@ public class InstanceSyncHandler {
 		Stereotype uaMethodStereotype  = nodeSetProfile.getOwnedStereotype("UAMethod");
 		Stereotype uaMethodArgumentStereotype  = nodeSetProfile.getOwnedStereotype("UAMethodArgument");
 		
-		EcoreEList<DynamicEObjectImpl> methodArguments = (EcoreEList<DynamicEObjectImpl>) uaElement.getValue(uaMethodStereotype, "field");
+		EcoreEList<DynamicEObjectImpl> methodArguments = (EcoreEList<DynamicEObjectImpl>) uaElement.getValue(uaMethodStereotype, "argumentDescription");
 		EList<Classifier> children = uaElement.getNestedClassifiers();
 		
 		ArrayList<UAMethodArgument> existingUaMethArg = new ArrayList<UAMethodArgument>();

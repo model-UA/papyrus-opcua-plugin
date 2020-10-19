@@ -943,20 +943,6 @@
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8L8rUP12EeqBXoVfwKj3MQ" id="(0.4,1.0)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8L8rUf12EeqBXoVfwKj3MQ" id="(0.31,0.0)"/>
     </edges>
-    <edges xmi:type="notation:Connector" xmi:id="_Dd52AP13EeqBXoVfwKj3MQ" type="Extension_Edge" source="_fOpZMM2MEeq2nNAZuP-yMg" target="_a3lSUM2MEeq2nNAZuP-yMg">
-      <styles xmi:type="notation:FontStyle" xmi:id="_Dd52Af13EeqBXoVfwKj3MQ"/>
-      <element xmi:type="uml:Extension" href="UANodeSet.profile.uml#_DdBsQP13EeqBXoVfwKj3MQ"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Dd52Av13EeqBXoVfwKj3MQ" points="[240, 130, -643984, -643984]$[305, 209, -643984, -643984]$[391, 270, -643984, -643984]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_De4tcP13EeqBXoVfwKj3MQ" id="(0.5,1.0)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_De4tcf13EeqBXoVfwKj3MQ" id="(0.4,0.0)"/>
-    </edges>
-    <edges xmi:type="notation:Connector" xmi:id="_EeX0gP13EeqBXoVfwKj3MQ" type="Extension_Edge" source="_XOiIAM2MEeq2nNAZuP-yMg" target="_a3lSUM2MEeq2nNAZuP-yMg">
-      <styles xmi:type="notation:FontStyle" xmi:id="_EeX0gf13EeqBXoVfwKj3MQ"/>
-      <element xmi:type="uml:Extension" href="UANodeSet.profile.uml#_Edqp4P13EeqBXoVfwKj3MQ"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_EeX0gv13EeqBXoVfwKj3MQ" points="[80, 130, -643984, -643984]$[145, 209, -643984, -643984]$[374, 270, -643984, -643984]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EfU2wP13EeqBXoVfwKj3MQ" id="(0.4,1.0)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EfU2wf13EeqBXoVfwKj3MQ" id="(0.22,0.0)"/>
-    </edges>
     <edges xmi:type="notation:Connector" xmi:id="_PHePQP15EeqBiuHtzo95nw" type="Extension_Edge" source="_IL0rwP15EeqBiuHtzo95nw" target="_OfhecP15EeqBiuHtzo95nw">
       <styles xmi:type="notation:FontStyle" xmi:id="_PHePQf15EeqBiuHtzo95nw"/>
       <element xmi:type="uml:Extension" href="UANodeSet.profile.uml#_PF7XIP15EeqBiuHtzo95nw"/>

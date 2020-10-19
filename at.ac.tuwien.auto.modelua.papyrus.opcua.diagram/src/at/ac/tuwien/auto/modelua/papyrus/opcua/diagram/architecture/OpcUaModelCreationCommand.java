@@ -63,6 +63,7 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 		
 		Model model = (Model) owner;
 		
+		// TODO: do not import Base Namespace if base namespace is beeing updated
 		URI lib_path = URI.createURI(OpcUaDiagramResources.BASENAMESPACE_LIBRARY);
 		Package defaultNs = PackageUtil.loadPackage(lib_path, owner_resource);
 		if (defaultNs != null) {

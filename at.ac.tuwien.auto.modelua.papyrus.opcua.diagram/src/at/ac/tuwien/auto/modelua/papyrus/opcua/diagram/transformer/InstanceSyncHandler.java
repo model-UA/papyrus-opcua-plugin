@@ -287,16 +287,16 @@ public class InstanceSyncHandler {
 				success=transformDataTypeField(object, stereotype);
 				break;
 			case "ExtensionType":
-				success=transformExtensionType(object, stereotype);
+				success=transformExtensionType(object);
 				break;
 			case "ModelTableEntry":
-				success=transformModelTableEntry(object, stereotype);
+				success=transformModelTableEntry(object);
 				break;
 			case "NodeIdAlias":
 				success=transformNodeIdAlias(object, stereotype);
 				break;
 			case "RolePermission":
-				success=transformRolePermission(object, stereotype);
+				success=transformRolePermission(object);
 				break;
 			case "StructureTranslationType":
 				success=transformStructureTranslationType(object, stereotype);
@@ -332,10 +332,10 @@ public class InstanceSyncHandler {
 				success=transformUAView(object);
 				break;
 			case "ValueType":
-				success=transformValueType(object, stereotype);
+				success=transformValueType(object);
 				break;
 			case "ValueType1":
-				success=transformValueType1(object, stereotype);
+				success=transformValueType1(object);
 				break;
 			default:
 				break;
@@ -409,14 +409,14 @@ public class InstanceSyncHandler {
 		return true;
 	}
 
-	private boolean transformValueType1(Class object,  DynamicEObjectImpl stereotype) {
-		// EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+	private boolean transformValueType1(Class object) {
+		// TODO: transform ValueType 1
 		return false;
 		
 	}
 
-	private boolean transformValueType(Class object,  DynamicEObjectImpl stereotype) {
-		//EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+	private boolean transformValueType(Class object) {
+		// TODO: transform ValueType 
 		return false;
 	}
 
@@ -450,11 +450,20 @@ public class InstanceSyncHandler {
 				boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
 				uaView.setContainsNoLoops(convertedBoolean);
 			}
-			else if(object.hasValue(uaStereotype, "eventNotifier"))
+			else
+			{
+				uaView.unsetContainsNoLoops();
+			}
+			
+			if(object.hasValue(uaStereotype, "eventNotifier"))
 			{
 				String stringToConvert = String.valueOf(object.getValue(uaStereotype, "eventNotifier"));
 				short convertedShort = Short.parseShort(stringToConvert);
 				uaView.setEventNotifier(convertedShort);
+			}
+			else
+			{
+				uaView.unsetEventNotifier();
 			}
 			
 		}
@@ -533,7 +542,6 @@ public class InstanceSyncHandler {
 						}
 					}
 				}
-
 			}
 			
 			if(object.hasValue(uaStereotype, "accessLevel"))
@@ -541,6 +549,10 @@ public class InstanceSyncHandler {
 				String stringToConvert = String.valueOf(object.getValue(uaStereotype, "accessLevel"));
 				Long convertedLong = Long.parseLong(stringToConvert);
 				uaVariable.setAccessLevel(convertedLong);
+			}
+			else
+			{
+				uaVariable.unsetAccessLevel();
 			}
 			
 			if(object.hasValue(uaStereotype, "arrayDimensions"))
@@ -574,6 +586,10 @@ public class InstanceSyncHandler {
 				}
 
 			}
+			else
+			{
+				uaVariable.unsetDataType();;
+			}
 			
 			if(object.hasValue(uaStereotype, "historizing"))
 			{
@@ -582,6 +598,10 @@ public class InstanceSyncHandler {
 				uaVariable.setHistorizing(convertedBoolean);
 
 			}
+			else
+			{
+				uaVariable.unsetHistorizing();
+			}
 
 			if(object.hasValue(uaStereotype, "minimumSamplingInterval"))
 			{
@@ -589,19 +609,34 @@ public class InstanceSyncHandler {
 				uaVariable.setMinimumSamplingInterval(intervall);
 
 			}
+
+			else
+			{
+				uaVariable.unsetMinimumSamplingInterval();
+			}
+			
+			
 			if(object.hasValue(uaStereotype, "userAccessLevel"))
 			{
 				String stringToConvert = String.valueOf(object.getValue(uaStereotype, "userAccessLevel"));
 				Long convertedLong = Long.parseLong(stringToConvert);
 				uaVariable.setUserAccessLevel(convertedLong);
-
 			}
+			else
+			{
+				uaVariable.unsetUserAccessLevel();
+			}
+			
 			if(object.hasValue(uaStereotype, "valueRank"))
 			{
 				String stringToConvert = String.valueOf(object.getValue(uaStereotype, "valueRank"));
 				int convertedInt = Integer.parseInt(stringToConvert);
 				uaVariable.setValueRank(convertedInt);
 
+			}
+			else
+			{
+				uaVariable.unsetValueRank();
 			}
 		}
 		
@@ -712,24 +747,22 @@ public class InstanceSyncHandler {
 		
 		boolean success = transformUAInstance(object);
 		
-		for(EStructuralFeature feature : featuresList)
+		if(success)
 		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			if(temp == null)
-			{
-				continue;
-			}
+			Stereotype uaStereotype = getMatchingStereotype(uaObject);
 			
-			if(name.equalsIgnoreCase("eventNotifier"))
+			if(object.hasValue(uaStereotype, "eventNotifier"))
 			{
-				String stringToConvert = String.valueOf(temp);
+				String stringToConvert = String.valueOf(object.getValue(uaStereotype, "eventNotifier"));
 				short convertedShort = Short.parseShort(stringToConvert);
 				uaObject.setEventNotifier(convertedShort);
 			}
+			else
+			{
+				uaObject.unsetEventNotifier();
+			}
 		}
-		
+			
 		return success;
 	}
 
@@ -769,8 +802,7 @@ public class InstanceSyncHandler {
 			{
 				this.baseNodeset.getServerUris().getUri().add(serverUri);
 			}
-		}
-		
+		}		
 		
 //		if(object.getValue(nodeSetType, "models") != null)
 //		{
@@ -860,6 +892,24 @@ public class InstanceSyncHandler {
 
 		Stereotype uaStereotype = getMatchingStereotype(uanode);
 
+		if(object.hasValue(uaStereotype, "browseName"))
+		{
+			String browseName = (String) object.getValue(uaStereotype, "browseName");
+			object.setName(browseName);
+			
+			Package namespace = object.getNearestPackage();
+			if(namespace != null && namespace.getURI() != null && namespace.getURI().length() > 0)
+			{
+				EList<String> namespaces = this.baseNodeset.getNamespaceUris().getUri();
+				
+				int namespaceId = namespaces.indexOf(namespace.getURI());
+				namespaceId++; // arrays start at 0
+				browseName = String.valueOf(namespaceId) + ":" +browseName;
+			}
+			
+			uanode.setBrowseName( browseName);		
+		}
+		
 		if(object.hasValue(uaStereotype, "nodeId"))
 		{
 			String nodeId = getNodeId(object);	
@@ -874,7 +924,7 @@ public class InstanceSyncHandler {
 		{
 			return false;
 		}
-		
+
 		if(object.hasValue(uaStereotype, "displayName"))
 		{
 			EDataTypeUniqueEList<String> displayName = (EDataTypeUniqueEList<String>) object.getValue(uaStereotype, "displayName");
@@ -885,6 +935,10 @@ public class InstanceSyncHandler {
 				lt.setValue(dnEntry);
 				uanode.getDisplayName().add(lt);
 			}
+		}
+		else
+		{
+			uanode.getDisplayName().clear();
 		}
 		
 		if(object.hasValue(uaStereotype, "description"))
@@ -898,6 +952,10 @@ public class InstanceSyncHandler {
 				uanode.getDescription().add(lt);
 			}
 		}
+		else
+		{
+			uanode.getDescription().clear();
+		}
 		
 		if(object.hasValue(uaStereotype, "category"))
 		{
@@ -905,11 +963,19 @@ public class InstanceSyncHandler {
 			uanode.getCategory().clear();
 			uanode.getCategory().addAll(category);
 		}
+		else
+		{
+			uanode.getCategory().clear();
+		}
 		
 		if(object.hasValue(uaStereotype, "documentation"))
 		{
 			String documentation = (String) object.getValue(uaStereotype, "documentation");
 			uanode.setDocumentation( documentation);
+		}
+		else
+		{
+			uanode.setDocumentation("");
 		}
 		
 		
@@ -941,6 +1007,10 @@ public class InstanceSyncHandler {
 				}
 			}
 		}
+		else 
+		{
+			uanode.getRolePermissions().getRolePermission().clear();
+		}
 
 
 		
@@ -951,23 +1021,9 @@ public class InstanceSyncHandler {
 			short convertedShort = Short.parseShort(stringToConvert);
 			uanode.setAccessRestrictions(convertedShort);
 		}
-		
-		if(object.hasValue(uaStereotype, "browseName"))
+		else
 		{
-			String browseName = (String) object.getValue(uaStereotype, "browseName");
-			object.setName(browseName);
-			
-			Package namespace = object.getNearestPackage();
-			if(namespace != null && namespace.getURI() != null && namespace.getURI().length() > 0)
-			{
-				EList<String> namespaces = this.baseNodeset.getNamespaceUris().getUri();
-				
-				int namespaceId = namespaces.indexOf(namespace.getURI());
-				namespaceId++; // arrays start at 0
-				browseName = String.valueOf(namespaceId) + ":" +browseName;
-			}
-			
-			uanode.setBrowseName( browseName);		
+			uanode.unsetAccessRestrictions();
 		}
 		
 		EnumerationLiteral releaseStatus = (EnumerationLiteral) object.getValue(uaStereotype, "releaseStatus");
@@ -983,6 +1039,8 @@ public class InstanceSyncHandler {
 		case "Deprecated":
 			uanode.setReleaseStatus(ReleaseStatus.DEPRECATED);
 			break;
+		default:
+			uanode.unsetReleaseStatus();
 		}
 		
 
@@ -990,6 +1048,10 @@ public class InstanceSyncHandler {
 		{
 			EDataTypeUniqueEList<String> symbolicName = (EDataTypeUniqueEList<String>) object.getValue(uaStereotype, "symbolicName");
 			uanode.setSymbolicName(symbolicName);
+		}
+		else
+		{
+			uanode.getSymbolicName().clear();
 		}
 		
 		if(object.hasValue(uaStereotype, "userWriteMask"))
@@ -999,6 +1061,10 @@ public class InstanceSyncHandler {
 			long convertedLong = Long.parseLong(stringToConvert);
 			uanode.setUserWriteMask(convertedLong);
 		}
+		else
+		{
+			uanode.unsetUserWriteMask();
+		}
 		
 		if(object.hasValue(uaStereotype, "writeMask"))
 		{
@@ -1007,6 +1073,10 @@ public class InstanceSyncHandler {
 			long convertedLong = Long.parseLong(stringToConvert);
 			uanode.setWriteMask(convertedLong);
 		}
+		else
+		{
+			uanode.unsetWriteMask();
+		}
 		
 		ListOfReferences listOfReferences = uanode.getReferences();
 		if(listOfReferences == null)
@@ -1014,6 +1084,7 @@ public class InstanceSyncHandler {
 			listOfReferences = new ListOfReferencesImpl();
 			uanode.setReferences(listOfReferences);
 		}
+		
 		listOfReferences.getReference().clear();
 		
 		for(Generalization reference :object.getGeneralizations())
@@ -1077,11 +1148,19 @@ public class InstanceSyncHandler {
 					}
 				}		
 			}
+			else
+			{
+				uaMethod.getArgumentDescription().clear();
+			}
 			
 			if(object.hasValue(uaStereotype, "executable"))
 			{
 				boolean executable = (boolean) object.getValue(uaStereotype, "executable");
 				uaMethod.setExecutable(executable);
+			}
+			else
+			{
+				uaMethod.unsetExecutable();
 			}
 			
 			if(object.hasValue(uaStereotype, "methodDeclarationId"))
@@ -1097,12 +1176,21 @@ public class InstanceSyncHandler {
 					uaMethod.setMethodDeclarationId(nodeId);
 				}
 			}
+			else
+			{
+				uaMethod.setMethodDeclarationId("");
+			}
 			
 			if(object.hasValue(uaStereotype, "userExecutable"))
 			{
 				boolean userExecutable = (boolean) object.getValue(uaStereotype, "executable");
 				uaMethod.setUserExecutable(userExecutable);
 			}
+			else
+			{
+				uaMethod.unsetUserExecutable();
+			}
+			
 			return success;
 		}
 
@@ -1132,6 +1220,10 @@ public class InstanceSyncHandler {
 			String name = String.valueOf(object.getValue(uaStereotype, "name"));
 			uaMethArg.setName(name);
 		}
+		else
+		{
+			uaMethArg.setName("");
+		}
 		
 		if(object.hasValue(uaStereotype, "description"))
 		{
@@ -1144,7 +1236,10 @@ public class InstanceSyncHandler {
 				lt.setValue(description);
 				uaMethArg.getDescription().add(lt);
 			}
-			
+		}
+		else
+		{
+			uaMethArg.getDescription().clear();
 		}
 		
 		return false;
@@ -1152,20 +1247,20 @@ public class InstanceSyncHandler {
 	
 	private boolean transformUAInstance(Class object) {
 		
-		UAInstanceImpl uaObjType;
+		UAInstanceImpl uaInstance;
 		if(this.matching.containsKey(object))
 		{
-			uaObjType = (UAInstanceImpl) this.matching.get(object);
+			uaInstance = (UAInstanceImpl) this.matching.get(object);
 		}
 		else
 		{
-			uaObjType = new UAInstanceImpl();
-			this.matching.put(object, uaObjType);
+			uaInstance = new UAInstanceImpl();
+			this.matching.put(object, uaInstance);
 		}
 				
 		boolean success = transformUANode(object);
 		
-		Stereotype uaStereotype = getMatchingStereotype(uaObjType);
+		Stereotype uaStereotype = getMatchingStereotype(uaInstance);
 		if(object.hasValue(uaStereotype, "parentNodeId"))
 		{
 			DynamicEObjectImpl parentNode = (DynamicEObjectImpl) object.getValue(uaStereotype, "parentNodeId");
@@ -1176,12 +1271,14 @@ public class InstanceSyncHandler {
 
 			if(nodeId != null && nodeId.length() > 0)
 			{					
-				uaObjType.setParentNodeId(nodeId);
+				uaInstance.setParentNodeId(nodeId);
 			}
-			
 		}
-		
-				
+		else
+		{
+			uaInstance.setParentNodeId("");
+		}
+			
 		return success;
 	}
 
@@ -1224,6 +1321,11 @@ public class InstanceSyncHandler {
 					break;
 				}
 			}
+			else
+			{
+				uaDataType.unsetPurpose();
+			}
+			
 			
 			if(object.hasValue(dataTypeSter, "definition"))
 			{
@@ -1240,6 +1342,10 @@ public class InstanceSyncHandler {
 						children.add(dataTypeDefinition);
 					}
 				}
+			}
+			else
+			{
+				uaDataType.setDefinition(null);
 			}
 		}
 
@@ -1359,8 +1465,7 @@ public class InstanceSyncHandler {
 		return true;
 	}
 
-	private boolean transformRolePermission(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+	private boolean transformRolePermission(Class object) {
 		
 		RolePermissionImpl rp;
 		if( this.matching.containsKey(object))
@@ -1389,6 +1494,10 @@ public class InstanceSyncHandler {
 				rp.setValue(nodeId);
 			}
 		}
+		else
+		{
+			rp.setValue("");
+		}
 		
 		if(object.hasValue( uaStereotype, "permissions"))
 		{
@@ -1396,85 +1505,25 @@ public class InstanceSyncHandler {
 	        Long convertedLong = Long.parseLong(stringToConvert);
 			rp.setPermissions(convertedLong);
 		}
+		else
+		{
+			rp.unsetPermissions();
+		}
 				
 		return true;
 		
 	}
 
-	
-	private boolean transformModelTableEntry(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		return false;
+	private boolean transformModelTableEntry(Class object) {
+		//TODO: Implement Model Table transformation 
 		
-	}
-
-	private boolean transformListOfRolePermissions(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		
-		ListOfRolePermissionsImpl lorp;
-		if( this.matching.containsKey(object))
-		{
-			lorp = (ListOfRolePermissionsImpl) this.matching.get(object);
-
-		}
-		else
-		{
-			lorp = new ListOfRolePermissionsImpl();
-			this.matching.put(object, lorp);
-		}
-		
-		lorp.getRolePermission().clear();
-		
-		for(EStructuralFeature feature : featuresList)
-		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			
-			if(name.equalsIgnoreCase("rolePermission"))
-			{
-				EcoreEList<DynamicEObjectImpl> rpsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl rpUML : rpsUML)
-				{
-
-					EList<EStructuralFeature> featuresList2 = rpUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						
-						if(name2.equalsIgnoreCase("base_Class"))
-						{
-							Object baseClass = rpUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								RolePermission rp = (RolePermission) this.matching.get(baseClass);
-								lorp.getRolePermission().add(rp);
-								break;
-							}
-							else
-							{
-								transformClass((Class) baseClass);
-								RolePermission rp = (RolePermission) this.matching.get(baseClass);
-								lorp.getRolePermission().add(rp);
-								break;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		return true;
-	}
-
-	private boolean transformListOfExtensions(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
 		return false;
 	}
 
-	private boolean transformExtensionType(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+
+	private boolean transformExtensionType(Class object) {
+		//TODO: Implement Extension Type transformation 
+
 		return false;
 	}
 	
@@ -1505,7 +1554,10 @@ public class InstanceSyncHandler {
 				lt.setValue(displayName);
 				dtf.getDisplayName().add(lt);
 			}
-			
+		}
+		else
+		{
+			dtf.getDisplayName().clear();
 		}
 		
 		if(object.getValue(sterDTF, "description") !=null)
@@ -1520,7 +1572,10 @@ public class InstanceSyncHandler {
 				lt.setValue(description);
 				dtf.getDescription().add(lt);
 			}
-			
+		}
+		else
+		{
+			dtf.getDescription().clear();
 		}
 		
 		if(object.getValue(sterDTF, "abstractDataType") !=null)
@@ -1544,13 +1599,20 @@ public class InstanceSyncHandler {
 				}
 				
 			}
-				
+		}
+		else
+		{
+			dtf.setAbstractDataType("");
 		}
 		
 		if(object.getValue(sterDTF, "arrayDimensions") !=null)
-		{			
+		{		
 			String stringArrayDimensions= String.valueOf(object.getValue(sterDTF, "arrayDimensions"));
 			dtf.setArrayDimensions(stringArrayDimensions);
+		}
+		else
+		{
+			dtf.unsetArrayDimensions();
 		}
 		
 		if(object.getValue(sterDTF, "dataType") !=null)
@@ -1581,12 +1643,20 @@ public class InstanceSyncHandler {
 				
 			}
 		}
+		else
+		{
+			dtf.unsetDataType();
+		}
 		
 		if(object.getValue(sterDTF, "isOptional") !=null)
 		{			
 			String stringToConvert = String.valueOf(object.getValue(sterDTF, "isOptional"));
 			boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
 			dtf.setIsOptional(convertedBoolean);
+		}
+		else
+		{
+			dtf.unsetIsOptional();
 		}
 
 		if(object.getValue(sterDTF, "maxStringLength") !=null)
@@ -1595,11 +1665,19 @@ public class InstanceSyncHandler {
 			long convertedLong = Long.parseLong(stringToConvert);
 			dtf.setMaxStringLength(convertedLong);
 		}
+		else
+		{
+			dtf.unsetMaxStringLength();
+		}
 		
 		if(object.getValue(sterDTF, "name") !=null)
 		{			
 			String stringName = String.valueOf(object.getValue(sterDTF, "name"));
 			dtf.setName(stringName);
+		}
+		else
+		{
+			dtf.setName("");
 		}
 		
 		if(object.getValue(sterDTF, "symbolicName") !=null)
@@ -1616,13 +1694,21 @@ public class InstanceSyncHandler {
 			{
 				dtf.getSymbolicName().add(symbolicName);
 			}
-			
 		}
+		else
+		{
+			dtf.getSymbolicName().clear();
+		}
+		
 		if(object.getValue(sterDTF, "value") !=null)
 		{			
 			String stringToConvert = String.valueOf(object.getValue(sterDTF, "value"));
 			int convertedInt = Integer.parseInt(stringToConvert);
 			dtf.setValue(convertedInt);
+		}
+		else
+		{
+			dtf.unsetValue();
 		}
 		
 		if(object.getValue(sterDTF, "valueRank") !=null)
@@ -1630,6 +1716,10 @@ public class InstanceSyncHandler {
 			String stringToConvert = String.valueOf(object.getValue(sterDTF, "valueRank"));
 			int convertedInt = Integer.parseInt(stringToConvert);
 			dtf.setValueRank(convertedInt);
+		}
+		else
+		{
+			dtf.unsetValueRank();
 		}
 		
 		return true;
@@ -1674,12 +1764,20 @@ public class InstanceSyncHandler {
 				}
 			}			
 		}
+		else
+		{
+			dtd.getField().clear();
+		}
 		
 		if(object.getValue(sterDTD, "isOptionSet") !=null)
 		{			
 			String stringToConvert = String.valueOf(object.getValue(sterDTD, "isOptionSet"));
 			boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
 			dtd.setIsOptionSet(convertedBoolean);
+		}
+		else
+		{
+			dtd.unsetIsOptionSet();
 		}
 
 		if(object.getValue(sterDTD, "isUnion") !=null)
@@ -1688,11 +1786,19 @@ public class InstanceSyncHandler {
 			boolean convertedBoolean = Boolean.parseBoolean(stringToConvert);
 			dtd.setIsUnion(convertedBoolean);
 		}
+		else
+		{
+			dtd.unsetIsUnion();
+		}
 		
 		if(object.getValue(sterDTD, "name") !=null)
 		{			
 			String stringToConvert = String.valueOf(object.getValue(sterDTD, "name"));
 			dtd.setName(stringToConvert);
+		}
+		else
+		{
+			dtd.setName("");
 		}
 		
 		if(object.getValue(sterDTD, "symbolicName") !=null)
@@ -1706,6 +1812,10 @@ public class InstanceSyncHandler {
 				dtd.getSymbolicName().add(symbolicName);
 			}
 			
+		}
+		else
+		{
+			dtd.unsetSymbolicName();
 		}
 		
 		return true;

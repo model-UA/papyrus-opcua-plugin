@@ -545,8 +545,19 @@ public class InstanceSyncHandler {
 			
 			if(object.hasValue(uaStereotype, "arrayDimensions"))
 			{
-				String arrayDimensions = String.valueOf(object.getValue(uaStereotype, "arrayDimensions"));
-				uaVariable.setArrayDimensions(arrayDimensions);
+				List<Object> arrayDimensions = (List<Object>) object.getValue(uaStereotype, "arrayDimensions");
+				String convertedString ="";
+				
+				for(Object dimension : arrayDimensions)
+				{
+					convertedString = convertedString + "," + String.valueOf(dimension);
+				}
+								
+				uaVariable.setArrayDimensions(convertedString.substring(1));
+			}
+			else
+			{
+				uaVariable.unsetArrayDimensions();
 			}
 			
 			if(object.hasValue(uaStereotype, "dataType"))
@@ -2950,10 +2961,14 @@ public class InstanceSyncHandler {
 			
 			if(node.getArrayDimensions() != null && node.getArrayDimensions().length() > 0)
 			{
-				// TODO: fix ArrayDimensions
-//				String stringToConvert = node.getArrayDimensions();
-//				Long convertedLong = Long.valueOf(stringToConvert);
-//				uaElement.setValue(uaStereoType, "arrayDimensions", convertedLong);
+				List<Object> arrayDimensions = (List<Object>) uaElement.getValue(uaStereoType, "arrayDimensions");
+				arrayDimensions.clear();
+				
+				for(String dim : node.getArrayDimensions().split(","))
+				{
+					int convertedInt = Integer.valueOf(dim);
+					arrayDimensions.add(convertedInt);
+				}
 			}
 				
 						

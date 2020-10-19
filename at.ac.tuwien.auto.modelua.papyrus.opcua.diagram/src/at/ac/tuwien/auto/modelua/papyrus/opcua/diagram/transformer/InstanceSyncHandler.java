@@ -1009,7 +1009,14 @@ public class InstanceSyncHandler {
 		}
 		else 
 		{
-			uanode.getRolePermissions().getRolePermission().clear();
+			if(uanode.getRolePermissions() == null)
+			{
+				uanode.setRolePermissions(new ListOfRolePermissionsImpl());
+			}
+			else
+			{				
+				uanode.getRolePermissions().getRolePermission().clear();
+			}
 		}
 
 
@@ -1051,7 +1058,10 @@ public class InstanceSyncHandler {
 		}
 		else
 		{
-			uanode.getSymbolicName().clear();
+			if(uanode.getSymbolicName() != null)
+			{				
+				uanode.getSymbolicName().clear();
+			}
 		}
 		
 		if(object.hasValue(uaStereotype, "userWriteMask"))
@@ -1607,8 +1617,16 @@ public class InstanceSyncHandler {
 		
 		if(object.getValue(sterDTF, "arrayDimensions") !=null)
 		{		
-			String stringArrayDimensions= String.valueOf(object.getValue(sterDTF, "arrayDimensions"));
-			dtf.setArrayDimensions(stringArrayDimensions);
+			List<Object> arrayDimensions = (List<Object>) object.getValue(sterDTF, "arrayDimensions");
+			String convertedString ="";
+			
+			for(Object dimension : arrayDimensions)
+			{
+				convertedString = convertedString + "," + String.valueOf(dimension);
+			}
+							
+			dtf.setArrayDimensions(convertedString.substring(1));
+			
 		}
 		else
 		{
@@ -2921,9 +2939,15 @@ public class InstanceSyncHandler {
 		
 		if(dtf.getArrayDimensions() != null && dtf.getArrayDimensions().length() > 0)
 		{
-			String stringToConvert = dtf.getArrayDimensions();
-			long convertedLong = Long.valueOf(stringToConvert);
-			field.setValue(uaStereoType, "arrayDimensions", convertedLong );
+			List<Object> arrayDimensions = (List<Object>) field.getValue(uaStereoType, "arrayDimensions");
+			arrayDimensions.clear();
+			
+			for(String dim : dtf.getArrayDimensions().split(","))
+			{
+				int convertedInt = Integer.valueOf(dim);
+				arrayDimensions.add(convertedInt);
+			}
+			
 		}
 
 		if(dtf.getDataType() != null)

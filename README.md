@@ -32,6 +32,10 @@ If you want to build or debug the plugin yourself you have to install the Eclisp
 Select the following items:
     - Eclipse SDK
 
+If the underlaying UML model used for the diagram shall be adapted install the following from the papyrus update site:
+    - Papyrus Toolsmith Tools 
+    - Papyrus Diagram Assistants Generator 
+    
 ### Loading the the Plugin
 First the following folders have to imported as Eclipse Project into the Workspace. 
  - org.eclipse.papyrus.designer.languages.opcua.codegen

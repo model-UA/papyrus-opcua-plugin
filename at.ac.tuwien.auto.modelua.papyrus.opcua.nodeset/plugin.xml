@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Opc.Ua.Types -->
+      <package
+            uri="http://opcfoundation.org/UA/2008/02/Types.xsd"
+            class="org.opcfoundation.ua._2008._02.types.TypesPackage"
+            genModel="resources/genmodel/Opc.Ua.Types.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Opc.Ua.Types -->
+      <parser
+            type="types"
+            class="org.opcfoundation.ua._2008._02.types.util.TypesResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated UANodeSet -->
+      <package
+            uri="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd"
+            class="org.opcfoundation.ua._2011._03.ua.UANodeSet.NodeSetPackage"
+            genModel="resources/genmodel/UANodeSet.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated UANodeSet -->
+      <parser
+            type="nodeset"
+            class="org.opcfoundation.ua._2011._03.ua.UANodeSet.util.NodeSetResourceFactoryImpl"/>
+   </extension>
+</plugin>

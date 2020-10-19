@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paletteconfiguration:PaletteConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" id="infromationmodelpalettemodel" label="InformationModel">
+  <drawerConfigurations xmi:type="paletteconfiguration:DrawerConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.general" label="General" description="General">
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.general.Reference" label="Reference" description="Create a Reference relationship" kind="ConnectionTool">
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.Reference_Generalization_Edge"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.general.Namespace" label="Namespace" kind="CreationTool">
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.NameSpace_CompositeStructure"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.NameSpace_Package_Shape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.NameSpace_Package_Shape_CN"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations xmi:type="paletteconfiguration:DrawerConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UATypes" label="Type" description="BasicTypes">
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UATypes.UAObjectType" label="ObjectType" description="Create a UAObjectType" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAObjectType_Class_MetaclassShape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAObjectType_Class_MetaclassShape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAObjectType_Class_NestedClassifierLabel"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAObjectType_Class_Shape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAObjectType_Class_Shape"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UATypes.UAVariableType" label="VariableType" description="Create a UAVariableType" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAVariableType_Class_MetaclassShape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAVariableType_Class_MetaclassShape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAVariableType_Class_NestedClassifierLabel"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAVariableType_Class_Shape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAVariableType_Class_Shape"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UATypes.UAReferenceType" label="ReferenceType" description="Create a UAReferenceType" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAReferenceType_Class_MetaclassShape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAReferenceType_Class_MetaclassShape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAReferenceType_Class_NestedClassifierLabel"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAReferenceType_Class_Shape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAReferenceType_Class_Shape"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UATypes.UADataType" label="DataType" description="Create a UADataType" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UADataType_Class_MetaclassShape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UADataType_Class_MetaclassShape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UADataType_Class_NestedClassifierLabel"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UADataType_Class_Shape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UADataType_Class_Shape"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations xmi:type="paletteconfiguration:DrawerConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UAInstances" label="Instances">
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UAInstances.UAVariable" label="Variable" description="Create a UAVariable" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAVariable_Class_MetaclassShape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAVariable_Class_MetaclassShape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAVariable_Class_NestedClassifierLabel"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAVariable_Class_Shape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAVariable_Class_Shape"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UAInstances.UAMethod" label="Method" description="Create a UAMethod" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAMethod_Class_MetaclassShape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAMethod_Class_MetaclassShape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAMethod_Class_NestedClassifierLabel"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAMethod_Class_Shape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAMethod_Class_Shape"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UAInstances.UAObject" label="Object" description="Create a UAObject" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAObject_Class_MetaclassShape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAObject_Class_MetaclassShape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAObject_Class_NestedClassifierLabel"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAObject_Class_Shape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAObject_Class_Shape"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.UAInstances.UAView" label="View" description="Create a UAView" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="at.ac.tuwien.auto.modelua.papyrus.opcua.basetypes.profile" iconPath="icons/library.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAView_Class_MetaclassShape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAView_Class_MetaclassShape"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAView_Class_NestedClassifierLabel"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAView_Class_Shape_CN"/>
+      </elementDescriptors>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.di.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.di.UAView_Class_Shape"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <requiredProfiles>NodeSet</requiredProfiles>
+</paletteconfiguration:PaletteConfiguration>

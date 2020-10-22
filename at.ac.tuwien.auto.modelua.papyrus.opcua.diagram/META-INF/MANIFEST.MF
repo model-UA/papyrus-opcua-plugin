@@ -19,7 +19,8 @@ Require-Bundle: org.eclipse.papyrus.uml.extensionpoints,
  org.eclipse.emf.transaction,
  at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset;visibility:=reexport,
  org.eclipse.papyrus.uml.diagram.clazz;bundle-version="3.2.0",
- org.eclipse.papyrus.designer.languages.common.base
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+ org.eclipse.papyrus.designer.languages.common.base,
+ org.eclipse.gmf.runtime.draw2d.ui.render.awt;bundle-version="1.8.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram
 Bundle-ActivationPolicy: lazy

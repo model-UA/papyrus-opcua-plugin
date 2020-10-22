@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<paletteconfiguration:PaletteConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" id="infromationmodelpalettemodel" label="InformationModel">
+<paletteconfiguration:PaletteConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" id="informationmodelpalettemodel" label="InformationModel">
   <drawerConfigurations xmi:type="paletteconfiguration:DrawerConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.general" label="General" description="General">
     <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.palette.general.Reference" label="Reference" description="Create a Reference relationship" kind="ConnectionTool">
       <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">

@@ -1,0 +1,61 @@
+
+Class > Compartment{
+	visible:false;
+}
+
+Class > Compartment[type="compartment_shape_display"]{
+	visible: true;
+	showTitle:false;
+
+}
+
+Class {
+	elementIcon: false;
+}
+
+
+Label[type=StereotypeLabel] {
+	visible:false;
+}
+
+[appliedStereotypes~="NodeSet::UAObject"] {
+	italic:false;
+}
+
+[appliedStereotypes~="NodeSet::UAObjectType"] {
+	shadow:true;
+}
+
+[appliedStereotypes~="NodeSet::UAVariable"] {
+	radiusWidth:50;
+	radiusHeight:50;
+}
+
+[appliedStereotypes~="NodeSet::UAVariableType"] {
+	shadow:true;
+	radiusWidth:50;
+	radiusHeight:50;
+	italic:true;
+}
+
+[appliedStereotypes~="NodeSet::UADataType"] {
+	shadow:true;
+}
+
+[appliedStereotypes~="NodeSet::UAReferenceType"]{
+	/*maintainSymbolRatio:true;	*/
+	displayHeader:false;
+	displayBorder: true;
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAReferenceType.svg";
+	/*imagePath : "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAReferenceType.svg";*/
+	followSVGSymbol:true;
+
+}
+
+[appliedStereotypes~="NodeSet::UAMethod"] {
+	isOval:true;
+}
+
+[appliedStereotypes~="NodeSet::UAView"] {
+	
+}

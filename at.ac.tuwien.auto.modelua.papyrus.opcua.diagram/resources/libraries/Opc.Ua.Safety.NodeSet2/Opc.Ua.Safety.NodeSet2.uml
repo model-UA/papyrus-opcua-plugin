@@ -1,670 +1,670 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:NodeSet="http:///schemas/NodeSet/_nWQasBICEeuFwdqO5A880w/48" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/NodeSet/_nWQasBICEeuFwdqO5A880w/48 pathmap://OPC_UA_PROFILES/UANodeSet.profile.uml#_nWVTMBICEeuFwdqO5A880w">
-  <uml:Model xmi:id="_B7jo4BIEEeuAS9Voi6M66w" name="Opc.Ua.Safety.NodeSet2" viewpoint="InformationModel">
-    <packageImport xmi:type="uml:PackageImport" xmi:id="_CljoIBIEEeuAS9Voi6M66w">
-      <importedPackage xmi:type="uml:Model" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_ZjxFwBIDEeu_Gc2BjjGQJg"/>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:NodeSet="http:///schemas/NodeSet/_wmpOsBIHEeuFwdqO5A880w/49" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/NodeSet/_wmpOsBIHEeuFwdqO5A880w/49 pathmap://OPC_UA_PROFILES/UANodeSet.profile.uml#_wmtgIBIHEeuFwdqO5A880w">
+  <uml:Model xmi:id="_-Ax-8BIPEeuzocThPtismQ" name="Opc.Ua.Safety.NodeSet2" viewpoint="InformationModel">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_-azBcBIPEeuzocThPtismQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_kjAZgBIOEeuuHpaLSGIO7Q"/>
     </packageImport>
-    <packagedElement xmi:type="uml:Package" xmi:id="_Hs7KkBIEEeuAS9Voi6M66w" name="http://opcfoundation.org/UA/Safety" URI="http://opcfoundation.org/UA/Safety">
-      <packagedElement xmi:type="uml:Class" xmi:id="_H0ekEBIEEeuAS9Voi6M66w" name="SafetyObjectsType">
-        <generalization xmi:type="uml:Generalization" xmi:id="_IIV7QBIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_djUEgBIDEeu_Gc2BjjGQJg"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_WPtBEBIQEeuzocThPtismQ" name="http://opcfoundation.org/UA/Safety" URI="http://opcfoundation.org/UA/Safety">
+      <packagedElement xmi:type="uml:Class" xmi:id="_WTriIBIQEeuzocThPtismQ" name="SafetyObjectsType">
+        <generalization xmi:type="uml:Generalization" xmi:id="_WZYhgBIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_y0zEIBIOEeuuHpaLSGIO7Q"/>
         </generalization>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_H0-TUBIEEeuAS9Voi6M66w" name="SafetyProviderType">
-          <generalization xmi:type="uml:Generalization" xmi:id="_IIgTUBIEEeuAS9Voi6M66w" general="_H3cYgBIEEeuAS9Voi6M66w"/>
-          <generalization xmi:type="uml:Generalization" xmi:id="_IItHoBIEEeuAS9Voi6M66w" general="_IEMbEBIEEeuAS9Voi6M66w"/>
-          <generalization xmi:type="uml:Generalization" xmi:id="_II5U4BIEEeuAS9Voi6M66w" general="_IEVlABIEEeuAS9Voi6M66w"/>
-          <generalization xmi:type="uml:Generalization" xmi:id="_IJFiIBIEEeuAS9Voi6M66w" general="_H0ekEBIEEeuAS9Voi6M66w"/>
-          <nestedClassifier xmi:type="uml:Class" xmi:id="_H3cYgBIEEeuAS9Voi6M66w" name="Parameters">
-            <generalization xmi:type="uml:Generalization" xmi:id="_ILIwkBIEEeuAS9Voi6M66w">
-              <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WT0sEBIQEeuzocThPtismQ" name="SafetyProviderType">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WZvG0BIQEeuzocThPtismQ" general="_WT6ysBIQEeuzocThPtismQ"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WaAMkBIQEeuzocThPtismQ" general="_WWTYUBIQEeuzocThPtismQ"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WaKkoBIQEeuzocThPtismQ" general="_WWT_YBIQEeuzocThPtismQ"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WaUVoBIQEeuzocThPtismQ" general="_WTriIBIQEeuzocThPtismQ"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_WT6ysBIQEeuzocThPtismQ" name="Parameters">
+            <generalization xmi:type="uml:Generalization" xmi:id="_WcGeUBIQEeuzocThPtismQ">
+              <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
             </generalization>
-            <generalization xmi:type="uml:Generalization" xmi:id="_ILOQIBIEEeuAS9Voi6M66w" general="_H0-TUBIEEeuAS9Voi6M66w"/>
-            <generalization xmi:type="uml:Generalization" xmi:id="_ILXaEBIEEeuAS9Voi6M66w" general="_H-W40BIEEeuAS9Voi6M66w"/>
-            <generalization xmi:type="uml:Generalization" xmi:id="_ILjAQBIEEeuAS9Voi6M66w" general="_H1uhQBIEEeuAS9Voi6M66w"/>
-            <generalization xmi:type="uml:Generalization" xmi:id="_ILrjIBIEEeuAS9Voi6M66w" general="_H-gp0BIEEeuAS9Voi6M66w"/>
-            <generalization xmi:type="uml:Generalization" xmi:id="_IL1UIBIEEeuAS9Voi6M66w" general="_H-mwcBIEEeuAS9Voi6M66w"/>
-            <generalization xmi:type="uml:Generalization" xmi:id="_IL_sMBIEEeuAS9Voi6M66w" general="_H_F4oBIEEeuAS9Voi6M66w"/>
-            <generalization xmi:type="uml:Generalization" xmi:id="_IMJdMBIEEeuAS9Voi6M66w" general="_H_jysBIEEeuAS9Voi6M66w"/>
-            <generalization xmi:type="uml:Generalization" xmi:id="_IMUcUBIEEeuAS9Voi6M66w" general="_IAAeoBIEEeuAS9Voi6M66w"/>
-            <nestedClassifier xmi:type="uml:Class" xmi:id="_H-W40BIEEeuAS9Voi6M66w" name="SafetyBaseID">
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISKloBIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_WcITgBIQEeuzocThPtismQ" general="_WT0sEBIQEeuzocThPtismQ"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_WcI6kRIQEeuzocThPtismQ" general="_WUI1IBIQEeuzocThPtismQ"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_WcJhoBIQEeuzocThPtismQ" general="_WT3vYBIQEeuzocThPtismQ"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_WcKIsBIQEeuzocThPtismQ" general="_WUJcMRIQEeuzocThPtismQ"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_WcKvwBIQEeuzocThPtismQ" general="_WUKqUBIQEeuzocThPtismQ"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_WcL94BIQEeuzocThPtismQ" general="_WULRYBIQEeuzocThPtismQ"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_WcMk8BIQEeuzocThPtismQ" general="_WUO7wBIQEeuzocThPtismQ"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_WcNMABIQEeuzocThPtismQ" general="_WUQJ4BIQEeuzocThPtismQ"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_WUI1IBIQEeuzocThPtismQ" name="SafetyBaseID">
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc1eIBIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISLMsBIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc1eIhIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISLzwBIEEeuAS9Voi6M66w" general="_H3cYgBIEEeuAS9Voi6M66w"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc2FMBIQEeuzocThPtismQ" general="_WT6ysBIQEeuzocThPtismQ"/>
             </nestedClassifier>
-            <nestedClassifier xmi:type="uml:Class" xmi:id="_H-gp0BIEEeuAS9Voi6M66w" name="SafetyProviderDelay">
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISLzwhIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_WUJcMRIQEeuzocThPtismQ" name="SafetyProviderDelay">
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc2FMhIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISMa0BIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc2sQBIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISMa0hIEEeuAS9Voi6M66w" general="_H3cYgBIEEeuAS9Voi6M66w"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc2sQhIQEeuzocThPtismQ" general="_WT6ysBIQEeuzocThPtismQ"/>
             </nestedClassifier>
-            <nestedClassifier xmi:type="uml:Class" xmi:id="_H-mwcBIEEeuAS9Voi6M66w" name="SafetyProviderID">
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISNB4BIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_WUKqUBIQEeuzocThPtismQ" name="SafetyProviderID">
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc2sRBIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISNo8BIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc3TURIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISNo8hIEEeuAS9Voi6M66w" general="_H3cYgBIEEeuAS9Voi6M66w"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc3TUxIQEeuzocThPtismQ" general="_WT6ysBIQEeuzocThPtismQ"/>
             </nestedClassifier>
-            <nestedClassifier xmi:type="uml:Class" xmi:id="_H_F4oBIEEeuAS9Voi6M66w" name="SafetyProviderLevel">
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISOQARIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_WULRYBIQEeuzocThPtismQ" name="SafetyProviderLevel">
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc36YRIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISRTUBIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc36YxIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISR6YBIEEeuAS9Voi6M66w" general="_H3cYgBIEEeuAS9Voi6M66w"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc4hcRIQEeuzocThPtismQ" general="_WT6ysBIQEeuzocThPtismQ"/>
             </nestedClassifier>
-            <nestedClassifier xmi:type="uml:Class" xmi:id="_H_jysBIEEeuAS9Voi6M66w" name="StructureIdentifier">
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISShcBIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_WUO7wBIQEeuzocThPtismQ" name="StructureIdentifier">
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc4hcxIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISTIgBIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc5IgRIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISTvkRIEEeuAS9Voi6M66w" general="_H3cYgBIEEeuAS9Voi6M66w"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc5vkBIQEeuzocThPtismQ" general="_WT6ysBIQEeuzocThPtismQ"/>
             </nestedClassifier>
-            <nestedClassifier xmi:type="uml:Class" xmi:id="_IAAeoBIEEeuAS9Voi6M66w" name="StructureSignatureVersion">
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISU9sBIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_WUQJ4BIQEeuzocThPtismQ" name="StructureSignatureVersion">
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc5vkhIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISVkwBIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc6WoRIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISWL0BIEEeuAS9Voi6M66w" general="_H3cYgBIEEeuAS9Voi6M66w"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc6WoxIQEeuzocThPtismQ" general="_WT6ysBIQEeuzocThPtismQ"/>
             </nestedClassifier>
           </nestedClassifier>
-          <nestedClassifier xmi:type="uml:Class" xmi:id="_IEMbEBIEEeuAS9Voi6M66w" name="ReadSafetyData">
-            <generalization xmi:type="uml:Generalization" xmi:id="_ISxpoBIEEeuAS9Voi6M66w" general="_IAdxoBIEEeuAS9Voi6M66w"/>
-            <generalization xmi:type="uml:Generalization" xmi:id="_ISyQsBIEEeuAS9Voi6M66w">
-              <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_WWTYUBIQEeuzocThPtismQ" name="ReadSafetyData">
+            <generalization xmi:type="uml:Generalization" xmi:id="_WdjP0BIQEeuzocThPtismQ" general="_WUQw8BIQEeuzocThPtismQ"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_WdpWcBIQEeuzocThPtismQ">
+              <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
             </generalization>
-            <generalization xmi:type="uml:Generalization" xmi:id="_ISyQshIEEeuAS9Voi6M66w" general="_IA0W8BIEEeuAS9Voi6M66w"/>
-            <generalization xmi:type="uml:Generalization" xmi:id="_ISy3wRIEEeuAS9Voi6M66w" general="_H0-TUBIEEeuAS9Voi6M66w"/>
-            <nestedClassifier xmi:type="uml:Class" xmi:id="_IAdxoBIEEeuAS9Voi6M66w" name="InputArguments">
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISWy4BIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_WdygYBIQEeuzocThPtismQ" general="_WUSmIBIQEeuzocThPtismQ"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_Wd8RYBIQEeuzocThPtismQ" general="_WT0sEBIQEeuzocThPtismQ"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_WUQw8BIQEeuzocThPtismQ" name="InputArguments">
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc69sRIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISWy4hIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_Wc7kwBIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISXZ8RIEEeuAS9Voi6M66w" general="_IEMbEBIEEeuAS9Voi6M66w"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_WdBEUBIQEeuzocThPtismQ" general="_WWTYUBIQEeuzocThPtismQ"/>
             </nestedClassifier>
-            <nestedClassifier xmi:type="uml:Class" xmi:id="_IA0W8BIEEeuAS9Voi6M66w" name="OutputArguments">
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISYoEBIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_WUSmIBIQEeuzocThPtismQ" name="OutputArguments">
+              <generalization xmi:type="uml:Generalization" xmi:id="_WdEHoBIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISZPIBIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_WdEusBIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_IScScBIEEeuAS9Voi6M66w" general="_IEMbEBIEEeuAS9Voi6M66w"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_WdEushIQEeuzocThPtismQ" general="_WWTYUBIQEeuzocThPtismQ"/>
             </nestedClassifier>
           </nestedClassifier>
-          <nestedClassifier xmi:type="uml:Class" xmi:id="_IEVlABIEEeuAS9Voi6M66w" name="ReadSafetyDiagnostics">
-            <generalization xmi:type="uml:Generalization" xmi:id="_ISze0BIEEeuAS9Voi6M66w">
-              <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_WWT_YBIQEeuzocThPtismQ" name="ReadSafetyDiagnostics">
+            <generalization xmi:type="uml:Generalization" xmi:id="_WeDmIBIQEeuzocThPtismQ">
+              <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
             </generalization>
-            <generalization xmi:type="uml:Generalization" xmi:id="_ISze0hIEEeuAS9Voi6M66w" general="_IBUGMBIEEeuAS9Voi6M66w"/>
-            <generalization xmi:type="uml:Generalization" xmi:id="_IS0F4RIEEeuAS9Voi6M66w" general="_H0-TUBIEEeuAS9Voi6M66w"/>
-            <nestedClassifier xmi:type="uml:Class" xmi:id="_IBUGMBIEEeuAS9Voi6M66w" name="OutputArguments">
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISeusBIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_WeMJABIQEeuzocThPtismQ" general="_WUT0QBIQEeuzocThPtismQ"/>
+            <generalization xmi:type="uml:Generalization" xmi:id="_WeQacBIQEeuzocThPtismQ" general="_WT0sEBIQEeuzocThPtismQ"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_WUT0QBIQEeuzocThPtismQ" name="OutputArguments">
+              <generalization xmi:type="uml:Generalization" xmi:id="_WdF80BIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISeushIEEeuAS9Voi6M66w">
-                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_WdF80hIQEeuzocThPtismQ">
+                <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
               </generalization>
-              <generalization xmi:type="uml:Generalization" xmi:id="_ISfVwRIEEeuAS9Voi6M66w" general="_IEVlABIEEeuAS9Voi6M66w"/>
+              <generalization xmi:type="uml:Generalization" xmi:id="_WdGj4BIQEeuzocThPtismQ" general="_WWT_YBIQEeuzocThPtismQ"/>
             </nestedClassifier>
           </nestedClassifier>
         </nestedClassifier>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_H1uhQBIEEeuAS9Voi6M66w" name="SafetyParametersType">
-        <generalization xmi:type="uml:Generalization" xmi:id="_IJTkkBIEEeuAS9Voi6M66w" general="_IBynUBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IJl4cBIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_djUEgBIDEeu_Gc2BjjGQJg"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WT3vYBIQEeuzocThPtismQ" name="SafetyParametersType">
+        <generalization xmi:type="uml:Generalization" xmi:id="_WajmMBIQEeuzocThPtismQ" general="_WUUbUBIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WaulUBIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_y0zEIBIOEeuuHpaLSGIO7Q"/>
         </generalization>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IJvCYBIEEeuAS9Voi6M66w" general="_ICOFIBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IJ6okBIEEeuAS9Voi6M66w" general="_ICej0BIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IKFAoBIEEeuAS9Voi6M66w" general="_ICr_MBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IKQm0BIEEeuAS9Voi6M66w" general="_ICvpkBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IKa-4BIEEeuAS9Voi6M66w" general="_IC_hMBIEEeuAS9Voi6M66w"/>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_IBynUBIEEeuAS9Voi6M66w" name="SafetyBaseID">
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISgj4BIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_Wa1TABIQEeuzocThPtismQ" general="_WUVCYRIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WbBgQBIQEeuzocThPtismQ" general="_WUW3kBIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WbMfYBIQEeuzocThPtismQ" general="_WUZT0BIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WbUbMBIQEeuzocThPtismQ" general="_WVQPcBIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WbcXABIQEeuzocThPtismQ" general="_WV7k4BIQEeuzocThPtismQ"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WUUbUBIQEeuzocThPtismQ" name="SafetyBaseID">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdHK8BIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISgj4hIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdHK8hIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_IShK8RIEEeuAS9Voi6M66w" general="_H1uhQBIEEeuAS9Voi6M66w"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdHyARIQEeuzocThPtismQ" general="_WT3vYBIQEeuzocThPtismQ"/>
         </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_ICOFIBIEEeuAS9Voi6M66w" name="SafetyProviderDelay">
-          <generalization xmi:type="uml:Generalization" xmi:id="_IShyABIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WUVCYRIQEeuzocThPtismQ" name="SafetyProviderDelay">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdIZEBIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_IShyAhIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdIZEhIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISiZERIEEeuAS9Voi6M66w" general="_H1uhQBIEEeuAS9Voi6M66w"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdIZFBIQEeuzocThPtismQ" general="_WT3vYBIQEeuzocThPtismQ"/>
         </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_ICej0BIEEeuAS9Voi6M66w" name="SafetyProviderID">
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISjAIBIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WUW3kBIQEeuzocThPtismQ" name="SafetyProviderID">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdJAIRIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISjAIhIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdJAIxIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISjnMRIEEeuAS9Voi6M66w" general="_H1uhQBIEEeuAS9Voi6M66w"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdNRkBIQEeuzocThPtismQ" general="_WT3vYBIQEeuzocThPtismQ"/>
         </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_ICr_MBIEEeuAS9Voi6M66w" name="SafetyProviderLevel">
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISk1UBIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WUZT0BIQEeuzocThPtismQ" name="SafetyProviderLevel">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdN4oBIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISlcYBIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdOfsBIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISlcYhIEEeuAS9Voi6M66w" general="_H1uhQBIEEeuAS9Voi6M66w"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdOfshIQEeuzocThPtismQ" general="_WT3vYBIQEeuzocThPtismQ"/>
         </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_ICvpkBIEEeuAS9Voi6M66w" name="StructureIdentifier">
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISmDcRIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WVQPcBIQEeuzocThPtismQ" name="StructureIdentifier">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdPGwBIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISnRkBIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdPGwhIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISofsBIEEeuAS9Voi6M66w" general="_H1uhQBIEEeuAS9Voi6M66w"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdPt0BIQEeuzocThPtismQ" general="_WT3vYBIQEeuzocThPtismQ"/>
         </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_IC_hMBIEEeuAS9Voi6M66w" name="StructureSignatureVersion">
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISofshIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOdTQBIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WV7k4BIQEeuzocThPtismQ" name="StructureSignatureVersion">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdPt0hIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zSoPoBIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISpGwRIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdQU4RIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISpt0BIEEeuAS9Voi6M66w" general="_H1uhQBIEEeuAS9Voi6M66w"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdQ78BIQEeuzocThPtismQ" general="_WT3vYBIQEeuzocThPtismQ"/>
         </nestedClassifier>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_H2jnsBIEEeuAS9Voi6M66w" name="NonSafetyDataPlaceholderDataType">
-        <generalization xmi:type="uml:Generalization" xmi:id="_IKnMIBIEEeuAS9Voi6M66w" general="_H6EOsBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IKvH8BIEEeuAS9Voi6M66w" general="_H7dV0BIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IK3DwBIEEeuAS9Voi6M66w" general="_H6wLMBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IK-_kBIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d9thgBIDEeu_Gc2BjjGQJg"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WT49gBIQEeuzocThPtismQ" name="NonSafetyDataPlaceholderDataType">
+        <generalization xmi:type="uml:Generalization" xmi:id="_Wblg8BIQEeuzocThPtismQ" general="_WUA5UBIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WbrAgBIQEeuzocThPtismQ" general="_WUCugBIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_Wb3NwBIQEeuzocThPtismQ" general="_WUBgYRIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcAXsBIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDnjQBIOEeuuHpaLSGIO7Q"/>
         </generalization>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_IS3JMBIEEeuAS9Voi6M66w" name="DataTypeDefinition"/>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_Kr1ywBIEEeuAS9Voi6M66w" name="DataTypeDefinition"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WepcABIQEeuzocThPtismQ" name="DataTypeDefinition"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_a_Ln8BIQEeuzocThPtismQ" name="DataTypeDefinition"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_H4YzsBIEEeuAS9Voi6M66w" name="SafetyDeviceSet">
-        <generalization xmi:type="uml:Generalization" xmi:id="_IMbxEBIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_dm-cgBIDEeu_Gc2BjjGQJg"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WT9O8BIQEeuzocThPtismQ" name="SafetyDeviceSet">
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcNzEBIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_y081IBIOEeuuHpaLSGIO7Q"/>
         </generalization>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IMeNUBIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eOqHkBIDEeu_Gc2BjjGQJg"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcNzEhIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zTKbIBIOEeuuHpaLSGIO7Q"/>
         </generalization>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_H5ME8BIEEeuAS9Voi6M66w" name="//opcfoundation.org/UA/Safety">
-        <generalization xmi:type="uml:Generalization" xmi:id="_IMe0YBIEEeuAS9Voi6M66w" general="_IDLHYBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IMfbcBIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_dq4FEBIDEeu_Gc2BjjGQJg"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WUASQBIQEeuzocThPtismQ" name="//opcfoundation.org/UA/Safety">
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcOaIRIQEeuzocThPtismQ" general="_WWFV4BIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcPBMBIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_y2AlEBIOEeuuHpaLSGIO7Q"/>
         </generalization>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IMgCgRIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eP6r0BIDEeu_Gc2BjjGQJg"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcPBMhIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zWYuQBIOEeuuHpaLSGIO7Q"/>
         </generalization>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IMpzgBIEEeuAS9Voi6M66w" general="_IDU4YBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IM0LkBIEEeuAS9Voi6M66w" general="_IDf3gBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IM_xwBIEEeuAS9Voi6M66w" general="_IDpogBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_INKw4BIEEeuAS9Voi6M66w" general="_IDzZgBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_INWXEBIEEeuAS9Voi6M66w" general="_ID9KgBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_INh9QBIEEeuAS9Voi6M66w" general="_IEGUcBIEEeuAS9Voi6M66w"/>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_IDLHYBIEEeuAS9Voi6M66w" name="IsNamespaceSubset">
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISqU4BIEEeuAS9Voi6M66w" general="_H5ME8BIEEeuAS9Voi6M66w"/>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISqU4hIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcPoQBIQEeuzocThPtismQ" general="_WWMDkBIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcPoQhIQEeuzocThPtismQ" general="_WWPG4BIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcQPURIQEeuzocThPtismQ" general="_WWPt8BIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcbOcBIQEeuzocThPtismQ" general="_WWQVABIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WclmgBIQEeuzocThPtismQ" general="_WWQ8ERIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcqfABIQEeuzocThPtismQ" general="_WWSKMBIQEeuzocThPtismQ"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WWFV4BIQEeuzocThPtismQ" name="IsNamespaceSubset">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdRjABIQEeuzocThPtismQ" general="_WUASQBIQEeuzocThPtismQ"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdRjAhIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
         </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_IDU4YBIEEeuAS9Voi6M66w" name="NamespacePublicationDate">
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISq78RIEEeuAS9Voi6M66w" general="_H5ME8BIEEeuAS9Voi6M66w"/>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISq78xIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WWMDkBIQEeuzocThPtismQ" name="NamespacePublicationDate">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdSKEBIQEeuzocThPtismQ" general="_WUASQBIQEeuzocThPtismQ"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdSKEhIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
         </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_IDf3gBIEEeuAS9Voi6M66w" name="NamespaceUri">
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISrjARIEEeuAS9Voi6M66w" general="_H5ME8BIEEeuAS9Voi6M66w"/>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISsKEBIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WWPG4BIQEeuzocThPtismQ" name="NamespaceUri">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdSxIRIQEeuzocThPtismQ" general="_WUASQBIQEeuzocThPtismQ"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdSxIxIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
         </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_IDpogBIEEeuAS9Voi6M66w" name="NamespaceVersion">
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISsKEhIEEeuAS9Voi6M66w" general="_H5ME8BIEEeuAS9Voi6M66w"/>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISsxIRIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WWPt8BIQEeuzocThPtismQ" name="NamespaceVersion">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdTYMRIQEeuzocThPtismQ" general="_WUASQBIQEeuzocThPtismQ"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdTYMxIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
         </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_IDzZgBIEEeuAS9Voi6M66w" name="StaticNodeIdTypes">
-          <generalization xmi:type="uml:Generalization" xmi:id="_IStYMBIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WWQVABIQEeuzocThPtismQ" name="StaticNodeIdTypes">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdT_QRIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISt_QBIEEeuAS9Voi6M66w" general="_H5ME8BIEEeuAS9Voi6M66w"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdT_QxIQEeuzocThPtismQ" general="_WUASQBIQEeuzocThPtismQ"/>
         </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_ID9KgBIEEeuAS9Voi6M66w" name="StaticNumericNodeIdRange">
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISumUBIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WWQ8ERIQEeuzocThPtismQ" name="StaticNumericNodeIdRange">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdYQsBIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISvNYRIEEeuAS9Voi6M66w" general="_H5ME8BIEEeuAS9Voi6M66w"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdY3wBIQEeuzocThPtismQ" general="_WUASQBIQEeuzocThPtismQ"/>
         </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_IEGUcBIEEeuAS9Voi6M66w" name="StaticStringNodeIdPattern">
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISv0cBIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WWSKMBIQEeuzocThPtismQ" name="StaticStringNodeIdPattern">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdciIBIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISwbgBIEEeuAS9Voi6M66w" general="_H5ME8BIEEeuAS9Voi6M66w"/>
-        </nestedClassifier>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_H6EOsBIEEeuAS9Voi6M66w" name="Default Binary">
-        <generalization xmi:type="uml:Generalization" xmi:id="_INruQBIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_dnD8EBIDEeu_Gc2BjjGQJg"/>
-        </generalization>
-        <generalization xmi:type="uml:Generalization" xmi:id="_INxN0BIEEeuAS9Voi6M66w" general="_H2jnsBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IN6XwBIEEeuAS9Voi6M66w" general="_H8J5YBIEEeuAS9Voi6M66w"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_H6wLMBIEEeuAS9Voi6M66w" name="Default XML">
-        <generalization xmi:type="uml:Generalization" xmi:id="_IOC6oBIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_dnD8EBIDEeu_Gc2BjjGQJg"/>
-        </generalization>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IOTZUBIEEeuAS9Voi6M66w" general="_H2jnsBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IOoJcBIEEeuAS9Voi6M66w" general="_H8l-QBIEEeuAS9Voi6M66w"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_H7dV0BIEEeuAS9Voi6M66w" name="Default JSON">
-        <generalization xmi:type="uml:Generalization" xmi:id="_IO4BEBIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_dnD8EBIDEeu_Gc2BjjGQJg"/>
-        </generalization>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IPH4sBIEEeuAS9Voi6M66w" general="_H2jnsBIEEeuAS9Voi6M66w"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_H8-_0BIEEeuAS9Voi6M66w" name="TypeDictionary">
-        <generalization xmi:type="uml:Generalization" xmi:id="_IRJR8BIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4pbUBIDEeu_Gc2BjjGQJg"/>
-        </generalization>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IRYigBIEEeuAS9Voi6M66w" general="_H9R6wBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IRtSoBIEEeuAS9Voi6M66w" general="_H8J5YBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_IR2ckBIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eO274BIDEeu_Gc2BjjGQJg"/>
-        </generalization>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_H8J5YBIEEeuAS9Voi6M66w" name="NonSafetyDataPlaceholderDataType">
-          <generalization xmi:type="uml:Generalization" xmi:id="_IPZlgBIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4d1IBIDEeu_Gc2BjjGQJg"/>
-          </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_IPpdIBIEEeuAS9Voi6M66w" general="_H6EOsBIEEeuAS9Voi6M66w"/>
-          <generalization xmi:type="uml:Generalization" xmi:id="_IP6i4BIEEeuAS9Voi6M66w" general="_H8-_0BIEEeuAS9Voi6M66w"/>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_H9R6wBIEEeuAS9Voi6M66w" name="NamespaceUri">
-          <generalization xmi:type="uml:Generalization" xmi:id="_IR-YYBIEEeuAS9Voi6M66w" general="_H8-_0BIEEeuAS9Voi6M66w"/>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISFtIBIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
-          </generalization>
+          <generalization xmi:type="uml:Generalization" xmi:id="_Wde-YBIQEeuzocThPtismQ" general="_WUASQBIQEeuzocThPtismQ"/>
         </nestedClassifier>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_H9mq4BIEEeuAS9Voi6M66w" name="TypeDictionary">
-        <generalization xmi:type="uml:Generalization" xmi:id="_ISGUMBIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4pbUBIDEeu_Gc2BjjGQJg"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WUA5UBIQEeuzocThPtismQ" name="Default Binary">
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcrtIBIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_y1F_EBIOEeuuHpaLSGIO7Q"/>
         </generalization>
-        <generalization xmi:type="uml:Generalization" xmi:id="_ISG7QBIEEeuAS9Voi6M66w" general="_H-FzEBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_ISHiUBIEEeuAS9Voi6M66w" general="_H8l-QBIEEeuAS9Voi6M66w"/>
-        <generalization xmi:type="uml:Generalization" xmi:id="_ISIJYRIEEeuAS9Voi6M66w">
-          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eO1GsBIDEeu_Gc2BjjGQJg"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcrtIhIQEeuzocThPtismQ" general="_WT49gBIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcsUMBIQEeuzocThPtismQ" general="_WUDVkBIQEeuzocThPtismQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WUBgYRIQEeuzocThPtismQ" name="Default XML">
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcsUMhIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_y1F_EBIOEeuuHpaLSGIO7Q"/>
         </generalization>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_H8l-QBIEEeuAS9Voi6M66w" name="NonSafetyDataPlaceholderDataType">
-          <generalization xmi:type="uml:Generalization" xmi:id="_IQRvQBIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4d1IBIDEeu_Gc2BjjGQJg"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcsUNBIQEeuzocThPtismQ" general="_WT49gBIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_Wcs7QBIQEeuzocThPtismQ" general="_WUEjsBIQEeuzocThPtismQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WUCugBIQEeuzocThPtismQ" name="Default JSON">
+        <generalization xmi:type="uml:Generalization" xmi:id="_Wcs7QhIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_y1F_EBIOEeuuHpaLSGIO7Q"/>
+        </generalization>
+        <generalization xmi:type="uml:Generalization" xmi:id="_Wcs7RBIQEeuzocThPtismQ" general="_WT49gBIQEeuzocThPtismQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WUFKwRIQEeuzocThPtismQ" name="TypeDictionary">
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcwloBIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBJeEBIOEeuuHpaLSGIO7Q"/>
+        </generalization>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcwlohIQEeuzocThPtismQ" general="_WUGY4BIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcxMsBIQEeuzocThPtismQ" general="_WUDVkBIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WcxzwBIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zTo8QBIOEeuuHpaLSGIO7Q"/>
+        </generalization>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WUDVkBIQEeuzocThPtismQ" name="NonSafetyDataPlaceholderDataType">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WctiURIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBIP8BIOEeuuHpaLSGIO7Q"/>
           </generalization>
-          <generalization xmi:type="uml:Generalization" xmi:id="_IQg_0BIEEeuAS9Voi6M66w" general="_H6wLMBIEEeuAS9Voi6M66w"/>
-          <generalization xmi:type="uml:Generalization" xmi:id="_IQysoBIEEeuAS9Voi6M66w" general="_H9mq4BIEEeuAS9Voi6M66w"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WctiUxIQEeuzocThPtismQ" general="_WUA5UBIQEeuzocThPtismQ"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WcuJYRIQEeuzocThPtismQ" general="_WUFKwRIQEeuzocThPtismQ"/>
         </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_H-FzEBIEEeuAS9Voi6M66w" name="NamespaceUri">
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISIwcBIEEeuAS9Voi6M66w" general="_H9mq4BIEEeuAS9Voi6M66w"/>
-          <generalization xmi:type="uml:Generalization" xmi:id="_ISJXgBIEEeuAS9Voi6M66w">
-            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d4cnABIDEeu_Gc2BjjGQJg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WUGY4BIQEeuzocThPtismQ" name="NamespaceUri">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WcxzwhIQEeuzocThPtismQ" general="_WUFKwRIQEeuzocThPtismQ"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_Wcya0BIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
+          </generalization>
+        </nestedClassifier>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WUG_8BIQEeuzocThPtismQ" name="TypeDictionary">
+        <generalization xmi:type="uml:Generalization" xmi:id="_Wcya0hIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBJeEBIOEeuuHpaLSGIO7Q"/>
+        </generalization>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WczB4BIQEeuzocThPtismQ" general="_WUHnARIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_Wczo8BIQEeuzocThPtismQ" general="_WUEjsBIQEeuzocThPtismQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_Wc0QARIQEeuzocThPtismQ">
+          <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zToVMBIOEeuuHpaLSGIO7Q"/>
+        </generalization>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WUEjsBIQEeuzocThPtismQ" name="NonSafetyDataPlaceholderDataType">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WcvXgBIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBIP8BIOEeuuHpaLSGIO7Q"/>
+          </generalization>
+          <generalization xmi:type="uml:Generalization" xmi:id="_WcvXghIQEeuzocThPtismQ" general="_WUBgYRIQEeuzocThPtismQ"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_Wcv-kBIQEeuzocThPtismQ" general="_WUG_8BIQEeuzocThPtismQ"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_WUHnARIQEeuzocThPtismQ" name="NamespaceUri">
+          <generalization xmi:type="uml:Generalization" xmi:id="_Wc03EBIQEeuzocThPtismQ" general="_WUG_8BIQEeuzocThPtismQ"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_Wc03EhIQEeuzocThPtismQ">
+            <general xmi:type="uml:Class" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zBHo4BIOEeuuHpaLSGIO7Q"/>
           </generalization>
         </nestedClassifier>
       </packagedElement>
     </packagedElement>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_CNK9UBIEEeuAS9Voi6M66w">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CNNZkBIEEeuAS9Voi6M66w" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://OPC_UA_PROFILES/UANodeSet.profile.uml#_nWVTMBICEeuFwdqO5A880w"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-LmH0BIPEeuzocThPtismQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-Ln9ABIPEeuzocThPtismQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://OPC_UA_PROFILES/UANodeSet.profile.uml#_wmtgIBIHEeuFwdqO5A880w"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://OPC_UA_PROFILES/UANodeSet.profile.uml#_4NQh8M2DEeq3ytc5nEBEpg"/>
     </profileApplication>
   </uml:Model>
-  <NodeSet:UANodeSet_._type xmi:id="_ClnSgBIEEeuAS9Voi6M66w" base_Model="_B7jo4BIEEeuAS9Voi6M66w">
-    <NamespaceUris>_H0HXsBIEEeuAS9Voi6M66w</NamespaceUris>
+  <NodeSet:UANodeSet_._type xmi:id="_-azogBIPEeuzocThPtismQ" base_Model="_-Ax-8BIPEeuzocThPtismQ">
+    <NamespaceUris>_WTf78BIQEeuzocThPtismQ</NamespaceUris>
   </NodeSet:UANodeSet_._type>
-  <NodeSet:NameSpace xmi:id="_H0HXsBIEEeuAS9Voi6M66w" base_Package="_Hs7KkBIEEeuAS9Voi6M66w"/>
-  <NodeSet:UAObjectType xmi:id="_H0oVEBIEEeuAS9Voi6M66w" browseName="SafetyObjectsType" nodeId="1004" base_Class="_H0ekEBIEEeuAS9Voi6M66w">
+  <NodeSet:NameSpace xmi:id="_WTf78BIQEeuzocThPtismQ" base_Package="_WPtBEBIQEeuzocThPtismQ"/>
+  <NodeSet:UAObjectType xmi:id="_WTtXUBIQEeuzocThPtismQ" browseName="SafetyObjectsType" nodeId="1004" base_Class="_WTriIBIQEeuzocThPtismQ">
     <displayName>SafetyObjectsType</displayName>
     <description>Base type of all safety objects</description>
     <description>https://reference.opcfoundation.org/v104/Safety/docs/6.1.1</description>
   </NodeSet:UAObjectType>
-  <NodeSet:UAObjectType xmi:id="_H1Dy4BIEEeuAS9Voi6M66w" browseName="SafetyProviderType" nodeId="1003" base_Class="_H0-TUBIEEeuAS9Voi6M66w">
+  <NodeSet:UAObjectType xmi:id="_WT1TIBIQEeuzocThPtismQ" browseName="SafetyProviderType" nodeId="1003" base_Class="_WT0sEBIQEeuzocThPtismQ">
     <displayName>SafetyProviderType</displayName>
     <description>https://reference.opcfoundation.org/v104/Safety/docs/6.1.1</description>
   </NodeSet:UAObjectType>
-  <NodeSet:UAObjectType xmi:id="_H13EIBIEEeuAS9Voi6M66w" browseName="SafetyParametersType" nodeId="1002" base_Class="_H1uhQBIEEeuAS9Voi6M66w">
+  <NodeSet:UAObjectType xmi:id="_WT4WcBIQEeuzocThPtismQ" browseName="SafetyParametersType" nodeId="1002" base_Class="_WT3vYBIQEeuzocThPtismQ">
     <displayName>SafetyParametersType</displayName>
     <description>Safety Parameters for SafetyProvider</description>
     <description>https://reference.opcfoundation.org/v104/Safety/docs/6.1.1</description>
   </NodeSet:UAObjectType>
-  <NodeSet:UADataType xmi:id="_H2vN4BIEEeuAS9Voi6M66w" browseName="NonSafetyDataPlaceholderDataType" nodeId="3002" base_Class="_H2jnsBIEEeuAS9Voi6M66w">
+  <NodeSet:UADataType xmi:id="_WT6LoBIQEeuzocThPtismQ" browseName="NonSafetyDataPlaceholderDataType" nodeId="3002" base_Class="_WT49gBIQEeuzocThPtismQ">
     <displayName>NonSafetyDataPlaceholderDataType</displayName>
     <description>Dummy structure to be used when no non-safety data are used</description>
     <description>https://reference.opcfoundation.org/v104/Safety/docs/6.2</description>
   </NodeSet:UADataType>
-  <NodeSet:UAObject xmi:id="_H3uFUBIEEeuAS9Voi6M66w" browseName="Parameters" nodeId="5001" base_Class="_H3cYgBIEEeuAS9Voi6M66w" parentNodeId="_H1Dy4BIEEeuAS9Voi6M66w">
+  <NodeSet:UAObject xmi:id="_WT7ZwBIQEeuzocThPtismQ" browseName="Parameters" nodeId="5001" base_Class="_WT6ysBIQEeuzocThPtismQ" parentNodeId="_WT1TIBIQEeuzocThPtismQ">
     <displayName>Parameters</displayName>
     <description>Safety parameters of this SafetyProvider</description>
   </NodeSet:UAObject>
-  <NodeSet:UAObject xmi:id="_H4gvgBIEEeuAS9Voi6M66w" browseName="SafetyDeviceSet" nodeId="5002" base_Class="_H4YzsBIEEeuAS9Voi6M66w">
+  <NodeSet:UAObject xmi:id="_WT92ABIQEeuzocThPtismQ" browseName="SafetyDeviceSet" nodeId="5002" base_Class="_WT9O8BIQEeuzocThPtismQ">
     <displayName>SafetyDeviceSet</displayName>
     <description>Contains all instances of SafetyProviders</description>
     <description>https://reference.opcfoundation.org/v104/Safety/docs/6.1.1</description>
   </NodeSet:UAObject>
-  <NodeSet:UAObject xmi:id="_H5V18BIEEeuAS9Voi6M66w" browseName="http://opcfoundation.org/UA/Safety" nodeId="5006" base_Class="_H5ME8BIEEeuAS9Voi6M66w">
+  <NodeSet:UAObject xmi:id="_WUASQRIQEeuzocThPtismQ" browseName="http://opcfoundation.org/UA/Safety" nodeId="5006" base_Class="_WUASQBIQEeuzocThPtismQ">
     <displayName>http://opcfoundation.org/UA/Safety</displayName>
     <description>Provides the metadata for a namespace used by the server.</description>
     <description>https://reference.opcfoundation.org/v104/Safety/docs/13.1</description>
     <symbolicName>http___opcfoundation_org_UA_Safety</symbolicName>
   </NodeSet:UAObject>
-  <NodeSet:UAObject xmi:id="_H6LjcBIEEeuAS9Voi6M66w" browseName="Default Binary" nodeId="5003" base_Class="_H6EOsBIEEeuAS9Voi6M66w">
+  <NodeSet:UAObject xmi:id="_WUBgYBIQEeuzocThPtismQ" browseName="Default Binary" nodeId="5003" base_Class="_WUA5UBIQEeuzocThPtismQ">
     <displayName>Default Binary</displayName>
     <symbolicName>DefaultBinary</symbolicName>
   </NodeSet:UAObject>
-  <NodeSet:UAObject xmi:id="_H64uEBIEEeuAS9Voi6M66w" browseName="Default XML" nodeId="5004" base_Class="_H6wLMBIEEeuAS9Voi6M66w">
+  <NodeSet:UAObject xmi:id="_WUCHcBIQEeuzocThPtismQ" browseName="Default XML" nodeId="5004" base_Class="_WUBgYRIQEeuzocThPtismQ">
     <displayName>Default XML</displayName>
     <symbolicName>DefaultXml</symbolicName>
   </NodeSet:UAObject>
-  <NodeSet:UAObject xmi:id="_H7mfwBIEEeuAS9Voi6M66w" browseName="Default JSON" nodeId="5005" base_Class="_H7dV0BIEEeuAS9Voi6M66w">
+  <NodeSet:UAObject xmi:id="_WUCugRIQEeuzocThPtismQ" browseName="Default JSON" nodeId="5005" base_Class="_WUCugBIQEeuzocThPtismQ">
     <displayName>Default JSON</displayName>
     <symbolicName>DefaultJson</symbolicName>
   </NodeSet:UAObject>
-  <NodeSet:UAVariable xmi:id="_H8Ox4BIEEeuAS9Voi6M66w" browseName="NonSafetyDataPlaceholderDataType" nodeId="6020" base_Class="_H8J5YBIEEeuAS9Voi6M66w" parentNodeId="_H9DRQBIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUD8oBIQEeuzocThPtismQ" browseName="NonSafetyDataPlaceholderDataType" nodeId="6020" base_Class="_WUDVkBIQEeuzocThPtismQ" parentNodeId="_WUFx0BIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NonSafetyDataPlaceholderDataType</displayName>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8jD4BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDVPYBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_H8qPsBIEEeuAS9Voi6M66w" browseName="NonSafetyDataPlaceholderDataType" nodeId="6021" base_Class="_H8l-QBIEEeuAS9Voi6M66w" parentNodeId="_H9puMBIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUFKwBIQEeuzocThPtismQ" browseName="NonSafetyDataPlaceholderDataType" nodeId="6021" base_Class="_WUEjsBIQEeuzocThPtismQ" parentNodeId="_WUHnABIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NonSafetyDataPlaceholderDataType</displayName>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8jD4BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDVPYBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_H9DRQBIEEeuAS9Voi6M66w" browseName="TypeDictionary" nodeId="6016" base_Class="_H8-_0BIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUFx0BIQEeuzocThPtismQ" browseName="TypeDictionary" nodeId="6016" base_Class="_WUFKwRIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>TypeDictionary</displayName>
     <description>Collects the data type descriptions of http://opcfoundation.org/UA/Safety</description>
     <symbolicName>TypeDictionary_BinarySchema</symbolicName>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8uDABIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDau8BIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_H9WzQBIEEeuAS9Voi6M66w" browseName="NamespaceUri" nodeId="6017" base_Class="_H9R6wBIEEeuAS9Voi6M66w" parentNodeId="_H9DRQBIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUGY4RIQEeuzocThPtismQ" browseName="NamespaceUri" nodeId="6017" base_Class="_WUGY4BIQEeuzocThPtismQ" parentNodeId="_WUFx0BIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NamespaceUri</displayName>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8jD4BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDVPYBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_H9puMBIEEeuAS9Voi6M66w" browseName="TypeDictionary" nodeId="6018" base_Class="_H9mq4BIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUHnABIQEeuzocThPtismQ" browseName="TypeDictionary" nodeId="6018" base_Class="_WUG_8BIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>TypeDictionary</displayName>
     <description>Collects the data type descriptions of http://opcfoundation.org/UA/Safety</description>
     <symbolicName>TypeDictionary_XmlSchema</symbolicName>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8uDABIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDau8BIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_H-KrkBIEEeuAS9Voi6M66w" browseName="NamespaceUri" nodeId="6019" base_Class="_H-FzEBIEEeuAS9Voi6M66w" parentNodeId="_H9puMBIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUIOEBIQEeuzocThPtismQ" browseName="NamespaceUri" nodeId="6019" base_Class="_WUHnARIQEeuzocThPtismQ" parentNodeId="_WUHnABIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NamespaceUri</displayName>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8jD4BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDVPYBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_H-cYYBIEEeuAS9Voi6M66w" browseName="SafetyBaseID" nodeId="6010" base_Class="_H-W40BIEEeuAS9Voi6M66w" parentNodeId="_H3uFUBIEEeuAS9Voi6M66w" accessLevel="3" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUJcMBIQEeuzocThPtismQ" browseName="SafetyBaseID" nodeId="6010" base_Class="_WUI1IBIQEeuzocThPtismQ" parentNodeId="_WT7ZwBIQEeuzocThPtismQ" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyBaseID</displayName>
     <description>Base-ID of the SafetyProvider</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8pKgRIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDY5wBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_H-hQ4BIEEeuAS9Voi6M66w" browseName="SafetyProviderDelay" nodeId="6011" base_Class="_H-gp0BIEEeuAS9Voi6M66w" parentNodeId="_H3uFUBIEEeuAS9Voi6M66w" accessLevel="3" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUKDQBIQEeuzocThPtismQ" browseName="SafetyProviderDelay" nodeId="6011" base_Class="_WUJcMRIQEeuzocThPtismQ" parentNodeId="_WT7ZwBIQEeuzocThPtismQ" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyProviderDelay</displayName>
     <description>SafetyProviderDelay is the maximum time at the SafetyProvider from receiving the RequestSPDU to start the transmission of ResponseSPDU</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8FJ0BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDNTkBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_H-ro8BIEEeuAS9Voi6M66w" browseName="SafetyProviderID" nodeId="6012" base_Class="_H-mwcBIEEeuAS9Voi6M66w" parentNodeId="_H3uFUBIEEeuAS9Voi6M66w" accessLevel="3" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUKqURIQEeuzocThPtismQ" browseName="SafetyProviderID" nodeId="6012" base_Class="_WUKqUBIQEeuzocThPtismQ" parentNodeId="_WT7ZwBIQEeuzocThPtismQ" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyProviderID</displayName>
     <description>Provider-ID of the SafetyProvider</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8FJ0BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDNTkBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_H_KxIBIEEeuAS9Voi6M66w" browseName="SafetyProviderLevel" nodeId="6013" base_Class="_H_F4oBIEEeuAS9Voi6M66w" parentNodeId="_H3uFUBIEEeuAS9Voi6M66w" accessLevel="3" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUNGkBIQEeuzocThPtismQ" browseName="SafetyProviderLevel" nodeId="6013" base_Class="_WULRYBIQEeuzocThPtismQ" parentNodeId="_WT7ZwBIQEeuzocThPtismQ" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyProviderLevel</displayName>
     <description>The maximal SIL the SafetyProvider implementation (hardware &amp; software) is capable of</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d7zdABIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDF-0BIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_H_oEIBIEEeuAS9Voi6M66w" browseName="StructureIdentifier" nodeId="6014" base_Class="_H_jysBIEEeuAS9Voi6M66w" parentNodeId="_H3uFUBIEEeuAS9Voi6M66w" accessLevel="3" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUPi0BIQEeuzocThPtismQ" browseName="StructureIdentifier" nodeId="6014" base_Class="_WUO7wBIQEeuzocThPtismQ" parentNodeId="_WT7ZwBIQEeuzocThPtismQ" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>StructureIdentifier</displayName>
     <description>Identifier of the structure type</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8jD4BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDVPYBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_IAEwEBIEEeuAS9Voi6M66w" browseName="StructureSignatureVersion" nodeId="6015" base_Class="_IAAeoBIEEeuAS9Voi6M66w" parentNodeId="_H3uFUBIEEeuAS9Voi6M66w" accessLevel="3" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUQJ4RIQEeuzocThPtismQ" browseName="StructureSignatureVersion" nodeId="6015" base_Class="_WUQJ4BIQEeuzocThPtismQ" parentNodeId="_WT7ZwBIQEeuzocThPtismQ" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>StructureSignatureVersion</displayName>
     <description>Version of the algorithm for calculating the StructureSignature</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d75joRIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDJpMBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_IAiqIBIEEeuAS9Voi6M66w" browseName="InputArguments" nodeId="6007" base_Class="_IAdxoBIEEeuAS9Voi6M66w" parentNodeId="_IEQsgBIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="1">
+  <NodeSet:UAVariable xmi:id="_WUR_EBIQEeuzocThPtismQ" browseName="InputArguments" nodeId="6007" base_Class="_WUQw8BIQEeuzocThPtismQ" parentNodeId="_WWTYURIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="1">
     <displayName>InputArguments</displayName>
     <arrayDimensions>3</arrayDimensions>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eFoHYBIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zI1acBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_IA4oYBIEEeuAS9Voi6M66w" browseName="OutputArguments" nodeId="6008" base_Class="_IA0W8BIEEeuAS9Voi6M66w" parentNodeId="_IEQsgBIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="1">
+  <NodeSet:UAVariable xmi:id="_WUTNMBIQEeuzocThPtismQ" browseName="OutputArguments" nodeId="6008" base_Class="_WUSmIBIQEeuzocThPtismQ" parentNodeId="_WWTYURIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="1">
     <displayName>OutputArguments</displayName>
     <arrayDimensions>9</arrayDimensions>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eFoHYBIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zI1acBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_IBYXoBIEEeuAS9Voi6M66w" browseName="OutputArguments" nodeId="6009" base_Class="_IBUGMBIEEeuAS9Voi6M66w" parentNodeId="_IEVlARIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="1">
+  <NodeSet:UAVariable xmi:id="_WUT0QRIQEeuzocThPtismQ" browseName="OutputArguments" nodeId="6009" base_Class="_WUT0QBIQEeuzocThPtismQ" parentNodeId="_WWUmcBIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="1">
     <displayName>OutputArguments</displayName>
     <arrayDimensions>12</arrayDimensions>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eFoHYBIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zI1acBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_IB2RsBIEEeuAS9Voi6M66w" browseName="SafetyBaseID" nodeId="6005" base_Class="_IBynUBIEEeuAS9Voi6M66w" parentNodeId="_H13EIBIEEeuAS9Voi6M66w" accessLevel="3" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUVCYBIQEeuzocThPtismQ" browseName="SafetyBaseID" nodeId="6005" base_Class="_WUUbUBIQEeuzocThPtismQ" parentNodeId="_WT4WcBIQEeuzocThPtismQ" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyBaseID</displayName>
     <description>Base-ID of the SafetyProvider</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8pKgRIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDY5wBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_ICSWkBIEEeuAS9Voi6M66w" browseName="SafetyProviderDelay" nodeId="6002" base_Class="_ICOFIBIEEeuAS9Voi6M66w" parentNodeId="_H13EIBIEEeuAS9Voi6M66w" accessLevel="3" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUVpcBIQEeuzocThPtismQ" browseName="SafetyProviderDelay" nodeId="6002" base_Class="_WUVCYRIQEeuzocThPtismQ" parentNodeId="_WT4WcBIQEeuzocThPtismQ" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyProviderDelay</displayName>
     <description>SafetyProviderDelay is the maximum time at the SafetyProvider from receiving the RequestSPDU to start the transmission of ResponseSPDU</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8FJ0BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDNTkBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_IChnIBIEEeuAS9Voi6M66w" browseName="SafetyProviderID" nodeId="6006" base_Class="_ICej0BIEEeuAS9Voi6M66w" parentNodeId="_H13EIBIEEeuAS9Voi6M66w" accessLevel="3" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUW3kRIQEeuzocThPtismQ" browseName="SafetyProviderID" nodeId="6006" base_Class="_WUW3kBIQEeuzocThPtismQ" parentNodeId="_WT4WcBIQEeuzocThPtismQ" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyProviderID</displayName>
     <description>Provider-ID of the SafetyProvider</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8FJ0BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDNTkBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_ICsmQBIEEeuAS9Voi6M66w" browseName="SafetyProviderLevel" nodeId="6001" base_Class="_ICr_MBIEEeuAS9Voi6M66w" parentNodeId="_H13EIBIEEeuAS9Voi6M66w" accessLevel="3" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WUZ64BIQEeuzocThPtismQ" browseName="SafetyProviderLevel" nodeId="6001" base_Class="_WUZT0BIQEeuzocThPtismQ" parentNodeId="_WT4WcBIQEeuzocThPtismQ" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyProviderLevel</displayName>
     <description>The maximal SIL the SafetyProvider implementation (hardware &amp; software) is capable of</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d7zdABIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDF-0BIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_ICwQoBIEEeuAS9Voi6M66w" browseName="StructureIdentifier" nodeId="6004" base_Class="_ICvpkBIEEeuAS9Voi6M66w" parentNodeId="_H13EIBIEEeuAS9Voi6M66w" accessLevel="3" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WVXkMBIQEeuzocThPtismQ" browseName="StructureIdentifier" nodeId="6004" base_Class="_WVQPcBIQEeuzocThPtismQ" parentNodeId="_WT4WcBIQEeuzocThPtismQ" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>StructureIdentifier</displayName>
     <description>Identifier of the structure type</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8jD4BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDVPYBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_IDB9cBIEEeuAS9Voi6M66w" browseName="StructureSignatureVersion" nodeId="6003" base_Class="_IC_hMBIEEeuAS9Voi6M66w" parentNodeId="_H13EIBIEEeuAS9Voi6M66w" accessLevel="3" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WV8L8BIQEeuzocThPtismQ" browseName="StructureSignatureVersion" nodeId="6003" base_Class="_WV7k4BIQEeuzocThPtismQ" parentNodeId="_WT4WcBIQEeuzocThPtismQ" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>StructureSignatureVersion</displayName>
     <description>Version of the algorithm for calculating the StructureSignature</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d75joRIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDJpMBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_IDP_4BIEEeuAS9Voi6M66w" browseName="IsNamespaceSubset" nodeId="6022" base_Class="_IDLHYBIEEeuAS9Voi6M66w" parentNodeId="_H5V18BIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WWF88BIQEeuzocThPtismQ" browseName="IsNamespaceSubset" nodeId="6022" base_Class="_WWFV4BIQEeuzocThPtismQ" parentNodeId="_WUASQRIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>IsNamespaceSubset</displayName>
     <description>If TRUE then the server only supports a subset of the namespace.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d7t9cBIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDBGUBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_IDVfcBIEEeuAS9Voi6M66w" browseName="NamespacePublicationDate" nodeId="6023" base_Class="_IDU4YBIEEeuAS9Voi6M66w" parentNodeId="_H5V18BIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WWMqoBIQEeuzocThPtismQ" browseName="NamespacePublicationDate" nodeId="6023" base_Class="_WWMDkBIQEeuzocThPtismQ" parentNodeId="_WUASQRIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NamespacePublicationDate</displayName>
     <description>The publication date for the namespace.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8jq8RIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDWdgBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_IDgekBIEEeuAS9Voi6M66w" browseName="NamespaceUri" nodeId="6024" base_Class="_IDf3gBIEEeuAS9Voi6M66w" parentNodeId="_H5V18BIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WWPG4RIQEeuzocThPtismQ" browseName="NamespaceUri" nodeId="6024" base_Class="_WWPG4BIQEeuzocThPtismQ" parentNodeId="_WUASQRIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NamespaceUri</displayName>
     <description>The URI of the namespace.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8jD4BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDVPYBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_IDqPkBIEEeuAS9Voi6M66w" browseName="NamespaceVersion" nodeId="6025" base_Class="_IDpogBIEEeuAS9Voi6M66w" parentNodeId="_H5V18BIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WWPt8RIQEeuzocThPtismQ" browseName="NamespaceVersion" nodeId="6025" base_Class="_WWPt8BIQEeuzocThPtismQ" parentNodeId="_WUASQRIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NamespaceVersion</displayName>
     <description>The human readable string representing version of the namespace.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8jD4BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDVPYBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_ID4SABIEEeuAS9Voi6M66w" browseName="StaticNodeIdTypes" nodeId="6026" base_Class="_IDzZgBIEEeuAS9Voi6M66w" parentNodeId="_H5V18BIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="1">
+  <NodeSet:UAVariable xmi:id="_WWQ8EBIQEeuzocThPtismQ" browseName="StaticNodeIdTypes" nodeId="6026" base_Class="_WWQVABIQEeuzocThPtismQ" parentNodeId="_WUASQRIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="1">
     <displayName>StaticNodeIdTypes</displayName>
     <description>A list of IdTypes for nodes which are the same in every server that exposes them.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eEpP8BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zGTD0BIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_ID9xkBIEEeuAS9Voi6M66w" browseName="StaticNumericNodeIdRange" nodeId="6027" base_Class="_ID9KgBIEEeuAS9Voi6M66w" parentNodeId="_H5V18BIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="1">
+  <NodeSet:UAVariable xmi:id="_WWRjIBIQEeuzocThPtismQ" browseName="StaticNumericNodeIdRange" nodeId="6027" base_Class="_WWQ8ERIQEeuzocThPtismQ" parentNodeId="_WUASQRIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="1">
     <displayName>StaticNumericNodeIdRange</displayName>
     <description>A list of ranges for numeric node ids which are the same in every server that exposes them.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eK6QABIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zKrNgBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAVariable xmi:id="_IEG7gBIEEeuAS9Voi6M66w" browseName="StaticStringNodeIdPattern" nodeId="6028" base_Class="_IEGUcBIEEeuAS9Voi6M66w" parentNodeId="_H5V18BIEEeuAS9Voi6M66w" accessLevel="1" userAccessLevel="1" valueRank="-1">
+  <NodeSet:UAVariable xmi:id="_WWSxQBIQEeuzocThPtismQ" browseName="StaticStringNodeIdPattern" nodeId="6028" base_Class="_WWSKMBIQEeuzocThPtismQ" parentNodeId="_WUASQRIQEeuzocThPtismQ" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>StaticStringNodeIdPattern</displayName>
     <description>A regular expression which matches string node ids are the same in every server that exposes them.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_d8jD4BIDEeu_Gc2BjjGQJg"/>
+    <dataType xmi:type="NodeSet:UADataType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zDVPYBIOEeuuHpaLSGIO7Q"/>
   </NodeSet:UAVariable>
-  <NodeSet:UAMethod xmi:id="_IEQsgBIEEeuAS9Voi6M66w" browseName="ReadSafetyData" nodeId="7001" base_Class="_IEMbEBIEEeuAS9Voi6M66w" parentNodeId="_H1Dy4BIEEeuAS9Voi6M66w">
+  <NodeSet:UAMethod xmi:id="_WWTYURIQEeuzocThPtismQ" browseName="ReadSafetyData" nodeId="7001" base_Class="_WWTYUBIQEeuzocThPtismQ" parentNodeId="_WT1TIBIQEeuzocThPtismQ">
     <displayName>ReadSafetyData</displayName>
     <description>Reads safe data from the SafetyProvider</description>
     <description>https://reference.opcfoundation.org/v104/Safety/docs/6.1.1</description>
   </NodeSet:UAMethod>
-  <NodeSet:UAMethod xmi:id="_IEVlARIEEeuAS9Voi6M66w" browseName="ReadSafetyDiagnostics" nodeId="7002" base_Class="_IEVlABIEEeuAS9Voi6M66w" parentNodeId="_H1Dy4BIEEeuAS9Voi6M66w">
+  <NodeSet:UAMethod xmi:id="_WWUmcBIQEeuzocThPtismQ" browseName="ReadSafetyDiagnostics" nodeId="7002" base_Class="_WWT_YBIQEeuzocThPtismQ" parentNodeId="_WT1TIBIQEeuzocThPtismQ">
     <displayName>ReadSafetyDiagnostics</displayName>
     <description>Serves as a diagnostic interface</description>
     <description>https://reference.opcfoundation.org/v104/Safety/docs/6.1.2</description>
   </NodeSet:UAMethod>
-  <NodeSet:Reference xmi:id="_IIaMsBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IIV7QBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNqpEBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IIkkwBIEEeuAS9Voi6M66w" base_Generalization="_IIgTUBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IIwyABIEEeuAS9Voi6M66w" base_Generalization="_IItHoBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_II8_QBIEEeuAS9Voi6M66w" base_Generalization="_II5U4BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IJIlcBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IJFiIBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNqpEBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IJdVkBIEEeuAS9Voi6M66w" base_Generalization="_IJTkkBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IJo7wBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IJl4cBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNqpEBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IJyswBIEEeuAS9Voi6M66w" base_Generalization="_IJvCYBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IJ-S8BIEEeuAS9Voi6M66w" base_Generalization="_IJ6okBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IKID8BIEEeuAS9Voi6M66w" base_Generalization="_IKFAoBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IKTDEBIEEeuAS9Voi6M66w" base_Generalization="_IKQm0BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IKepQBIEEeuAS9Voi6M66w" base_Generalization="_IKa-4BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IKqPcBIEEeuAS9Voi6M66w" base_Generalization="_IKnMIBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNg4EBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IKyLQBIEEeuAS9Voi6M66w" base_Generalization="_IKvH8BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNg4EBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IK6HEBIEEeuAS9Voi6M66w" base_Generalization="_IK3DwBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNg4EBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ILCC4BIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IK-_kBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNqpEBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ILJXoBIEEeuAS9Voi6M66w" base_Generalization="_ILIwkBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ILRTcBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ILOQIBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ILbEcBIEEeuAS9Voi6M66w" base_Generalization="_ILXaEBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ILmDkBIEEeuAS9Voi6M66w" base_Generalization="_ILjAQBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ILumcBIEEeuAS9Voi6M66w" base_Generalization="_ILrjIBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IL4XcBIEEeuAS9Voi6M66w" base_Generalization="_IL1UIBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IMCvgBIEEeuAS9Voi6M66w" base_Generalization="_IL_sMBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IMMggBIEEeuAS9Voi6M66w" base_Generalization="_IMJdMBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IMXfoBIEEeuAS9Voi6M66w" base_Generalization="_IMUcUBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IMcYIBIEEeuAS9Voi6M66w" base_Generalization="_IMbxEBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IMeNURIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IMeNUBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNWgARIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IMe0YRIEEeuAS9Voi6M66w" base_Generalization="_IMe0YBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IMgCgBIEEeuAS9Voi6M66w" base_Generalization="_IMfbcBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IMjF0BIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IMgCgRIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IMsPwBIEEeuAS9Voi6M66w" base_Generalization="_IMpzgBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IM318BIEEeuAS9Voi6M66w" base_Generalization="_IM0LkBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_INCOABIEEeuAS9Voi6M66w" base_Generalization="_IM_xwBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_INN0MBIEEeuAS9Voi6M66w" base_Generalization="_INKw4BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_INZaYBIEEeuAS9Voi6M66w" base_Generalization="_INWXEBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_INjLYBIEEeuAS9Voi6M66w" base_Generalization="_INh9QBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_INsVUBIEEeuAS9Voi6M66w" base_Generalization="_INruQBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IN0RIBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_INxN0BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNg4EBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IN-CIBIEEeuAS9Voi6M66w" base_Generalization="_IN6XwBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNitQBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IOIaMBIEEeuAS9Voi6M66w" base_Generalization="_IOC6oBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IOYR0BIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IOTZUBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNg4EBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IOtB8BIEEeuAS9Voi6M66w" base_Generalization="_IOoJcBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNitQBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IO9goBIEEeuAS9Voi6M66w" base_Generalization="_IO4BEBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IPMxMBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IPH4sBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNg4EBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IPeeABIEEeuAS9Voi6M66w" base_Generalization="_IPZlgBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IPuVoBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IPpdIBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNitQBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IP_bYBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IP6i4BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IQWnwBIEEeuAS9Voi6M66w" base_Generalization="_IQRvQBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IQmfYBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IQg_0BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNitQBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IQ2-EBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IQysoBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IROKcBIEEeuAS9Voi6M66w" base_Generalization="_IRJR8BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IRdbABIEEeuAS9Voi6M66w" base_Generalization="_IRYigBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IRyLIBIEEeuAS9Voi6M66w" base_Generalization="_IRtSoBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IR4RwBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IR2ckBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISCCwBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IR-YYBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISFtIRIEEeuAS9Voi6M66w" base_Generalization="_ISFtIBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISGUMRIEEeuAS9Voi6M66w" base_Generalization="_ISGUMBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISG7QRIEEeuAS9Voi6M66w" base_Generalization="_ISG7QBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISIJYBIEEeuAS9Voi6M66w" base_Generalization="_ISHiUBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISIJYhIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISIJYRIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISIwcRIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISIwcBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISJ-kBIEEeuAS9Voi6M66w" base_Generalization="_ISJXgBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISKloRIEEeuAS9Voi6M66w" base_Generalization="_ISKloBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISLMsRIEEeuAS9Voi6M66w" base_Generalization="_ISLMsBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISLzwRIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISLzwBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISLzwxIEEeuAS9Voi6M66w" base_Generalization="_ISLzwhIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISMa0RIEEeuAS9Voi6M66w" base_Generalization="_ISMa0BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISMa0xIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISMa0hIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISNB4RIEEeuAS9Voi6M66w" base_Generalization="_ISNB4BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISNo8RIEEeuAS9Voi6M66w" base_Generalization="_ISNo8BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISOQABIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISNo8hIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISO3EBIEEeuAS9Voi6M66w" base_Generalization="_ISOQARIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISRTURIEEeuAS9Voi6M66w" base_Generalization="_ISRTUBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISR6YRIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISR6YBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISShcRIEEeuAS9Voi6M66w" base_Generalization="_ISShcBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISTvkBIEEeuAS9Voi6M66w" base_Generalization="_ISTIgBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISUWoBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISTvkRIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISU9sRIEEeuAS9Voi6M66w" base_Generalization="_ISU9sBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISVkwRIEEeuAS9Voi6M66w" base_Generalization="_ISVkwBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISWL0RIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISWL0BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISWy4RIEEeuAS9Voi6M66w" base_Generalization="_ISWy4BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISXZ8BIEEeuAS9Voi6M66w" base_Generalization="_ISWy4hIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISXZ8hIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISXZ8RIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISYoERIEEeuAS9Voi6M66w" base_Generalization="_ISYoEBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISbrYBIEEeuAS9Voi6M66w" base_Generalization="_ISZPIBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISdgkBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IScScBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISeusRIEEeuAS9Voi6M66w" base_Generalization="_ISeusBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISfVwBIEEeuAS9Voi6M66w" base_Generalization="_ISeushIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISf80BIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISfVwRIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISgj4RIEEeuAS9Voi6M66w" base_Generalization="_ISgj4BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IShK8BIEEeuAS9Voi6M66w" base_Generalization="_ISgj4hIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IShK8hIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IShK8RIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IShyARIEEeuAS9Voi6M66w" base_Generalization="_IShyABIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISiZEBIEEeuAS9Voi6M66w" base_Generalization="_IShyAhIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISiZEhIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISiZERIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISjAIRIEEeuAS9Voi6M66w" base_Generalization="_ISjAIBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISjnMBIEEeuAS9Voi6M66w" base_Generalization="_ISjAIhIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISkOQBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISjnMRIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISk1URIEEeuAS9Voi6M66w" base_Generalization="_ISk1UBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISlcYRIEEeuAS9Voi6M66w" base_Generalization="_ISlcYBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISmDcBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISlcYhIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISmqgBIEEeuAS9Voi6M66w" base_Generalization="_ISmDcRIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISn4oBIEEeuAS9Voi6M66w" base_Generalization="_ISnRkBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISofsRIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISofsBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISpGwBIEEeuAS9Voi6M66w" base_Generalization="_ISofshIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISpGwhIEEeuAS9Voi6M66w" base_Generalization="_ISpGwRIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISpt0RIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISpt0BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISqU4RIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISqU4BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISq78BIEEeuAS9Voi6M66w" base_Generalization="_ISqU4hIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISq78hIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISq78RIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISrjABIEEeuAS9Voi6M66w" base_Generalization="_ISq78xIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISrjAhIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISrjARIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISsKERIEEeuAS9Voi6M66w" base_Generalization="_ISsKEBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISsxIBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISsKEhIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISsxIhIEEeuAS9Voi6M66w" base_Generalization="_ISsxIRIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IStYMRIEEeuAS9Voi6M66w" base_Generalization="_IStYMBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISt_QRIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISt_QBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISvNYBIEEeuAS9Voi6M66w" base_Generalization="_ISumUBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISvNYhIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISvNYRIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISv0cRIEEeuAS9Voi6M66w" base_Generalization="_ISv0cBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNkicBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISxCkBIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISwbgBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISxpoRIEEeuAS9Voi6M66w" base_Generalization="_ISxpoBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISyQsRIEEeuAS9Voi6M66w" base_Generalization="_ISyQsBIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISy3wBIEEeuAS9Voi6M66w" base_Generalization="_ISyQshIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISy3whIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_ISy3wRIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_ISze0RIEEeuAS9Voi6M66w" base_Generalization="_ISze0BIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNeb0BIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IS0F4BIEEeuAS9Voi6M66w" base_Generalization="_ISze0hIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNrQIBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_IS0s8BIEEeuAS9Voi6M66w" isForward="false" base_Generalization="_IS0F4RIEEeuAS9Voi6M66w"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_eNtFUBIDEeu_Gc2BjjGQJg"/></NodeSet:Reference>
-  <NodeSet:DataTypeDefinition xmi:id="_IS3wQBIEEeuAS9Voi6M66w" baseType="" name="1:NonSafetyDataPlaceholderDataType" base_Class="_IS3JMBIEEeuAS9Voi6M66w"/>
-  <NodeSet:DataTypeDefinition xmi:id="_Kr2Z0BIEEeuAS9Voi6M66w" baseType="" name="1:NonSafetyDataPlaceholderDataType" base_Class="_Kr1ywBIEEeuAS9Voi6M66w"/>
+  <NodeSet:Reference xmi:id="_WZdaABIQEeuzocThPtismQ" isForward="false" base_Generalization="_WZYhgBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPlisBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WZ0mYBIQEeuzocThPtismQ" base_Generalization="_WZvG0BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WaD28BIQEeuzocThPtismQ" base_Generalization="_WaAMkBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WaLLsBIQEeuzocThPtismQ" base_Generalization="_WaKkoBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WaWK0BIQEeuzocThPtismQ" isForward="false" base_Generalization="_WaUVoBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPlisBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WalbYBIQEeuzocThPtismQ" base_Generalization="_WajmMBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WayPsBIQEeuzocThPtismQ" isForward="false" base_Generalization="_WaulUBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPlisBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wa49YBIQEeuzocThPtismQ" base_Generalization="_Wa1TABIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WbFKoBIQEeuzocThPtismQ" base_Generalization="_WbBgQBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WbNGcBIQEeuzocThPtismQ" base_Generalization="_WbMfYBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WbYFkBIQEeuzocThPtismQ" base_Generalization="_WbUbMBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WbcXARIQEeuzocThPtismQ" base_Generalization="_WbcXABIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WbnWIBIQEeuzocThPtismQ" base_Generalization="_Wblg8BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPYuYBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WbvR8BIQEeuzocThPtismQ" base_Generalization="_WbrAgBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPYuYBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wb64IBIQEeuzocThPtismQ" base_Generalization="_Wb3NwBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPYuYBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcAXsRIQEeuzocThPtismQ" isForward="false" base_Generalization="_WcAXsBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPlisBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcGeURIQEeuzocThPtismQ" base_Generalization="_WcGeUBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcI6kBIQEeuzocThPtismQ" isForward="false" base_Generalization="_WcITgBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcI6khIQEeuzocThPtismQ" base_Generalization="_WcI6kRIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcJhoRIQEeuzocThPtismQ" base_Generalization="_WcJhoBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcKIsRIQEeuzocThPtismQ" base_Generalization="_WcKIsBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcLW0BIQEeuzocThPtismQ" base_Generalization="_WcKvwBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcL94RIQEeuzocThPtismQ" base_Generalization="_WcL94BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcMk8RIQEeuzocThPtismQ" base_Generalization="_WcMk8BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcNMARIQEeuzocThPtismQ" base_Generalization="_WcNMABIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcNzERIQEeuzocThPtismQ" base_Generalization="_WcNzEBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcOaIBIQEeuzocThPtismQ" isForward="false" base_Generalization="_WcNzEhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPRZoBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcOaIhIQEeuzocThPtismQ" base_Generalization="_WcOaIRIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcPBMRIQEeuzocThPtismQ" base_Generalization="_WcPBMBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcPBMxIQEeuzocThPtismQ" isForward="false" base_Generalization="_WcPBMhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcPoQRIQEeuzocThPtismQ" base_Generalization="_WcPoQBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcQPUBIQEeuzocThPtismQ" base_Generalization="_WcPoQhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcSEgBIQEeuzocThPtismQ" base_Generalization="_WcQPURIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WceRwBIQEeuzocThPtismQ" base_Generalization="_WcbOcBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcnbsBIQEeuzocThPtismQ" base_Generalization="_WclmgBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcrGEBIQEeuzocThPtismQ" base_Generalization="_WcqfABIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcrtIRIQEeuzocThPtismQ" base_Generalization="_WcrtIBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcrtIxIQEeuzocThPtismQ" isForward="false" base_Generalization="_WcrtIhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPYuYBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcsUMRIQEeuzocThPtismQ" base_Generalization="_WcsUMBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPbKoBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcsUMxIQEeuzocThPtismQ" base_Generalization="_WcsUMhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcsUNRIQEeuzocThPtismQ" isForward="false" base_Generalization="_WcsUNBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPYuYBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wcs7QRIQEeuzocThPtismQ" base_Generalization="_Wcs7QBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPbKoBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wcs7QxIQEeuzocThPtismQ" base_Generalization="_Wcs7QhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WctiUBIQEeuzocThPtismQ" isForward="false" base_Generalization="_Wcs7RBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPYuYBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WctiUhIQEeuzocThPtismQ" base_Generalization="_WctiURIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcuJYBIQEeuzocThPtismQ" isForward="false" base_Generalization="_WctiUxIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPbKoBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcuwcBIQEeuzocThPtismQ" isForward="false" base_Generalization="_WcuJYRIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcvXgRIQEeuzocThPtismQ" base_Generalization="_WcvXgBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcvXgxIQEeuzocThPtismQ" isForward="false" base_Generalization="_WcvXghIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPbKoBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wcv-kRIQEeuzocThPtismQ" isForward="false" base_Generalization="_Wcv-kBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcwloRIQEeuzocThPtismQ" base_Generalization="_WcwloBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcwloxIQEeuzocThPtismQ" base_Generalization="_WcwlohIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcxMsRIQEeuzocThPtismQ" base_Generalization="_WcxMsBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcxzwRIQEeuzocThPtismQ" isForward="false" base_Generalization="_WcxzwBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WcxzwxIQEeuzocThPtismQ" isForward="false" base_Generalization="_WcxzwhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wcya0RIQEeuzocThPtismQ" base_Generalization="_Wcya0BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wcya0xIQEeuzocThPtismQ" base_Generalization="_Wcya0hIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WczB4RIQEeuzocThPtismQ" base_Generalization="_WczB4BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc0QABIQEeuzocThPtismQ" base_Generalization="_Wczo8BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc0QAhIQEeuzocThPtismQ" isForward="false" base_Generalization="_Wc0QARIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc03ERIQEeuzocThPtismQ" isForward="false" base_Generalization="_Wc03EBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc03ExIQEeuzocThPtismQ" base_Generalization="_Wc03EhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc1eIRIQEeuzocThPtismQ" base_Generalization="_Wc1eIBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc1eIxIQEeuzocThPtismQ" base_Generalization="_Wc1eIhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc2FMRIQEeuzocThPtismQ" isForward="false" base_Generalization="_Wc2FMBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc2FMxIQEeuzocThPtismQ" base_Generalization="_Wc2FMhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc2sQRIQEeuzocThPtismQ" base_Generalization="_Wc2sQBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc2sQxIQEeuzocThPtismQ" isForward="false" base_Generalization="_Wc2sQhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc3TUBIQEeuzocThPtismQ" base_Generalization="_Wc2sRBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc3TUhIQEeuzocThPtismQ" base_Generalization="_Wc3TURIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc36YBIQEeuzocThPtismQ" isForward="false" base_Generalization="_Wc3TUxIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc36YhIQEeuzocThPtismQ" base_Generalization="_Wc36YRIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc4hcBIQEeuzocThPtismQ" base_Generalization="_Wc36YxIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc4hchIQEeuzocThPtismQ" isForward="false" base_Generalization="_Wc4hcRIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc5IgBIQEeuzocThPtismQ" base_Generalization="_Wc4hcxIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc5IghIQEeuzocThPtismQ" base_Generalization="_Wc5IgRIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc5vkRIQEeuzocThPtismQ" isForward="false" base_Generalization="_Wc5vkBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc6WoBIQEeuzocThPtismQ" base_Generalization="_Wc5vkhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc6WohIQEeuzocThPtismQ" base_Generalization="_Wc6WoRIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc69sBIQEeuzocThPtismQ" isForward="false" base_Generalization="_Wc6WoxIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc69shIQEeuzocThPtismQ" base_Generalization="_Wc69sRIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wc9Z8BIQEeuzocThPtismQ" base_Generalization="_Wc7kwBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdBrYBIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdBEUBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdEHoRIQEeuzocThPtismQ" base_Generalization="_WdEHoBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdEusRIQEeuzocThPtismQ" base_Generalization="_WdEusBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdFVwBIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdEushIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdF80RIQEeuzocThPtismQ" base_Generalization="_WdF80BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdF80xIQEeuzocThPtismQ" base_Generalization="_WdF80hIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdGj4RIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdGj4BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdHK8RIQEeuzocThPtismQ" base_Generalization="_WdHK8BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdHyABIQEeuzocThPtismQ" base_Generalization="_WdHK8hIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdHyAhIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdHyARIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdIZERIQEeuzocThPtismQ" base_Generalization="_WdIZEBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdIZExIQEeuzocThPtismQ" base_Generalization="_WdIZEhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdJAIBIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdIZFBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdJAIhIQEeuzocThPtismQ" base_Generalization="_WdJAIRIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdJnMBIQEeuzocThPtismQ" base_Generalization="_WdJAIxIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdNRkRIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdNRkBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdN4oRIQEeuzocThPtismQ" base_Generalization="_WdN4oBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdOfsRIQEeuzocThPtismQ" base_Generalization="_WdOfsBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdOfsxIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdOfshIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdPGwRIQEeuzocThPtismQ" base_Generalization="_WdPGwBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdPGwxIQEeuzocThPtismQ" base_Generalization="_WdPGwhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdPt0RIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdPt0BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdQU4BIQEeuzocThPtismQ" base_Generalization="_WdPt0hIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdQU4hIQEeuzocThPtismQ" base_Generalization="_WdQU4RIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdQ78RIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdQ78BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdRjARIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdRjABIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdRjAxIQEeuzocThPtismQ" base_Generalization="_WdRjAhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdSKERIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdSKEBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdSxIBIQEeuzocThPtismQ" base_Generalization="_WdSKEhIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdSxIhIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdSxIRIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdTYMBIQEeuzocThPtismQ" base_Generalization="_WdSxIxIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdTYMhIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdTYMRIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdT_QBIQEeuzocThPtismQ" base_Generalization="_WdTYMxIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdT_QhIQEeuzocThPtismQ" base_Generalization="_WdT_QRIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdUmUBIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdT_QxIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdYQsRIQEeuzocThPtismQ" base_Generalization="_WdYQsBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdY3wRIQEeuzocThPtismQ" isForward="false" base_Generalization="_WdY3wBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WddJMBIQEeuzocThPtismQ" base_Generalization="_WdciIBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPfcEBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wde-YRIQEeuzocThPtismQ" isForward="false" base_Generalization="_Wde-YBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdjP0RIQEeuzocThPtismQ" base_Generalization="_WdjP0BIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WdrLoBIQEeuzocThPtismQ" base_Generalization="_WdpWcBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wd2KwBIQEeuzocThPtismQ" base_Generalization="_WdygYBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_Wd_7wBIQEeuzocThPtismQ" isForward="false" base_Generalization="_Wd8RYBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WeIeoBIQEeuzocThPtismQ" base_Generalization="_WeDmIBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPXgQBIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WeMJARIQEeuzocThPtismQ" base_Generalization="_WeMJABIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPmw0RIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_WeUr4BIQEeuzocThPtismQ" isForward="false" base_Generalization="_WeQacBIQEeuzocThPtismQ"><referenceType xmi:type="NodeSet:UAReferenceType" href="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_zPn-8BIOEeuuHpaLSGIO7Q"/></NodeSet:Reference>
+  <NodeSet:DataTypeDefinition xmi:id="_Weu7kBIQEeuzocThPtismQ" baseType="" name="1:NonSafetyDataPlaceholderDataType" base_Class="_WepcABIQEeuzocThPtismQ"/>
+  <NodeSet:DataTypeDefinition xmi:id="_a_MPABIQEeuzocThPtismQ" baseType="" name="1:NonSafetyDataPlaceholderDataType" base_Class="_a_Ln8BIQEeuzocThPtismQ"/>
 </xmi:XMI>

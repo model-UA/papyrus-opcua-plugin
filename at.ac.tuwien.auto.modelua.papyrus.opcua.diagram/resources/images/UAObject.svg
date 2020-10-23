@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="121" height="42" viewBox="-0.5 -0.5 121 42" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-10-23T10:33:20.768Z&quot; agent=&quot;5.0 (X11)&quot; version=&quot;13.8.1&quot; etag=&quot;iaEGDf0Ym6JPM-bnvouM&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;fynlOhFMeKgKlPlN-k9b&quot;&gt;jZTbcuIwDIafhpndi84Qhwa4zKELZSg9pGxp70zsOG6cOGsMCTz9ysThsJ3OLBfB+STL+qXIPTcsmonCVfYgCRU91CdNz416CHnDITwN2LfA9SxgipMWOWcQ8wO1sG/plhO6uXLUUgrNq2uYyLKkib5iWClZX7ulUlyfWmFGv4A4weIrfeNEZy0doeGZTylnWXey441bS4E7Z6tkk2Ei6wvk3vXcUEmp21XRhFSY2nV1aff9+sZ6SkzRUv/PBtRu2GGxtdp6yBOwNUglRIAE9d6q9v5sZWe42Rx74juDqulQigsuoKG+rzgWQBMppIL3HnL7xx8wwhU0hMsSuNBgDQTVmqqbTYUTXjLA/WNIwUt6k9ki+o6RcQtYGjdtTnHOGcGKmf/H9afpthWwVka2NXUQUCusw+hKI9pRpTk02hecQY5RwQkxtgBbkEBhqcl7tyHNfQTEpJVyIcJWLkRx6YjSdAicKUw47OhspSxNMOh6ZQ7caFomXPwoP4J5JH0W3b089Q9ufL//pHU/Xr6wGMIF8+04f/iQq3lWL8aPAPQ294VaVDPmxIdoOnh+A13gvXhnH6/5pz9Y5vVsySYrKCgKvGjlHOZpIfcFWUln2GS3h+Jl5j0PUPAWpgmSs5T4UK3gfQcP/2kcroePM3cKQdFs4kwXkwMsR4NcvGZPv8MEMv9pVGglc3oh+9RlgddUBDjJmZLbkvyj/sio+QCNb6YL+FgiB5Z1xjWNocOmNjXcHKcOmbbQ5ttv3DlNDtw4VBZUqz242A3uyA6bvW1Q916fZ9fpBjK7mNuBZdheF+wU+jxRsLBD1b2eh/dou7gB3bu/&lt;/diagram&gt;&lt;/mxfile&gt;">
+ <defs/>
+  <g
+  	id="layer_1"
+  	style="display:none">
+ 	<path
+ 		fill="#000000" 
+  		stroke="#000000" 
+ 		id="PapyrusPath"
+ 		d="M 0 40 L 120 40 L 120 0 L 0 0 L 0 40" 
+    />
+  </g>
+  <g
+  	id="layer_2"
+  	>
+    <path 
+    	d="M 0 40 L 120 40 L 120 0 L 0 0 L 0 40" 
+    	fill="#e8eef7" 
+    	stroke="#000000" 
+    	stroke-miterlimit="10" 
+    	pointer-events="all"
+    />
+  </g>
+  <g
+  	id="layer_3"
+  	style="display:none">
+  	<rect 
+  		fill="none" 
+  		stroke="#000000" 
+  		id="PapyrusLabel"
+  		width="100"
+  		height="15"
+  		x="9"
+  		y="12"
+  	/>
+  </g>
+</svg>
+
+

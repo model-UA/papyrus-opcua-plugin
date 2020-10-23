@@ -1,18 +1,20 @@
 
-Class > Compartment{
-	visible:false;
-}
-
-Class > Compartment[type="compartment_shape_display"]{
-	visible: true;
-	showTitle:false;
-
-}
 
 Class {
 	elementIcon: false;
+	displayBorder: false;
+	transparency:100;
+	showTitle:false;
+	displayHeader:false;
 }
 
+Class > Compartment{
+	visible:false;
+}
+ 
+Class > Compartment[kind=symbol]{
+	visible: true;
+}
 
 Label[type=StereotypeLabel] {
 	visible:false;
@@ -20,42 +22,42 @@ Label[type=StereotypeLabel] {
 
 [appliedStereotypes~="NodeSet::UAObject"] {
 	italic:false;
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAObject.svg";
+	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UAObjectType"] {
-	shadow:true;
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAObjectType.svg";
+	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UAVariable"] {
-	radiusWidth:50;
-	radiusHeight:50;
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAVariable.svg";
+	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UAVariableType"] {
-	shadow:true;
-	radiusWidth:50;
-	radiusHeight:50;
 	italic:true;
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAVariableType.svg";
+	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UADataType"] {
-	shadow:true;
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UADataType.svg";
+	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UAReferenceType"]{
-	/*maintainSymbolRatio:true;	*/
-	displayHeader:false;
-	displayBorder: true;
 	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAReferenceType.svg";
-	/*imagePath : "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAReferenceType.svg";*/
 	followSVGSymbol:true;
-
 }
 
 [appliedStereotypes~="NodeSet::UAMethod"] {
-	isOval:true;
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAMethod.svg";
+	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UAView"] {
-	
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAView.svg";
+	followSVGSymbol:true;
 }

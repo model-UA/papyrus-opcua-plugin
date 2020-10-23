@@ -9,27 +9,28 @@
  		fill="#000000" 
   		stroke="#000000" 
  		id="PapyrusPath"
- 		d="M 8 0 L 0 20 C 3.1 26.49 5.77 33.17 8 40 L 120 40 L 112 20 L 120 0 L 8 0"
-    />
+ 		d="M 0 20 C 2.87 13.42 5.54 6.75 8 0 L 112 0 L 120 20 L 112 40 L 8 40 L 0 20" 
+ 	/>
   </g>
   <g
   	id="layer_2"
   	>
     <path 
-    	d="M 8 0 L 0 20 C 3.1 26.49 5.77 33.17 8 40 L 120 40 L 112 20 L 120 0 L 8 0" 
-    	fill="#000000" 
-    	stroke="#000000" 
-    	stroke-miterlimit="10" 
-    	transform="translate(2,3)" 
+    	d="M 0 20 C 2.87 13.42 5.54 6.75 8 0 L 112 0 L 120 20 L 112 40 L 8 40 L 0 20"
+    	fill="#000000"
+    	stroke="#000000"
+    	stroke-miterlimit="10"
+    	transform="translate(2,3)"
     	opacity="0.25"
     />
     <path 
-    	d="M 8 0 L 0 20 C 3.1 26.49 5.77 33.17 8 40 L 120 40 L 112 20 L 120 0 L 8 0" 
+    	d="M 0 20 C 2.87 13.42 5.54 6.75 8 0 L 112 0 L 120 20 L 112 40 L 8 40 L 0 20" 
     	fill="#e8eef7" 
     	stroke="#000000" 
     	stroke-miterlimit="10" 
     	pointer-events="all"
     />
+    
   </g>
   <g
   	id="layer_3"

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background-color: rgb(255, 255, 255);" version="1.1" width="121px" height="41px" viewBox="-0.5 -0.5 121 41" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-10-23T10:29:27.504Z&quot; agent=&quot;5.0 (X11)&quot; version=&quot;13.8.1&quot; etag=&quot;jCP-_7Tzvt91InN4uy--&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;uauMvlsfcFHiyKTLDZfZ&quot;&gt;rZXfc6IwEMf/GmbuHnrDD0F9FIXWtp621uuUtxQipCZEQxD1r7+NhCrtedObOR90+ewm2d18Fw1nyHbXAq2zCU8wNWwz2RnOyLBtr9uFbwX2NXA8DVJBkhpZJzAnB6yhqWlJEly0AiXnVJJ1G8Y8z3EsWwwJwat22JLT9qlrlOJPYB4j+pk+k0RmNe3Z3RO/wSTNmpMtr197GGqCdSVFhhJenSEnMJyh4FzWFtsNMVW9a/pSrwsveN8TEziXX1lg6zTkvqltWyS78Qhs13D8JaF0yCkXR5+Dexgvu8BTgRICRzS+nOew3Idq1mqbQuI8JvTb9tfN/agYp8GsQm/kYdHJlgvD9rPea9l9DO4n9jDc9vF+Er28DeOZwyI7yiDXKEBoNvEqLseb2ypdOD+9KGJ3swebmIfVqgiHT5Ox2ZeDaXjduZ/PDiHaHDgrO1bFItjfepLmVPjdycjcBV4auwH/6W6ItS2Qdce23Jo/r0J7EfrjVehGbFNhtLh9scx883JNaEmmZenMrJ49g1ymd+WoH5Vlz3WfoFM+i4t1PH9kZXD7XVUsBV/hsxaZxw94KHrF1EfxKhW8zJMPnToyrC5BxWaSUTAtMKuMSDxfo1j1sYLpAVbf0RYLiXcX79l6Vw9MHeYMS7GHEL2gr/WmB8429XN1kq/VaDI7k25HM6QnJn3f+SQqMLSu/qwxR+ePaKk1ZtgelUpeHLI/V5+3KXnjuCqOcz+wOutdg5aIEQo1DAaCIDjPj+u2Ds47nxABQ094DpxKoe4CS4nFVQFtJXkK2DxuSUmOr5pqB8f6lei5CpPqFOuUEVip+p1gmfGkKeBVqC5oVwMB1YU1+MOEwS0qfnHQtEQuzVhLcRr+R7EpmRF41Q0oSaGDI0aSRGXuIw1iyAmrrrb3+pJI7b+KtPvDbau0eT5Xqel+Vqnj/rNK4fH0lj36zv6qnOA3&lt;/diagram&gt;&lt;/mxfile&gt;">
+ <defs/>
+  <g
+  	id="layer_1"
+  	style="display:none">
+ 	<path
+ 		fill="#000000" 
+  		stroke="#000000" 
+ 		id="PapyrusPath"
+ 		d="M 0 20 C 0 8.95 26.86 0 60 0 C 93.14 0 120 8.95 120 20 C 120 31.05 93.14 40 60 40 C 26.86 40 0 31.05 0 20" 
+    />
+  </g>
+  <g
+  	id="layer_2"
+  	>
+    <path 
+    	d="M 0 20 C 0 8.95 26.86 0 60 0 C 93.14 0 120 8.95 120 20 C 120 31.05 93.14 40 60 40 C 26.86 40 0 31.05 0 20" 
+    	fill="#e8eef7" 
+    	stroke="#000000" 
+    	stroke-miterlimit="10" 
+    	pointer-events="all"
+    />
+  </g>
+  <g
+  	id="layer_3"
+  	style="display:none">
+  	<rect 
+  		fill="none" 
+  		stroke="#000000" 
+  		id="PapyrusLabel"
+  		width="100"
+  		height="15"
+  		x="9"
+  		y="12"
+  	/>
+  </g>
+</svg>
+
+

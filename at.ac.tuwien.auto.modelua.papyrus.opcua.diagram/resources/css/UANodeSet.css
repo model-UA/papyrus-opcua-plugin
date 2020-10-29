@@ -1,11 +1,12 @@
 
-
-Class {
+* {
 	elementIcon: false;
 	displayBorder: false;
 	transparency:100;
 	showTitle:false;
 	displayHeader:false;
+	followSVGSymbol:true;
+	maintainSymbolRatio:true;
 }
 
 Class > Compartment{
@@ -23,41 +24,116 @@ Label[type=StereotypeLabel] {
 [appliedStereotypes~="NodeSet::UAObject"] {
 	italic:false;
 	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAObject.svg";
-	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UAObjectType"] {
 	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAObjectType.svg";
-	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UAVariable"] {
 	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAVariable.svg";
-	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UAVariableType"] {
 	italic:true;
 	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAVariableType.svg";
-	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UADataType"] {
 	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UADataType.svg";
-	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UAReferenceType"]{
 	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAReferenceType.svg";
-	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UAMethod"] {
 	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAMethod.svg";
-	followSVGSymbol:true;
 }
 
 [appliedStereotypes~="NodeSet::UAView"] {
 	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAView.svg";
-	followSVGSymbol:true;
+}
+
+/* General Decorators for References */
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=true] {
+	sourceDecoration: "ReferenceTypeDecorator";
+	targetDecoration: "ReferenceTypeDecorator";
+}
+
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=false][isForward=false] {
+	sourceDecoration:"ReferenceTypeDecorator";	
+	targetDecoration:  none;
+}
+
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=false][isForward=true] {
+	sourceDecoration:  none;
+	targetDecoration: "ReferenceTypeDecorator";
+}
+
+/* Decorators for Hierarchical References */
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=true][isForward=false] {
+	sourceDecoration: none;
+	targetDecoration: "HierachicalReferenceTypeDecorator";
+}
+
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=true][isForward=true] {
+	sourceDecoration: "HierachicalReferenceTypeDecorator";
+	targetDecoration: none;
+}
+
+/* Decorators for HasComponent References */
+[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasComponent"][isForward=false] {
+	sourceDecoration:"HasComponentDecorator";	
+	targetDecoration:  none;
+}
+
+[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasComponent"][isForward=true] {
+	sourceDecoration:  none;
+	targetDecoration: "HasComponentDecorator";
+}
+
+/* Decorators for HasProperty References */
+[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasProperty"][isForward=false] {
+	sourceDecoration:"HasPropertyDecorator";	
+	targetDecoration:  none;
+}
+
+[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasProperty"][isForward=true] {
+	sourceDecoration:  none;
+	targetDecoration: "HasPropertyDecorator";
+}
+
+/* Decorators for HasTypeDefinition References */
+[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasTypeDefinition"][isForward=false] {
+	sourceDecoration:"HasTypeDefinitionDecorator";	
+	targetDecoration:  none;
+}
+
+[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasTypeDefinition"][isForward=true] {
+	sourceDecoration:  none;
+	targetDecoration: "HasTypeDefinitionDecorator";
+}
+
+/* Decorators for HasSubtype References */
+/* Attention HasSubtype is inverted!! */
+[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasSubtype"][isForward=false] {
+	sourceDecoration:  none;
+	targetDecoration: "HasSubtypeDecorator";
+}
+
+[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasSubtype"][isForward=true] {
+	sourceDecoration:"HasSubtypeDecorator";	
+	targetDecoration:  none;
+}
+
+/* Decorators for HasEventSource References */
+[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasEventSource"][isForward=false] {
+	sourceDecoration:"HasEventSourceDecorator";	
+	targetDecoration:  none;
+}
+
+[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasEventSource"][isForward=true] {
+	sourceDecoration:  none;
+	targetDecoration: "HasEventSourceDecorator";
 }

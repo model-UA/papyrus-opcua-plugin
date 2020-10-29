@@ -1997,6 +1997,10 @@ public class InstanceSyncHandler {
 				targetNs = "";
 			}
 			
+			general.setValue(uaStereoType,"referenceType_symmetric", referenceType.getValue(uaReferenceType, "symmetric"));
+			general.setValue(uaStereoType,"referenceType_browseName", referenceType.getValue(uaReferenceType, "browseName"));
+			general.setValue(uaStereoType,"referenceType_isHierachical", isHierachicalReference);
+			
 			if(isHierachicalReference && sourceNs.equals(targetNs))
 			{
 				//directionChanged = false;
@@ -2089,7 +2093,10 @@ public class InstanceSyncHandler {
 		
 		UANode src = (UANode) this.matching.get(source);
 		ListOfReferences refList = src.getReferences();
-		
+		if(refList == null)
+		{
+			src.setReferences(new ListOfReferencesImpl());
+		}
 		boolean contains = refList.getReference().contains(uaReference);
 		if(!contains)
 		{

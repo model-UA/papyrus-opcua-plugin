@@ -23,36 +23,36 @@ Label[type=StereotypeLabel] {
 
 [appliedStereotypes~="NodeSet::UAObject"] {
 	italic:false;
-	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAObject.svg";
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/shapes/UAObject.svg";
 }
 
 [appliedStereotypes~="NodeSet::UAObjectType"] {
-	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAObjectType.svg";
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/shapes/UAObjectType.svg";
 }
 
 [appliedStereotypes~="NodeSet::UAVariable"] {
-	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAVariable.svg";
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/shapes/UAVariable.svg";
 }
 
 [appliedStereotypes~="NodeSet::UAVariableType"] {
 	italic:true;
-	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAVariableType.svg";
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/shapes/UAVariableType.svg";
 }
 
 [appliedStereotypes~="NodeSet::UADataType"] {
-	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UADataType.svg";
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/shapes/UADataType.svg";
 }
 
 [appliedStereotypes~="NodeSet::UAReferenceType"]{
-	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAReferenceType.svg";
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/shapes/UAReferenceType.svg";
 }
 
 [appliedStereotypes~="NodeSet::UAMethod"] {
-	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAMethod.svg";
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/shapes/UAMethod.svg";
 }
 
 [appliedStereotypes~="NodeSet::UAView"] {
-	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/UAView.svg";
+	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/shapes/UAView.svg";
 }
 
 /* General Decorators for References */

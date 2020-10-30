@@ -113,7 +113,7 @@
        </decorationDeclaration>
        <decorationDeclaration
              class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.decorations.HasPropertytDecorator"
-             name="HasPropertytDecorator">
+             name="HasPropertyDecorator">
        </decorationDeclaration>
        <decorationDeclaration
              class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.decorations.HasSubtypeDecorator"

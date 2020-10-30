@@ -98,77 +98,77 @@ StereotypeComment Compartment[type=StereotypeCompartment][stereotype="NodeSet::R
 
 [appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=false][isForward=false] {
 	sourceDecoration:"ReferenceTypeDecorator";	
-	targetDecoration:  none;
+	targetDecoration:"none";
 }
 
 [appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=false][isForward=true] {
-	sourceDecoration:  none;
-	targetDecoration: "ReferenceTypeDecorator";
+	sourceDecoration:"none";
+	targetDecoration:"ReferenceTypeDecorator";
 }
 
 /* Decorators for Hierarchical References */
 [appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=true][isForward=false] {
-	sourceDecoration: none;
-	targetDecoration: "HierachicalReferenceTypeDecorator";
+	sourceDecoration:"none";
+	targetDecoration:"HierachicalReferenceTypeDecorator";
 }
 
 [appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=true][isForward=true] {
-	sourceDecoration: "HierachicalReferenceTypeDecorator";
-	targetDecoration: none;
+	sourceDecoration:"HierachicalReferenceTypeDecorator";
+	targetDecoration:"none";
 }
 
 /* Decorators for HasComponent References */
-[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasComponent"][isForward=false] {
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric|=""][referenceType_browseName~="HasComponent"][isForward=false] {
 	sourceDecoration:"HasComponentDecorator";	
-	targetDecoration:  none;
+	targetDecoration:"none";
 }
 
-[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasComponent"][isForward=true] {
-	sourceDecoration:  none;
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric|=""][referenceType_browseName~="HasComponent"][isForward=true] {
+	sourceDecoration:"none";
 	targetDecoration: "HasComponentDecorator";
 }
 
 /* Decorators for HasProperty References */
-[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasProperty"][isForward=false] {
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric|=""][referenceType_browseName~="HasProperty"][isForward=false] {
 	sourceDecoration:"HasPropertyDecorator";	
-	targetDecoration:  none;
+	targetDecoration:"none";
 }
 
-[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasProperty"][isForward=true] {
-	sourceDecoration:  none;
-	targetDecoration: "HasPropertyDecorator";
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric|=""][referenceType_browseName~="HasProperty"][isForward=true] {
+	sourceDecoration:"none";
+	targetDecoration:"HasPropertyDecorator";
 }
 
 /* Decorators for HasTypeDefinition References */
-[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasTypeDefinition"][isForward=false] {
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric|=""][referenceType_browseName~="HasTypeDefinition"][isForward=false] {
 	sourceDecoration:"HasTypeDefinitionDecorator";	
-	targetDecoration:  none;
+	targetDecoration:"none";
 }
 
-[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasTypeDefinition"][isForward=true] {
-	sourceDecoration:  none;
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric|=""][referenceType_browseName~="HasTypeDefinition"][isForward=true] {
+	sourceDecoration:"none";
 	targetDecoration: "HasTypeDefinitionDecorator";
 }
 
 /* Decorators for HasSubtype References */
 /* Attention HasSubtype is inverted!! */
-[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasSubtype"][isForward=false] {
-	sourceDecoration:  none;
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric|=""][referenceType_browseName~="HasSubtype"][isForward=false] {
+	sourceDecoration:"none";
 	targetDecoration: "HasSubtypeDecorator";
 }
 
-[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasSubtype"][isForward=true] {
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric|=""][referenceType_browseName~="HasSubtype"][isForward=true] {
 	sourceDecoration:"HasSubtypeDecorator";	
-	targetDecoration:  none;
+	targetDecoration:"none";
 }
 
 /* Decorators for HasEventSource References */
-[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasEventSource"][isForward=false] {
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric|=""][referenceType_browseName~="HasEventSource"][isForward=false] {
 	sourceDecoration:"HasEventSourceDecorator";	
-	targetDecoration:  none;
+	targetDecoration:"none";
 }
 
-[appliedStereotypes~="NodeSet::Reference"][referenceType_browseName="HasEventSource"][isForward=true] {
-	sourceDecoration:  none;
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric|=""][referenceType_browseName~="HasEventSource"][isForward=true] {
+	sourceDecoration:"none";
 	targetDecoration: "HasEventSourceDecorator";
 }

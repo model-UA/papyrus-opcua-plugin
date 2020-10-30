@@ -55,6 +55,41 @@ Label[type=StereotypeLabel] {
 	svgFile: "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/images/shapes/UAView.svg";
 }
 
+/*StereotypeComment{
+   visible: true;
+}
+*/
+
+StereotypeComment Compartment[type=StereotypeBrace]{
+	visible:false;
+}
+
+StereotypeComment Compartment[type=StereotypeCompartment][stereotype="NodeSet::Reference"]{
+   visible: true;
+}
+
+StereotypeComment Compartment[type=StereotypeCompartment][stereotype="NodeSet::Reference"]>[property="referenceType"]{
+   visible: true;
+}
+
+StereotypeComment Compartment[type=StereotypeCompartment][stereotype="NodeSet::Reference"]>[property="isForward"]{
+   visible: false;
+}
+
+StereotypeComment Compartment[type=StereotypeCompartment][stereotype="NodeSet::Reference"]>[property="referenceType_symmetric"]{
+   visible: false;
+}
+
+StereotypeComment Compartment[type=StereotypeCompartment][stereotype="NodeSet::Reference"]>[property="referenceType_browseName"]{
+   visible: false;
+}
+
+StereotypeComment Compartment[type=StereotypeCompartment][stereotype="NodeSet::Reference"]>[property="referenceType_isHierachical"]{
+   visible: false;
+}
+
+
+
 /* General Decorators for References */
 [appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=true] {
 	sourceDecoration: "ReferenceTypeDecorator";

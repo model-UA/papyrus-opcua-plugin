@@ -1,5 +1,5 @@
 
-* {
+Class {
 	elementIcon: false;
 	displayBorder: false;
 	transparency:100;
@@ -108,13 +108,13 @@ StereotypeComment Compartment[type=StereotypeCompartment][stereotype="NodeSet::R
 
 /* Decorators for Hierarchical References */
 [appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=true][isForward=false] {
-	sourceDecoration:"none";
-	targetDecoration:"HierachicalReferenceTypeDecorator";
+	sourceDecoration:"HierachicalReferenceTypeDecorator";
+	targetDecoration:"none";
 }
 
 [appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=true][isForward=true] {
-	sourceDecoration:"HierachicalReferenceTypeDecorator";
-	targetDecoration:"none";
+	sourceDecoration:"none";
+	targetDecoration:"HierachicalReferenceTypeDecorator";
 }
 
 /* Decorators for HasComponent References */

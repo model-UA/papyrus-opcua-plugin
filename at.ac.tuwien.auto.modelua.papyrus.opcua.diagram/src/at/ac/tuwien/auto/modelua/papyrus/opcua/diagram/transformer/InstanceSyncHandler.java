@@ -214,7 +214,11 @@ public class InstanceSyncHandler {
 			return false;
 		}
 		
-		namespace.setName(namespace.getURI());
+		// only modify namespace when its inside the same model
+		if(this.baseUmlModel.equals(namespace.getModel()))
+		{			
+			namespace.setName(namespace.getURI());
+		}
 		
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");

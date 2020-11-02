@@ -52,36 +52,39 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 	@Override
 	protected void initializeModel(EObject owner) {
 		super.initializeModel(owner);
-		Package packageOwner = (Package) owner;
+		//Package packageOwner = (Package) owner;
 		// Retrieve profiles and apply it
-		URI uri_path = URI.createURI(OpcUaDiagramResources.UANODESET_PROFILE_PATH);
+		
 		ResourceSet owner_resource = owner.eResource().getResourceSet(); 
+		Model model = (Model) owner;
+		initializeNodeSet(model, owner_resource);
+		loadBaseNodeSet(model, owner_resource);
+		
+		
+		model.setViewpoint("InformationModel");
+		
+		Activator.getSynchHandler().registerNewUmlModel(model);
+
+	}
+	
+	private void initializeNodeSet(Model model, ResourceSet owner_resource)
+	{
+		URI uri_path = URI.createURI(OpcUaDiagramResources.UANODESET_PROFILE_PATH);
 		Profile basetypesProfile = (Profile) PackageUtil.loadPackage(uri_path, owner_resource);
 		if (basetypesProfile != null) {
-			PackageUtil.applyProfile(packageOwner, basetypesProfile, true);
+			PackageUtil.applyProfile(model, basetypesProfile, true);
 		}
-		
-		Model model = (Model) owner;
-		
+		Stereotype nodeSetType   = basetypesProfile.getOwnedStereotype("UANodeSetType");
+		model.applyStereotype(nodeSetType);
+	}
+	
+	private void loadBaseNodeSet(Model model, ResourceSet owner_resource)
+	{
 		// TODO: do not import Base Namespace if base namespace is beeing updated
 		URI lib_path = URI.createURI(OpcUaDiagramResources.BASENAMESPACE_LIBRARY);
 		Package defaultNs = PackageUtil.loadPackage(lib_path, owner_resource);
 		if (defaultNs != null) {
 			model.createPackageImport(defaultNs);
 		}
-		
-		model.setViewpoint("InformationModel");
-		
-		Activator.getSynchHandler().registerNewUmlModel(model);
-
-		initializeNodeSet(model, basetypesProfile);
-	}
-	
-	private void initializeNodeSet(Model model, Profile nodeSetProfile)
-	{
-		Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
-		model.applyStereotype(nodeSetType);
-//		Class nodeSet = model.createOwnedClass("NodeSet", false);
-//		nodeSet.applyStereotype(nodeSetType);
 	}
 }

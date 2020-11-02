@@ -51,7 +51,6 @@ public class DiagramChangeListener implements IPapyrusListener {
 		
 		if(transform)
 		{
-			System.out.println("Do transformation and Storage");
 			Element elem = (Element) notifier ;
 			// printNotficationType(notification);
 			
@@ -93,10 +92,6 @@ public class DiagramChangeListener implements IPapyrusListener {
 				}
 			}
 		}
-		else
-		{
-			System.out.println("Don't do transformation and Storage");
-		}
 	}
 	
 	public boolean shall_be_auto_transformed(Model currentModel)
@@ -107,8 +102,6 @@ public class DiagramChangeListener implements IPapyrusListener {
 		}
 		
 		boolean auto_transform = shall_be_transformed(currentModel);
-		EList<Element> test = currentModel.allOwnedElements();
-		
 		
 		if(!this.autotransform_model.containsKey(currentModel))
 		{

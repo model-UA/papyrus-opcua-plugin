@@ -10,7 +10,9 @@ import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.Activator;
 public class FileChangeListener implements IResourceChangeListener{
 	
 	private boolean disabled = false;
-		
+	private boolean disable_once = false;
+	
+	
 	@Override
 	public void resourceChanged(IResourceChangeEvent event) {
 		
@@ -37,15 +39,23 @@ public class FileChangeListener implements IResourceChangeListener{
 		{
 			String fileExtension = filePath.getFileExtension();
 			if(fileExtension.equalsIgnoreCase("xml"))
-			{
-				boolean success = Activator.getSynchHandler().updateNodeSet(affectedObject);
-				if(success)
+			{			
+				// Workaround: if xml was written ignore the first trigger
+				if(this.disable_once)
 				{
-					System.out.println("UML NodeSet backend updated succesfully");
+					this.disable_once = false;
 				}
-				else
+				else if(affectedObject.getKind() == IResourceDelta.CHANGED)
 				{
-					System.err.print("Error when updating UML NodeSet backend");
+					boolean success = Activator.getSynchHandler().updateNodeSet(affectedObject);
+					if(success)
+					{
+						System.out.println("UML NodeSet backend updated succesfully");
+					}
+					else
+					{
+						System.err.print("Error when updating UML NodeSet backend");
+					}
 				}
 			}
 			else if(fileExtension.equalsIgnoreCase("uml"))
@@ -78,5 +88,9 @@ public class FileChangeListener implements IResourceChangeListener{
 	public void disable(boolean disable)
 	{
 		this.disabled = disable;
+		if(disable)
+		{
+			this.disable_once = true;
+		}
 	}
 }

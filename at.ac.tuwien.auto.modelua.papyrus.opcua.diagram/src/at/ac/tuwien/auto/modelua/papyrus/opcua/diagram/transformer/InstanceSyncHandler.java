@@ -124,20 +124,13 @@ public class InstanceSyncHandler {
 	public boolean writeToNodeSetFile() throws ParserConfigurationException
 	{
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		IProject[] projects = root.getProjects();
 	
-		//output.concat(OpcUaPackageHeaderGenerator.generateCode(pack).toString());
-		if(this.baseUmlModel.getName() == null)
-		{
-			return false;
-		}
-		
-        IPath filename = root.getLocation();
-        IPath project_path = projects[0].getFullPath();
-        filename = filename.append(project_path);
-        filename = filename.append(this.baseUmlModel.getName() + ".xml");
-       
-        NodeSetParser.writeNodeSetFile(filename.toOSString(), this.baseNodeset);
+        IPath filePath = root.getLocation();
+        URI uri = this.baseUmlModel.eResource().getURI();
+		String path = uri.trimFileExtension().devicePath().substring("/resource/".length())+".xml";
+		filePath=filePath.append(path);
+		        
+        NodeSetParser.writeNodeSetFile(filePath.toOSString(), this.baseNodeset);
         
 		return true;
 	}

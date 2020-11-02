@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background-color: rgb(255, 255, 255);" version="1.1" width="121px" height="41px" viewBox="-0.5 -0.5 121 41" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-10-23T11:19:15.789Z&quot; agent=&quot;5.0 (X11)&quot; version=&quot;13.8.1&quot; etag=&quot;6D3EybaGR-DTPoxAjq7_&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;clq-OKnfzF2v879m-Zgo&quot;&gt;jZRLk6IwEIB/DVW7B6t4jKBHEGVHx6lSSke9RQiQMRCMAXR+/XYk+NipqVoPmHzdnfQj3Zo1ys8BR2U2ZzGmmqnHZ83yNdO0HQe+ElxaYNkKpJzELTLuICRfWEFd0YrE+PSkKBijgpTPMGJFgSPxxBDnrHlWSxh9vrVEKf4GwgjR7/SDxCJr6cB07vwPJmnW3WzYw1aSo05ZRXLKUMyaB2SNNWvEGRPtKj+PMJW56/LS2k1+kN4c47gQ/2NgtgY1opWKTTNtCqZewuAEcFBcVNT2sWKdoHe61sQ1XspzhxKUEwoFdV1OEAUaMco47DXT0q8/YDHhUBDCCuBUgNSjWAjMe6cSRaRIAevXIykpcC9TSXQNGUYfMJNqQt5i3D2CVSr/1wQ3nft7LoNWgg4CasPqsPkUoVljLgiU2aUkBQ/9nMSxlHlIgQjSiqXX9Sk+v/pApFMJoXTUBgunWHiAceIATzmKCVh0soIV8jCoeSkvPAlcRIT++tz5U58t0vE4BAfL4yCwV4uvXT+B3dwL6OvL1NvVtZNuFvlbmnzyRYn1le6tj3U1SdchnwdOuDdL/3xsPFJMUbUql+5m606QPzC57uTUGR6qzWW2zIc6qxM/LVaH2ezNEdEpGOzeP5YWmo7X/W2gmd7Wk5/X2IbsTYz3er8Jpks+GcYj77OaJfCQJ/t8i+ch3dZz/7eMR3B2wA8JuFWboj2mHooOKWdVEf+ThyvD8iFK3Uzk8Gh8A5ZNRgQOodIySw1MkFutZIHw+ce3btw6CCYPZjkW/AIqyqDfNZ2aOqau9s29h41OJ3vo3xfFkBob6e3oe2fBQjVXt7038VX2MAmt8V8=&lt;/diagram&gt;&lt;/mxfile&gt;">
+ <defs/>
+  <g
+  	id="layer_1"
+  	style="display:none">
+ 	<path
+ 		fill="#000000" 
+  		stroke="#000000" 
+ 		id="PapyrusPath"
+ 		d="M 0 40 L 8 0 L 112 0 L 120 40 L 0 40" 
+    />
+  </g>
+  <g
+  	id="layer_2"
+  	>
+    <path 
+    	d="M 0 40 L 8 0 L 112 0 L 120 40 L 0 40" 
+    	fill="#e8eef7" 
+    	stroke="#000000" 
+    	stroke-miterlimit="10" 
+    	pointer-events="all"
+    />
+    
+  </g>
+  <g
+  	id="layer_3"
+  	style="display:none">
+  	<rect 
+  		fill="none" 
+  		stroke="#000000" 
+  		id="PapyrusLabel"
+  		width="100"
+  		height="15"
+  		x="9"
+  		y="12"
+  	/>
+  </g>
+</svg>
+
+

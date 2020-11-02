@@ -1997,12 +1997,16 @@ public class InstanceSyncHandler {
 				targetNs = "";
 			}
 			
+			general.setValue(uaStereoType,"referenceType_symmetric", referenceType.getValue(uaReferenceType, "symmetric"));
+			general.setValue(uaStereoType,"referenceType_browseName", referenceType.getValue(uaReferenceType, "browseName"));
+			general.setValue(uaStereoType,"referenceType_isHierachical", isHierachicalReference);
+			
 			if(isHierachicalReference && sourceNs.equals(targetNs))
 			{
 				//directionChanged = false;
 				if(isForward)
 				{
-					if(directionChanged)
+					if(directionChanged || target.getNestedClassifiers().contains(source))
 					{
 						Element owner = target.getOwner();
 						if(owner instanceof Class)
@@ -2030,7 +2034,7 @@ public class InstanceSyncHandler {
 				}
 				else
 				{
-					if(directionChanged)
+					if(directionChanged || source.getNestedClassifiers().contains(target))
 					{
 						Element owner = source.getOwner();
 						if(owner instanceof Class)
@@ -2089,7 +2093,10 @@ public class InstanceSyncHandler {
 		
 		UANode src = (UANode) this.matching.get(source);
 		ListOfReferences refList = src.getReferences();
-		
+		if(refList == null)
+		{
+			src.setReferences(new ListOfReferencesImpl());
+		}
 		boolean contains = refList.getReference().contains(uaReference);
 		if(!contains)
 		{
@@ -3845,10 +3852,14 @@ public class InstanceSyncHandler {
 		reference.setValue(uaReference,"referenceType", refType);
 				
 		Class uaReferenceType = getUmlNode(ref.getReferenceType());
-		uaReference  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
+		Stereotype uaReferenceTypeStereoType  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
 		
-		boolean isHierachicalReference = (boolean) uaReferenceType.getValue(uaReference, "isHierachical");
+		boolean isHierachicalReference = (boolean) uaReferenceType.getValue(uaReferenceTypeStereoType, "isHierachical");
 		
+		reference.setValue(uaReference,"referenceType_symmetric", uaReferenceType.getValue(uaReferenceTypeStereoType, "symmetric"));
+		reference.setValue(uaReference,"referenceType_browseName", uaReferenceType.getValue(uaReferenceTypeStereoType, "browseName"));
+		reference.setValue(uaReference,"referenceType_isHierachical", isHierachicalReference);
+
 		if(isHierachicalReference && uaElement.getModel().equals(refValue.getModel()) && 
 				uaElement.getNearestPackage().equals(refValue.getNearestPackage()))
 		{	
@@ -4298,6 +4309,62 @@ public class InstanceSyncHandler {
 		return uaInstance;
 	}
 	
+	private Stereotype getMatchingStereotype(Class node)
+	{
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype uaReferenceType  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
+		Stereotype uaDataType  = nodeSetProfile.getOwnedStereotype("UADataType");
+		Stereotype uaVariableType  = nodeSetProfile.getOwnedStereotype("UAVariableType");
+		Stereotype uaObjectType  = nodeSetProfile.getOwnedStereotype("UAObjectType");
+		Stereotype uaView  = nodeSetProfile.getOwnedStereotype("UAView");
+		Stereotype uaMethod  = nodeSetProfile.getOwnedStereotype("UAMethod");
+		Stereotype uaVariable  = nodeSetProfile.getOwnedStereotype("UAVariable");
+		Stereotype uaObject  = nodeSetProfile.getOwnedStereotype("UAObject");
+		
+		Stereotype return_val;
+		 
+		if(node.isStereotypeApplied(uaReferenceType))
+		{
+			return_val = uaReferenceType;
+		}
+		else if(node.isStereotypeApplied(uaDataType))
+		{
+			return_val = uaDataType;
+		}
+		else if(node.isStereotypeApplied(uaVariableType))
+		{
+			return_val = uaVariableType;
+		}
+		else if(node.isStereotypeApplied(uaObjectType))
+		{
+			return_val = uaObjectType;
+		}
+		else if(node.isStereotypeApplied(uaView))
+		{
+			return_val = uaView;
+		}
+		else if(node.isStereotypeApplied(uaMethod))
+		{
+			return_val = uaMethod;
+		}
+		else if(node.isStereotypeApplied(uaVariable))
+		{
+			return_val = uaVariable;
+		}
+		else if(node.isStereotypeApplied(uaObject))
+		{
+			return_val = uaObject;
+		}
+		else
+		{
+			return_val = null;
+		}
+			
+		
+		return return_val;
+	}
+	
+	
 	private Class getStereotypeBaseClass(DynamicEObjectImpl eObject, boolean addIfNotExists)
 	{
 		Class baseClass = null;
@@ -4328,11 +4395,21 @@ public class InstanceSyncHandler {
 		String nodeId = "";
 		
 		Package namespace = umlUaNode.getNearestPackage();
-		if(!this.matching.containsKey(umlUaNode))
-		{
-			transformClass(umlUaNode);
+		Stereotype uaStereotype;
+		
+		if(this.baseUmlModel.equals(umlUaNode.getModel()))
+		{				
+			if(!this.matching.containsKey(umlUaNode))
+			{				
+				transformClass(umlUaNode);
+			}
+			uaStereotype = getMatchingStereotype(this.matching.get(umlUaNode));
 		}
-		Stereotype uaStereotype = getMatchingStereotype(this.matching.get(umlUaNode));
+		else
+		{
+			// the other method is faster, therefore it should be used by default
+			uaStereotype = getMatchingStereotype(umlUaNode);
+		}
 		
 		if(umlUaNode.hasValue(uaStereotype, "nodeId"))
 		{

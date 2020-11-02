@@ -897,6 +897,11 @@ public class InstanceSyncHandler {
 			Package namespace = object.getNearestPackage();
 			if(namespace != null && namespace.getURI() != null && namespace.getURI().length() > 0)
 			{
+				if(this.baseNodeset.getNamespaceUris() == null)
+				{
+					this.baseNodeset.setNamespaceUris(new UriTableImpl());
+				}
+				
 				EList<String> namespaces = this.baseNodeset.getNamespaceUris().getUri();
 				
 				int namespaceId = namespaces.indexOf(namespace.getURI());

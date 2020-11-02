@@ -7,6 +7,11 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
@@ -19,22 +24,24 @@ import at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.parser.NodeSetParser;
 public class SynchHandler {
 
 	private ArrayList<InstanceSyncHandler> instances;
-	private HashMap<UANodeSetType, InstanceSyncHandler> nodeSetModelMapping;
-	private HashMap<Model, InstanceSyncHandler> modelNodeSetMapping;
+	private HashMap<Model, InstanceSyncHandler> modelMapping;
 	private HashMap<String, InstanceSyncHandler> projectMapping;
 	
 	public SynchHandler()
 	{
 		this.instances = new ArrayList<InstanceSyncHandler>();
-		this.nodeSetModelMapping = new HashMap<UANodeSetType, InstanceSyncHandler>();
-		this.modelNodeSetMapping = new HashMap<Model, InstanceSyncHandler>();
+		this.modelMapping = new HashMap<Model, InstanceSyncHandler>();
 		this.projectMapping = new HashMap<String, InstanceSyncHandler>();
 		
 	}
 	
 	public void registerNewUmlModel(Model umlModel)
 	{
-		if(this.modelNodeSetMapping.containsKey(umlModel))
+		
+		URI uri = umlModel.eResource().getURI();
+		String path = uri.trimFileExtension().devicePath().substring("/resource/".length());
+		
+		if(this.modelMapping.containsKey(umlModel))
 		{
 			return;
 		}
@@ -42,17 +49,35 @@ public class SynchHandler {
 		UANodeSetType nodeset = new UANodeSetTypeImpl();
 		InstanceSyncHandler instance = new InstanceSyncHandler(umlModel, nodeset);
 		this.instances.add(instance);
-		this.nodeSetModelMapping.put(nodeset, instance);
-		this.modelNodeSetMapping.put(umlModel, instance);
+		this.modelMapping.put(umlModel, instance);
+
+		this.projectMapping.put(path, instance);
+	}
+	
+	public void deleteNodeSet(IResourceDelta nodeSetDelta)
+	{
+		IResource resource = nodeSetDelta.getResource();
+		String fileName = getFilePath(resource);
+		InstanceSyncHandler handler = this.projectMapping.get(fileName);
+		Model modelKey = null;
 		
-		this.projectMapping.put(umlModel.getName(), instance);
+		for(Model model : this.modelMapping.keySet())
+		{
+			if(this.modelMapping.get(model).equals(handler))
+			{
+				modelKey = model;
+			}
+		}
+		
+		this.projectMapping.remove(fileName);
+		this.modelMapping.remove(modelKey);
 	}
 	
 	public boolean writeToNodeSet(IResourceDelta nodeSetDelta)
 	{
 		IResource resource = nodeSetDelta.getResource();
-		String fileName = resource.getLocation().removeFileExtension().lastSegment();
-
+		String fileName = getFilePath(resource);
+				
 		if(!this.projectMapping.containsKey(fileName))
 		{
 			return false;
@@ -88,20 +113,23 @@ public class SynchHandler {
 	public boolean updateObject(Element obj, boolean writeToFile)	
 	{
 		Model model = obj.getModel();
-		if(this.modelNodeSetMapping.containsKey(model))
+		if(this.modelMapping.containsKey(model))
 		{
-			boolean success = this.modelNodeSetMapping.get(model).transformMember(obj);
+			boolean success = this.modelMapping.get(model).transformMember(obj);
 			
 			if(success && writeToFile)
 			{
+				Activator.getFileChangeListener().disable(true);
 				try {
 					// disable the resource listener as we're going to change the NodeSet File
-					Activator.getFileChangeListener().disable(true);
-					success = this.modelNodeSetMapping.get(model).writeToNodeSetFile();
-					// enable resource listener again
-					Activator.getFileChangeListener().disable(false);
+					success = this.modelMapping.get(model).writeToNodeSetFile();
 				} catch (ParserConfigurationException e) {
-					return false;
+					success =  false;
+				}
+				finally
+				{
+					// enable resource listener again
+					Activator.getFileChangeListener().disable(false);					
 				}
 			}
 			return success;
@@ -116,7 +144,7 @@ public class SynchHandler {
 	{
 		IResource resource = nodeSetDelta.getResource();
 		String filePath = resource.getLocation().toString();
-		String fileName = resource.getLocation().removeFileExtension().lastSegment();
+		String fileName = getFilePath(resource);
 		
 		if(!this.projectMapping.containsKey(fileName))
 		{
@@ -159,15 +187,15 @@ public class SynchHandler {
 
 	public boolean removeObject(Model model, Element obj) {
 
-		if(this.modelNodeSetMapping.containsKey(model))
+		if(this.modelMapping.containsKey(model))
 		{
-			boolean success = this.modelNodeSetMapping.get(model).removeMember(obj);
+			boolean success = this.modelMapping.get(model).removeMember(obj);
 			if(success)
 			{
+				// disable the resource listener as we're going to change the NodeSet File
+				Activator.getFileChangeListener().disable(true);
 				try {
-					// disable the resource listener as we're going to change the NodeSet File
-					Activator.getFileChangeListener().disable(true);
-					success = this.modelNodeSetMapping.get(model).writeToNodeSetFile();			
+					success = this.modelMapping.get(model).writeToNodeSetFile();			
 				} catch (ParserConfigurationException e) {
 					success = false;
 				}
@@ -185,6 +213,16 @@ public class SynchHandler {
 		}
 		
 	}
-
+	
+	private String getFilePath(IResource resource)
+	{
+		IWorkspace workspace = resource.getWorkspace();
+		String workspaceUri = workspace.getRoot().getRawLocationURI().toString();
+		String fileUri = resource.getRawLocationURI().toString();
+		int fileExtension=fileUri.length()- resource.getFileExtension().length()-1;
+	
+		return fileUri.substring(workspaceUri.length()+1, fileExtension);
+		
+	}
 	
 }

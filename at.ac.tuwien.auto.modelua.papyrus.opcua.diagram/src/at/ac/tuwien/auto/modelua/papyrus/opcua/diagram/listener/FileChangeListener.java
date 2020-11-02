@@ -50,15 +50,23 @@ public class FileChangeListener implements IResourceChangeListener{
 			}
 			else if(fileExtension.equalsIgnoreCase("uml"))
 			{
-				boolean success = Activator.getSynchHandler().writeToNodeSet(affectedObject);
-				if(success)
+				if(affectedObject.getKind() == IResourceDelta.REMOVED)
 				{
-					System.out.println("NodeSet file written succesfully");
+					Activator.getSynchHandler().deleteNodeSet(affectedObject);
 				}
-				else
+				else if(affectedObject.getKind() == IResourceDelta.CHANGED)
 				{
-					System.err.print("Error when writing NodeSet file");
+					boolean success = Activator.getSynchHandler().writeToNodeSet(affectedObject);
+					if(success)
+					{
+						System.out.println("NodeSet file written succesfully");
+					}
+					else
+					{
+						System.err.print("Error when writing NodeSet file");
+					}
 				}
+						
 			}
 		}
 		for (IResourceDelta affectedChild : affectedObject.getAffectedChildren())

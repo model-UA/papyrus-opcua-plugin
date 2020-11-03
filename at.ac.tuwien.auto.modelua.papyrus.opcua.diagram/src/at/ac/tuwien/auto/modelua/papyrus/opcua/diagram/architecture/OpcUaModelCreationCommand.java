@@ -61,7 +61,7 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 		loadBaseNodeSet(model, owner_resource);
 		
 		
-		model.setViewpoint("InformationModel");
+		model.setViewpoint(OpcUaDiagramResources.DIAGRAM_VIEWPOINT);
 		
 		Activator.getSynchHandler().registerNewUmlModel(model);
 

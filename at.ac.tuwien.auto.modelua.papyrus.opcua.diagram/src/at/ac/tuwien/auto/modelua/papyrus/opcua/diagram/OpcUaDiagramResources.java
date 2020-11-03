@@ -16,6 +16,8 @@ import java.util.Map;
 
 public class OpcUaDiagramResources {
 	
+	public static final String DIAGRAM_VIEWPOINT ="NodeSet InformationModel";
+	
 	public static final String PROFILES_PATHMAP = "pathmap://OPC_UA_PROFILES/"; //$NON-NLS-1$	
 
 	public static final String UANODESET_PROFILE_PATH = PROFILES_PATHMAP+"UANodeSet.profile.uml";

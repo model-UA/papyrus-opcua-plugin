@@ -24,3 +24,5 @@ Require-Bundle: org.eclipse.papyrus.uml.extensionpoints,
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram
 Bundle-ActivationPolicy: lazy
+Export-Package: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram,
+ at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformer

@@ -14,7 +14,11 @@ package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram;
 import java.util.HashMap;
 import java.util.Map;
 
+import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformer.SynchHandler;
+
 public class OpcUaDiagramResources {
+	
+	public static SynchHandler DIAGRAM_SYNCH_HANDLER = Activator.getSynchHandler();
 	
 	public static final String DIAGRAM_VIEWPOINT ="NodeSet InformationModel";
 	

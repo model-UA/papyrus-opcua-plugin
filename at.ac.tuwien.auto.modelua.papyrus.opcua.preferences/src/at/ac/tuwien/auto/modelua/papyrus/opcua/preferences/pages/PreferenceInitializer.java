@@ -18,8 +18,11 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		store.setDefault(PreferenceConstants.NODEID_AUTOFILL, true);
+		store.setDefault(PreferenceConstants.NODESET_AUTO_RELOAD, true);
+		store.setDefault(PreferenceConstants.NODESET_AUTO_EXPORT, false);
+		store.setDefault(PreferenceConstants.CREATE_FOLDER_HIERARCHY, false);
 		store.setDefault(PreferenceConstants.NODEID_SCHEME, "auto");
-		store.setDefault(PreferenceConstants.CUSTOM_NODEID_PREFERENCE, "{qualified-name}");
+		// store.setDefault(PreferenceConstants.CUSTOM_NODEID_PREFERENCE, "{qualified-name}");
 	}
 
 }

@@ -9,7 +9,10 @@ public class PreferenceConstants {
 	public static final String EXPORT_PATH = "importPathPreference";
 	public static final String NODEID_SCHEME = "nodeIdSchemePreference";
 	public static final String NODEID_AUTOFILL = "nodeIdAutofillPreference";
+	public static final String NODESET_AUTO_RELOAD = "nodeSetAutoLoadPreference";
+	public static final String NODESET_AUTO_EXPORT = "nodeSetAutoExportPreference";
+	public static final String CREATE_FOLDER_HIERARCHY = "createFolderHierarchyPreference";
 
-	public static final String CUSTOM_NODEID_PREFERENCE = "customNodeIdSchemePreference";
+	// public static final String CUSTOM_NODEID_PREFERENCE = "customNodeIdSchemePreference";
 	
 }

@@ -9,3 +9,4 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.preferences
 Bundle-ActivationPolicy: lazy
+Export-Package: at.ac.tuwien.auto.modelua.papyrus.opcua.preferences

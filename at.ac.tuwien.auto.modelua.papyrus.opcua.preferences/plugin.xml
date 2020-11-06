@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.pages.MainPreferencesPage"
+            id="at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.pages.MainPreferencesPage"
+            name="OPC UA">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.pages.PreferenceInitializer">
+      </initializer>
+   </extension>
+
+</plugin>

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.preferences
+Bundle-SymbolicName: at.ac.tuwien.auto.modelua.papyrus.opcua.preferences;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.preferences
+Bundle-ActivationPolicy: lazy

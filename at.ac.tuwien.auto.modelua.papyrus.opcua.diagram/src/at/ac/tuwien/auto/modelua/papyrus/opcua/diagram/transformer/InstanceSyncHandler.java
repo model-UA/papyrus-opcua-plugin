@@ -86,6 +86,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UriTableImpl;
 
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.OpcUaDiagramResources;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.parser.NodeSetParser;
+import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceProvider;
 
 public class InstanceSyncHandler {
 	
@@ -120,19 +121,52 @@ public class InstanceSyncHandler {
 		this.aliasTable = new HashMap<String, String>();
 	}
 	
-
+	public boolean importPackage(String filepath) 
+	{
+		URI fileUri = URI.createFileURI(filepath);
+		ResourceSet owner_resource = this.baseUmlModel.eResource().getResourceSet(); 
+		Model modelimport = (Model) PackageUtil.loadPackage(fileUri, owner_resource);
+				
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		if(modelimport.isProfileApplied(nodeSetProfile))
+		{
+			// Write Operations have to be executed inside a TransactionalEditingDomain
+			// easiest way to do this is in a Command
+			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(this.baseUmlModel);
+			
+			// changes to diagrams shall be done inside commands
+			ImportNodeSetCommand cmd = new ImportNodeSetCommand(domain);
+			cmd.setImportModel(modelimport);
+			cmd.setBaseModel(this.baseUmlModel);
+			
+			domain.getCommandStack().execute(cmd);
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public boolean writeToNodeSetFile() throws ParserConfigurationException
 	{
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-	
+		
         IPath filePath = root.getLocation();
         URI uri = this.baseUmlModel.eResource().getURI();
 		String path = uri.trimFileExtension().devicePath().substring("/resource/".length())+".xml";
 		filePath=filePath.append(path);
-		        
-        NodeSetParser.writeNodeSetFile(filePath.toOSString(), this.baseNodeset);
+		return writeToNodeSetFile(filePath.toOSString());
+	}
+	
+	public boolean writeToNodeSetFile(String filepath) throws ParserConfigurationException
+	{
+		if(!filepath.endsWith(".xml"))
+		{
+			filepath = filepath+".xml";
+		}
+		
+		return NodeSetParser.writeNodeSetFile(filepath, this.baseNodeset);
         
-		return true;
 	}
 
 	
@@ -4417,12 +4451,20 @@ public class InstanceSyncHandler {
 		{
 			nodeId = (String) umlUaNode.getValue(uaStereotype, "nodeId");
 			
-			try {
-		        double d = Double.parseDouble(nodeId);
-		        nodeId = "i=" + nodeId;
-		    } catch (NumberFormatException nfe) {
-		    	nodeId = "s=" + nodeId;
-		    }
+			if(PreferenceProvider.getNodeIdSchema().equalsIgnoreCase("auto"))
+			{				
+				try {
+					double d = Double.parseDouble(nodeId);
+					nodeId = "i=" + nodeId;
+				} catch (NumberFormatException nfe) {
+					nodeId = "s=" + nodeId;
+				}
+			}
+			// other option is string
+			else
+			{
+				nodeId = "s=" + nodeId;
+			}
 			
 			if(namespace != null && namespace.getURI() != null)
 			{

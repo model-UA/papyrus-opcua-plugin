@@ -8,16 +8,22 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Package;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UANodeSetTypeImpl;
 
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.Activator;
+import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.OpcUaDiagramResources;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.listener.DiagramChangeListener;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.parser.NodeSetParser;
 
@@ -54,6 +60,28 @@ public class SynchHandler {
 		this.projectMapping.put(path, instance);
 	}
 	
+	public boolean modelIsRegistered(Model umlModel)
+	{
+		if(this.modelMapping.containsKey(umlModel))
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean modelIsRegistered(URI modelUri)
+	{
+		String path = modelUri.trimFileExtension().devicePath().substring("/resource/".length());
+		
+		if(this.projectMapping.containsKey(path))
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public void deleteNodeSet(IResourceDelta nodeSetDelta)
 	{
 		IResource resource = nodeSetDelta.getResource();
@@ -73,7 +101,46 @@ public class SynchHandler {
 		this.modelMapping.remove(modelKey);
 	}
 	
+	public boolean exportNodeSetTo(URI modelUri, String exportPath)
+	{
+		String path = modelUri.trimFileExtension().devicePath().substring("/resource/".length());
+		
+		if(!this.projectMapping.containsKey(path))
+		{
+			return false;
+		}
+		
+		boolean success = true;
+		
+		DiagramChangeListener.disable(true);
+		Activator.getFileChangeListener().disable(true);
+		try
+		{
+			this.projectMapping.get(path).writeToNodeSetFile(exportPath);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			success = false;
+		}
+		finally
+		{			
+			DiagramChangeListener.disable(false);
+			Activator.getFileChangeListener().disable(false);
+		}
+		
+		return success;
+	}
+	
 	public boolean writeToNodeSet(IResourceDelta nodeSetDelta)
+	{
+		IResource resource = nodeSetDelta.getResource();
+		String fileName = getFilePath(resource) + ".xml";
+		
+		return writeToNodeSet(nodeSetDelta, fileName);
+	}
+	
+	public boolean writeToNodeSet(IResourceDelta nodeSetDelta, String exportPath)
 	{
 		IResource resource = nodeSetDelta.getResource();
 		String fileName = getFilePath(resource);
@@ -89,7 +156,7 @@ public class SynchHandler {
 		Activator.getFileChangeListener().disable(true);
 		try
 		{
-			this.projectMapping.get(fileName).writeToNodeSetFile();
+			this.projectMapping.get(fileName).writeToNodeSetFile(exportPath);
 		}
 		catch (Exception e)
 		{
@@ -138,6 +205,40 @@ public class SynchHandler {
 		{
 			return false;
 		}
+	}
+	
+	public boolean updateNodeSetFrom(URI modelUri, String importPath)
+	{
+		String modelPath = modelUri.trimFileExtension().devicePath().substring("/resource/".length());
+		
+		if(!this.projectMapping.containsKey(modelPath))
+		{
+			return false;
+		}
+		
+		UANodeSetType nodeSet = readNodeset(importPath);
+		if(nodeSet == null)
+		{
+			return false;
+		}
+		boolean success = true;
+		
+		DiagramChangeListener.disable(true);
+		try
+		{
+			this.projectMapping.get(modelPath).updatedMember(nodeSet);			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			success = false;
+		}
+		finally
+		{			
+			DiagramChangeListener.disable(false);
+		}
+		     
+		return success;
 	}
 	
 	public boolean updateNodeSet(IResourceDelta nodeSetDelta)
@@ -223,6 +324,25 @@ public class SynchHandler {
 	
 		return fileUri.substring(workspaceUri.length()+1, fileExtension);
 		
+	}
+
+	public boolean importNodeSetFrom(URI modelUri, String filepath) {
+		
+		String modelPath = modelUri.trimFileExtension().devicePath().substring("/resource/".length());
+		
+		if(!this.projectMapping.containsKey(modelPath))
+		{
+			return false;
+		}
+		
+		return this.projectMapping.get(modelPath).importPackage(filepath);
+	}
+	
+	private static String getWorkspacePath()
+	{
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+        IPath workspacePath = root.getLocation();	
+		return workspacePath.toOSString();
 	}
 	
 }

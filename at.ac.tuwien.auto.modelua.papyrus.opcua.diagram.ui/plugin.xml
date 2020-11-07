@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+          point="org.eclipse.ui.commands">
+       <command
+             defaultHandler="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.commands.ExportNodeSetHandler"
+             id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.commands.exportNodeSet"
+             name="Export NodeSet Command">
+       </command>
+       <command
+             defaultHandler="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.commands.UpdateNodeSetHandler"
+             id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.commands.updateNodeSet"
+             name="Update NodeSet Command">
+       </command>
+       
+       <command
+             defaultHandler="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.commands.ImportNodeSetHandler"
+             id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.commands.importNodeSet"
+             name="Import NodeSet Command">
+       </command>
+    </extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             allPopups="false"
+             locationURI="popup:org.eclipse.papyrus.infra.gmfdiag.export.menu?after=org.eclipse.papyrus.export.exportToHTML">
+             <command
+                   commandId="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.commands.exportNodeSet"
+                   icon="resources/icons/opc_ua_logo.png"
+                   id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.menuContribution.exportNodeSetCommand"
+                   label="Export NodeSet Informationmodel"
+                   style="push"
+                   tooltip="Exports the nodeset to a given file location">
+                <visibleWhen
+                      checkEnabled="false">
+                   <with
+                         variable="selection">
+                      <test
+                         forcePluginActivation="true"
+                         property="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.properties.isNodeSetModel">
+                   	  </test>
+                   </with>
+                   
+                </visibleWhen>
+             </command>
+       </menuContribution>
+       <menuContribution
+             allPopups="false"
+             locationURI="popup:org.eclipse.papyrus.uml.import.menu?before=org.eclipse.papyrus.import.registered.profile">
+             <command
+                   commandId="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.commands.updateNodeSet"
+                   icon="resources/icons/opc_ua_logo.png"
+                   id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.menuContribution.UpdateNodeSetHandler"
+                   label="Update Nodeset"
+                   style="push"
+                   tooltip="Loads a nodeset and updates the currently loaded model">
+                <visibleWhen
+                      checkEnabled="false">
+                   <with
+                         variable="selection">
+                      <test
+                         forcePluginActivation="true"
+                         property="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.properties.isNodeSetModel">
+                   	  </test>
+                   </with>
+                   
+                </visibleWhen>
+             </command>
+             <command
+                   commandId="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.commands.importNodeSet"
+                   icon="resources/icons/opc_ua_logo.png"
+                   id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.menuContribution.importNodeSetCommand"
+                   label="Import NodeSet"
+                   style="push"
+                   tooltip="Loads a nodeset">
+                <visibleWhen
+                      checkEnabled="false">
+                   <with
+                         variable="selection">
+                      <test
+                         forcePluginActivation="true"
+                         property="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.properties.isNodeSetModel">
+                   	  </test>
+                   </with>
+                   
+                </visibleWhen>
+             </command>
+       </menuContribution>
+    </extension>
+    <extension
+          point="org.eclipse.core.expressions.propertyTesters">
+       <propertyTester
+             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.tester.IsNodeSetModelPropertyTester"
+             id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.tester.isNodeSetModelPropertyTester"
+             namespace="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.properties"
+             properties="isNodeSetModel"
+             type="org.eclipse.jface.viewers.IStructuredSelection">
+       </propertyTester>
+    </extension>
+
+</plugin>

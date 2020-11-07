@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui
+Bundle-SymbolicName: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.papyrus.infra.core,
+ org.eclipse.papyrus.infra.ui,
+ at.ac.tuwien.auto.modelua.papyrus.opcua.diagram,
+ org.eclipse.uml2;bundle-version="5.5.1",
+ org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="1.4.100",
+ org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="2.4.0",
+ at.ac.tuwien.auto.modelua.papyrus.opcua.preferences;bundle-version="1.0.0"

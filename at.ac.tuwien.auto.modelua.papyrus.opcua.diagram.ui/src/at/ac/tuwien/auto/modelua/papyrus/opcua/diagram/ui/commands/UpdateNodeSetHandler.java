@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.OpcUaDiagramResources;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformer.SynchHandler;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.Utils;
+import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceProvider;
 
 public class UpdateNodeSetHandler extends AbstractHandler {
 	
@@ -37,7 +38,14 @@ public class UpdateNodeSetHandler extends AbstractHandler {
 		{			
 			Shell shell = Utils.getShell(event);
 			
-			String filepath = Utils.openFileDialoag(shell, FILEDIALOG_TITLE, false, Utils.getWorkspacePath(), FILEDIALOG_EXTENSIONS, uriWithoutExtension.lastSegment());
+			String defaultPath = PreferenceProvider.getImportPath();
+			
+			if(defaultPath == null || defaultPath.length() == 0)
+			{
+				defaultPath = Utils.getWorkspacePath();
+			}
+			
+			String filepath = Utils.openFileDialoag(shell, FILEDIALOG_TITLE, false, defaultPath, FILEDIALOG_EXTENSIONS, uriWithoutExtension.lastSegment());
 			if(filepath == null)
 			{
 				return null;

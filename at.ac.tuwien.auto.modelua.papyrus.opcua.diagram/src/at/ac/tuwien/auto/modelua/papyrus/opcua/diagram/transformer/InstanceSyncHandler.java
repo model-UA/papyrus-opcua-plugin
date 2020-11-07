@@ -86,6 +86,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UriTableImpl;
 
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.OpcUaDiagramResources;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.parser.NodeSetParser;
+import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceProvider;
 
 public class InstanceSyncHandler {
 	
@@ -159,7 +160,11 @@ public class InstanceSyncHandler {
 	
 	public boolean writeToNodeSetFile(String filepath) throws ParserConfigurationException
 	{
-
+		if(!filepath.endsWith(".xml"))
+		{
+			filepath = filepath+".xml";
+		}
+		
 		return NodeSetParser.writeNodeSetFile(filepath, this.baseNodeset);
         
 	}
@@ -4446,12 +4451,20 @@ public class InstanceSyncHandler {
 		{
 			nodeId = (String) umlUaNode.getValue(uaStereotype, "nodeId");
 			
-			try {
-		        double d = Double.parseDouble(nodeId);
-		        nodeId = "i=" + nodeId;
-		    } catch (NumberFormatException nfe) {
-		    	nodeId = "s=" + nodeId;
-		    }
+			if(PreferenceProvider.getNodeIdSchema().equalsIgnoreCase("auto"))
+			{				
+				try {
+					double d = Double.parseDouble(nodeId);
+					nodeId = "i=" + nodeId;
+				} catch (NumberFormatException nfe) {
+					nodeId = "s=" + nodeId;
+				}
+			}
+			// other option is string
+			else
+			{
+				nodeId = "s=" + nodeId;
+			}
 			
 			if(namespace != null && namespace.getURI() != null)
 			{

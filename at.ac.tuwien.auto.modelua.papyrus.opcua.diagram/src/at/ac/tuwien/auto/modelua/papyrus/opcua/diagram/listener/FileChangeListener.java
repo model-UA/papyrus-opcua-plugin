@@ -1,10 +1,15 @@
 package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.listener;
 
+import java.net.URI;
+
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.runtime.IPath;
 
+import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceProvider;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.Activator;
 
 public class FileChangeListener implements IResourceChangeListener{
@@ -38,7 +43,7 @@ public class FileChangeListener implements IResourceChangeListener{
 		if(filePath.getFileExtension() != null)
 		{
 			String fileExtension = filePath.getFileExtension();
-			if(fileExtension.equalsIgnoreCase("xml"))
+			if(fileExtension.equalsIgnoreCase("xml") && PreferenceProvider.getNodeSetAutoReload())
 			{			
 				// Workaround: if xml was written ignore the first trigger
 				if(this.disable_once)
@@ -70,11 +75,45 @@ public class FileChangeListener implements IResourceChangeListener{
 					if(success)
 					{
 						System.out.println("NodeSet file written succesfully");
+						
+						String exportPath = PreferenceProvider.getExportPath();
+						
+						if( PreferenceProvider.getNodeSetAutoExport() &&
+							exportPath.length() > 0)
+						{
+							
+							if(PreferenceProvider.getCreateWorkspaceFolderHierarchyInExportDir())
+							{
+								if(!exportPath.endsWith("/"))
+								{
+									exportPath += "/";
+								}
+								
+								String folderPath = getFolderPath(affectedObject);
+								exportPath = exportPath+folderPath;
+								
+							}
+							
+							if(!exportPath.endsWith("/"))
+							{
+								exportPath += "/";
+							}
+							
+							String filename = getFileName(affectedObject);
+							exportPath = exportPath+filename+".xml";
+							
+							success = Activator.getSynchHandler().writeToNodeSet(affectedObject, exportPath);
+							if(!success)
+							{
+								System.err.print("Error when exporting NodeSet file to "+exportPath);
+							}
+						}
 					}
 					else
 					{
 						System.err.print("Error when writing NodeSet file");
 					}
+
 				}
 						
 			}
@@ -92,5 +131,30 @@ public class FileChangeListener implements IResourceChangeListener{
 		{
 			this.disable_once = true;
 		}
+	}
+	
+	private String getFolderPath(IResourceDelta resourceDelta)
+	{
+		IResource resource = resourceDelta.getResource();
+		
+		IWorkspace workspace = resource.getWorkspace();
+		String workspaceUri = workspace.getRoot().getRawLocationURI().toString();
+		String fileUri = resource.getRawLocationURI().toString();
+		int fileName=fileUri.length()- resource.getName().length()-1;
+	
+		return fileUri.substring(workspaceUri.length()+1, fileName);
+	
+	}
+	
+	private String getFileName(IResourceDelta resourceDelta)
+	{
+		IResource resource = resourceDelta.getResource();
+		
+		String fileUri = resource.getRawLocationURI().toString();
+		int fileEName=fileUri.length()- resource.getName().length();
+		int fileExtension=fileUri.length()- resource.getFileExtension().length()-1;
+	
+		return fileUri.substring(fileEName, fileExtension);
+		
 	}
 }

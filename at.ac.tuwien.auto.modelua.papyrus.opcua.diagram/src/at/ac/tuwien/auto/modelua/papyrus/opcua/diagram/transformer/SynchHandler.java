@@ -8,6 +8,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -132,6 +135,14 @@ public class SynchHandler {
 	public boolean writeToNodeSet(IResourceDelta nodeSetDelta)
 	{
 		IResource resource = nodeSetDelta.getResource();
+		String fileName = getFilePath(resource) + ".xml";
+		
+		return writeToNodeSet(nodeSetDelta, fileName);
+	}
+	
+	public boolean writeToNodeSet(IResourceDelta nodeSetDelta, String exportPath)
+	{
+		IResource resource = nodeSetDelta.getResource();
 		String fileName = getFilePath(resource);
 				
 		if(!this.projectMapping.containsKey(fileName))
@@ -145,7 +156,7 @@ public class SynchHandler {
 		Activator.getFileChangeListener().disable(true);
 		try
 		{
-			this.projectMapping.get(fileName).writeToNodeSetFile();
+			this.projectMapping.get(fileName).writeToNodeSetFile(exportPath);
 		}
 		catch (Exception e)
 		{
@@ -324,9 +335,14 @@ public class SynchHandler {
 			return false;
 		}
 		
-		
-		
 		return this.projectMapping.get(modelPath).importPackage(filepath);
+	}
+	
+	private static String getWorkspacePath()
+	{
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+        IPath workspacePath = root.getLocation();	
+		return workspacePath.toOSString();
 	}
 	
 }

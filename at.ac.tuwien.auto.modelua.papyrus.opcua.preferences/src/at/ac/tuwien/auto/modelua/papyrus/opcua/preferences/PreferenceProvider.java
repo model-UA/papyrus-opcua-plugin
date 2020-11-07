@@ -22,6 +22,14 @@ public class PreferenceProvider {
 		return importPath;
 	}
 	
+	public static String getNodeIdSchema()
+	{
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		String schema = store.getString(PreferenceConstants.NODEID_SCHEME);
+		
+		return schema;
+	}
+	
 	public static boolean getAutofileNodeIds()
 	{
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
@@ -30,11 +38,28 @@ public class PreferenceProvider {
 		return autofill;
 	}
 	
-	public static String getNodeIdSchema()
+	public static boolean getNodeSetAutoReload()
 	{
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		String schema = store.getString(PreferenceConstants.NODEID_SCHEME);
+		boolean autofill = store.getBoolean(PreferenceConstants.NODESET_AUTO_RELOAD);
 		
-		return schema;
+		return autofill;
 	}
+	
+	public static boolean getNodeSetAutoExport()
+	{
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		boolean autofill = store.getBoolean(PreferenceConstants.NODESET_AUTO_EXPORT);
+		
+		return autofill;
+	}
+
+	public static boolean getCreateWorkspaceFolderHierarchyInExportDir()
+	{
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		boolean autofill = store.getBoolean(PreferenceConstants.CREATE_FOLDER_HIERARCHY);
+		
+		return autofill;
+	}
+
 }

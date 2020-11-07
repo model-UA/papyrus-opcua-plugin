@@ -26,8 +26,8 @@ public class MainPreferencesPage
 	};
 	private RadioGroupFieldEditor nodeIdSchemeRadioGroupEditor;
 	
-	private static final String AUTOFILL_NODEID_EDITOR_TEXT ="Automically generate NodeIds";
-	private BooleanFieldEditor autofillNodeIdBooleanEditor;
+	private static final String AUTOGEN_NODEID_EDITOR_TEXT ="Automically generate NodeIds";
+	private BooleanFieldEditor autogenerateNodeIdBooleanEditor;
 	
 	private static final String AUTOLOAD_NODESET_EDITOR_TEXT ="Automically reload NodeSet if underlaying NodeSet file changed";
 	private BooleanFieldEditor autoloadNodeSetBooleanEditor;
@@ -65,10 +65,10 @@ public class MainPreferencesPage
 			1,
 			NODEID_SCHEMES, getFieldEditorParent());
 		
-		this.autofillNodeIdBooleanEditor = new BooleanFieldEditor(
-				PreferenceConstants.NODEID_AUTOFILL,
-				AUTOFILL_NODEID_EDITOR_TEXT,
-				parent);
+//		this.autogenerateNodeIdBooleanEditor = new BooleanFieldEditor(
+//				PreferenceConstants.NODEID_AUTOFILL,
+//				AUTOGEN_NODEID_EDITOR_TEXT,
+//				parent);
 		
 		this.autoloadNodeSetBooleanEditor = new BooleanFieldEditor(
 				PreferenceConstants.NODEID_AUTOFILL,
@@ -100,7 +100,7 @@ public class MainPreferencesPage
 		addField(this.importDirectoryEditor);
 		addField(this.exportDirectoryEditor);
 		addField(this.nodeIdSchemeRadioGroupEditor);
-		addField(this.autofillNodeIdBooleanEditor);
+//		addField(this.autsogenerateNodeIdBooleanEditor);
 		addField(this.autoloadNodeSetBooleanEditor);
 		addField(this.autoGenerateNodeSetBooleanEditor);
 		addField(this.replicateWorkspaceHierarchyBooleanEditor);

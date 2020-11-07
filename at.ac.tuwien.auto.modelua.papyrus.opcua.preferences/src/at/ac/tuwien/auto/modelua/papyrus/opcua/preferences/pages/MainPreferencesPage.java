@@ -113,6 +113,10 @@ public class MainPreferencesPage
 	    this.enableReplication =  new SetEditorEnabledListener(this.replicateWorkspaceHierarchyBooleanEditor, getFieldEditorParent());
 		this.autoGenerateNodeSetBooleanEditor.setPropertyChangeListener(this.enableReplication);
 		
+		if(!this.autoGenerateNodeSetBooleanEditor.getBooleanValue())
+		{
+			this.replicateWorkspaceHierarchyBooleanEditor.setEnabled(false, getFieldEditorParent());
+		}
 	}
 	
 	/* (non-Javadoc)

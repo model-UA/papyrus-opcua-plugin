@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-      <extension
+	<extension
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="pathmap://OPC_UA_PROFILES/"
             target="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/profile/">
       </mapping>
-      <mapping
-            source="pathmap://OPC_UA_LIBRARIES/"
-            target="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/libraries/">
-      </mapping>
    </extension>
-
-	<!-- register the profile so it can be found by the Papyrus Apply profil property view -->
+   
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
@@ -22,26 +17,6 @@
             path="pathmap://OPC_UA_PROFILES/UANodeSet.profile.uml"
             provider="TU-Wien ASG">
       </profile>
-   </extension>
-   
- <!-- register the profile so it can be found by the Papyrus Import Library menu in the model explorer -->   
-   <extension
-         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
-      <library
-            description="OPC UA Base Nodeset"
-            name="OPC UA Base NodeSet"
-            path="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml"
-            provider="TU-Wien ASG">
-      </library>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
-      <library
-            description="OPC UA Safety Extension Nodeset"
-            name="OPC UA Safety Extension Nodeset"
-            path="pathmap://OPC_UA_LIBRARIES/Opc.Ua.Safety.NodeSet2/Opc.Ua.Safety.NodeSet2.uml"
-            provider="TU-Wien ASG">
-      </library>
    </extension>
    
    <extension point="org.eclipse.papyrus.infra.architecture.models">
@@ -86,42 +61,4 @@
           point="org.eclipse.papyrus.infra.newchild">
       <menuCreationModel model="resources/elementtypes/newChildMenu.xmi"></menuCreationModel>
     </extension>  
-    <extension
-         point="org.eclipse.papyrus.infra.core.modelListener">
-      <listener
-            name="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.resourcechangedlistener"
-            realization="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.listener.DiagramChangeListener">
-      </listener>
-   </extension>
-    <extension
-          point="org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration">
-       <decorationDeclaration
-             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.decorations.ReferenceTypeDecorator"
-             name="ReferenceTypeDecorator">
-       </decorationDeclaration>
-       <decorationDeclaration
-             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.decorations.HierachicalReferenceTypeDecorator"
-             name="HierachicalReferenceTypeDecorator">
-       </decorationDeclaration>
-       <decorationDeclaration
-             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.decorations.HasComponentDecorator"
-             name="HasComponentDecorator">
-       </decorationDeclaration>
-       <decorationDeclaration
-             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.decorations.HasEventSourceDecorator"
-             name="HasEventSourceDecorator">
-       </decorationDeclaration>
-       <decorationDeclaration
-             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.decorations.HasPropertytDecorator"
-             name="HasPropertyDecorator">
-       </decorationDeclaration>
-       <decorationDeclaration
-             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.decorations.HasSubtypeDecorator"
-             name="HasSubtypeDecorator">
-       </decorationDeclaration>
-       <decorationDeclaration
-             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.decorations.HasTypeDefinitionDecorator"
-             name="HasTypeDefinitionDecorator">
-       </decorationDeclaration>
-    </extension>
 </plugin>

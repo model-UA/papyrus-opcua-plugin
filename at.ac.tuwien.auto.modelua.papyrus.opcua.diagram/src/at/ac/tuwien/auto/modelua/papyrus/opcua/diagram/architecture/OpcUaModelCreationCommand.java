@@ -22,8 +22,8 @@ import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 
-import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.Activator;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.OpcUaDiagramResources;
+import at.ac.tuwien.auto.modelua.papyrus.opcua.libraries.OpcUaLibraryResources;
 
 /**
  */
@@ -62,8 +62,6 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 		
 		
 		model.setViewpoint(OpcUaDiagramResources.DIAGRAM_VIEWPOINT);
-		
-		Activator.getSynchHandler().registerNewUmlModel(model);
 
 	}
 	
@@ -81,7 +79,7 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 	private void loadBaseNodeSet(Model model, ResourceSet owner_resource)
 	{
 		// TODO: do not import Base Namespace if base namespace is beeing updated
-		URI lib_path = URI.createURI(OpcUaDiagramResources.BASENAMESPACE_LIBRARY);
+		URI lib_path = URI.createURI(OpcUaLibraryResources.BASENAMESPACE_LIBRARY);
 		Package defaultNs = PackageUtil.loadPackage(lib_path, owner_resource);
 		if (defaultNs != null) {
 			model.createPackageImport(defaultNs);

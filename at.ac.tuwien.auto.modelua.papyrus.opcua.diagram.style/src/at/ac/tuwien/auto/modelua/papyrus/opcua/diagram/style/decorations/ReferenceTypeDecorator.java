@@ -1,9 +1,9 @@
-package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.decorations;
+package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style.decorations;
 
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 
-public class HasPropertytDecorator extends PolygonDecoration  {
+public class ReferenceTypeDecorator extends PolygonDecoration  {
 	/** Default X scale value. */
 	private static final int DEFAULT_SCALE_X = 15;
 
@@ -13,20 +13,15 @@ public class HasPropertytDecorator extends PolygonDecoration  {
 	public static final PointList TIP = new PointList();
 	
 	static {
-		TIP.addPoint(-1,  1);
+		TIP.addPoint(0, 0);
+		TIP.addPoint(-1, 1);
 		TIP.addPoint(-1, -1);
-		TIP.addPoint(-1,  0);
-		TIP.addPoint(-2,  0);
-		TIP.addPoint(-2,  1);
-		TIP.addPoint(-2, -1);
-		TIP.addPoint(-2,  0);
-		TIP.addPoint(-1,  0);
 	}
 	
 	/**
 	 * Constructor.
 	 */
-	public HasPropertytDecorator() {
+	public ReferenceTypeDecorator() {
 		init();
 	}
 

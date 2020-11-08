@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+          point="org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration">
+       <decorationDeclaration
+             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style.decorations.ReferenceTypeDecorator"
+             name="ReferenceTypeDecorator">
+       </decorationDeclaration>
+       <decorationDeclaration
+             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style.decorations.HierachicalReferenceTypeDecorator"
+             name="HierachicalReferenceTypeDecorator">
+       </decorationDeclaration>
+       <decorationDeclaration
+             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style.decorations.HasComponentDecorator"
+             name="HasComponentDecorator">
+       </decorationDeclaration>
+       <decorationDeclaration
+             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style.decorations.HasEventSourceDecorator"
+             name="HasEventSourceDecorator">
+       </decorationDeclaration>
+       <decorationDeclaration
+             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style.decorations.HasPropertytDecorator"
+             name="HasPropertyDecorator">
+       </decorationDeclaration>
+       <decorationDeclaration
+             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style.decorations.HasSubtypeDecorator"
+             name="HasSubtypeDecorator">
+       </decorationDeclaration>
+       <decorationDeclaration
+             class="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style.decorations.HasTypeDefinitionDecorator"
+             name="HasTypeDefinitionDecorator">
+       </decorationDeclaration>
+    </extension>
+
+</plugin>

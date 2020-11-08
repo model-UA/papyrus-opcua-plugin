@@ -6,8 +6,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.swt.widgets.Shell;
 
-import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.OpcUaDiagramResources;
-import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformer.SynchHandler;
+import at.ac.at.tuwien.modelua.papyrus.opcua.diagram.transformation.OpcUaDiagramTransformationResources;
+import at.ac.at.tuwien.modelua.papyrus.opcua.diagram.transformation.transformer.SynchHandler;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.Utils;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceProvider;
 
@@ -27,12 +27,12 @@ public class ImportNodeSetHandler extends AbstractHandler {
 		// has to done before opening the file dialog otherwise the handle will be lost
 		URI uriWithoutExtension = Utils.getModelPath(event);
 		
-		if(OpcUaDiagramResources.DIAGRAM_SYNCH_HANDLER == null)
+		if(OpcUaDiagramTransformationResources.DIAGRAM_SYNCH_HANDLER == null)
 		{
 			return null;
 		}
 		
-		SynchHandler handler = OpcUaDiagramResources.DIAGRAM_SYNCH_HANDLER;
+		SynchHandler handler = OpcUaDiagramTransformationResources.DIAGRAM_SYNCH_HANDLER;
 		
 		if(handler.modelIsRegistered(uriWithoutExtension))
 		{			

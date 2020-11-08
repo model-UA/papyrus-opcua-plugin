@@ -1,9 +1,10 @@
-package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.decorations;
+package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style.decorations;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 
-public class HierachicalReferenceTypeDecorator extends PolygonDecoration  {
+public class HasSubtypeDecorator extends PolygonDecoration  {
 	/** Default X scale value. */
 	private static final int DEFAULT_SCALE_X = 15;
 
@@ -13,16 +14,19 @@ public class HierachicalReferenceTypeDecorator extends PolygonDecoration  {
 	public static final PointList TIP = new PointList();
 	
 	static {
-		TIP.addPoint(0, 0);
+		TIP.addPoint( 0, 0);
 		TIP.addPoint(-1, 1);
-		TIP.addPoint(0, 0);
-		TIP.addPoint(-1, -1);
+		TIP.addPoint(-1, 0);
+		TIP.addPoint(-2, 1);
+		TIP.addPoint(-2,-1);
+		TIP.addPoint(-1, 0);
+		TIP.addPoint(-1,-1);
 	}
 	
 	/**
 	 * Constructor.
 	 */
-	public HierachicalReferenceTypeDecorator() {
+	public HasSubtypeDecorator() {
 		init();
 	}
 
@@ -32,6 +36,9 @@ public class HierachicalReferenceTypeDecorator extends PolygonDecoration  {
 	protected void init() {
 		setTemplate(TIP);
 		setScale(DEFAULT_SCALE_X, DEFAULT_SCALE_Y);
+		// Not really empty... filled with white color.
+		setFill(true);
+		setBackgroundColor(ColorConstants.white);
 	}
 
 	/**

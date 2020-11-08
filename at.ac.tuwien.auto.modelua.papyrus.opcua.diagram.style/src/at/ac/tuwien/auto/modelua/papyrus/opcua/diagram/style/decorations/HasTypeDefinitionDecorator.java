@@ -1,4 +1,4 @@
-package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.decorations;
+package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style.decorations;
 
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.geometry.PointList;

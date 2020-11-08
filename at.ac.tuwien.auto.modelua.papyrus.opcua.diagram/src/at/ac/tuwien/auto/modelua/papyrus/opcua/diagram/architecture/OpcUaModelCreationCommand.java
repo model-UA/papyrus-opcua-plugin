@@ -24,6 +24,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.OpcUaDiagramResources;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.libraries.OpcUaLibraryResources;
+import at.ac.tuwien.auto.modelua.papyrus.opcua.profile.OpcUaProfileResources;
+
 
 /**
  */
@@ -67,7 +69,7 @@ public class OpcUaModelCreationCommand extends ModelCreationCommandBase {
 	
 	private void initializeNodeSet(Model model, ResourceSet owner_resource)
 	{
-		URI uri_path = URI.createURI(OpcUaDiagramResources.UANODESET_PROFILE_PATH);
+		URI uri_path = URI.createURI(OpcUaProfileResources.UANODESET_PROFILE_PATH);
 		Profile basetypesProfile = (Profile) PackageUtil.loadPackage(uri_path, owner_resource);
 		if (basetypesProfile != null) {
 			PackageUtil.applyProfile(model, basetypesProfile, true);

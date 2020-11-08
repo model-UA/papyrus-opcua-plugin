@@ -9,13 +9,15 @@
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *****************************************************************************/
-package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram;
+package at.ac.tuwien.auto.modelua.papyrus.opcua.profile;
 
-public class OpcUaDiagramResources {
-		
-	public static final String DIAGRAM_VIEWPOINT ="NodeSet InformationModel";
-			
-	private OpcUaDiagramResources() {
+public class OpcUaProfileResources {
+				
+	public static final String PROFILES_PATHMAP = "pathmap://OPC_UA_PROFILES/"; //$NON-NLS-1$	
+
+	public static final String UANODESET_PROFILE_PATH = PROFILES_PATHMAP+"UANodeSet.profile.uml";
+	
+	private OpcUaProfileResources() {
 	}
 		
 }

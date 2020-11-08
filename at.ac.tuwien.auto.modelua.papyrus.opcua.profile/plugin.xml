@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://OPC_UA_PROFILES/"
+            target="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.profile/resources/profile/">
+      </mapping>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="OPC UA NodeSet Profile"
+            name="OPC UA NodeSet Profile"
+            path="pathmap://OPC_UA_PROFILES/UANodeSet.profile.uml"
+            provider="TU-Wien ASG">
+      </profile>
+   </extension>
+
+</plugin>

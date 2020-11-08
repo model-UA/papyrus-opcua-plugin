@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.feature"
+      label="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.feature"
+      version="1.0.0.qualifier">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import feature="at.ac.tuwien.auto.modelua.papyrus.opcua.libraries.feature" version="1.0.0.qualifier"/>
+      <import feature="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.feature" version="1.0.0.qualifier"/>
+      <import feature="at.ac.tuwien.auto.modelua.papyrus.opcua.profile.feature" version="1.0.0.qualifier"/>
+   </requires>
+
+   <plugin
+         id="at.ac.at.tuwien.modelua.papyrus.opcua.diagram.transformation"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="at.ac.tuwien.auto.modelua.papyrus.opcua.preferences"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

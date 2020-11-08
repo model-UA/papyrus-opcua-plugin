@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://OPC_UA_LIBRARIES/"
+            target="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/">
+      </mapping>
+   </extension>
+      
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+      <library
+            description="OPC UA Base Nodeset"
+            name="OPC UA Base NodeSet"
+            path="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml"
+            provider="TU-Wien ASG">
+      </library>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+      <library
+            description="OPC UA Safety Extension Nodeset"
+            name="OPC UA Safety Extension Nodeset"
+            path="pathmap://OPC_UA_LIBRARIES/Opc.Ua.Safety.NodeSet2/Opc.Ua.Safety.NodeSet2.uml"
+            provider="TU-Wien ASG">
+      </library>
+   </extension>  
+
+</plugin>

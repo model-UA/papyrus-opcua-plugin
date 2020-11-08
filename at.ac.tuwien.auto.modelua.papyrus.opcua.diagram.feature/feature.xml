@@ -16,17 +16,11 @@
       [Enter License Description here.]
    </license>
 
-   <includes
-         id="at.ac.tuwien.auto.modelua.papyrus.opcua.libraries.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="at.ac.tuwien.auto.modelua.papyrus.opcua.profile.feature"
-         version="0.0.0"/>
+   <requires>
+      <import feature="at.ac.tuwien.auto.modelua.papyrus.opcua.libraries.feature" version="1.0.0.qualifier"/>
+      <import feature="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.feature" version="1.0.0.qualifier"/>
+      <import feature="at.ac.tuwien.auto.modelua.papyrus.opcua.profile.feature" version="1.0.0.qualifier"/>
+   </requires>
 
    <plugin
          id="at.ac.at.tuwien.modelua.papyrus.opcua.diagram.transformation"

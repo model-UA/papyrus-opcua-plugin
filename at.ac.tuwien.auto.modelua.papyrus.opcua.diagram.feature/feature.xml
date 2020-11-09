@@ -23,13 +23,6 @@
    </requires>
 
    <plugin
-         id="at.ac.at.tuwien.modelua.papyrus.opcua.diagram.transformation"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style"
          download-size="0"
          install-size="0"
@@ -52,6 +45,13 @@
 
    <plugin
          id="at.ac.tuwien.auto.modelua.papyrus.opcua.preferences"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation"
          download-size="0"
          install-size="0"
          version="0.0.0"

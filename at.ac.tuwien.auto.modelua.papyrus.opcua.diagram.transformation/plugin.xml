@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.core.modelListener">
+      <listener
+            name="at.ac.at.tuwien.modelua.papyrus.opcua.diagram.transformation.listener.esourcechangedlistener"
+            realization="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.listener.DiagramChangeListener">
+      </listener>
+   </extension>
+
+</plugin>

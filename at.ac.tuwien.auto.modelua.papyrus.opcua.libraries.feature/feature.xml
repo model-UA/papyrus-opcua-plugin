@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="at.ac.tuwien.auto.modelua.papyrus.opcua.libraries.feature"
-      label="at.ac.tuwien.auto.modelua.papyrus.opcua.libraries.feature"
+      label="OPC UA Companion Specifications"
       version="1.0.0.qualifier">
 
    <description url="http://www.example.com/description">
@@ -15,6 +15,10 @@
    <license url="http://www.example.com/license">
       [Enter License Description here.]
    </license>
+
+   <requires>
+      <import feature="at.ac.tuwien.auto.modelua.papyrus.opcua.profile.feature" version="1.0.0.qualifier"/>
+   </requires>
 
    <plugin
          id="at.ac.tuwien.auto.modelua.papyrus.opcua.libraries"

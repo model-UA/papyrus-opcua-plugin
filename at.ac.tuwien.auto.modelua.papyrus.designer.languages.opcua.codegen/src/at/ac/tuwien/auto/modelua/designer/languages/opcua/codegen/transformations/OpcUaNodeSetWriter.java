@@ -12,17 +12,17 @@ import org.opcfoundation.ua._2008._02.types.Argument;
 import org.opcfoundation.ua._2008._02.types.ExtensionObject;
 import org.opcfoundation.ua._2008._02.types.ListOfExtensionObject;
 import org.opcfoundation.ua._2008._02.types.NodeId;
-import org.opcfoundation.ua._2011._03.uanodeset.ListOfReferences;
-import org.opcfoundation.ua._2011._03.uanodeset.LocalizedText;
-import org.opcfoundation.ua._2011._03.uanodeset.Reference;
-import org.opcfoundation.ua._2011._03.uanodeset.UAMethod;
-import org.opcfoundation.ua._2011._03.uanodeset.UANode;
-import org.opcfoundation.ua._2011._03.uanodeset.UANodeSet;
-import org.opcfoundation.ua._2011._03.uanodeset.UAObject;
-import org.opcfoundation.ua._2011._03.uanodeset.UAObjectType;
-import org.opcfoundation.ua._2011._03.uanodeset.UAVariable;
-import org.opcfoundation.ua._2011._03.uanodeset.UAVariable.Value;
-import org.opcfoundation.ua._2011._03.uanodeset.UriTable;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfReferences;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.LocalizedText;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.Reference;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAMethod;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANode;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAObject;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAObjectType;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariable;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.UriTable;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.ValueType1;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -43,28 +43,28 @@ public class OpcUaNodeSetWriter {
 		this.doc.appendChild(this.root);
 	}
 	
-	public void convertToXml(UANodeSet nodeset)
+	public void convertToXml(UANodeSetType nodeset)
 	{
 		convertNamespaces(nodeset.getNamespaceUris());
 		
-		for( UANode node : nodeset.getUAObjectOrUAVariableOrUAMethod())
+		for( UAObjectType node : nodeset.getUAObjectType())
 		{
-			if(node instanceof UAObjectType)
-			{
-				converterOpcUAObjectType((UAObjectType)node);
-			}
-			else if(node instanceof UAMethod)
-			{
-				converterOpcUAMethod((UAMethod) node );
-			}
-			else if(node instanceof UAObject)
-			{
-				converterOpcUAObject((UAObject) node );
-			}			
-			else if(node instanceof UAVariable)
-			{
-				converterOpcUAVariable((UAVariable) node );
-			}
+			converterOpcUAObjectType(node);
+		}
+		
+		for( UAMethod node : nodeset.getUAMethod())
+		{
+			converterOpcUAMethod( node );
+		}
+		
+		for( UAObject node : nodeset.getUAObject())
+		{
+			converterOpcUAObject(node );	
+		}
+		
+		for( UAVariable node : nodeset.getUAVariable())
+		{
+			converterOpcUAVariable( node );
 		}
 	}
 	
@@ -162,7 +162,7 @@ public class OpcUaNodeSetWriter {
 		this.root.appendChild(uaVariable);
 	}
 	
-	private void addInputArguments(Element argsElement, Value args)
+	private void addInputArguments(Element argsElement, ValueType1 args)
 	{
 		Element uaListOfExtensions = this.doc.createElement("uax:ListOfExtensionObject");
 		ListOfExtensionObject listOfExtensions = (ListOfExtensionObject) args.getAny();
@@ -170,12 +170,12 @@ public class OpcUaNodeSetWriter {
 		for(ExtensionObject arg : listOfExtensions.getExtensionObject())
 		{
 			Element uaExtensionObject = this.doc.createElement("uax:ExtensionObject");
-			Argument argument = (Argument) arg.getBody().getValue().getAny();
+			Argument argument = (Argument) arg.getBody().getAny();
 			
 			// set type
 			Element uaTypeID = this.doc.createElement("uax:TypeId");
 			Element uaIdentifier = this.doc.createElement("uax:Identifier");
-			String idstr= arg.getTypeId().getValue().getIdentifier().getValue();
+			String idstr= arg.getTypeId().getIdentifier();
 			uaIdentifier.setTextContent(idstr);
 			uaTypeID.appendChild(uaIdentifier);
 			uaExtensionObject.appendChild(uaTypeID);
@@ -185,18 +185,18 @@ public class OpcUaNodeSetWriter {
 			Element uaArgument = this.doc.createElement("uax:Argument");
 			
 			Element uaArgumentName = this.doc.createElement("uax:Name");
-			uaArgumentName.setTextContent(argument.getName().getValue());
+			uaArgumentName.setTextContent(argument.getName());
 			uaArgument.appendChild(uaArgumentName);
 			
 			Element uaDataType = this.doc.createElement("uax:DataType");
 			Element uaDataTypeIdentifier = this.doc.createElement("uax:Identifier");		
-			idstr = argument.getDataType().getValue().getIdentifier().getValue();
+			idstr = argument.getDataType().getIdentifier();
 			uaDataTypeIdentifier.setTextContent(idstr);
 			uaDataType.appendChild(uaDataTypeIdentifier);
 			uaArgument.appendChild(uaDataType);
 			
 			Element uaValueRank = this.doc.createElement("uax:ValueRank");
-			uaValueRank.setTextContent(argument.getValueRank().toString());
+			uaValueRank.setTextContent(String.valueOf(argument.getValueRank() ));
 			uaArgument.appendChild(uaValueRank);
 
 //			Element uaArrayDim = this.doc.createElement("uax:ArrayDimensions");

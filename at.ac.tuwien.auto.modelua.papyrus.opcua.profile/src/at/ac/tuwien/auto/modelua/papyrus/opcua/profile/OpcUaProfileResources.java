@@ -12,8 +12,9 @@
 package at.ac.tuwien.auto.modelua.papyrus.opcua.profile;
 
 public class OpcUaProfileResources {
-				
-	public static final String PROFILES_PATHMAP = "pathmap://OPC_UA_PROFILES/"; //$NON-NLS-1$	
+//	Workaround for deploying plugins, uri_mapping is somehow not available in built plugin				
+//	public static final String PROFILES_PATHMAP = "pathmap://OPC_UA_PROFILES/";
+	public static final String PROFILES_PATHMAP = "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.profile/resources/profile/"; 
 
 	public static final String UANODESET_PROFILE_PATH = PROFILES_PATHMAP+"UANodeSet.profile.uml";
 	

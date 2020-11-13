@@ -15,9 +15,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OpcUaLibraryResources {
-		
-	public static final String LIBRARIES_PATHMAP = "pathmap://OPC_UA_LIBRARIES/"; //$NON-NLS-1$	
-
+//	Workaround for deploying plugins, uri_mapping is somehow not available in built plugin
+//	public static final String LIBRARIES_PATHMAP = "pathmap://OPC_UA_LIBRARIES/"; //$NON-NLS-1$	
+	public static final String LIBRARIES_PATHMAP = "platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/"; //$NON-NLS-1$	
+	
 	public static final String BASENAMESPACE_LIBRARY = LIBRARIES_PATHMAP+"Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml";
 		
 	public static final Map<String , String> NAMESPACE_PACKAGE_MAPPING = new HashMap<String , String>() {/**

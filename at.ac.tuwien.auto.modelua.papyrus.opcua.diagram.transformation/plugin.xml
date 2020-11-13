@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.papyrus.infra.core.modelListener">
       <listener
-            name="at.ac.at.tuwien.modelua.papyrus.opcua.diagram.transformation.listener.esourcechangedlistener"
+            name="at.ac.at.tuwien.modelua.papyrus.opcua.diagram.transformation.listener.DiagramChangeListener"
             realization="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.listener.DiagramChangeListener">
       </listener>
    </extension>

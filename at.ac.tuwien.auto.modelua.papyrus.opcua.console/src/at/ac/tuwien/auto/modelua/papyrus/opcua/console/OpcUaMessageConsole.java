@@ -120,7 +120,7 @@ public class OpcUaMessageConsole {
 				initConsole();
 			}
 			
-			debug_stream.print(DEBUG_PREFIX + text);
+			debug_stream.println(DEBUG_PREFIX + text);
 		}
 	}
 	
@@ -133,7 +133,7 @@ public class OpcUaMessageConsole {
 				initConsole();
 			}
 			
-			info_stream.print(INFO_PREFIX + text);
+			info_stream.println(INFO_PREFIX + text);
 		}
 	}
 	
@@ -146,7 +146,7 @@ public class OpcUaMessageConsole {
 				initConsole();
 			}
 			
-			warning_stream.print(WARNING_PREFIX + text);
+			warning_stream.println(WARNING_PREFIX + text);
 		}
 	}
 	
@@ -159,7 +159,7 @@ public class OpcUaMessageConsole {
 				initConsole();
 			}
 			
-			error_stream.print(ERROR_PREFIX + text);
+			error_stream.println(ERROR_PREFIX + text);
 		}
 	}
 }

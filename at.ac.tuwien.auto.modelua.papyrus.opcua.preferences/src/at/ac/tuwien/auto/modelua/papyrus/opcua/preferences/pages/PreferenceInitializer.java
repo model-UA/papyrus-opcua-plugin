@@ -4,6 +4,7 @@ import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.Activator;
+import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceConstants;
 
 /**
  * Class used to initialize default preference values.
@@ -23,6 +24,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.CREATE_FOLDER_HIERARCHY, false);
 		store.setDefault(PreferenceConstants.NODEID_SCHEME, "auto");
 		// store.setDefault(PreferenceConstants.CUSTOM_NODEID_PREFERENCE, "{qualified-name}");
+		store.setDefault(PreferenceConstants.LOG_LEVEL, "10");
 	}
 
 }

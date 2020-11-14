@@ -5,6 +5,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.IWorkbench;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.Activator;
+import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceConstants;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.listener.SetEditorEnabledListener;
 
 public class MainPreferencesPage
@@ -39,6 +40,14 @@ public class MainPreferencesPage
 	private BooleanFieldEditor replicateWorkspaceHierarchyBooleanEditor;
 	
 	private SetEditorEnabledListener enableReplication;
+	
+	private static final String LOG_LEVEL_EDITOR_TEXT ="Console log output level";
+	private static final String[][] LOG_LEVELS ={ 	{"debug", "0" },
+			{"info", "10" },
+			{"warning", "20" },
+			{"error", "30" }
+	};	
+	private RadioGroupFieldEditor logLevelGroupEditor;
 	
 	public MainPreferencesPage() {
 		super(GRID);
@@ -84,7 +93,13 @@ public class MainPreferencesPage
 		this.replicateWorkspaceHierarchyBooleanEditor = new BooleanFieldEditor(
 				PreferenceConstants.CREATE_FOLDER_HIERARCHY,
 				REPLICATE_WORKSPACE_HIERARCHY_EDITOR_TEXT,
-				parent);			
+				parent);		
+		
+		this.logLevelGroupEditor = new RadioGroupFieldEditor(
+				PreferenceConstants.LOG_LEVEL,
+				LOG_LEVEL_EDITOR_TEXT,
+			1,
+			LOG_LEVELS, parent);
 	}
 	
 	/**
@@ -105,6 +120,7 @@ public class MainPreferencesPage
 		addField(this.autoGenerateNodeSetBooleanEditor);
 		addField(this.replicateWorkspaceHierarchyBooleanEditor);
 //		addField(new StringFieldEditor(PreferenceConstants.CUSTOM_NODEID_PREFERENCE, "Custom NodeId Scheme format:", getFieldEditorParent()));
+		addField(this.logLevelGroupEditor);
 	}
 	
 	@Override

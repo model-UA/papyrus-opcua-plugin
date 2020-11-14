@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.console
+Bundle-SymbolicName: at.ac.tuwien.auto.modelua.papyrus.opcua.console;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: at.ac.tuwien.auto.modelua.papyrus.opcua.console.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.console;bundle-version="3.9.200",
+ at.ac.tuwien.auto.modelua.papyrus.opcua.preferences;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.console
+Bundle-ActivationPolicy: lazy
+Export-Package: at.ac.tuwien.auto.modelua.papyrus.opcua.console

@@ -83,6 +83,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAVariableTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAViewImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UriTableImpl;
 
+import at.ac.tuwien.auto.modelua.papyrus.opcua.console.OpcUaMessageConsole;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.libraries.OpcUaLibraryResources;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.parser.NodeSetParser;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceProvider;
@@ -163,7 +164,7 @@ public class InstanceSyncHandler {
 		{
 			filepath = filepath+".xml";
 		}
-		
+		OpcUaMessageConsole.debug("Writing NodeSet file to: "+filepath);
 		return NodeSetParser.writeNodeSetFile(filepath, this.baseNodeset);
         
 	}
@@ -182,13 +183,10 @@ public class InstanceSyncHandler {
 	public boolean transformMember(Element object)
 	{
 		boolean return_val = false;
-				
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(this.baseUmlModel);
+		
 		if(object instanceof Class)
-		{
-			//return_val= updateClass((Class) object);
-			
-			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(this.baseUmlModel);
-			
+		{			
 			// changes to diagrams shall be done inside commands
 			UpdateUMLClassCommand cmd = new UpdateUMLClassCommand(domain);
 			cmd.setClass((Class) object);
@@ -201,6 +199,15 @@ public class InstanceSyncHandler {
 		else if(object instanceof Generalization)
 		{
 			return_val= transformGeneralization((Generalization) object);
+
+			// changes to diagrams shall be done inside commands
+			UpdateUMLGeneralizationCommand cmd = new UpdateUMLGeneralizationCommand(domain);
+			cmd.setGeneralization((Generalization) object);
+			cmd.registerInstanceSynchHandler(this);
+			
+			domain.getCommandStack().execute(cmd);
+			
+			return_val = cmd.getCommandResult();
 		}
 		else if(object instanceof Model)
 		{
@@ -219,7 +226,15 @@ public class InstanceSyncHandler {
 		}
 		else if(object instanceof Package)
 		{
-			return_val = transformNamespace((Package) object);
+			
+			// changes to diagrams shall be done inside commands
+			UpdateUMLPackageCommand cmd = new UpdateUMLPackageCommand(domain);
+			cmd.setPackage((Package) object);
+			cmd.registerInstanceSynchHandler(this);
+			
+			domain.getCommandStack().execute(cmd);
+			
+			return_val = cmd.getCommandResult();
 		}
 		
 		return return_val;
@@ -239,7 +254,7 @@ public class InstanceSyncHandler {
 		return success;
 	}
 
-	private boolean transformNamespace(Package namespace) {
+	protected boolean transformNamespace(Package namespace) {
 		
 		if(namespace.getURI() == null || namespace.getURI().length() == 0)
 		{
@@ -1962,7 +1977,7 @@ public class InstanceSyncHandler {
 		return true;
 	}
 	
-	private boolean transformGeneralization(Generalization general) {
+	protected boolean transformGeneralization(Generalization general) {
 
 		if(general.getSources().size() != 1 || general.getTargets().size() != 1)
 		{

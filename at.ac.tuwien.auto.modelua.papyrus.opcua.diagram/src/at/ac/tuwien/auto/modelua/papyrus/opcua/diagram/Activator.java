@@ -1,5 +1,6 @@
 package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram;
 
+import at.ac.tuwien.auto.modelua.papyrus.opcua.console.OpcUaMessageConsole;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -22,12 +23,14 @@ public class Activator extends AbstractUIPlugin {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		OpcUaMessageConsole.debug("Starting diagram plugin");
 		plugin = this;
 	}
 
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
+		OpcUaMessageConsole.debug("Stopping diagram plugin");
 		super.stop(context);
 	}
 

@@ -18,7 +18,8 @@ Bundle-Activator: at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ at.ac.tuwien.auto.modelua.papyrus.opcua.console;bundle-version="1.0.0"
 Automatic-Module-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.papyrus.infra.tools.file

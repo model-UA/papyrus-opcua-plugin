@@ -134,9 +134,12 @@ public class SynchHandler {
 	public boolean writeToNodeSet(IResourceDelta nodeSetDelta)
 	{
 		IResource resource = nodeSetDelta.getResource();
-		String fileName = getFilePath(resource) + ".xml";
 		
-		return writeToNodeSet(nodeSetDelta, fileName);
+		String workspaceUri = getWorkspacePath();
+		
+		String filePath = workspaceUri + "/"+ getFilePath(resource) + ".xml";
+		
+		return writeToNodeSet(nodeSetDelta, filePath);
 	}
 	
 	public boolean writeToNodeSet(IResourceDelta nodeSetDelta, String exportPath)

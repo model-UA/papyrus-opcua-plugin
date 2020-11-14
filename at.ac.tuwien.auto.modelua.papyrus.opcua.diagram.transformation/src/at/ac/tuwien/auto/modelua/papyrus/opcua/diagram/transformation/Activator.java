@@ -4,6 +4,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import at.ac.tuwien.auto.modelua.papyrus.opcua.console.OpcUaMessageConsole;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.listener.DiagramChangeListener;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.listener.FileChangeListener;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.transformer.SynchHandler;
@@ -29,6 +30,7 @@ public class Activator extends AbstractUIPlugin {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		OpcUaMessageConsole.debug("Starting diagram transformation plugin");
 		plugin = this;
 		nodeSetUmlSynchHandler = new SynchHandler();
 		nodeSetChangedListener = new FileChangeListener();
@@ -38,6 +40,7 @@ public class Activator extends AbstractUIPlugin {
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
+		OpcUaMessageConsole.debug("Stopping diagram transformation plugin");
 		super.stop(context);
 		ResourcesPlugin.getWorkspace().removeResourceChangeListener(nodeSetChangedListener);
 		DiagramChangeListener.disable(true);

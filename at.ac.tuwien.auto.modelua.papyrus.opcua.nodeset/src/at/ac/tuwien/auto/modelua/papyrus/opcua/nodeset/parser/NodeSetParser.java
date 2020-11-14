@@ -19,6 +19,8 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.NodeSetPackage;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.util.NodeSetResourceFactoryImpl;
 
+import at.ac.tuwien.auto.modelua.papyrus.opcua.console.OpcUaMessageConsole;
+
 public class NodeSetParser {
 
 	public static boolean writeNodeSetFile(String filePath, UANodeSetType nodeset)
@@ -49,10 +51,10 @@ public class NodeSetParser {
 
         try {
 			resource.save(options);
-	        System.out.println("Nodeset written to " + filePath);
+			OpcUaMessageConsole.info("Nodeset written to " + filePath);
 		} catch (IOException e) {
 			e.printStackTrace();
-	        System.err.println("Nodeset not written to " + filePath);
+			OpcUaMessageConsole.error("Nodeset not written!");
 		}
         
 		return false;
@@ -83,7 +85,7 @@ public class NodeSetParser {
 			// Demand load resource for this file.
 			//
 			Resource resource = resourceSet.getResource(nodesetURI, true);
-			System.out.println("Loaded " + nodesetURI);
+			OpcUaMessageConsole.info("Loaded " + nodesetURI);
 
 			// Validate the contents of the loaded resource.
 			//
@@ -105,7 +107,7 @@ public class NodeSetParser {
 			
 		}
 		catch (RuntimeException exception) {
-			System.out.println("Problem loading " + nodesetURI);
+			OpcUaMessageConsole.error("Problem loading " + nodesetURI);
 			exception.printStackTrace();
 		}
 		
@@ -114,8 +116,7 @@ public class NodeSetParser {
 	}
 	
 	private static void printDiagnostic(Diagnostic diagnostic, String indent) {
-		System.out.print(indent);
-		System.out.println(diagnostic.getMessage());
+		OpcUaMessageConsole.warning(indent + diagnostic.getMessage());
 		for (Diagnostic child : diagnostic.getChildren()) {
 			printDiagnostic(child, indent + "  ");
 		}

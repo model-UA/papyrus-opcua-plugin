@@ -7,6 +7,7 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.runtime.IPath;
 
+import at.ac.tuwien.auto.modelua.papyrus.opcua.console.OpcUaMessageConsole;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.Activator;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceProvider;
 
@@ -53,11 +54,11 @@ public class FileChangeListener implements IResourceChangeListener{
 					boolean success = Activator.getSynchHandler().updateNodeSet(affectedObject);
 					if(success)
 					{
-						System.out.println("UML NodeSet backend updated succesfully");
+						OpcUaMessageConsole.info("UML NodeSet backend updated succesfully");
 					}
 					else
 					{
-						System.err.print("Error when updating UML NodeSet backend");
+						OpcUaMessageConsole.error("Error when updating UML NodeSet backend");
 					}
 				}
 			}
@@ -72,7 +73,7 @@ public class FileChangeListener implements IResourceChangeListener{
 					boolean success = Activator.getSynchHandler().writeToNodeSet(affectedObject);
 					if(success)
 					{
-						System.out.println("NodeSet file written succesfully");
+						OpcUaMessageConsole.info("NodeSet file written succesfully");
 						
 						String exportPath = PreferenceProvider.getExportPath();
 						
@@ -103,13 +104,13 @@ public class FileChangeListener implements IResourceChangeListener{
 							success = Activator.getSynchHandler().writeToNodeSet(affectedObject, exportPath);
 							if(!success)
 							{
-								System.err.print("Error when exporting NodeSet file to "+exportPath);
+								OpcUaMessageConsole.error("Error when exporting NodeSet file to "+exportPath);
 							}
 						}
 					}
 					else
 					{
-						System.err.print("Error when writing NodeSet file");
+						OpcUaMessageConsole.error("Error when writing NodeSet file");
 					}
 
 				}

@@ -10,6 +10,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 
+import at.ac.tuwien.auto.modelua.papyrus.opcua.console.OpcUaMessageConsole;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.Activator;
 
 public class DiagramChangeListener implements IPapyrusListener {
@@ -186,65 +187,65 @@ public class DiagramChangeListener implements IPapyrusListener {
 	{
 		if(notification.getEventType() == Notification.ADD)
 		{
-			System.out.println("ADD");
+			OpcUaMessageConsole.debug("ADD");
 		}
 		else if( notification.getEventType() == Notification.ADD_MANY)
 		{
-			System.out.println("ADD_MANY");
+			OpcUaMessageConsole.debug("ADD_MANY");
 		
 		}
 		else if( notification.getEventType() == Notification.CREATE)
 		{
-			System.out.println("CREATE");
+			OpcUaMessageConsole.debug("CREATE");
 		
 		}
 		else if( notification.getEventType() == Notification.EVENT_TYPE_COUNT)
 		{
 			
-			System.out.println("EVENT_TYPE_COUNT");
+			OpcUaMessageConsole.debug("EVENT_TYPE_COUNT");
 		}
 		else if( notification.getEventType() == Notification.MOVE)
 		{
-			System.out.println("MOVE");
+			OpcUaMessageConsole.debug("MOVE");
 		
 		}
 		else if( notification.getEventType() == Notification.NO_FEATURE_ID)
 		{
-			System.out.println("NO_FEATURE_ID");
+			OpcUaMessageConsole.debug("NO_FEATURE_ID");
 		
 		}
 		else if( notification.getEventType() == Notification.NO_INDEX)
 		{
-			System.out.println("NO_INDEX");
+			OpcUaMessageConsole.debug("NO_INDEX");
 		}
 		else if( notification.getEventType() == Notification.REMOVE)
 		{
-			System.out.println("REMOVE");
+			OpcUaMessageConsole.debug("REMOVE");
 		
 		}
 		else if( notification.getEventType() == Notification.REMOVE_MANY)
 		{
-			System.out.println("REMOVE_MANY");
+			OpcUaMessageConsole.debug("REMOVE_MANY");
 		
 		}
 		else if( notification.getEventType() == Notification.REMOVING_ADAPTER)
 		{
-			System.out.println("REMOVING_ADAPTER");
+			OpcUaMessageConsole.debug("REMOVING_ADAPTER");
 		
 		}
 		else if( notification.getEventType() == Notification.RESOLVE)
 		{
-			System.out.println("RESOLVE");
+			OpcUaMessageConsole.debug("RESOLVE");
 		
 		}
 		else if( notification.getEventType() == Notification.SET)
 		{
-			System.out.println("SET");
+			OpcUaMessageConsole.debug("SET");
 		
 		}
 		else if( notification.getEventType() == Notification.UNSET)
 		{
-			System.out.println("UNSET");
+			OpcUaMessageConsole.debug("UNSET");
 		
 		}
 	}

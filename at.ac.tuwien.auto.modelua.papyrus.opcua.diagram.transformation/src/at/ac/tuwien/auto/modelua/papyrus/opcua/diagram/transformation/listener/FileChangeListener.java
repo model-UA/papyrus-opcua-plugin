@@ -39,6 +39,7 @@ public class FileChangeListener implements IResourceChangeListener{
 	{
 
 		IPath filePath = affectedObject.getFullPath();
+		OpcUaMessageConsole.debug("File changed: "+filePath );
 		if(filePath.getFileExtension() != null)
 		{
 			String fileExtension = filePath.getFileExtension();
@@ -51,6 +52,7 @@ public class FileChangeListener implements IResourceChangeListener{
 				}
 				else if(affectedObject.getKind() == IResourceDelta.CHANGED)
 				{
+					OpcUaMessageConsole.info("Loading NodeSet File: "+filePath );
 					boolean success = Activator.getSynchHandler().updateNodeSet(affectedObject);
 					if(success)
 					{
@@ -70,10 +72,11 @@ public class FileChangeListener implements IResourceChangeListener{
 				}
 				else if(affectedObject.getKind() == IResourceDelta.CHANGED)
 				{
+					OpcUaMessageConsole.debug("Exporting UML Model: "+filePath );
 					boolean success = Activator.getSynchHandler().writeToNodeSet(affectedObject);
 					if(success)
 					{
-						OpcUaMessageConsole.info("NodeSet file written succesfully");
+						OpcUaMessageConsole.debug("NodeSet file succesfully written to "+filePath);
 						
 						String exportPath = PreferenceProvider.getExportPath();
 						
@@ -105,6 +108,11 @@ public class FileChangeListener implements IResourceChangeListener{
 							if(!success)
 							{
 								OpcUaMessageConsole.error("Error when exporting NodeSet file to "+exportPath);
+							}
+							else
+							{
+								OpcUaMessageConsole.info("NodeSet file succesfully exported to "+exportPath);
+								
 							}
 						}
 					}

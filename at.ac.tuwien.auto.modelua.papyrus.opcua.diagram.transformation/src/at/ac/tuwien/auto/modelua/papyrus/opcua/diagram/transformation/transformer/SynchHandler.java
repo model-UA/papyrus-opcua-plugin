@@ -22,6 +22,7 @@ import org.eclipse.uml2.uml.Package;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UANodeSetTypeImpl;
 
+import at.ac.tuwien.auto.modelua.papyrus.opcua.console.OpcUaMessageConsole;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.Activator;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.listener.DiagramChangeListener;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.parser.NodeSetParser;
@@ -136,8 +137,11 @@ public class SynchHandler {
 		IResource resource = nodeSetDelta.getResource();
 		
 		String workspaceUri = getWorkspacePath();
+		String workspaceFilePath = getFilePath(resource);
+		OpcUaMessageConsole.debug("Workspace path:"+workspaceUri);
+		OpcUaMessageConsole.debug("Workspace file path:"+workspaceFilePath);
 		
-		String filePath = workspaceUri + "/"+ getFilePath(resource) + ".xml";
+		String filePath = workspaceUri + "/"+ workspaceFilePath  + ".xml";
 		
 		return writeToNodeSet(nodeSetDelta, filePath);
 	}

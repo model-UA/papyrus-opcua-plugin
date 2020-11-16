@@ -7,12 +7,12 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-Activator: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.Activator
-Require-Bundle: org.eclipse.papyrus.uml.extensionpoints,
- org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.3.0";visibility:=reexport,
+ org.eclipse.core.runtime;bundle-version="3.18.0";visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.uml2.types;visibility:=reexport,
- org.eclipse.uml2.uml;visibility:=reexport,
+ org.eclipse.uml2.uml;bundle-version="5.5.0";visibility:=reexport,
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.9.0",
  org.eclipse.papyrus.uml.diagram.common,
  org.eclipse.papyrus.infra.architecture;bundle-version="2.1.0",
@@ -24,8 +24,13 @@ Require-Bundle: org.eclipse.papyrus.uml.extensionpoints,
  at.ac.tuwien.auto.modelua.papyrus.opcua.libraries;bundle-version="1.0.0",
  at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style;bundle-version="1.0.0",
  at.ac.tuwien.auto.modelua.papyrus.opcua.profile;bundle-version="1.0.0",
- at.ac.tuwien.auto.modelua.papyrus.opcua.console;bundle-version="1.0.0"
+ at.ac.tuwien.auto.modelua.papyrus.opcua.console;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="5.0.0",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="4.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="3.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram
 Bundle-ActivationPolicy: lazy
 Export-Package: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram
+Import-Package: org.eclipse.papyrus.infra.core.resource,
+ org.eclipse.ui.plugin

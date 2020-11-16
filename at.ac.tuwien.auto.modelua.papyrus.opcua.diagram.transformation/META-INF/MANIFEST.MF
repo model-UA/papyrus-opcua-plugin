@@ -15,7 +15,9 @@ Require-Bundle: org.eclipse.ui,
  at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset;bundle-version="1.0.0",
  at.ac.tuwien.auto.modelua.papyrus.opcua.diagram;bundle-version="1.0.0",
  at.ac.tuwien.auto.modelua.papyrus.opcua.libraries;bundle-version="1.0.0",
- at.ac.tuwien.auto.modelua.papyrus.opcua.console
+ at.ac.tuwien.auto.modelua.papyrus.opcua.console,
+ org.eclipse.core.resources;bundle-version="3.13.700",
+ org.eclipse.emf.transaction;bundle-version="1.9.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: at.ac.at.tuwien.modelua.papyrus.opcua.diagram.transformation
 Bundle-ActivationPolicy: lazy

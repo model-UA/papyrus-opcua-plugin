@@ -3,7 +3,6 @@ package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.transform
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.uml2.uml.Model;
-import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
 
 public class ImportNodeSetCommand extends RecordingCommand {
 	

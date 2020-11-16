@@ -1,7 +1,6 @@
 package at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.parser;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfReferences;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.LocalizedText;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.Reference;

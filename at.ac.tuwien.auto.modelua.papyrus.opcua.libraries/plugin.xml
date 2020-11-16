@@ -14,7 +14,7 @@
       <library
             description="OPC UA Base Nodeset"
             name="OPC UA Base NodeSet"
-            path="pathmap://OPC_UA_LIBRARIES/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml"
+            path="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml"
             provider="TU-Wien ASG">
       </library>
    </extension>
@@ -23,7 +23,7 @@
       <library
             description="OPC UA Safety Extension Nodeset"
             name="OPC UA Safety Extension Nodeset"
-            path="pathmap://OPC_UA_LIBRARIES/Opc.Ua.Safety.NodeSet2/Opc.Ua.Safety.NodeSet2.uml"
+            path="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.Safety.NodeSet2/Opc.Ua.Safety.NodeSet2.uml"
             provider="TU-Wien ASG">
       </library>
    </extension>  

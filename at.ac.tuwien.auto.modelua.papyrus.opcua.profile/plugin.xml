@@ -14,7 +14,7 @@
       <profile
             description="OPC UA NodeSet Profile"
             name="OPC UA NodeSet Profile"
-            path="pathmap://OPC_UA_PROFILES/UANodeSet.profile.uml"
+            path="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.profile/resources/profile/UANodeSet.profile.uml"
             provider="TU-Wien ASG">
       </profile>
    </extension>

@@ -1,32 +1,20 @@
 package at.ac.tuwien.auto.modelua.designer.languages.opcua.codegen.transformations;
 
-import java.awt.List;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
-import javax.xml.bind.JAXBElement;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.opcfoundation.ua._2008._02.types.Argument;
 import org.opcfoundation.ua._2008._02.types.ExtensionObject;
 import org.opcfoundation.ua._2008._02.types.ListOfExtensionObject;
-import org.opcfoundation.ua._2008._02.types.NodeId;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfReferences;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.LocalizedText;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.Reference;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAMethod;
-import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANode;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAObject;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAObjectType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UriTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ValueType1;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Text;
 
 public class OpcUaNodeSetWriter {
 	

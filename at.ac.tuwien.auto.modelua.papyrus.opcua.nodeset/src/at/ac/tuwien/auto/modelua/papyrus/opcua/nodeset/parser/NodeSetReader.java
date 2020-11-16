@@ -1,7 +1,6 @@
 package at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.parser;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfReferences;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.LocalizedText;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.Reference;
@@ -39,8 +38,6 @@ public class NodeSetReader {
 	
 	public UANodeSetType readNodeSet()
 	{
-		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-		
 		UANodeSetTypeImpl nodeset = new UANodeSetTypeImpl();
 		Node child = (Node) this.root.getFirstChild();
 		
@@ -287,8 +284,6 @@ public class NodeSetReader {
 	private Reference parseUAReference(Node uaReferenceNode)
 	{
 		ReferenceImpl uaReference = new ReferenceImpl();
-		
-		String value = uaReferenceNode.getTextContent();
 		
 		NamedNodeMap attributes = uaReferenceNode.getAttributes();
 		Node isForward = attributes.getNamedItem("IsForward");

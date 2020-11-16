@@ -5,7 +5,12 @@ import java.util.ArrayList;
 public class OpcUaNodeIdList
 {	
 	static ArrayList<NodeId> dataType_idList = new ArrayList<NodeId>() { 
-        { 
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 6281518197367069990L;
+
+		{ 
 			add(new NodeId("Boolean","1","DataType"));
 			add(new NodeId("SByte","2","DataType"));
 			add(new NodeId("Byte","3","DataType"));
@@ -409,7 +414,12 @@ public class OpcUaNodeIdList
     }; 
     
     private static ArrayList<NodeId> referenceType_idList = new ArrayList<NodeId>() { 
-        { 
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = -3430421148889640268L;
+
+		{ 
 			add(new NodeId("References","31","ReferenceType"));
 			add(new NodeId("NonHierarchicalReferences","32","ReferenceType"));
 			add(new NodeId("HierarchicalReferences","33","ReferenceType"));
@@ -461,7 +471,12 @@ public class OpcUaNodeIdList
     };
     
     private static ArrayList<NodeId> objectType_idList = new ArrayList<NodeId>() { 
-        { 
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = -9193600065599759131L;
+
+		{ 
 			add(new NodeId("BaseObjectType","58","ObjectType"));
 			add(new NodeId("FolderType","61","ObjectType"));
 			add(new NodeId("DataTypeSystemType","75","ObjectType"));
@@ -678,7 +693,12 @@ public class OpcUaNodeIdList
     };
     
     private static ArrayList<NodeId> object_idList = new ArrayList<NodeId>() { 
-        { 
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 519195227311215622L;
+
+		{ 
 			add(new NodeId("ModellingRule_Mandatory","78","Object"));
 			add(new NodeId("ModellingRule_Optional","80","Object"));
 			add(new NodeId("ModellingRule_ExposesItsArray","83","Object"));
@@ -2128,7 +2148,6 @@ public class OpcUaNodeIdList
     			return true;
     		}
     	}
-    	String test ="asdf ";
     	return false;
     }
     

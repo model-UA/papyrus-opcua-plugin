@@ -2,10 +2,8 @@ package at.ac.tuwien.auto.modelua.papyrus.opcua.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 
-import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.pages.PreferenceConstants;
-
 public class PreferenceProvider {
-	
+
 	public static String getExportPath()
 	{
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
@@ -60,6 +58,14 @@ public class PreferenceProvider {
 		boolean autofill = store.getBoolean(PreferenceConstants.CREATE_FOLDER_HIERARCHY);
 		
 		return autofill;
+	}
+	
+	public static int getLogLevel()
+	{
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		int loglevel = Integer.valueOf(store.getString(PreferenceConstants.LOG_LEVEL));
+		
+		return loglevel;
 	}
 
 }

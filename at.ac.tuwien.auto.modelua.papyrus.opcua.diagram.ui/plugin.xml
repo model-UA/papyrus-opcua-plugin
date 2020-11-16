@@ -54,7 +54,7 @@
                    id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.menuContribution.UpdateNodeSetHandler"
                    label="Update Nodeset"
                    style="push"
-                   tooltip="Loads a nodeset and updates the currently loaded model">
+                   tooltip="Loads a nodeset file and updates the currently loaded model">
                 <visibleWhen
                       checkEnabled="false">
                    <with
@@ -71,9 +71,9 @@
                    commandId="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.commands.importNodeSet"
                    icon="resources/icons/opc_ua_logo.png"
                    id="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.menuContribution.importNodeSetCommand"
-                   label="Import NodeSet"
+                   label="Import NodeSet Model"
                    style="push"
-                   tooltip="Loads a nodeset">
+                   tooltip="Imports a NodeSet Model into the currently loaded Model">
                 <visibleWhen
                       checkEnabled="false">
                    <with

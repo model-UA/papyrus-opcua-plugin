@@ -4,7 +4,7 @@ Bundle-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui
 Bundle-SymbolicName: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core,
  org.eclipse.papyrus.infra.ui,

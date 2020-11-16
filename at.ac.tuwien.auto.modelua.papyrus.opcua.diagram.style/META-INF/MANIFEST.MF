@@ -9,6 +9,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.draw2d;bundle-version="3.10.100",
  org.eclipse.papyrus.infra.tools;bundle-version="3.2.100",
  at.ac.tuwien.auto.modelua.papyrus.opcua.console
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style
 Bundle-ActivationPolicy: lazy

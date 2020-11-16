@@ -1,6 +1,5 @@
 package at.ac.tuwien.auto.modelua.designer.languages.opcua.codegen.transformations;
 
-import java.io.File;
 import java.io.StringWriter;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -19,7 +18,6 @@ import org.eclipse.papyrus.designer.languages.common.base.ILocationStrategy;
 import org.eclipse.papyrus.designer.languages.common.base.ModelElementsCreator;
 import org.eclipse.papyrus.infra.tools.file.IPFileSystemAccess;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
 import org.w3c.dom.Document;

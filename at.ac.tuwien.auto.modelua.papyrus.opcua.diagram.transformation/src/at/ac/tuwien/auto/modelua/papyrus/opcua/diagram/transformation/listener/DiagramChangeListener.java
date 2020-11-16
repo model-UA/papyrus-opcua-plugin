@@ -194,11 +194,6 @@ public class DiagramChangeListener implements IPapyrusListener {
 			OpcUaMessageConsole.debug("ADD_MANY");
 		
 		}
-		else if( notification.getEventType() == Notification.CREATE)
-		{
-			OpcUaMessageConsole.debug("CREATE");
-		
-		}
 		else if( notification.getEventType() == Notification.EVENT_TYPE_COUNT)
 		{
 			

@@ -9,7 +9,6 @@ public class ImportNodeSetCommand extends RecordingCommand {
 	
 	private Model importModel;
 	private Model baseModel;
-	private boolean success = false;
 	
 	public ImportNodeSetCommand(TransactionalEditingDomain domain) {
 		super(domain);

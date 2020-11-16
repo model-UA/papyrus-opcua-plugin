@@ -772,9 +772,6 @@ public class InstanceSyncHandler {
 	}
 
 	private boolean transformUAObject(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
-		
-		
 		UAObjectImpl uaObject;
 		if(this.matching.containsKey(object))
 		{
@@ -3869,7 +3866,7 @@ public class InstanceSyncHandler {
 	private boolean updateOpcUaNodeReference(Class uaElement, Reference ref)
 	{
 		boolean success = true;
-		String test ="asdfa";
+		
 		Object refType = getUmlNodeReference(ref.getReferenceType());
 		if(refType == null)
 		{
@@ -4187,7 +4184,6 @@ public class InstanceSyncHandler {
 		{
 			return null;
 		}
-		EList<EObject> aplications = umlElement.getStereotypeApplications();
 		
 		for(EObject applEObj : umlElement.getStereotypeApplications())
 		{

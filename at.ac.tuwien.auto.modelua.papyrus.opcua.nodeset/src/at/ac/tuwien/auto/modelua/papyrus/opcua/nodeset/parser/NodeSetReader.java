@@ -39,8 +39,6 @@ public class NodeSetReader {
 	
 	public UANodeSetType readNodeSet()
 	{
-		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-		
 		UANodeSetTypeImpl nodeset = new UANodeSetTypeImpl();
 		Node child = (Node) this.root.getFirstChild();
 		
@@ -287,8 +285,6 @@ public class NodeSetReader {
 	private Reference parseUAReference(Node uaReferenceNode)
 	{
 		ReferenceImpl uaReference = new ReferenceImpl();
-		
-		String value = uaReferenceNode.getTextContent();
 		
 		NamedNodeMap attributes = uaReferenceNode.getAttributes();
 		Node isForward = attributes.getNamedItem("IsForward");

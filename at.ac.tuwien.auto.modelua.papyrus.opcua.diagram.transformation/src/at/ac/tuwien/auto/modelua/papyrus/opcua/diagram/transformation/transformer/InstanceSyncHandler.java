@@ -31,6 +31,7 @@ import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Stereotype;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
@@ -2207,6 +2208,9 @@ public class InstanceSyncHandler {
     	ArrayList<UADataType> dataTypeDefinitions = new ArrayList<UADataType>();
     	ArrayList<UAReferenceType> referenceTypes = new ArrayList<UAReferenceType>();
     	
+    	// Delete all nodes which are not part of the loaded NodeSet
+    	success &= removeMissingElements(nodeset);
+    	
     	if(nodeset.getUAObjectType() != null)
     	{    		
     		// adding and removing needs to be done via list otherwise 
@@ -2214,7 +2218,6 @@ public class InstanceSyncHandler {
     		EList<UAObjectType> uaObjectTypes = nodeset.getUAObjectType();
     		List<UAObjectType> nodesToAdd = new ArrayList<UAObjectType>();
     		List<UAObjectType> nodesToDelete = new ArrayList<UAObjectType>();
-
     		for(UAObjectType t : uaObjectTypes)
     		{
     			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
@@ -2234,7 +2237,7 @@ public class InstanceSyncHandler {
     				break;
     			}
     		}
-    		
+       		
     		// Important first remove old elements than add new ones
     		this.baseNodeset.getUAObjectType().removeAll(nodesToDelete);
     		this.baseNodeset.getUAObjectType().addAll(nodesToAdd);
@@ -2528,7 +2531,227 @@ public class InstanceSyncHandler {
     	    	
 		return success;
 	}
+	
+	private boolean removeMissingElements(UANodeSetType nodeset) {
+		
+		if(this.baseNodeset.getUAObjectType() != null)
+    	{    		
+			ArrayList<String> nodeIds = new ArrayList<String>();
 
+    		EList<UAObjectType> uaObjectTypes = nodeset.getUAObjectType();    		
+    		if(uaObjectTypes != null)
+    		{
+	    		for(UAObjectType type : uaObjectTypes)
+	    		{
+	    			nodeIds.add(type.getNodeId());
+	    		}
+    		}
+    		
+    		uaObjectTypes = this.baseNodeset.getUAObjectType();
+    		
+    		for(UAObjectType type : uaObjectTypes)
+    		{
+    			if(!nodeIds.contains(type.getNodeId()))
+    			{
+    				destroyMember(type);
+    			}
+    		}
+    	}
+    	
+    	if(this.baseNodeset.getUAVariableType() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		EList<UAVariableType> uaVariableTypes = nodeset.getUAVariableType();
+    		if(uaVariableTypes != null)
+    		{    			
+    			for(UAVariableType type : uaVariableTypes)
+    			{
+    				nodeIds.add(type.getNodeId());
+    			}
+    		}
+       		
+    		uaVariableTypes = this.baseNodeset.getUAVariableType();
+    		
+    		for(UAVariableType type : uaVariableTypes)
+    		{
+    			if(!nodeIds.contains(type.getNodeId()))
+    			{
+    				destroyMember(type);
+    			}
+    		}
+    		
+    	}
+    	
+    	if(this.baseNodeset.getUADataType() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+
+    		EList<UADataType> uaDataTypes = nodeset.getUADataType();
+    		if(uaDataTypes != null)
+    		{    			
+    			for(UADataType type : uaDataTypes)
+    			{
+    				nodeIds.add(type.getNodeId());
+    			}
+    		}
+       		
+    		uaDataTypes = this.baseNodeset.getUADataType();
+    		
+    		for(UADataType type : uaDataTypes)
+    		{
+    			if(!nodeIds.contains(type.getNodeId()))
+    			{
+    				destroyMember(type);
+    			}
+    		}
+    		
+    	}
+		
+    	if(this.baseNodeset.getUAReferenceType() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		EList<UAReferenceType> uaReferenceTypes = nodeset.getUAReferenceType();
+    		if(uaReferenceTypes != null)
+    		{    			
+    			for(UAReferenceType type : uaReferenceTypes)
+    			{
+    				nodeIds.add(type.getNodeId());
+    			}
+    		}
+       		
+    		uaReferenceTypes = this.baseNodeset.getUAReferenceType();
+    		
+    		for(UAReferenceType type : uaReferenceTypes)
+    		{
+    			if(!nodeIds.contains(type.getNodeId()))
+    			{
+    				destroyMember(type);
+    			}
+    		}
+    	}
+    	
+    	if(this.baseNodeset.getUAObject() != null)
+    	{
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+
+			EList<UAObject> uaObjects = nodeset.getUAObject();
+			if(uaObjects != null)
+			{				
+				for(UAObject object : uaObjects)
+				{
+					nodeIds.add(object.getNodeId());
+				}
+			}
+       		
+    		uaObjects = this.baseNodeset.getUAObject();
+    		
+    		for(UAObject object : uaObjects)
+    		{
+    			if(!nodeIds.contains(object.getNodeId()))
+    			{
+    				destroyMember(object);
+    			}
+    		}
+    	}
+   
+    	if(this.baseNodeset.getUAVariable() != null)
+    	{	
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		EList<UAVariable> uaVariables = nodeset.getUAVariable();
+    		if(uaVariables != null)
+    		{    			
+    			for(UAVariable var : uaVariables)
+    			{
+    				nodeIds.add(var.getNodeId());
+    			}
+    		}
+       		
+    		uaVariables = this.baseNodeset.getUAVariable();
+    		
+    		for(UAVariable var : uaVariables)
+    		{
+    			if(!nodeIds.contains(var.getNodeId()))
+    			{
+    				destroyMember(var);
+    			}
+    		}
+    	}  
+    	
+    	if(this.baseNodeset.getUAMethod() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		EList<UAMethod> uaMethods = nodeset.getUAMethod();
+    		if(uaMethods != null)
+    		{    			
+    			for(UAMethod method : uaMethods)
+    			{
+    				nodeIds.add(method.getNodeId());
+    			}
+    		}
+       		
+    		uaMethods = this.baseNodeset.getUAMethod();
+    		
+    		for(UAMethod method : uaMethods)
+    		{
+    			if(!nodeIds.contains(method.getNodeId()))
+    			{
+    				destroyMember(method);
+    			}
+    		}
+    		
+    	}
+    	
+    	if(this.baseNodeset.getUAView() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+
+    		EList<UAView> uaViews = nodeset.getUAView();
+    		if(uaViews != null)
+    		{    			
+    			for(UAView view : uaViews)
+    			{
+    				nodeIds.add(view.getNodeId());
+    			}
+    		}
+       		
+    		uaViews = this.baseNodeset.getUAView();
+    		
+    		for(UAView view : uaViews)
+    		{
+    			if(!nodeIds.contains(view.getNodeId()))
+    			{
+    				destroyMember(view);
+    			}
+    		}
+    		
+    	}
+		return true;
+	}
+
+	private boolean destroyMember(UANode node)
+	{
+
+		Element elem = getElement(node);
+		if(elem == null)
+		{
+			return false;
+		}
+		
+		for(Relationship rel : elem.getRelationships())
+		{
+			rel.destroy();
+		}
+		
+		this.nodeIdMap.remove(node.getNodeId());
+		this.matching.remove(elem);
+		elem.destroy();
+		
+		return true;
+	}
 
 	private boolean updateNamespaces(UriTable namespaceUris) {
 

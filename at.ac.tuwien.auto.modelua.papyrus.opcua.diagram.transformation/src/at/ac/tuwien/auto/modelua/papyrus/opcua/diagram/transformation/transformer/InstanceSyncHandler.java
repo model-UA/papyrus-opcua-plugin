@@ -2548,14 +2548,17 @@ public class InstanceSyncHandler {
     		}
     		
     		uaObjectTypes = this.baseNodeset.getUAObjectType();
+    		ArrayList<UAObjectType> toRemove = new ArrayList<UAObjectType>();
     		
     		for(UAObjectType type : uaObjectTypes)
     		{
     			if(!nodeIds.contains(type.getNodeId()))
     			{
     				destroyMember(type);
+    				toRemove.add(type);
     			}
     		}
+    		this.baseNodeset.getUAObjectType().removeAll(toRemove);
     	}
     	
     	if(this.baseNodeset.getUAVariableType() != null)
@@ -2572,15 +2575,16 @@ public class InstanceSyncHandler {
     		}
        		
     		uaVariableTypes = this.baseNodeset.getUAVariableType();
-    		
+    		ArrayList<UAVariableType> toRemove = new ArrayList<UAVariableType>();
     		for(UAVariableType type : uaVariableTypes)
     		{
     			if(!nodeIds.contains(type.getNodeId()))
     			{
     				destroyMember(type);
+    				toRemove.add(type);
     			}
     		}
-    		
+    		this.baseNodeset.getUAVariableType().removeAll(toRemove);
     	}
     	
     	if(this.baseNodeset.getUADataType() != null)
@@ -2597,15 +2601,16 @@ public class InstanceSyncHandler {
     		}
        		
     		uaDataTypes = this.baseNodeset.getUADataType();
-    		
+    		ArrayList<UADataType> toRemove = new ArrayList<UADataType>();
     		for(UADataType type : uaDataTypes)
     		{
     			if(!nodeIds.contains(type.getNodeId()))
     			{
     				destroyMember(type);
+    				toRemove.add(type);
     			}
     		}
-    		
+    		this.baseNodeset.getUADataType().removeAll(toRemove);
     	}
 		
     	if(this.baseNodeset.getUAReferenceType() != null)
@@ -2622,14 +2627,16 @@ public class InstanceSyncHandler {
     		}
        		
     		uaReferenceTypes = this.baseNodeset.getUAReferenceType();
-    		
+    		ArrayList<UAReferenceType> toRemove = new ArrayList<UAReferenceType>();
     		for(UAReferenceType type : uaReferenceTypes)
     		{
     			if(!nodeIds.contains(type.getNodeId()))
     			{
     				destroyMember(type);
+    				toRemove.add(type);
     			}
     		}
+    		this.baseNodeset.getUAReferenceType().removeAll(toRemove);
     	}
     	
     	if(this.baseNodeset.getUAObject() != null)
@@ -2646,14 +2653,16 @@ public class InstanceSyncHandler {
 			}
        		
     		uaObjects = this.baseNodeset.getUAObject();
-    		
+    		ArrayList<UAObject> toRemove = new ArrayList<UAObject>();
     		for(UAObject object : uaObjects)
     		{
     			if(!nodeIds.contains(object.getNodeId()))
     			{
     				destroyMember(object);
+    				toRemove.add(object);
     			}
     		}
+    		this.baseNodeset.getUAObject().removeAll(toRemove);
     	}
    
     	if(this.baseNodeset.getUAVariable() != null)
@@ -2670,14 +2679,16 @@ public class InstanceSyncHandler {
     		}
        		
     		uaVariables = this.baseNodeset.getUAVariable();
-    		
+    		ArrayList<UAVariable> toRemove = new ArrayList<UAVariable>();
     		for(UAVariable var : uaVariables)
     		{
     			if(!nodeIds.contains(var.getNodeId()))
     			{
     				destroyMember(var);
+    				toRemove.add(var);
     			}
     		}
+    		this.baseNodeset.getUAVariable().removeAll(toRemove);
     	}  
     	
     	if(this.baseNodeset.getUAMethod() != null)
@@ -2694,15 +2705,16 @@ public class InstanceSyncHandler {
     		}
        		
     		uaMethods = this.baseNodeset.getUAMethod();
-    		
+    		ArrayList<UAMethod> toRemove = new ArrayList<UAMethod>();
     		for(UAMethod method : uaMethods)
     		{
     			if(!nodeIds.contains(method.getNodeId()))
     			{
     				destroyMember(method);
+    				toRemove.add(method);
     			}
     		}
-    		
+    		this.baseNodeset.getUAMethod().removeAll(toRemove);
     	}
     	
     	if(this.baseNodeset.getUAView() != null)
@@ -2719,15 +2731,16 @@ public class InstanceSyncHandler {
     		}
        		
     		uaViews = this.baseNodeset.getUAView();
-    		
+    		ArrayList<UAView> toRemove = new ArrayList<UAView>();
     		for(UAView view : uaViews)
     		{
     			if(!nodeIds.contains(view.getNodeId()))
     			{
     				destroyMember(view);
+    				toRemove.add(view);
     			}
     		}
-    		
+    		this.baseNodeset.getUAView().removeAll(toRemove);
     	}
 		return true;
 	}
@@ -2891,10 +2904,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
-		
+		else
+		{
+			nodesToDelete.add((UAObjectType) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -2918,9 +2935,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UAVariableType) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
@@ -2945,9 +2967,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UADataType) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -3270,9 +3297,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add( (UAReferenceType) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -3314,9 +3346,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UAObject) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -3347,9 +3384,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UAVariable) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -3461,9 +3503,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UAMethod) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -3601,9 +3648,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UAView) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -3631,9 +3683,7 @@ public class InstanceSyncHandler {
 		return success;
 	}
 	
-	private boolean updateOpcUaNode(UANode node, Stereotype stereotype, Element uaElement) {
-
-		
+	private boolean updateOpcUaNode(UANode node, Stereotype stereotype, Element uaElement) {		
 		if(node.getNodeId() != null) {
 			String nodeId = node.getNodeId();
 

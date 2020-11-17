@@ -198,8 +198,6 @@ public class InstanceSyncHandler {
 		}
 		else if(object instanceof Generalization)
 		{
-			return_val= transformGeneralization((Generalization) object);
-
 			// changes to diagrams shall be done inside commands
 			UpdateUMLGeneralizationCommand cmd = new UpdateUMLGeneralizationCommand(domain);
 			cmd.setGeneralization((Generalization) object);

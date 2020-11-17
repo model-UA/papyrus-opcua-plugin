@@ -3712,6 +3712,8 @@ public class InstanceSyncHandler {
 			}
 
 			uaElement.setValue(stereotype, "browseName", browseName);
+			Class temp = (Class) uaElement;
+			temp.setName(browseName);
 		}
 
 	

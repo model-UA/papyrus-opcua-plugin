@@ -31,6 +31,7 @@ import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Stereotype;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
@@ -198,8 +199,6 @@ public class InstanceSyncHandler {
 		}
 		else if(object instanceof Generalization)
 		{
-			return_val= transformGeneralization((Generalization) object);
-
 			// changes to diagrams shall be done inside commands
 			UpdateUMLGeneralizationCommand cmd = new UpdateUMLGeneralizationCommand(domain);
 			cmd.setGeneralization((Generalization) object);
@@ -2209,6 +2208,9 @@ public class InstanceSyncHandler {
     	ArrayList<UADataType> dataTypeDefinitions = new ArrayList<UADataType>();
     	ArrayList<UAReferenceType> referenceTypes = new ArrayList<UAReferenceType>();
     	
+    	// Delete all nodes which are not part of the loaded NodeSet
+    	success &= removeMissingElements(nodeset);
+    	
     	if(nodeset.getUAObjectType() != null)
     	{    		
     		// adding and removing needs to be done via list otherwise 
@@ -2216,7 +2218,6 @@ public class InstanceSyncHandler {
     		EList<UAObjectType> uaObjectTypes = nodeset.getUAObjectType();
     		List<UAObjectType> nodesToAdd = new ArrayList<UAObjectType>();
     		List<UAObjectType> nodesToDelete = new ArrayList<UAObjectType>();
-
     		for(UAObjectType t : uaObjectTypes)
     		{
     			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
@@ -2236,7 +2237,7 @@ public class InstanceSyncHandler {
     				break;
     			}
     		}
-    		
+       		
     		// Important first remove old elements than add new ones
     		this.baseNodeset.getUAObjectType().removeAll(nodesToDelete);
     		this.baseNodeset.getUAObjectType().addAll(nodesToAdd);
@@ -2530,7 +2531,240 @@ public class InstanceSyncHandler {
     	    	
 		return success;
 	}
+	
+	private boolean removeMissingElements(UANodeSetType nodeset) {
+		
+		if(this.baseNodeset.getUAObjectType() != null)
+    	{    		
+			ArrayList<String> nodeIds = new ArrayList<String>();
 
+    		EList<UAObjectType> uaObjectTypes = nodeset.getUAObjectType();    		
+    		if(uaObjectTypes != null)
+    		{
+	    		for(UAObjectType type : uaObjectTypes)
+	    		{
+	    			nodeIds.add(type.getNodeId());
+	    		}
+    		}
+    		
+    		uaObjectTypes = this.baseNodeset.getUAObjectType();
+    		ArrayList<UAObjectType> toRemove = new ArrayList<UAObjectType>();
+    		
+    		for(UAObjectType type : uaObjectTypes)
+    		{
+    			if(!nodeIds.contains(type.getNodeId()))
+    			{
+    				destroyMember(type);
+    				toRemove.add(type);
+    			}
+    		}
+    		this.baseNodeset.getUAObjectType().removeAll(toRemove);
+    	}
+    	
+    	if(this.baseNodeset.getUAVariableType() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		EList<UAVariableType> uaVariableTypes = nodeset.getUAVariableType();
+    		if(uaVariableTypes != null)
+    		{    			
+    			for(UAVariableType type : uaVariableTypes)
+    			{
+    				nodeIds.add(type.getNodeId());
+    			}
+    		}
+       		
+    		uaVariableTypes = this.baseNodeset.getUAVariableType();
+    		ArrayList<UAVariableType> toRemove = new ArrayList<UAVariableType>();
+    		for(UAVariableType type : uaVariableTypes)
+    		{
+    			if(!nodeIds.contains(type.getNodeId()))
+    			{
+    				destroyMember(type);
+    				toRemove.add(type);
+    			}
+    		}
+    		this.baseNodeset.getUAVariableType().removeAll(toRemove);
+    	}
+    	
+    	if(this.baseNodeset.getUADataType() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+
+    		EList<UADataType> uaDataTypes = nodeset.getUADataType();
+    		if(uaDataTypes != null)
+    		{    			
+    			for(UADataType type : uaDataTypes)
+    			{
+    				nodeIds.add(type.getNodeId());
+    			}
+    		}
+       		
+    		uaDataTypes = this.baseNodeset.getUADataType();
+    		ArrayList<UADataType> toRemove = new ArrayList<UADataType>();
+    		for(UADataType type : uaDataTypes)
+    		{
+    			if(!nodeIds.contains(type.getNodeId()))
+    			{
+    				destroyMember(type);
+    				toRemove.add(type);
+    			}
+    		}
+    		this.baseNodeset.getUADataType().removeAll(toRemove);
+    	}
+		
+    	if(this.baseNodeset.getUAReferenceType() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		EList<UAReferenceType> uaReferenceTypes = nodeset.getUAReferenceType();
+    		if(uaReferenceTypes != null)
+    		{    			
+    			for(UAReferenceType type : uaReferenceTypes)
+    			{
+    				nodeIds.add(type.getNodeId());
+    			}
+    		}
+       		
+    		uaReferenceTypes = this.baseNodeset.getUAReferenceType();
+    		ArrayList<UAReferenceType> toRemove = new ArrayList<UAReferenceType>();
+    		for(UAReferenceType type : uaReferenceTypes)
+    		{
+    			if(!nodeIds.contains(type.getNodeId()))
+    			{
+    				destroyMember(type);
+    				toRemove.add(type);
+    			}
+    		}
+    		this.baseNodeset.getUAReferenceType().removeAll(toRemove);
+    	}
+    	
+    	if(this.baseNodeset.getUAObject() != null)
+    	{
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+
+			EList<UAObject> uaObjects = nodeset.getUAObject();
+			if(uaObjects != null)
+			{				
+				for(UAObject object : uaObjects)
+				{
+					nodeIds.add(object.getNodeId());
+				}
+			}
+       		
+    		uaObjects = this.baseNodeset.getUAObject();
+    		ArrayList<UAObject> toRemove = new ArrayList<UAObject>();
+    		for(UAObject object : uaObjects)
+    		{
+    			if(!nodeIds.contains(object.getNodeId()))
+    			{
+    				destroyMember(object);
+    				toRemove.add(object);
+    			}
+    		}
+    		this.baseNodeset.getUAObject().removeAll(toRemove);
+    	}
+   
+    	if(this.baseNodeset.getUAVariable() != null)
+    	{	
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		EList<UAVariable> uaVariables = nodeset.getUAVariable();
+    		if(uaVariables != null)
+    		{    			
+    			for(UAVariable var : uaVariables)
+    			{
+    				nodeIds.add(var.getNodeId());
+    			}
+    		}
+       		
+    		uaVariables = this.baseNodeset.getUAVariable();
+    		ArrayList<UAVariable> toRemove = new ArrayList<UAVariable>();
+    		for(UAVariable var : uaVariables)
+    		{
+    			if(!nodeIds.contains(var.getNodeId()))
+    			{
+    				destroyMember(var);
+    				toRemove.add(var);
+    			}
+    		}
+    		this.baseNodeset.getUAVariable().removeAll(toRemove);
+    	}  
+    	
+    	if(this.baseNodeset.getUAMethod() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		EList<UAMethod> uaMethods = nodeset.getUAMethod();
+    		if(uaMethods != null)
+    		{    			
+    			for(UAMethod method : uaMethods)
+    			{
+    				nodeIds.add(method.getNodeId());
+    			}
+    		}
+       		
+    		uaMethods = this.baseNodeset.getUAMethod();
+    		ArrayList<UAMethod> toRemove = new ArrayList<UAMethod>();
+    		for(UAMethod method : uaMethods)
+    		{
+    			if(!nodeIds.contains(method.getNodeId()))
+    			{
+    				destroyMember(method);
+    				toRemove.add(method);
+    			}
+    		}
+    		this.baseNodeset.getUAMethod().removeAll(toRemove);
+    	}
+    	
+    	if(this.baseNodeset.getUAView() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+
+    		EList<UAView> uaViews = nodeset.getUAView();
+    		if(uaViews != null)
+    		{    			
+    			for(UAView view : uaViews)
+    			{
+    				nodeIds.add(view.getNodeId());
+    			}
+    		}
+       		
+    		uaViews = this.baseNodeset.getUAView();
+    		ArrayList<UAView> toRemove = new ArrayList<UAView>();
+    		for(UAView view : uaViews)
+    		{
+    			if(!nodeIds.contains(view.getNodeId()))
+    			{
+    				destroyMember(view);
+    				toRemove.add(view);
+    			}
+    		}
+    		this.baseNodeset.getUAView().removeAll(toRemove);
+    	}
+		return true;
+	}
+
+	private boolean destroyMember(UANode node)
+	{
+
+		Element elem = getElement(node);
+		if(elem == null)
+		{
+			return false;
+		}
+		
+		for(Relationship rel : elem.getRelationships())
+		{
+			rel.destroy();
+		}
+		
+		this.nodeIdMap.remove(node.getNodeId());
+		this.matching.remove(elem);
+		elem.destroy();
+		
+		return true;
+	}
 
 	private boolean updateNamespaces(UriTable namespaceUris) {
 
@@ -2670,10 +2904,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
-		
+		else
+		{
+			nodesToDelete.add((UAObjectType) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -2697,9 +2935,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UAVariableType) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
@@ -2724,9 +2967,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UADataType) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -3049,9 +3297,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add( (UAReferenceType) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -3093,9 +3346,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UAObject) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -3126,9 +3384,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UAVariable) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -3240,9 +3503,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UAMethod) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -3380,9 +3648,14 @@ public class InstanceSyncHandler {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UAView) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
 		if(stereotype == null)
@@ -3410,9 +3683,7 @@ public class InstanceSyncHandler {
 		return success;
 	}
 	
-	private boolean updateOpcUaNode(UANode node, Stereotype stereotype, Element uaElement) {
-
-		
+	private boolean updateOpcUaNode(UANode node, Stereotype stereotype, Element uaElement) {		
 		if(node.getNodeId() != null) {
 			String nodeId = node.getNodeId();
 
@@ -3491,6 +3762,8 @@ public class InstanceSyncHandler {
 			}
 
 			uaElement.setValue(stereotype, "browseName", browseName);
+			Class temp = (Class) uaElement;
+			temp.setName(browseName);
 		}
 
 	

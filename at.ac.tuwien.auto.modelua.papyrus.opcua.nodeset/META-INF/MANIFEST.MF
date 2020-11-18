@@ -6,7 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.parser,
  org.opcfoundation.ua._2008._02.types,
  org.opcfoundation.ua._2008._02.types.impl,

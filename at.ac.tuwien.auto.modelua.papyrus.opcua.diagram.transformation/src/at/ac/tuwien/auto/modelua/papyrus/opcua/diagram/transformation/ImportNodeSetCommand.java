@@ -1,4 +1,4 @@
-package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.transformer;
+package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;

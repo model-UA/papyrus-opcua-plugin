@@ -7,7 +7,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.swt.widgets.Shell;
 
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.OpcUaDiagramTransformationResources;
-import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.transformer.SynchHandler;
+import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.SynchHandler;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.Utils;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceProvider;
 

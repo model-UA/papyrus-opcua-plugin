@@ -53,7 +53,7 @@ public class DiagramChangeListener implements IPapyrusListener {
 		if(transform)
 		{
 			Element elem = (Element) notifier ;
-			// printNotficationType(notification);
+			printNotficationType(notification);
 			
 			if(notification.getEventType() == Notification.REMOVE || 
 				notification.getEventType() == Notification.REMOVE_MANY)

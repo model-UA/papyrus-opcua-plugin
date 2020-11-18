@@ -17,7 +17,6 @@ Require-Bundle: org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.3.0";v
  org.eclipse.papyrus.uml.diagram.common,
  org.eclipse.papyrus.infra.architecture;bundle-version="2.1.0",
  org.eclipse.emf.transaction,
- at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset;visibility:=reexport,
  org.eclipse.papyrus.uml.diagram.clazz;bundle-version="3.2.0",
  org.eclipse.gmf.runtime.draw2d.ui.render.awt;bundle-version="1.8.0",
  at.ac.tuwien.auto.modelua.papyrus.opcua.preferences;bundle-version="1.0.0",
@@ -25,7 +24,6 @@ Require-Bundle: org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.3.0";v
  at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.style;bundle-version="1.0.0",
  at.ac.tuwien.auto.modelua.papyrus.opcua.profile;bundle-version="1.0.0",
  at.ac.tuwien.auto.modelua.papyrus.opcua.console;bundle-version="1.0.0",
- org.eclipse.papyrus.uml.tools;bundle-version="5.0.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="4.0.0",
  org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="3.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-11

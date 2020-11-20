@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Stereotype;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.AliasTable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
@@ -101,12 +102,15 @@ public class OpcUaToUmlTransformer {
     	boolean success = true;
     	
     	if(nodeset.getNamespaceUris() != null) {    		
-    		success &= updateNamespaces(nodeset.getNamespaceUris());
+    		success &= transformNamespaces(nodeset.getNamespaceUris());
     	}
     	
     	if(nodeset.getAliases() != null) {    		
-    		success &= updateOpcUAliasTable(nodeset.getAliases());
+    		success &= transformAliasTable(nodeset.getAliases());
     	}
+    	
+    	// Delete all nodes which are not part of the loaded NodeSet
+    	success &= removeMissingElements(nodeset);
     	
     	ArrayList<UANode> referenceNodes = new ArrayList<UANode>();
     	ArrayList<UANode> rolePermissionNodes = new ArrayList<UANode>();
@@ -134,10 +138,10 @@ public class OpcUaToUmlTransformer {
     				rolePermissionNodes.add(t);
     			}
     			
-    			success &= updateOpcUAObjectType(t, nodesToAdd, nodesToDelete);
+    			success &= transformUAObjectType(t, nodesToAdd, nodesToDelete);
     			if(!success)
     			{
-    				success &= updateOpcUAObjectType(t, nodesToAdd, nodesToDelete);
+    				success &= transformUAObjectType(t, nodesToAdd, nodesToDelete);
     				break;
     			}
     		}
@@ -169,10 +173,10 @@ public class OpcUaToUmlTransformer {
     				rolePermissionNodes.add(t);
     			}
     			
-    			success &= updateOpcUAVariableType(t, nodesToAdd, nodesToDelete);
+    			success &= transformUAVariableType(t, nodesToAdd, nodesToDelete);
     			if(!success)
     			{
-    				success &= updateOpcUAVariableType(t, nodesToAdd, nodesToDelete);
+    				success &= transformUAVariableType(t, nodesToAdd, nodesToDelete);
     				break;
     			}
     		}
@@ -207,10 +211,10 @@ public class OpcUaToUmlTransformer {
     				dataTypeDefinitions.add(t);
     			}
     			
-    			success &= updateOpcUADataType(t, nodesToAdd, nodesToDelete);
+    			success &= transformUADataType(t, nodesToAdd, nodesToDelete);
     			if(!success)
     			{
-    				success &= updateOpcUADataType(t, nodesToAdd, nodesToDelete);
+    				success &= transformUADataType(t, nodesToAdd, nodesToDelete);
     				break;
     			}
     		}
@@ -237,11 +241,11 @@ public class OpcUaToUmlTransformer {
     				rolePermissionNodes.add(t);
     			}
     			
-    			success &= updateOpcUAReferenceType(t, nodesToAdd, nodesToDelete);
+    			success &= transformUAReferenceType(t, nodesToAdd, nodesToDelete);
 
     			if(!success)
     			{
-    				success &= updateOpcUAReferenceType(t, nodesToAdd, nodesToDelete);
+    				success &= transformUAReferenceType(t, nodesToAdd, nodesToDelete);
     				break;
     			}
     		}
@@ -277,10 +281,10 @@ public class OpcUaToUmlTransformer {
     				rolePermissionNodes.add(t);
     			}
     			
-    			success &= updateOpcUAObject(t, nodesToAdd, nodesToDelete);
+    			success &= transformUAObject(t, nodesToAdd, nodesToDelete);
     			if(!success)
     			{
-    				success &= updateOpcUAObject(t, nodesToAdd, nodesToDelete);
+    				success &= transformUAObject(t, nodesToAdd, nodesToDelete);
     				break;
     			}
     		}
@@ -316,10 +320,10 @@ public class OpcUaToUmlTransformer {
     				rolePermissionNodes.add(t);
     			}
     			
-    			success &= updateOpcUAVariable(t, nodesToAdd, nodesToDelete);
+    			success &= transformUAVariable(t, nodesToAdd, nodesToDelete);
     			if(!success)
     			{
-    				success &= updateOpcUAVariable(t, nodesToAdd, nodesToDelete);
+    				success &= transformUAVariable(t, nodesToAdd, nodesToDelete);
     				break;
     			}
     		}
@@ -358,10 +362,10 @@ public class OpcUaToUmlTransformer {
     				uaInstanceReferences.add(t);
     			}
     			
-    			success &= updateOpcUAMethod(t, nodesToAdd, nodesToDelete);
+    			success &= transformUAMethod(t, nodesToAdd, nodesToDelete);
     			if(!success)
     			{
-    				success &= updateOpcUAMethod(t, nodesToAdd, nodesToDelete);
+    				success &= transformUAMethod(t, nodesToAdd, nodesToDelete);
     				break;
     			}
     		}
@@ -394,10 +398,10 @@ public class OpcUaToUmlTransformer {
     			{
     				rolePermissionNodes.add(t);
     			}
-    			success &= updateOpcUAView(t, nodesToAdd, nodesToDelete);
+    			success &= transformUAView(t, nodesToAdd, nodesToDelete);
     			if(!success)
     			{
-    				success &= updateOpcUAView(t, nodesToAdd, nodesToDelete);
+    				success &= transformUAView(t, nodesToAdd, nodesToDelete);
     				break;
     			}
     		}
@@ -410,35 +414,268 @@ public class OpcUaToUmlTransformer {
     	
     	if(success)
     	{
-    		success &= updateOpcUaReferenceTypesReferences(referenceTypes);
+    		success &= transformUaReferenceTypesReferences(referenceTypes);
     	}
     	
     	if(success)
     	{
-    		success &= updateOpcUaReferences(referenceNodes);
+    		success &= transformReferences(referenceNodes);
     	}
     	
     	if(success)
     	{
-    		success &= updateOpcUaInstanceReferences(uaInstanceReferences);
+    		success &= transformUaInstanceReferences(uaInstanceReferences);
     	}
     	
     	if(success)
     	{
-    		success &= updateOpcUaRolePermissions(rolePermissionNodes);
+    		success &= transformRolePermissions(rolePermissionNodes);
     	}
     	
     	if(success)
     	{
-    		success &= updateDataTypeDefinitions(dataTypeDefinitions);
+    		success &= transformDataTypeDefinitions(dataTypeDefinitions);
     	}
     	    	
 		return success;
 	}
 
+	private boolean removeMissingElements(UANodeSetType nodeset) {
+		
+		if(this.baseNodeset.getUAObjectType() != null)
+    	{    		
+			ArrayList<String> nodeIds = new ArrayList<String>();
+
+    		EList<UAObjectType> uaObjectTypes = nodeset.getUAObjectType();    		
+    		if(uaObjectTypes != null)
+    		{
+	    		for(UAObjectType type : uaObjectTypes)
+	    		{
+	    			nodeIds.add(type.getNodeId());
+	    		}
+    		}
+    		
+    		uaObjectTypes = this.baseNodeset.getUAObjectType();
+    		ArrayList<UAObjectType> toRemove = new ArrayList<UAObjectType>();
+    		
+    		for(UAObjectType type : uaObjectTypes)
+    		{
+    			if(!nodeIds.contains(type.getNodeId()))
+    			{
+    				destroyMember(type);
+    				toRemove.add(type);
+    			}
+    		}
+    		this.baseNodeset.getUAObjectType().removeAll(toRemove);
+    	}
+    	
+    	if(this.baseNodeset.getUAVariableType() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		EList<UAVariableType> uaVariableTypes = nodeset.getUAVariableType();
+    		if(uaVariableTypes != null)
+    		{    			
+    			for(UAVariableType type : uaVariableTypes)
+    			{
+    				nodeIds.add(type.getNodeId());
+    			}
+    		}
+       		
+    		uaVariableTypes = this.baseNodeset.getUAVariableType();
+    		ArrayList<UAVariableType> toRemove = new ArrayList<UAVariableType>();
+    		for(UAVariableType type : uaVariableTypes)
+    		{
+    			if(!nodeIds.contains(type.getNodeId()))
+    			{
+    				destroyMember(type);
+    				toRemove.add(type);
+    			}
+    		}
+    		this.baseNodeset.getUAVariableType().removeAll(toRemove);
+    	}
+    	
+    	if(this.baseNodeset.getUADataType() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+
+    		EList<UADataType> uaDataTypes = nodeset.getUADataType();
+    		if(uaDataTypes != null)
+    		{    			
+    			for(UADataType type : uaDataTypes)
+    			{
+    				nodeIds.add(type.getNodeId());
+    			}
+    		}
+       		
+    		uaDataTypes = this.baseNodeset.getUADataType();
+    		ArrayList<UADataType> toRemove = new ArrayList<UADataType>();
+    		for(UADataType type : uaDataTypes)
+    		{
+    			if(!nodeIds.contains(type.getNodeId()))
+    			{
+    				destroyMember(type);
+    				toRemove.add(type);
+    			}
+    		}
+    		this.baseNodeset.getUADataType().removeAll(toRemove);
+    	}
+		
+    	if(this.baseNodeset.getUAReferenceType() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		EList<UAReferenceType> uaReferenceTypes = nodeset.getUAReferenceType();
+    		if(uaReferenceTypes != null)
+    		{    			
+    			for(UAReferenceType type : uaReferenceTypes)
+    			{
+    				nodeIds.add(type.getNodeId());
+    			}
+    		}
+       		
+    		uaReferenceTypes = this.baseNodeset.getUAReferenceType();
+    		ArrayList<UAReferenceType> toRemove = new ArrayList<UAReferenceType>();
+    		for(UAReferenceType type : uaReferenceTypes)
+    		{
+    			if(!nodeIds.contains(type.getNodeId()))
+    			{
+    				destroyMember(type);
+    				toRemove.add(type);
+    			}
+    		}
+    		this.baseNodeset.getUAReferenceType().removeAll(toRemove);
+    	}
+    	
+    	if(this.baseNodeset.getUAObject() != null)
+    	{
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+
+			EList<UAObject> uaObjects = nodeset.getUAObject();
+			if(uaObjects != null)
+			{				
+				for(UAObject object : uaObjects)
+				{
+					nodeIds.add(object.getNodeId());
+				}
+			}
+       		
+    		uaObjects = this.baseNodeset.getUAObject();
+    		ArrayList<UAObject> toRemove = new ArrayList<UAObject>();
+    		for(UAObject object : uaObjects)
+    		{
+    			if(!nodeIds.contains(object.getNodeId()))
+    			{
+    				destroyMember(object);
+    				toRemove.add(object);
+    			}
+    		}
+    		this.baseNodeset.getUAObject().removeAll(toRemove);
+    	}
+   
+    	if(this.baseNodeset.getUAVariable() != null)
+    	{	
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		EList<UAVariable> uaVariables = nodeset.getUAVariable();
+    		if(uaVariables != null)
+    		{    			
+    			for(UAVariable var : uaVariables)
+    			{
+    				nodeIds.add(var.getNodeId());
+    			}
+    		}
+       		
+    		uaVariables = this.baseNodeset.getUAVariable();
+    		ArrayList<UAVariable> toRemove = new ArrayList<UAVariable>();
+    		for(UAVariable var : uaVariables)
+    		{
+    			if(!nodeIds.contains(var.getNodeId()))
+    			{
+    				destroyMember(var);
+    				toRemove.add(var);
+    			}
+    		}
+    		this.baseNodeset.getUAVariable().removeAll(toRemove);
+    	}  
+    	
+    	if(this.baseNodeset.getUAMethod() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		EList<UAMethod> uaMethods = nodeset.getUAMethod();
+    		if(uaMethods != null)
+    		{    			
+    			for(UAMethod method : uaMethods)
+    			{
+    				nodeIds.add(method.getNodeId());
+    			}
+    		}
+       		
+    		uaMethods = this.baseNodeset.getUAMethod();
+    		ArrayList<UAMethod> toRemove = new ArrayList<UAMethod>();
+    		for(UAMethod method : uaMethods)
+    		{
+    			if(!nodeIds.contains(method.getNodeId()))
+    			{
+    				destroyMember(method);
+    				toRemove.add(method);
+    			}
+    		}
+    		this.baseNodeset.getUAMethod().removeAll(toRemove);
+    	}
+    	
+    	if(this.baseNodeset.getUAView() != null)
+    	{    		
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+
+    		EList<UAView> uaViews = nodeset.getUAView();
+    		if(uaViews != null)
+    		{    			
+    			for(UAView view : uaViews)
+    			{
+    				nodeIds.add(view.getNodeId());
+    			}
+    		}
+       		
+    		uaViews = this.baseNodeset.getUAView();
+    		ArrayList<UAView> toRemove = new ArrayList<UAView>();
+    		for(UAView view : uaViews)
+    		{
+    			if(!nodeIds.contains(view.getNodeId()))
+    			{
+    				destroyMember(view);
+    				toRemove.add(view);
+    			}
+    		}
+    		this.baseNodeset.getUAView().removeAll(toRemove);
+    	}
+		return true;
+	}
+	
+	private boolean destroyMember(UANode node)
+	{
+	
+		Element elem = getElement(node);
+		if(elem == null)
+		{
+			return false;
+		}
+		
+		for(Relationship rel : elem.getRelationships())
+		{
+			rel.destroy();
+		}
+		
+		this.nodeIdMap.remove(node.getNodeId());
+		this.matching.remove(elem);
+		elem.destroy();
+		
+		return true;
+	}
 
 	@SuppressWarnings("unchecked")
-	private boolean updateNamespaces(UriTable namespaceUris) {
+	private boolean transformNamespaces(UriTable namespaceUris) {
 
 		EList<String> namespaces_new = namespaceUris.getUri();	
 		
@@ -555,7 +792,7 @@ public class OpcUaToUmlTransformer {
 		return true;
 	}
 	
-	private boolean updateOpcUAliasTable(AliasTable aliasTable)
+	private boolean transformAliasTable(AliasTable aliasTable)
 	{
 		boolean success = true;
 			
@@ -567,7 +804,7 @@ public class OpcUaToUmlTransformer {
 		return success;
 	}
 	
-	private boolean updateOpcUAObjectType(UAObjectType node, List<UAObjectType> nodesToAdd, List<UAObjectType> nodesToDelete) {
+	private boolean transformUAObjectType(UAObjectType node, List<UAObjectType> nodesToAdd, List<UAObjectType> nodesToDelete) {
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAObjectType");
 		
@@ -576,9 +813,14 @@ public class OpcUaToUmlTransformer {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UAObjectType) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
@@ -589,12 +831,12 @@ public class OpcUaToUmlTransformer {
 			return true;
 		}
 		
-		boolean success = updateOpcUaType(node, uaStereoType, uaElement);
+		boolean success = transformUaType(node, uaStereoType, uaElement);
 				
 		return success;
 	}
 		
-	private boolean updateOpcUAVariableType(UAVariableType node, List<UAVariableType> nodesToAdd, List<UAVariableType> nodesToDelete) {
+	private boolean transformUAVariableType(UAVariableType node, List<UAVariableType> nodesToAdd, List<UAVariableType> nodesToDelete) {
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAVariableType");
 		
@@ -603,9 +845,14 @@ public class OpcUaToUmlTransformer {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
 		}
+		else
+		{
+			nodesToDelete.add((UAVariableType) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
+		}
+
+		nodesToAdd.add(node);
 		
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
@@ -617,11 +864,11 @@ public class OpcUaToUmlTransformer {
 			return true;
 		}
 		
-		boolean success = updateOpcUaType(node, uaStereoType, uaElement);
+		boolean success = transformUaType(node, uaStereoType, uaElement);
 		return success;
 	}
 	
-	private boolean updateOpcUADataType(UADataType node, List<UADataType> nodesToAdd, List<UADataType> nodesToDelete) {
+	private boolean transformUADataType(UADataType node, List<UADataType> nodesToAdd, List<UADataType> nodesToDelete) {
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UADataType");
 		
@@ -630,8 +877,11 @@ public class OpcUaToUmlTransformer {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
+		}
+		else
+		{
+			nodesToDelete.add((UADataType) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
 		}
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
@@ -643,7 +893,7 @@ public class OpcUaToUmlTransformer {
 			return true;
 		}
 		
-		boolean success = updateOpcUaType(node, uaStereoType, uaElement);
+		boolean success = transformUaType(node, uaStereoType, uaElement);
 		
 		if(success)
 		{			
@@ -675,7 +925,7 @@ public class OpcUaToUmlTransformer {
 		return success;
 	}
 	
-	private boolean updateDataTypeDefinitions( ArrayList<UADataType> dataTypes)
+	private boolean transformDataTypeDefinitions( ArrayList<UADataType> dataTypes)
 	{
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UADataType");
@@ -729,14 +979,14 @@ public class OpcUaToUmlTransformer {
 				classifiers.add(definitionClass);
 			}
 					
-			success &= updateOpcUaDataTypeDefinition(datatype.getDefinition(), definitionClass);
+			success &= transformDataTypeDefinition(datatype.getDefinition(), definitionClass);
 			
 		}
 		
 		return success;
 	}
 	
-	private boolean updateOpcUaDataTypeDefinition(DataTypeDefinition dtd, Class definition)
+	private boolean transformDataTypeDefinition(DataTypeDefinition dtd, Class definition)
 	{
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("DataTypeDefinition");
@@ -749,7 +999,7 @@ public class OpcUaToUmlTransformer {
 		
 		if(dtd.getField() != null)
 		{
-			success &= updateOpcUaDataTypeDefinition_Field(dtd, definition);
+			success &= transformDataTypeDefinitionField(dtd, definition);
 		}
 		
 		if(dtd.getName() != null)
@@ -775,7 +1025,7 @@ public class OpcUaToUmlTransformer {
 		return success;
 	}
 	
-	private boolean updateOpcUaDataTypeDefinition_Field(DataTypeDefinition dtd, Class definition)
+	private boolean transformDataTypeDefinitionField(DataTypeDefinition dtd, Class definition)
 	{
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("DataTypeDefinition");
@@ -803,7 +1053,7 @@ public class OpcUaToUmlTransformer {
 					{
 						children.add(dataTypeField);
 					}
-					success &= updateOpcUaDataTypeField(dtf, dataTypeField);
+					success &= transformDataTypeField(dtf, dataTypeField);
 				}
 				else
 				{
@@ -854,13 +1104,13 @@ public class OpcUaToUmlTransformer {
 				children.add(dtfClass);
 				
 				dtfClass.applyStereotype(uaDtfType);
-				success &= updateOpcUaDataTypeField(dtf, dtfClass);
+				success &= transformDataTypeField(dtf, dtfClass);
 			}
 		}
 		return success;
 	}
 	
-	private boolean updateOpcUaDataTypeField(DataTypeField dtf, Class field)
+	private boolean transformDataTypeField(DataTypeField dtf, Class field)
 	{
 		boolean success = true;
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
@@ -952,7 +1202,7 @@ public class OpcUaToUmlTransformer {
 		return success;
 	}
 	
-	private boolean updateOpcUAReferenceType(UAReferenceType node, List<UAReferenceType> nodesToAdd, List<UAReferenceType> nodesToDelete) {
+	private boolean transformUAReferenceType(UAReferenceType node, List<UAReferenceType> nodesToAdd, List<UAReferenceType> nodesToDelete) {
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
 		
@@ -961,8 +1211,11 @@ public class OpcUaToUmlTransformer {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
+		}
+		else
+		{
+			nodesToDelete.add((UAReferenceType) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
 		}
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
@@ -974,7 +1227,7 @@ public class OpcUaToUmlTransformer {
 			return true;
 		}
 		
-		boolean success = updateOpcUaType(node, uaStereoType, uaElement);
+		boolean success = transformUaType(node, uaStereoType, uaElement);
 		
 		if(success)
 		{			
@@ -996,7 +1249,7 @@ public class OpcUaToUmlTransformer {
 	
 	}
 	
-	private boolean updateOpcUAObject(UAObject node, List<UAObject> nodesToAdd, List<UAObject> nodesToDelete) {
+	private boolean transformUAObject(UAObject node, List<UAObject> nodesToAdd, List<UAObject> nodesToDelete) {
 		
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAObject");
@@ -1006,8 +1259,11 @@ public class OpcUaToUmlTransformer {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
+		}
+		else
+		{
+			nodesToDelete.add((UAObject) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
 		}
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
@@ -1019,7 +1275,7 @@ public class OpcUaToUmlTransformer {
 			return true;
 		}
 		 
-		boolean success = updateOpcUaInstance(node, uaStereoType, uaElement);
+		boolean success = transformUaInstance(node, uaStereoType, uaElement);
 		
 		if(success)
 		{			
@@ -1031,7 +1287,7 @@ public class OpcUaToUmlTransformer {
 	
 
 	@SuppressWarnings("unchecked")
-	private boolean updateOpcUAVariable(UAVariable node, List<UAVariable> nodesToAdd, List<UAVariable> nodesToDelete) {
+	private boolean transformUAVariable(UAVariable node, List<UAVariable> nodesToAdd, List<UAVariable> nodesToDelete) {
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAVariable");
 		
@@ -1040,8 +1296,11 @@ public class OpcUaToUmlTransformer {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
+		}
+		else
+		{
+			nodesToDelete.add((UAVariable) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
 		}
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
@@ -1053,7 +1312,7 @@ public class OpcUaToUmlTransformer {
 			return true;
 		}
 		 
-		boolean success = updateOpcUaInstance(node, uaStereoType, uaElement);
+		boolean success = transformUaInstance(node, uaStereoType, uaElement);
 		
 		if(success)
 		{
@@ -1144,7 +1403,7 @@ public class OpcUaToUmlTransformer {
 		return success;
 	}
 
-	private boolean updateOpcUAMethod(UAMethod node, List<UAMethod> nodesToAdd, List<UAMethod> nodesToDelete) {
+	private boolean transformUAMethod(UAMethod node, List<UAMethod> nodesToAdd, List<UAMethod> nodesToDelete) {
 
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAMethod");
@@ -1154,8 +1413,11 @@ public class OpcUaToUmlTransformer {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
+		}
+		else
+		{
+			nodesToDelete.add((UAMethod) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
 		}
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
@@ -1167,7 +1429,7 @@ public class OpcUaToUmlTransformer {
 			return true;
 		}
 		 
-		boolean success = updateOpcUaInstance(node, uaStereoType, uaElement);
+		boolean success = transformUaInstance(node, uaStereoType, uaElement);
 		
 		if(success)
 		{
@@ -1176,7 +1438,7 @@ public class OpcUaToUmlTransformer {
 			if(node.getArgumentDescription() != null)
 			{				
 
-				success &= updateOpcUaMethodArgument(node, (Class) uaElement);
+				success &= transformMethodArgument(node, (Class) uaElement);
 				
 			}
 			uaElement.setValue(uaMethodSter, "executable", node.isExecutable());			
@@ -1187,7 +1449,7 @@ public class OpcUaToUmlTransformer {
 	
 	
 	
-	private boolean updateOpcUaMethodArgument(UAMethod uaMethod, Class uaElement) {
+	private boolean transformMethodArgument(UAMethod uaMethod, Class uaElement) {
 		
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaMethodStereotype  = nodeSetProfile.getOwnedStereotype("UAMethod");
@@ -1215,7 +1477,7 @@ public class OpcUaToUmlTransformer {
 					{
 						children.add(methodArgument);
 					}
-					updateOpcUaMethodArgumentEntry(uaMethArg, methodArgument);
+					transformMethodArgumentEntry(uaMethArg, methodArgument);
 				}
 				else
 				{
@@ -1257,7 +1519,7 @@ public class OpcUaToUmlTransformer {
 				}
 				children.add(uaMethArgClass);
 				uaMethArgClass.applyStereotype(uaMethodArgumentStereotype);
-				updateOpcUaMethodArgumentEntry(uaMethArg, uaMethArgClass);
+				transformMethodArgumentEntry(uaMethArg, uaMethArgClass);
 			}
 		}
 		
@@ -1265,7 +1527,7 @@ public class OpcUaToUmlTransformer {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private boolean updateOpcUaMethodArgumentEntry(UAMethodArgument uaMethodArgument, Class uaElement) {
+	private boolean transformMethodArgumentEntry(UAMethodArgument uaMethodArgument, Class uaElement) {
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAMethodArgument");
 		
@@ -1287,7 +1549,7 @@ public class OpcUaToUmlTransformer {
 		return true;
 	}
 
-	private boolean updateOpcUAView(UAView node, List<UAView> nodesToAdd, List<UAView> nodesToDelete) {
+	private boolean transformUAView(UAView node, List<UAView> nodesToAdd, List<UAView> nodesToDelete) {
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype uaStereoType  = nodeSetProfile.getOwnedStereotype("UAView");
 				
@@ -1296,8 +1558,11 @@ public class OpcUaToUmlTransformer {
 		if(uaElement == null)
 		{
 			uaElement = createElement(node, uaStereoType);
-			nodesToDelete.add(node); // delete old element if namespace is different
-			nodesToAdd.add(node);
+		}
+		else
+		{
+			nodesToDelete.add((UAView) this.matching.get(uaElement)); // delete old element	
+			this.matching.put(uaElement, node);
 		}
 		
 		DynamicEObjectImpl stereotype = (DynamicEObjectImpl) uaElement.getStereotypeApplication(uaStereoType);
@@ -1309,25 +1574,25 @@ public class OpcUaToUmlTransformer {
 			return true;
 		}
 		 
-		boolean success = updateOpcUaInstance(node, uaStereoType, uaElement);
+		boolean success = transformUaInstance(node, uaStereoType, uaElement);
 		return success;
 	}
 	
-	private boolean updateOpcUaInstance(UAInstance node, Stereotype stereotype, Element uaElement) {
+	private boolean transformUaInstance(UAInstance node, Stereotype stereotype, Element uaElement) {
 
-		boolean success = updateOpcUaNode(node, stereotype, uaElement);
+		boolean success = transformOpcUaNode(node, stereotype, uaElement);
 		
 		// ParentNodeId is parsed in a later step
 		return success;
 	}
 	
-	private boolean updateOpcUaType(UAType node, Stereotype stereotype, Element uaElement) {
-		boolean success = updateOpcUaNode(node, stereotype, uaElement);
+	private boolean transformUaType(UAType node, Stereotype stereotype, Element uaElement) {
+		boolean success = transformOpcUaNode(node, stereotype, uaElement);
 		return success;
 	}
 	
 	@SuppressWarnings("unchecked")
-	private boolean updateOpcUaNode(UANode node, Stereotype stereotype, Element uaElement) {
+	private boolean transformOpcUaNode(UANode node, Stereotype stereotype, Element uaElement) {
 
 		
 		if(node.getNodeId() != null) {
@@ -1407,7 +1672,9 @@ public class OpcUaToUmlTransformer {
 				browseName = browseName.substring(seperator);
 			}
 
-			uaElement.setValue(stereotype, "browseName", browseName);
+			uaElement.setValue(stereotype, "browseName", browseName);			
+			Class temp = (Class) uaElement;
+			temp.setName(browseName);
 		}
 
 	
@@ -1561,12 +1828,12 @@ public class OpcUaToUmlTransformer {
 		return namespace;
 	}
 	
-	private boolean updateOpcUaReferenceTypesReferences(ArrayList<UAReferenceType> referenceTypes) {
+	private boolean transformUaReferenceTypesReferences(ArrayList<UAReferenceType> referenceTypes) {
 		boolean success = true;
 		// create references between ReferenceTypes
 		for(UAReferenceType rt : referenceTypes)
 		{
-			success &= updateOpcUaNodeReferences(rt);
+			success &= transformNodeReferences(rt);
 			if(!success)
 			{
 				break;
@@ -1721,12 +1988,12 @@ public class OpcUaToUmlTransformer {
 	}
 	
 		
-	private boolean updateOpcUaReferences(ArrayList<UANode> referenceNodes)
+	private boolean transformReferences(ArrayList<UANode> referenceNodes)
 	{
 		boolean success = true;
 		for(UANode node : referenceNodes)
 		{
-			success &= updateOpcUaNodeReferences(node);
+			success &= transformNodeReferences(node);
 			if(!success)
 			{
 				break;
@@ -1736,7 +2003,7 @@ public class OpcUaToUmlTransformer {
 		return success;
 	}
 	
-	private boolean updateOpcUaNodeReferences(UANode node)
+	private boolean transformNodeReferences(UANode node)
 	{
 				
 		Class uaElement = null;
@@ -1776,13 +2043,13 @@ public class OpcUaToUmlTransformer {
 		for(Reference ref: node.getReferences().getReference())
 		{
 			
-			success &= updateOpcUaNodeReference(uaElement, ref);
+			success &= transformNodeReference(uaElement, ref);
 		}
 		
 		return success;
 	}
 		
-	private boolean updateOpcUaNodeReference(Class uaElement, Reference ref)
+	private boolean transformNodeReference(Class uaElement, Reference ref)
 	{
 		boolean success = true;
 		
@@ -1842,7 +2109,7 @@ public class OpcUaToUmlTransformer {
 		return success;
 	}
 	
-	private boolean updateOpcUaInstanceReferences(ArrayList<UAInstance> parentNodes) {
+	private boolean transformUaInstanceReferences(ArrayList<UAInstance> parentNodes) {
 		boolean success = true;
 		for(UAInstance var : parentNodes)
 		{
@@ -1859,7 +2126,7 @@ public class OpcUaToUmlTransformer {
 			// check if UAVariable and set the datatype
 			if(var instanceof UAVariable)
 			{
-				success &= updateOpcUaDatatype((UAVariable) var);
+				success &= transformUaDatatype((UAVariable) var);
 				if(!success)
 				{
 					break;
@@ -1868,7 +2135,7 @@ public class OpcUaToUmlTransformer {
 			}
 			else if(var instanceof UAMethod)
 			{
-				success &= updateOpcUaMethodDeclarationId((UAMethod) var);
+				success &= transformMethodDeclarationId((UAMethod) var);
 				if(!success)
 				{
 					break;
@@ -1880,7 +2147,7 @@ public class OpcUaToUmlTransformer {
 		return success;
 	}
 
-	private boolean updateOpcUaMethodDeclarationId(UAMethod inst) {
+	private boolean transformMethodDeclarationId(UAMethod inst) {
 		// get stereotype Application of parent element
 		Object methodDeclarationId = getUmlNodeReference(inst.getMethodDeclarationId());
 		
@@ -1912,7 +2179,7 @@ public class OpcUaToUmlTransformer {
 		return true;
 	}
 	
-	private boolean updateOpcUaDatatype(UAVariable var)
+	private boolean transformUaDatatype(UAVariable var)
 	{
 		
 		Class varElement  = (Class) this.nodeIdMap.get(var.getNodeId());
@@ -2120,12 +2387,12 @@ public class OpcUaToUmlTransformer {
 		return null;
 	}
 	
-	private boolean updateOpcUaRolePermissions(ArrayList<UANode> rolePermissionNodes) {
+	private boolean transformRolePermissions(ArrayList<UANode> rolePermissionNodes) {
 		boolean success = true;
 				
 		for(UANode node : rolePermissionNodes)
 		{
-			success &= updateOpcUaRolePermission(node);
+			success &= transformRolePermission(node);
 			if(!success)
 			{
 				break;
@@ -2136,7 +2403,7 @@ public class OpcUaToUmlTransformer {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private boolean updateOpcUaRolePermission(UANode rolePermissionNode) {
+	private boolean transformRolePermission(UANode rolePermissionNode) {
 		
 		Class parent = (Class) getElement(rolePermissionNode);
 		Stereotype uaNodeStereotype = getMatchingStereotype(rolePermissionNode);

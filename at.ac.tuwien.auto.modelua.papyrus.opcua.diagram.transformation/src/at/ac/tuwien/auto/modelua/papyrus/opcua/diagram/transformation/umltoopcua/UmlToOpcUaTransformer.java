@@ -229,13 +229,13 @@ public class UmlToOpcUaTransformer {
 			
 			switch(cls.getName()) {			
 			case "AliasTable":
-				success= transformAliasTable(object, stereotype);
+				success= transformAliasTable(object);
 				break;
 			case "DataTypeDefinition":
-				success= transformDataTypeDefinition(object, stereotype);
+				success= transformDataTypeDefinition(object);
 				break;
 			case "DataTypeField":
-				success=transformDataTypeField(object, stereotype);
+				success=transformDataTypeField(object);
 				break;
 			case "ExtensionType":
 				success=transformExtensionType(object);
@@ -244,16 +244,16 @@ public class UmlToOpcUaTransformer {
 				success=transformModelTableEntry(object);
 				break;
 			case "NodeIdAlias":
-				success=transformNodeIdAlias(object, stereotype);
+				success=transformNodeIdAlias(object);
 				break;
 			case "RolePermission":
 				success=transformRolePermission(object);
 				break;
 			case "StructureTranslationType":
-				success=transformStructureTranslationType(object, stereotype);
+				success=transformStructureTranslationType(object);
 				break;
 			case "TranslationType":
-				success=transformTranslationType(object, stereotype);
+				success=transformTranslationType(object);
 				break;
 			case "UADataType":
 				success=transformUADataType(object);
@@ -265,7 +265,7 @@ public class UmlToOpcUaTransformer {
 				success=transformUAMethodArgument(object);
 				break;
 			case "UAObject":
-				success=transformUAObject(object, stereotype);
+				success=transformUAObject(object);
 				break;
 			case "UAObjectType":
 				success=transformUAObjectType(object);
@@ -615,7 +615,7 @@ public class UmlToOpcUaTransformer {
 		return success;
 	}
 
-	private boolean transformUAObject(Class object,  DynamicEObjectImpl stereotype) {
+	private boolean transformUAObject(Class object) {
 		UAObjectImpl uaObject;
 		if(this.matching.containsKey(object))
 		{
@@ -1259,8 +1259,7 @@ public class UmlToOpcUaTransformer {
 	}
 
 	@SuppressWarnings("unchecked")
-	private boolean transformTranslationType(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+	private boolean transformTranslationType(Class object) {
 		
 		TranslationTypeImpl tt;
 		if( this.matching.containsKey(object))
@@ -1274,64 +1273,44 @@ public class UmlToOpcUaTransformer {
 			this.matching.put(object, tt);
 		}
 		
-		for(EStructuralFeature feature : featuresList)
+		Stereotype uaStereotype = getMatchingStereotype(tt);
+		if(object.hasValue(uaStereotype, "text"))
 		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			
-			if(name.equalsIgnoreCase("text"))
+			tt.getText().clear();
+			List<String> texts = (List<String>) object.getValue(uaStereotype, "text");
+			for(String txt : texts)
 			{
-				tt.getText().clear();
-				List<String> texts = (List<String>) temp;
-				for(String txt : texts)
-				{
-					LocalizedTextImpl lt = new LocalizedTextImpl();
-					lt.setValue(txt);
-					tt.getText().add(lt);
-				}
-			
-			}
-			else if(name.equalsIgnoreCase("field"))
-			{
-				tt.getField().clear();
-				
-				EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) temp;
-				for(DynamicEObjectImpl ltUML : ltsUML)
-				{
-					EList<EStructuralFeature> featuresList2 = ltUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equalsIgnoreCase("base_Class"))
-						{
-							Object baseClass = ltUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								StructureTranslationType existingLT = (StructureTranslationType) this.matching.get(baseClass);
-								tt.getField().add(existingLT);
-								break;
-							}
-							else
-							{
-								transformClass((Class) baseClass);
-								StructureTranslationType existingLT = (StructureTranslationType) this.matching.get(baseClass);
-								tt.getField().add(existingLT);
-								break;
-							}
-						}
-					}
-				}
+				LocalizedTextImpl lt = new LocalizedTextImpl();
+				lt.setValue(txt);
+				tt.getText().add(lt);
 			}
 		}
-
+		
+		EcoreEList<DynamicEObjectImpl> ltsUML = (EcoreEList<DynamicEObjectImpl>) object.getValue(uaStereotype, "field");
+		
+		for(DynamicEObjectImpl ltUML : ltsUML)
+		{
+			Class baseClass = getStereotypeBaseClass(ltUML, true);
+			if(this.matching.containsKey(baseClass))
+			{
+				StructureTranslationType existingLT = (StructureTranslationType) this.matching.get(baseClass);
+				tt.getField().add(existingLT);
+				break;
+			}
+			else
+			{
+				transformClass((Class) baseClass);
+				StructureTranslationType existingLT = (StructureTranslationType) this.matching.get(baseClass);
+				tt.getField().add(existingLT);
+				break;
+			}
+		}
+	
 		return true;
 	}
 
 	@SuppressWarnings("unchecked")
-	private boolean transformStructureTranslationType(Class object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+	private boolean transformStructureTranslationType(Class object) {
 		
 		StructureTranslationTypeImpl stt;
 		if( this.matching.containsKey(object))
@@ -1345,30 +1324,24 @@ public class UmlToOpcUaTransformer {
 			this.matching.put(object, stt);
 		}
 		
-		for(EStructuralFeature feature : featuresList)
+		Stereotype uaStereotype = getMatchingStereotype(stt);
+		
+		if(object.hasValue(uaStereotype, "text"))
 		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			
-			if(name.equalsIgnoreCase("text"))
+			stt.getText().clear();
+			List<String> texts = (List<String>) object.getValue(uaStereotype, "text");
+			for(String txt : texts)
 			{
-				stt.getText().clear();
-				List<String> texts = (List<String>) temp;
-				for(String txt : texts)
-				{
-					LocalizedTextImpl lt = new LocalizedTextImpl();
-					lt.setValue(txt);
-					stt.getText().add(lt);
-				}
-				
-			}
-			else if(name.equalsIgnoreCase("name"))
-			{
-				stt.setName((String) temp);
+				LocalizedTextImpl lt = new LocalizedTextImpl();
+				lt.setValue(txt);
+				stt.getText().add(lt);
 			}
 		}
-		
+		if(object.hasValue(uaStereotype, "name"))
+		{
+			String nameString = String.valueOf(object.getValue(uaStereotype, "name"));
+			stt.setName((String) nameString);
+		}	
 
 		return true;
 	}
@@ -1436,7 +1409,7 @@ public class UmlToOpcUaTransformer {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private boolean transformDataTypeField(Class object,  DynamicEObjectImpl stereotype) {
+	private boolean transformDataTypeField(Class object) {
 	
 		DataTypeFieldImpl dtf;
 		if( this.matching.containsKey(object))
@@ -1644,13 +1617,12 @@ public class UmlToOpcUaTransformer {
 	}
 
 	@SuppressWarnings("unchecked")
-	private boolean transformDataTypeDefinition(Class object,  DynamicEObjectImpl stereotype) {
+	private boolean transformDataTypeDefinition(Class object) {
 			
 		DataTypeDefinitionImpl dtd;
 		if( this.matching.containsKey(object))
 		{
 			dtd = (DataTypeDefinitionImpl) this.matching.get(object);
-
 		}
 		else
 		{
@@ -1738,9 +1710,8 @@ public class UmlToOpcUaTransformer {
 		
 		return true;
 	}
-	
-	private boolean transformAliasTable(Class object, DynamicEObjectImpl stereoptype_application) {
-		EList<EStructuralFeature> featuresList = stereoptype_application.eClass().getEAllStructuralFeatures();		
+	@SuppressWarnings("unchecked")
+	private boolean transformAliasTable(Class object) {	
 		AliasTable aliasTable = this.baseNodeset.getAliases();
 		if(aliasTable == null)
 		{
@@ -1750,81 +1721,55 @@ public class UmlToOpcUaTransformer {
 		}	
 		aliasTable.getAlias().clear();
 		
-		
-		for(EStructuralFeature feature : featuresList)
+		Stereotype sterAliasTable = getMatchingStereotype(aliasTable);
+		EcoreEList<DynamicEObjectImpl> aliasesUML = (EcoreEList<DynamicEObjectImpl>) object.getValue(sterAliasTable, "alias");
+		for(DynamicEObjectImpl aliasUML : aliasesUML)
 		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			
-			if(name.equalsIgnoreCase("alias"))
+			Class baseClass = getStereotypeBaseClass(aliasUML, true);
+			if(this.matching.containsKey(baseClass))
 			{
-				@SuppressWarnings("unchecked")
-				EcoreEList<DynamicEObjectImpl> aliasesUML = (EcoreEList<DynamicEObjectImpl>) stereoptype_application.dynamicGet(id);
-				for(DynamicEObjectImpl aliasUML : aliasesUML)
-				{
-					//transformNodeIdAlias(aliasUML);
-					EList<EStructuralFeature> featuresList2 = aliasUML.eClass().getEAllStructuralFeatures();
-					for(EStructuralFeature feature2 : featuresList2)
-					{
-						int id2 = feature2.getFeatureID();
-						String name2 = feature2.getName();
-						if(name2.equalsIgnoreCase("base_Class"))
-						{
-							Object baseClass = aliasUML.dynamicGet(id2);
-							if(this.matching.containsKey(baseClass))
-							{
-								NodeIdAlias existingAlias = (NodeIdAlias) this.matching.get(baseClass);
-								aliasTable.getAlias().add(existingAlias);
-								break;
-							}
-							else
-							{
-								transformClass((Class) baseClass);
-								NodeIdAlias existingAlias = (NodeIdAlias) this.matching.get(baseClass);
-								aliasTable.getAlias().add(existingAlias);
-								break;
-							}
-						}
-					}
-				}
+				NodeIdAlias existingAlias = (NodeIdAlias) this.matching.get(baseClass);
+				aliasTable.getAlias().add(existingAlias);
+			}
+			else
+			{
+				transformClass((Class) baseClass);
+				NodeIdAlias existingAlias = (NodeIdAlias) this.matching.get(baseClass);
+				aliasTable.getAlias().add(existingAlias);
 			}
 		}
+		
 		return true;
 	}
 	
-	private boolean transformNodeIdAlias(Class object, DynamicEObjectImpl stereoptype_application) {
+	private boolean transformNodeIdAlias(Class object) {
 		
-		EList<EStructuralFeature> featuresList = stereoptype_application.eClass().getEAllStructuralFeatures();
-		NodeIdAliasImpl alias = new NodeIdAliasImpl();
+		NodeIdAlias alias;
 		
-		for(EStructuralFeature feature : featuresList)
+		if( this.matching.containsKey(object))
 		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			
-			if(name.equalsIgnoreCase("alias"))
-			{
-				String aliasString = (String) stereoptype_application.dynamicGet(id);
-				alias.setAlias(aliasString);
-			}
-			else if(name.equalsIgnoreCase("value"))
-			{
-				String nodeIdString = (String) stereoptype_application.dynamicGet(id);
-				alias.setValue(nodeIdString);
-			}
-		}
-		
-		if(this.matching.containsKey(object))
-		{
-			NodeIdAlias existingAlias = (NodeIdAlias) this.matching.get(object);
-			existingAlias.setAlias(alias.getAlias());
-			existingAlias.setValue(alias.getValue());	
+			alias = (NodeIdAlias) this.matching.get(object);
 		}
 		else
 		{
+			alias = new NodeIdAliasImpl();
 			this.matching.put(object, alias);
 		}
 		
+		Stereotype sterAlias = getMatchingStereotype(alias);
+		
+		if(object.hasValue(sterAlias, "alias"))
+		{
+			String aliasString = (String) object.getValue(sterAlias, "alias");
+			alias.setAlias(aliasString);
+		}
+		
+		if(object.hasValue(sterAlias, "value"))
+		{
+			String nodeIdString = (String) object.getValue(sterAlias, "value");
+			alias.setAlias(nodeIdString);
+		}
+				
 		return true;
 	}
 	
@@ -2059,7 +2004,22 @@ public class UmlToOpcUaTransformer {
 		{
 			uaInstance  = nodeSetProfile.getOwnedStereotype("UAMethodArgument");
 		}
-		
+		else if(node instanceof AliasTable)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("AliasTable");
+		}
+		else if(node instanceof NodeIdAlias)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("NodeIdAlias");
+		}
+		else if(node instanceof StructureTranslationType)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("StructureTranslationType");
+		}
+		else if(node instanceof TranslationType)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("TranslationType");
+		}
 		return uaInstance;
 	}
 	

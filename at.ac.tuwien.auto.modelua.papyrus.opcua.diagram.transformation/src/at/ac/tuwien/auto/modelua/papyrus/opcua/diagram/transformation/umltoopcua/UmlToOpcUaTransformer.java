@@ -105,8 +105,6 @@ public class UmlToOpcUaTransformer {
 		}
 		else if(object instanceof Generalization)
 		{
-			return_val= transformGeneralization((Generalization) object);
-
 			// changes to diagrams shall be done inside commands
 			TransformUMLGeneralizationCommand cmd = new TransformUMLGeneralizationCommand(domain);
 			cmd.setGeneralization((Generalization) object);
@@ -299,69 +297,6 @@ public class UmlToOpcUaTransformer {
 		
 	}
 	
-	public boolean removeMember(Element obj) {
-		
-		if(!this.matching.containsKey(obj))
-		{
-			return true;
-		}
-		
-		boolean success = false;
-		Object toBeRemoved = this.matching.get(obj);
-		
-		if(toBeRemoved instanceof UADataType)
-		{
-			success = this.baseNodeset.getUADataType().remove(toBeRemoved);
-		}
-		else if(toBeRemoved instanceof UAMethod)
-		{
-			success = this.baseNodeset.getUAMethod().remove(toBeRemoved);
-		}
-		else if(toBeRemoved instanceof UAObjectType)
-		{
-			success = this.baseNodeset.getUAObjectType().remove(toBeRemoved);
-		}
-		else if(toBeRemoved instanceof UAObject)
-		{
-			success = this.baseNodeset.getUAObject().remove(toBeRemoved);
-		}
-		else if(toBeRemoved instanceof UAReferenceType)
-		{
-			success = this.baseNodeset.getUAReferenceType().remove(toBeRemoved);
-		}
-		else if(toBeRemoved instanceof UAVariable)
-		{
-			success = this.baseNodeset.getUAVariable().remove(toBeRemoved);
-		}
-		else if(toBeRemoved instanceof UAVariableType)
-		{
-			success = this.baseNodeset.getUAVariableType().remove(toBeRemoved);
-		}else if(toBeRemoved instanceof Reference)
-		{
-			success = deleteUAReference((Reference) toBeRemoved, (Generalization) obj);
-		}
-		
-		if(success)
-		{
-			this.matching.remove(obj);
-		}
-		
-		return success;
-	}
-	
-	
-	private boolean deleteUAReference(Reference reference, Generalization general) {
-		EList<Element> sources = general.getSources();
-		
-		for(Element source : sources)
-		{
-			UANode node = (UANode) this.matching.get(source);
-			node.getReferences().getReference().remove(reference);
-		}
-		
-		return true;
-	}
-
 	private boolean transformValueType1(Class object) {
 		// TODO: transform ValueType 1
 		return false;
@@ -473,8 +408,7 @@ public class UmlToOpcUaTransformer {
 			if(object.hasValue(uaStereotype, "value"))
 			{
 				//TODO: add value
-				Object value = object.getValue(uaStereotype, "value");
-
+//				Object value = object.getValue(uaStereotype, "value");
 			}
 			
 			if(object.hasValue(uaStereotype, "translation"))

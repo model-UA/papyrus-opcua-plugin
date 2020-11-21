@@ -1,8 +1,14 @@
 package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.umltoopcua;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -27,6 +33,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeField;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypePurpose;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ListOfReferences;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.ModelTableEntry;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.NodeIdAlias;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.Reference;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ReleaseStatus;
@@ -51,6 +58,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.DataTypeFieldImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ListOfReferencesImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ListOfRolePermissionsImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.LocalizedTextImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ModelTableEntryImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.NodeIdAliasImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ReferenceImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.RolePermissionImpl;
@@ -1396,7 +1404,99 @@ public class UmlToOpcUaTransformer {
 	}
 
 	private boolean transformModelTableEntry(Class object) {
-		//TODO: Implement Model Table transformation 
+		ModelTableEntry mte;
+		if( this.matching.containsKey(object))
+		{
+			mte = (ModelTableEntry) this.matching.get(object);
+
+		}
+		else
+		{
+			mte = new ModelTableEntryImpl();
+			this.matching.put(object, mte);
+		}
+
+		Stereotype uaStereotype = getMatchingStereotype(mte);
+		
+		if(object.hasValue(uaStereotype, "rolePermissions"))
+		{
+			
+		}
+		
+		if(object.hasValue(uaStereotype, "requiredModel"))
+		{
+			
+		}
+		
+		if(object.hasValue(uaStereotype, "accessRestrictions"))
+		{
+			String stringTConvert = String.valueOf(object.getValue(uaStereotype, "modelUri"));
+			short convertedShort = Short.valueOf(stringTConvert);
+			mte.setAccessRestrictions(convertedShort);
+			
+		}
+		
+		if(object.hasValue(uaStereotype, "modelUri"))
+		{
+			String modelUriString = String.valueOf(object.getValue(uaStereotype, "modelUri"));
+			mte.setModelUri(modelUriString);
+		}
+		
+
+		if(object.hasValue(uaStereotype, "publicationDate"))
+		{
+			String datetime = String.valueOf(object.getValue(uaStereotype, "publicationDate"));
+			int year;
+			int month;
+			int dayOfMonth;
+			String[] segments = datetime.split(".");
+			
+			if(segments.length != 3)
+			{
+				return false;
+			}
+			
+			// year.month.day
+			if(segments[0].length() == 4)
+			{
+				year = Integer.valueOf(segments[0]);
+				month = Integer.valueOf(segments[1]);
+				dayOfMonth = Integer.valueOf(segments[2]);
+			}
+			// day.month.year
+			else if( segments[2].length() == 4)
+			{
+				year = Integer.valueOf(segments[2]);
+				month = Integer.valueOf(segments[1]);
+				dayOfMonth = Integer.valueOf(segments[0]);
+			}
+			else
+			{
+				// date time format not supported
+				return false;
+			}
+						
+			XMLGregorianCalendar pubDate = mte.getPublicationDate();
+			if(pubDate == null)
+			{
+				try {
+					pubDate = DatatypeFactory.newInstance().newXMLGregorianCalendar();
+				} catch (DatatypeConfigurationException e) {
+					e.printStackTrace();
+					return false;
+				}
+			}
+			pubDate.setYear(year);
+			pubDate.setMonth(month);
+			pubDate.setDay(dayOfMonth);
+		}
+		
+		if(object.hasValue(uaStereotype, "version"))
+		{
+			String versionString = String.valueOf(object.getValue(uaStereotype, "version"));
+			mte.setVersion(versionString);
+		}
+		
 		
 		return false;
 	}
@@ -1404,7 +1504,6 @@ public class UmlToOpcUaTransformer {
 
 	private boolean transformExtensionType(Class object) {
 		//TODO: Implement Extension Type transformation 
-
 		return false;
 	}
 	
@@ -2020,6 +2119,11 @@ public class UmlToOpcUaTransformer {
 		{
 			uaInstance  = nodeSetProfile.getOwnedStereotype("TranslationType");
 		}
+		else if(node instanceof ModelTableEntry)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("ModelTableEntry");
+		}
+		
 		return uaInstance;
 	}
 	

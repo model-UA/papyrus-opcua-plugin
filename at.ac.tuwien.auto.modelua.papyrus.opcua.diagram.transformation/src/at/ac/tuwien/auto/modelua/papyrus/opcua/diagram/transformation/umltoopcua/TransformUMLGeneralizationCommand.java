@@ -1,20 +1,20 @@
-package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.transformer;
+package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.umltoopcua;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.uml2.uml.Generalization;
 
-public class UpdateUMLGeneralizationCommand extends RecordingCommand {
+public class TransformUMLGeneralizationCommand extends RecordingCommand {
 
-	private InstanceSyncHandler handler;
+	private UmlToOpcUaTransformer handler;
 	private Generalization obj;
 	private boolean success = false;
 	
-	public UpdateUMLGeneralizationCommand(TransactionalEditingDomain domain) {
+	public TransformUMLGeneralizationCommand(TransactionalEditingDomain domain) {
 		super(domain);
 	}
 
-	public void registerInstanceSynchHandler(InstanceSyncHandler handler)
+	public void registerInstanceSynchHandler(UmlToOpcUaTransformer handler)
 	{
 		this.handler = handler;
 	}

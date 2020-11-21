@@ -1,4 +1,4 @@
-package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.transformer;
+package at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +18,6 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.UANodeSetType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UANodeSetTypeImpl;
 
 import at.ac.tuwien.auto.modelua.papyrus.opcua.console.OpcUaMessageConsole;
-import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.Activator;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.listener.DiagramChangeListener;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.parser.NodeSetParser;
 
@@ -227,7 +226,7 @@ public class SynchHandler {
 		DiagramChangeListener.disable(true);
 		try
 		{
-			this.projectMapping.get(modelPath).updatedMember(nodeSet);			
+			this.projectMapping.get(modelPath).transformNodeSet(nodeSet);			
 		}
 		catch (Exception e)
 		{
@@ -263,7 +262,7 @@ public class SynchHandler {
 		DiagramChangeListener.disable(true);
 		try
 		{
-			this.projectMapping.get(fileName).updatedMember(nodeSet);			
+			this.projectMapping.get(fileName).transformNodeSet(nodeSet);			
 		}
 		catch (Exception e)
 		{

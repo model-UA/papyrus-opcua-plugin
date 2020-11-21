@@ -7,7 +7,6 @@ import org.osgi.framework.BundleContext;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.console.OpcUaMessageConsole;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.listener.DiagramChangeListener;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.listener.FileChangeListener;
-import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.transformer.SynchHandler;
 /**
  * The activator class controls the plug-in life cycle
  */

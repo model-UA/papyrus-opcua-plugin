@@ -23,4 +23,4 @@ Automatic-Module-Name: at.ac.at.tuwien.modelua.papyrus.opcua.diagram.transformat
 Bundle-ActivationPolicy: lazy
 Import-Package: at.ac.tuwien.auto.modelua.papyrus.opcua.preferences
 Export-Package: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation,
- at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.transformer
+ at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation

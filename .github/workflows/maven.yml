@@ -4,9 +4,6 @@
 name: CI Maven Build
 
 on:
-  push:
-    branches-ignore: 
-      - "master"
   pull_request:
     branches: 
       - "*" 

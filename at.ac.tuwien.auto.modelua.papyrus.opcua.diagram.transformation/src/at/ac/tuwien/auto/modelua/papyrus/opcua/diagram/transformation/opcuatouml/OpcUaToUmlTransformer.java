@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -32,6 +34,8 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeDefinition;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypeField;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.DataTypePurpose;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.LocalizedText;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.ModelTable;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.ModelTableEntry;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.NodeIdAlias;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.Reference;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.ReleaseStatus;
@@ -109,6 +113,7 @@ public class OpcUaToUmlTransformer {
     		success &= transformAliasTable(nodeset.getAliases());
     	}
     	
+    
     	// Delete all nodes which are not part of the loaded NodeSet
     	success &= removeMissingElements(nodeset);
     	
@@ -436,8 +441,245 @@ public class OpcUaToUmlTransformer {
     	{
     		success &= transformDataTypeDefinitions(dataTypeDefinitions);
     	}
+    	
+    	// has to executed after transformRolePermissions as transformed rolepermissions are required
+    	if(success && nodeset.getModels() != null )
+    	{
+    		success &= transformModels(nodeset.getModels());
+    	}
     	    	
 		return success;
+	}
+
+	@SuppressWarnings("unchecked")
+	private boolean transformModels(ModelTable models) {
+		
+		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
+		Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
+		Stereotype modelTableEntry   = nodeSetProfile.getOwnedStereotype("ModelTableEntry");
+		
+		ArrayList<String> existingModelUris = new ArrayList<String>();
+		boolean success =true;
+		
+		// remove no longer existing model table entries
+		if(this.baseUmlModel.hasValue(nodeSetType, "models"))
+		{				
+			EList<ModelTableEntry> exstingMtes = this.baseNodeset.getModels().getModel();
+			ArrayList<ModelTableEntry> deleteMtes = new ArrayList<ModelTableEntry>();
+			ArrayList<Class> deleteMtesUML = new ArrayList<Class>();
+			
+			EList<DynamicEObjectImpl> mtesUML = (EList<DynamicEObjectImpl>) this.baseUmlModel.getValue(nodeSetType, "models");
+			
+			for(ModelTableEntry existingMte : exstingMtes)
+			{
+				boolean found=false;
+				for(ModelTableEntry mte : models.getModel())
+				{
+					if(mte.getModelUri().equals(existingMte.getModelUri()))
+					{
+						found = true;
+						existingModelUris.add(mte.getModelUri());
+						break;
+					}
+				}
+				if(!found)
+				{
+				
+					for(DynamicEObjectImpl mte:mtesUML)
+					{
+						Class baseClassTemp = getStereotypeBaseClass(mte, false);
+						if(baseClassTemp.hasValue(modelTableEntry, "modelUri"))
+						{
+							String modelUri = (String) baseClassTemp.getValue(modelTableEntry, "modelUri");
+							if(modelUri.equals(existingMte.getModelUri()))
+							{
+								deleteMtesUML.add(baseClassTemp);
+								break;
+							}
+						}
+						else
+						{
+							deleteMtesUML.add(baseClassTemp);
+						}
+					}
+					
+					deleteMtes.add(existingMte);
+				}
+			}
+			
+			
+			while(!deleteMtes.isEmpty())
+			{
+				this.baseNodeset.getModels().getModel().remove(deleteMtes.get(0));
+				deleteMtes.remove(0);
+			}
+
+			while(!deleteMtesUML.isEmpty())
+			{
+				this.matching.remove(deleteMtesUML.get(0));
+				deleteMtesUML.get(0).destroy();
+				deleteMtesUML.remove(0);
+			}
+		}
+		EList<DynamicEObjectImpl> mtesUML = (EList<DynamicEObjectImpl>) this.baseUmlModel.getValue(nodeSetType, "models");
+		
+		ArrayList<ModelTableEntry> mtesToAdd = new ArrayList<ModelTableEntry>();
+		
+		for(ModelTableEntry mte : models.getModel())
+		{
+			Class mteUML=null;
+			if(existingModelUris.contains(mte.getModelUri()))
+			{
+				for(DynamicEObjectImpl mteObj:mtesUML)
+				{
+					Class baseClassTemp = getStereotypeBaseClass(mteObj, false);
+					if(baseClassTemp.hasValue(modelTableEntry, "modelUri"))
+					{
+						String modelUri = (String) baseClassTemp.getValue(modelTableEntry, "modelUri");
+						if(modelUri.equals(mte.getModelUri()))
+						{
+							mteUML=baseClassTemp;
+							break;
+						}
+					}
+				}
+			}
+			if(mteUML == null)
+			{
+				mteUML = this.baseUmlModel.createOwnedClass(mte.getModelUri(), false);
+				mteUML.applyStereotype(modelTableEntry);
+				mteUML.setValue(modelTableEntry, "modelUri", mte.getModelUri());
+				
+				DynamicEObjectImpl sterAppl = (DynamicEObjectImpl)mteUML.getStereotypeApplication(modelTableEntry);
+				mtesUML.add(sterAppl);
+				this.matching.put(mteUML, mte);
+				mtesToAdd.add(mte);
+			}
+			
+			success &= transformModelTableEntry(mte, mteUML,modelTableEntry);
+			
+			if(success && mte.getRequiredModel() != null)
+			{
+				success &= linkRequiredModels(mte, mteUML, nodeSetType, modelTableEntry);
+			}
+			
+			if(!success)
+			{
+				break;
+			}
+			
+		}
+				
+		// has to be added this way, otherwise ConcurrentModificationException
+		this.baseNodeset.getModels().getModel().addAll(mtesToAdd);
+		
+		return success;
+	}
+	
+	private boolean transformModelTableEntry(ModelTableEntry mte, Class uaElement, Stereotype stereotype)
+	{
+		
+		// model URI won't be updated here as it is added when element is created
+		// required model will be set inside transformModels
+		
+		// short cannot be null
+		uaElement.setValue(stereotype, "accessRestrictions", String.valueOf(mte.getAccessRestrictions()));
+		boolean success = true;
+		if(mte.getPublicationDate() != null)
+		{
+			XMLGregorianCalendar cal = mte.getPublicationDate();
+			String date = String.valueOf(cal.getDay())+"."+String.valueOf(cal.getMonth())+"."+String.valueOf(cal.getYear());
+			uaElement.setValue(stereotype, "publicationDate", date);
+		}
+		else
+		{			
+			uaElement.setValue(stereotype, "publicationDate", "");
+		}
+		
+		if(mte.getRolePermissions() != null)
+		{
+			success &= this.transformRolePermissionGen(mte, uaElement);	
+		}
+		else if(uaElement.hasValue(stereotype, "rolePermissions"))
+		{
+			EList<DynamicEObjectImpl> rps = (EList<DynamicEObjectImpl>) uaElement.getValue(stereotype, "rolePermissions");
+			rps.clear();
+		}
+		
+		if(mte.getVersion() != null)
+		{
+			uaElement.setValue(stereotype, "version", mte.getVersion());
+		}
+		else
+		{
+			uaElement.setValue(stereotype, "version", "");
+		}
+				
+		return success;
+	}
+	
+
+	private boolean linkRequiredModels(ModelTableEntry mte, Class uaElement, Stereotype nodeSetType, Stereotype modelTableEntry) {
+		
+		EList<DynamicEObjectImpl> requiredModels = (EList<DynamicEObjectImpl>) uaElement.getValue(modelTableEntry, "requiredModel");
+		requiredModels.clear();
+		
+		for(ModelTableEntry reqMte : mte.getRequiredModel())
+		{
+			if(OpcUaLibraryResources.MODEL_URI_MAPPING.containsKey(reqMte.getModelUri()))
+			{
+				// default namespace needs to be imported
+				URI lib_path = URI.createURI(OpcUaLibraryResources.MODEL_URI_MAPPING.get(reqMte.getModelUri()));
+				ResourceSet owner_resource = this.baseUmlModel.eResource().getResourceSet(); 
+				Model modelimport = (Model) PackageUtil.loadPackage(lib_path, owner_resource);
+								
+				if(!this.baseUmlModel.getImportedPackages().contains(modelimport))
+				{
+					this.baseUmlModel.createPackageImport(modelimport);
+				}
+					
+			}
+			
+			EList<Package> modelImports = this.baseUmlModel.getImportedPackages();
+			
+			DynamicEObjectImpl reqMteObj = findModelTableEntry(modelImports, reqMte.getModelUri(), nodeSetType, modelTableEntry );
+			
+			if(reqMteObj== null)
+			{
+				return false;
+			}
+			
+			requiredModels.add(reqMteObj);
+			
+		}
+		return true;
+	}
+	
+	private DynamicEObjectImpl findModelTableEntry(EList<Package> models, String uri, Stereotype nodeSetType, Stereotype modelTableEntry)
+	{
+		for(Package model : models)
+		{
+			if(model.isStereotypeApplied(nodeSetType) && model.hasValue(nodeSetType, "models"))
+			{
+				EList<DynamicEObjectImpl> packagedModels = (EList<DynamicEObjectImpl>) model.getValue(nodeSetType, "models");
+				
+				for(DynamicEObjectImpl modelObj : packagedModels)
+				{
+					Class modelUml = getStereotypeBaseClass(modelObj, false);
+					if(modelUml.hasValue(modelTableEntry, "modelUri"))
+					{
+						String modelUri = (String) modelUml.getValue(modelTableEntry, "modelUri");
+						if(modelUri.equals(uri))
+						{ 
+							return modelObj;
+						}
+					}
+				}
+				
+			}
+		}
+		
+		return null;
 	}
 
 	private boolean removeMissingElements(UANodeSetType nodeset) {
@@ -2403,14 +2645,36 @@ public class OpcUaToUmlTransformer {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private boolean transformRolePermission(UANode rolePermissionNode) {
 		
+	private boolean transformRolePermission(UANode rolePermissionNode) {
 		Class parent = (Class) getElement(rolePermissionNode);
+		return transformRolePermissionGen(rolePermissionNode, parent);
+	}
+	
+	private boolean transformRolePermissionGen(Object rolePermissionNode, Class parent) {
+		
 		Stereotype uaNodeStereotype = getMatchingStereotype(rolePermissionNode);
 		Stereotype uaRpStereotype = getMatchingStereotype(new RolePermissionImpl());
 		EList<DynamicEObjectImpl> rpList = (EList<DynamicEObjectImpl>) parent.getValue(uaNodeStereotype, "rolePermissions");
 		ArrayList<RolePermission> existingRpList = new ArrayList<RolePermission>();
 		ArrayList<Class> elementsToDelete = new ArrayList<Class>();
+		
+		EList<RolePermission> rolepremissions;
+		if(rolePermissionNode instanceof UANode)
+		{
+			UANode temp =(UANode) rolePermissionNode;
+			rolepremissions = temp.getRolePermissions().getRolePermission();
+		}
+		else if(rolePermissionNode instanceof ModelTableEntry)
+		{
+			ModelTableEntry temp = (ModelTableEntry) rolePermissionNode;
+			rolepremissions = temp.getRolePermissions().getRolePermission();
+		}
+		else
+		{
+			// unsupported type
+			return false;
+		}
 		
 		for(DynamicEObjectImpl rpObject : rpList)
 		{
@@ -2425,8 +2689,7 @@ public class OpcUaToUmlTransformer {
 			String rpValueNodeId = getNodeId(rpValueClass);
 			
 			boolean exists = false;
-			
-			for(RolePermission rp : rolePermissionNode.getRolePermissions().getRolePermission())
+			for(RolePermission rp : rolepremissions)
 			{
 				if(rp.getValue().equalsIgnoreCase(rpValueNodeId))
 				{
@@ -2449,7 +2712,7 @@ public class OpcUaToUmlTransformer {
 			elementsToDelete.remove(0);
 		}
 		
-		for(RolePermission rp : rolePermissionNode.getRolePermissions().getRolePermission())
+		for(RolePermission rp : rolepremissions)
 		{
 			
 			if(!existingRpList.contains(rp))
@@ -2538,6 +2801,10 @@ public class OpcUaToUmlTransformer {
 		else if(node instanceof UAMethodArgument)
 		{
 			uaInstance  = nodeSetProfile.getOwnedStereotype("UAMethodArgument");
+		}
+		else if(node instanceof ModelTableEntry)
+		{
+			uaInstance  = nodeSetProfile.getOwnedStereotype("ModelTableEntry");
 		}
 		
 		return uaInstance;

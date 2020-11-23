@@ -30,6 +30,15 @@ public class OpcUaLibraryResources {
 		put("http://opcfoundation.org/UA/Safety", LIBRARIES_PATHMAP+"Opc.Ua.Safety.NodeSet2/Opc.Ua.Safety.NodeSet2.uml");
 	}};
 	
+	public static final Map<String , String> MODEL_URI_MAPPING = new HashMap<String , String>() {/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+	{
+		put("http://opcfoundation.org/UA/", LIBRARIES_PATHMAP+"Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml");
+	}};
+	
 	private OpcUaLibraryResources() {
 	}
 		

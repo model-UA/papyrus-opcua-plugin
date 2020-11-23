@@ -59,6 +59,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ListOfReferencesImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ListOfRolePermissionsImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.LocalizedTextImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ModelTableEntryImpl;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ModelTableImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.NodeIdAliasImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ReferenceImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.RolePermissionImpl;
@@ -130,7 +131,7 @@ public class UmlToOpcUaTransformer {
 			DynamicEObjectImpl stereotype = (DynamicEObjectImpl) object.getStereotypeApplication(nodeSetType);
 			if(stereotype != null)
 			{
-				return_val=transformUANodeSetType((Model) object, stereotype);
+				return_val=transformUANodeSetType((Model) object);
 				if(return_val)
 				{
 					return_val &= transformModel((Model) object);
@@ -163,7 +164,7 @@ public class UmlToOpcUaTransformer {
 				success &= transformMember(member);
 			}
 		}
-		
+				
 		return success;
 	}
 
@@ -660,15 +661,14 @@ public class UmlToOpcUaTransformer {
 		return success;
 	}
 
-	private boolean transformUANodeSetType(Model object,  DynamicEObjectImpl stereotype) {
-		EList<EStructuralFeature> featuresList = stereotype.eClass().getEAllStructuralFeatures();
+	@SuppressWarnings("unchecked")
+	private boolean transformUANodeSetType(Model object) {
 		
 		Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
 		Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
 		
 		if(this.baseUmlModel.hasValue(nodeSetType, "nameSpaceUris"))
 		{			
-			@SuppressWarnings("unchecked")
 			EcoreEList<DynamicEObjectImpl> nsList = (EcoreEList<DynamicEObjectImpl>) this.baseUmlModel.getValue(nodeSetType, "nameSpaceUris");
 			
 			for(DynamicEObjectImpl nsObject : nsList )
@@ -684,7 +684,6 @@ public class UmlToOpcUaTransformer {
 		
 		if(this.baseUmlModel.hasValue(nodeSetType, "serverUris"))
 		{
-			@SuppressWarnings("unchecked")
 			EcoreEList<String> serverUriList = (EcoreEList<String>) this.baseUmlModel.getValue(nodeSetType, "serverUris");
 			
 			if(this.baseNodeset.getServerUris() == null)
@@ -700,10 +699,40 @@ public class UmlToOpcUaTransformer {
 			}
 		}		
 		
-//		if(object.getValue(nodeSetType, "models") != null)
-//		{
-//				EDataTypeUniqueEList<String> models = (EDataTypeUniqueEList<String>) object.getValue(nodeSetType, "models");
-//		}
+		if(object.hasValue(nodeSetType, "models"))
+		{
+			EList<DynamicEObjectImpl> modelEntriess = (EList<DynamicEObjectImpl>) object.getValue(nodeSetType, "models");
+			
+			if(this.baseNodeset.getModels() == null)
+			{
+				this.baseNodeset.setModels(new ModelTableImpl());
+			}
+			else
+			{
+				this.baseNodeset.getModels().getModel().clear();
+			}
+			
+			EList<ModelTableEntry> models = this.baseNodeset.getModels().getModel();
+			
+			for(DynamicEObjectImpl modelEntry : modelEntriess)
+			{
+				Class baseClass = getStereotypeBaseClass(modelEntry, true);
+				
+				if(!this.matching.containsKey(baseClass))
+				{
+					transformModelTableEntry(baseClass);
+				}
+				ModelTableEntry mte = (ModelTableEntry) this.matching.get(baseClass);
+				models.add(mte);
+			}
+		}
+		else if(this.baseNodeset.getModels() != null)
+		{
+
+			this.baseNodeset.getModels().getModel().clear();
+		}
+
+		
 //		if(object.getValue(nodeSetType, "aliases") != null)
 //		{
 //				EDataTypeUniqueEList<String> aliases = (EDataTypeUniqueEList<String>) object.getValue(nodeSetType, "aliases");
@@ -714,60 +743,53 @@ public class UmlToOpcUaTransformer {
 //			EDataTypeUniqueEList<String> extensions = (EDataTypeUniqueEList<String>) object.getValue(nodeSetType, "extensions");
 //		}
 		
-		
-		for(EStructuralFeature feature : featuresList)
-		{
-			int id = feature.getFeatureID();
-			String name = feature.getName();
-			Object temp = stereotype.dynamicGet(id);
-			
-			if(name.equalsIgnoreCase("models"))
-			{
-				if(temp == null)
-				{
-					continue;
-				}
-			}
-			else if(name.equalsIgnoreCase("aliases"))
-			{
-				if(temp == null)
-				{
-					continue;
-				}
-				
-				DynamicEObjectImpl alias_object = ((DynamicEObjectImpl) temp);
-				EList<EStructuralFeature> featuresList2 = alias_object.eClass().getEAllStructuralFeatures();
-				for(EStructuralFeature feature2 : featuresList2)
-				{
-					int id2 = feature2.getFeatureID();
-					String name2 = feature2.getName();
-					if(name2.equalsIgnoreCase("base_Class"))
-					{
-						Object baseClass = alias_object.dynamicGet(id2);
-						if(this.matching.containsKey(baseClass))
-						{
-							AliasTableImpl aliasTable = (AliasTableImpl) this.matching.get(baseClass);
-							this.baseNodeset.setAliases(aliasTable);
-							break;
-						}
-						else
-						{
-							transformClass((Class) baseClass);
-							AliasTableImpl aliasTable = (AliasTableImpl) this.matching.get(baseClass);
-							this.baseNodeset.setAliases(aliasTable);
-							break;
-						}
-					}
-				}
-			}
-			else if(name.equalsIgnoreCase("extensions"))
-			{
-				if(temp == null)
-				{
-					continue;
-				}
-			}
-		}
+//		
+//		for(EStructuralFeature feature : featuresList)
+//		{
+//			int id = feature.getFeatureID();
+//			String name = feature.getName();
+//			Object temp = stereotype.dynamicGet(id);
+//			
+//			if(name.equalsIgnoreCase("aliases"))
+//			{
+//				if(temp == null)
+//				{
+//					continue;
+//				}
+//				
+//				DynamicEObjectImpl alias_object = ((DynamicEObjectImpl) temp);
+//				EList<EStructuralFeature> featuresList2 = alias_object.eClass().getEAllStructuralFeatures();
+//				for(EStructuralFeature feature2 : featuresList2)
+//				{
+//					int id2 = feature2.getFeatureID();
+//					String name2 = feature2.getName();
+//					if(name2.equalsIgnoreCase("base_Class"))
+//					{
+//						Object baseClass = alias_object.dynamicGet(id2);
+//						if(this.matching.containsKey(baseClass))
+//						{
+//							AliasTableImpl aliasTable = (AliasTableImpl) this.matching.get(baseClass);
+//							this.baseNodeset.setAliases(aliasTable);
+//							break;
+//						}
+//						else
+//						{
+//							transformClass((Class) baseClass);
+//							AliasTableImpl aliasTable = (AliasTableImpl) this.matching.get(baseClass);
+//							this.baseNodeset.setAliases(aliasTable);
+//							break;
+//						}
+//					}
+//				}
+//			}
+//			else if(name.equalsIgnoreCase("extensions"))
+//			{
+//				if(temp == null)
+//				{
+//					continue;
+//				}
+//			}
+//		}
 		
 		return true;
 		
@@ -1420,12 +1442,55 @@ public class UmlToOpcUaTransformer {
 		
 		if(object.hasValue(uaStereotype, "rolePermissions"))
 		{
+			EList<Classifier> classifierList = object.getNestedClassifiers();
+			EcoreEList<DynamicEObjectImpl> rolePermissions = (EcoreEList<DynamicEObjectImpl>) object.getValue(uaStereotype, "rolePermissions");
 			
+			if(mte.getRolePermissions() == null)
+			{
+				mte.setRolePermissions(new ListOfRolePermissionsImpl());
+			}
+			else
+			{
+				mte.getRolePermissions().getRolePermission().clear();
+			}
+
+			for(DynamicEObjectImpl rolePermission : rolePermissions)
+			{
+				Class rolePermissionsClass = getStereotypeBaseClass(rolePermission, true);
+				
+				
+				if(!classifierList.contains(rolePermissionsClass))
+				{
+					classifierList.add(rolePermissionsClass);
+				}
+				
+				
+				if(this.matching.containsKey(rolePermissionsClass))
+				{
+					RolePermission uaRolePermission = (RolePermission) this.matching.get(rolePermissionsClass);
+					mte.getRolePermissions().getRolePermission().add(uaRolePermission);
+				}
+			}
 		}
 		
 		if(object.hasValue(uaStereotype, "requiredModel"))
 		{
-			
+			EList<DynamicEObjectImpl> requiredModelUMLList = (EList<DynamicEObjectImpl>) object.getValue(uaStereotype, "requiredModel");
+			mte.getRequiredModel().clear();
+			for(DynamicEObjectImpl requiredModelUML: requiredModelUMLList)
+			{
+				Class baseClass = getStereotypeBaseClass(requiredModelUML, true);
+				if(!this.matching.containsKey(baseClass))
+				{
+					transformModelTableEntry(baseClass);
+				}
+				ModelTableEntry requiredModelOPCUA = (ModelTableEntry) this.matching.get(baseClass);
+				mte.getRequiredModel().add(requiredModelOPCUA);
+			}
+		}
+		else
+		{
+			mte.getRequiredModel().clear();
 		}
 		
 		if(object.hasValue(uaStereotype, "accessRestrictions"))
@@ -1433,13 +1498,20 @@ public class UmlToOpcUaTransformer {
 			String stringTConvert = String.valueOf(object.getValue(uaStereotype, "modelUri"));
 			short convertedShort = Short.valueOf(stringTConvert);
 			mte.setAccessRestrictions(convertedShort);
-			
+		}
+		else
+		{
+			mte.unsetAccessRestrictions();
 		}
 		
 		if(object.hasValue(uaStereotype, "modelUri"))
 		{
 			String modelUriString = String.valueOf(object.getValue(uaStereotype, "modelUri"));
 			mte.setModelUri(modelUriString);
+		}
+		else
+		{
+			mte.setModelUri("");
 		}
 		
 
@@ -1475,6 +1547,15 @@ public class UmlToOpcUaTransformer {
 				// date time format not supported
 				return false;
 			}
+			
+			if(year < 0 || month < 1 || month > 12 || dayOfMonth <1 || 
+				(month == 2 && dayOfMonth > 29) ||
+				((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && dayOfMonth > 31) ||
+				((month == 4 || month == 6 || month == 9 || month == 11 ) && dayOfMonth > 30))
+			{
+				// Not a valid date
+				return false;
+			}
 						
 			XMLGregorianCalendar pubDate = mte.getPublicationDate();
 			if(pubDate == null)
@@ -1490,12 +1571,21 @@ public class UmlToOpcUaTransformer {
 			pubDate.setMonth(month);
 			pubDate.setDay(dayOfMonth);
 		}
+		else
+		{
+			mte.setPublicationDate(null);
+		}
 		
 		if(object.hasValue(uaStereotype, "version"))
 		{
 			String versionString = String.valueOf(object.getValue(uaStereotype, "version"));
 			mte.setVersion(versionString);
 		}
+		else
+		{
+			mte.setVersion("");
+		}
+		
 		
 		
 		return false;

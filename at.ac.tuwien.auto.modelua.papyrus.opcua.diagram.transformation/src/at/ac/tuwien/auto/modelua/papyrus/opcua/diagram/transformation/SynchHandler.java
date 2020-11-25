@@ -344,5 +344,19 @@ public class SynchHandler {
         IPath workspacePath = root.getLocation();	
 		return workspacePath.toOSString();
 	}
+
+	public boolean initModel(Model model) {
+
+		if(this.modelMapping.containsKey(model))
+		{
+			boolean success = this.modelMapping.get(model).transformMember(model);
+			
+			return success;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 }

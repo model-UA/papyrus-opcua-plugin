@@ -134,9 +134,16 @@ Some additional dependencies are required for building the plugin.
 
 #### Eclipse SDK
 
-If you want to build or debug the plugin yourself you have to install the Eclispe SDK. This can be found in the Eclipse Project repository in the list of update sites.
+If you want to build or debug the plugin yourself you have to install the Eclispe SDK. This can be found in the Eclipse Project repository (e.g. http://download.eclipse.org/eclipse/updates/4.16/)  in the list of update sites.
 Select the following items:
   - Eclipse SDK
+
+#### Maven
+
+The plugin is built for deployment using maven, therefore the maven plugin for eclipse (m2e) can be used. The plugin can be installed from http://download.eclipse.org/technology/m2e/releases . Select the following plugins:
+  - m2e - Maven Integration for Eclipse 
+
+After restarting eclipse open Window->Preferences and go to Maven->Discovery . Click on Open Catalog and install Tycho Configurator. Tycho is a maven plugin which eases the build of eclipse plugins, features and update-sites. If Maven is installed on the host system the plugin can be built executing ```mvn clean install``` inside the root directoy of the repository.
 
 #### Additonal Papyrus depencies
 

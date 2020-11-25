@@ -1976,7 +1976,8 @@ public class OpcUaToUmlTransformer {
 						}
 					}
 					
-					if(!referenceType.hasValue(uaReferenceType, "isHierachical"))
+					if( this.baseUmlModel.equals(uaReferenceType.getModel()) &&
+							!referenceType.hasValue(uaReferenceType, "isHierachical"))
 					{
 						boolean isHierachical = (boolean) uaRefType.getValue(uaReferenceType, "isHierachical");
 						referenceType.setValue(uaReferenceType, "isHierachical", isHierachical);

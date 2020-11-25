@@ -1944,8 +1944,7 @@ public class OpcUaToUmlTransformer {
 	{
 	    
 		if(!referenceType.getName().equalsIgnoreCase("HierarchicalReferences") &&
-		   !referenceType.getName().equalsIgnoreCase("References		String test =\"asdfasf\";\n" + 
-		   		"		EList<Generalization> aas = uaElement.getGeneralizations();"))
+		   !referenceType.getName().equalsIgnoreCase("References"))
 		{
 			for(Generalization reference : referenceType.getGeneralizations() )
 			{

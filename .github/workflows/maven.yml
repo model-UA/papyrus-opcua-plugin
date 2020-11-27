@@ -6,7 +6,8 @@ name: CI Maven Build
 on:
   pull_request:
     branches: 
-      - "*" 
+      - "feature/*"
+      - "bugfix/*" 
 
 jobs:
   linux-build:

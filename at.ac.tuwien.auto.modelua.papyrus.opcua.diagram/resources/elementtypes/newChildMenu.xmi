@@ -71,8 +71,35 @@
   </menu>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="Reference"
-      visible="false"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter"
+        operator="or">
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.60"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.55"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.35"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.58"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.61"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.52"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.59"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.57"/>
+    </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.Reference"/>
@@ -81,7 +108,8 @@
       label="RolePermission"
       displayAllRoles="false">
     <filter
-        xsi:type="filters:CompoundFilter">
+        xsi:type="filters:CompoundFilter"
+        operator="or">
       <filter
           xsi:type="assistant:ElementTypeFilter"
           href="../assitants/UANodeSet.assistants#//@ownedFilter.60"/>

@@ -2102,7 +2102,6 @@ public class OpcUaToUmlTransformer {
 		Stereotype uaReference  = nodeSetProfile.getOwnedStereotype("Reference");
 		Class uaElement = (Class) this.nodeIdMap.get(referenceType.getNodeId());
 
-		boolean isSubtype = false;
 		
 		if(uaElement.getName().equalsIgnoreCase("HierarchicalReferences"))
 		{
@@ -2113,7 +2112,6 @@ public class OpcUaToUmlTransformer {
 			uaElement.setValue(uaReferenceType, "isHierachical", false);
 			// Reference for References ReferenceType is not set at this point.
 			// Nonetheless it exists
-			isSubtype = true;
 		}
 		
 		for(Generalization reference : uaElement.getGeneralizations())
@@ -2136,10 +2134,7 @@ public class OpcUaToUmlTransformer {
 			{
 				continue;
 			}
-			
-			// each ReferenceType shall be a subtype of another type
-			isSubtype = true;
-			
+						
 			for(Element target :reference.getTargets())
 			{
 				Class uaRefType = (Class)target;
@@ -2179,7 +2174,7 @@ public class OpcUaToUmlTransformer {
 			}
 		}
 		
-		return isSubtype;
+		return true;
 	}
 	
 	private boolean handleHierachicalTypes(Class referenceType, Stereotype uaReferenceType, Stereotype uaReference)
@@ -2281,11 +2276,13 @@ public class OpcUaToUmlTransformer {
 		}
 		
 		boolean success = true;
-		
-		for(Reference ref: node.getReferences().getReference())
+		if(node.getReferences() != null)
 		{
-			
-			success &= transformNodeReference(uaElement, ref);
+			for(Reference ref: node.getReferences().getReference())
+			{
+				
+				success &= transformNodeReference(uaElement, ref);
+			}
 		}
 		
 		return success;
@@ -2428,6 +2425,7 @@ public class OpcUaToUmlTransformer {
 		Stereotype uaInstance = getMatchingStereotype(var);
 		
 		Object dataTypeObject = getUmlNodeReference(var.getDataType());
+		
 		boolean success = true;
 		
 		if(dataTypeObject == null)

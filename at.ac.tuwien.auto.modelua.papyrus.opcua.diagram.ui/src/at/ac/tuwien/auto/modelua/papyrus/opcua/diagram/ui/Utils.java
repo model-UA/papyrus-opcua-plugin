@@ -38,7 +38,7 @@ public class Utils {
 			return null;
 		}
 		URI uriWithoutExtension = modelSetSelection.getURIWithoutExtension();
-		return uriWithoutExtension;
+		return uriWithoutExtension.appendFileExtension("uml");
 	}
 	
 	public static void openSuccessDialog(Shell shell, String title, String text)

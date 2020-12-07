@@ -162,12 +162,8 @@
     </ownedFilter>
   </popupAssistant>
   <connectionAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.Reference" sourceFilter="//@connectionAssistant.0/@ownedSourceFilter" targetFilter="//@connectionAssistant.0/@ownedTargetFilter">
-    <ownedSourceFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@connectionAssistant.0/@ownedSourceFilter/@ownedFilter.0">
-      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.38 //@ownedFilter.39 //@ownedFilter.4 //@ownedFilter.40 //@ownedFilter.5 //@ownedFilter.41 //@ownedFilter.42 //@ownedFilter.8 //@ownedFilter.43 //@ownedFilter.44 //@ownedFilter.11 //@ownedFilter.45 //@ownedFilter.46 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.47 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.48 //@ownedFilter.23 //@ownedFilter.49 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.50 //@ownedFilter.51" operator="or"/>
-    </ownedSourceFilter>
-    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@connectionAssistant.0/@ownedTargetFilter/@ownedFilter.0">
-      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.38 //@ownedFilter.39 //@ownedFilter.4 //@ownedFilter.40 //@ownedFilter.5 //@ownedFilter.41 //@ownedFilter.42 //@ownedFilter.8 //@ownedFilter.43 //@ownedFilter.44 //@ownedFilter.11 //@ownedFilter.45 //@ownedFilter.46 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.47 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.48 //@ownedFilter.23 //@ownedFilter.49 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.50 //@ownedFilter.51" operator="or"/>
-    </ownedTargetFilter>
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" name="source UANode" filter="//@ownedFilter.60 //@ownedFilter.36 //@ownedFilter.55 //@ownedFilter.35 //@ownedFilter.58 //@ownedFilter.61 //@ownedFilter.52 //@ownedFilter.59 //@ownedFilter.57" operator="or"/>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" name="destination UANode" filter="//@ownedFilter.60 //@ownedFilter.36 //@ownedFilter.55 //@ownedFilter.35 //@ownedFilter.58 //@ownedFilter.61 //@ownedFilter.52 //@ownedFilter.59 //@ownedFilter.57"/>
   </connectionAssistant>
   <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeDefinition</elementTypeID>
   <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeField</elementTypeID>

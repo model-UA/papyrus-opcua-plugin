@@ -24,7 +24,7 @@
         xsi:type="filters:CompoundFilter">
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.60"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.60"/>
     </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -37,7 +37,7 @@
         xsi:type="filters:CompoundFilter">
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.0"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.0"/>
     </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -50,7 +50,7 @@
         xsi:type="filters:CompoundFilter">
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.31"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.31"/>
     </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -63,7 +63,7 @@
         xsi:type="filters:CompoundFilter">
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.31"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.31"/>
     </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -77,28 +77,28 @@
         operator="or">
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.60"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.60"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.55"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.55"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.35"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.35"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.58"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.58"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.61"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.61"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.52"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.52"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.59"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.59"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.57"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.57"/>
     </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -112,31 +112,31 @@
         operator="or">
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.60"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.60"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.36"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.36"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.55"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.55"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.35"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.35"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.58"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.58"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.61"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.61"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.52"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.52"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.59"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.59"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.57"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.57"/>
     </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -149,7 +149,7 @@
         xsi:type="filters:CompoundFilter">
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.53"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.53"/>
     </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -162,7 +162,7 @@
         xsi:type="filters:CompoundFilter">
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.52"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.52"/>
     </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -177,34 +177,34 @@
         operator="or">
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.62"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.62"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.60"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.60"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.36"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.36"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.55"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.55"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.35"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.35"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.58"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.58"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.61"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.61"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.52"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.52"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.59"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.59"/>
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.57"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.57"/>
     </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -235,7 +235,7 @@
         xsi:type="filters:CompoundFilter">
       <filter
           xsi:type="assistant:ElementTypeFilter"
-          href="../assitants/UANodeSet.assistants#//@ownedFilter.55"/>
+          href="../assistants/UANodeSet.assistants#//@ownedFilter.55"/>
     </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"

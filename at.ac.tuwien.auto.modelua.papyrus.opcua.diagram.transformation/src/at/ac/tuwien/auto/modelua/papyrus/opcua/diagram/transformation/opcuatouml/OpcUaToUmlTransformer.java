@@ -56,6 +56,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariableType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAView;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UriTable;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ModelTableImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.RolePermissionImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UADataTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAMethodImpl;
@@ -571,6 +572,10 @@ public class OpcUaToUmlTransformer {
 		}
 				
 		// has to be added this way, otherwise ConcurrentModificationException
+		if(this.baseNodeset.getModels() == null)
+		{
+			this.baseNodeset.setModels(new ModelTableImpl());
+		}
 		this.baseNodeset.getModels().getModel().addAll(mtesToAdd);
 		
 		return success;
@@ -2105,11 +2110,11 @@ public class OpcUaToUmlTransformer {
 		
 		if(uaElement.getName().equalsIgnoreCase("HierarchicalReferences"))
 		{
-			uaElement.setValue(uaReferenceType, "isHierachical", true);
+			uaElement.setValue(uaReferenceType, "isHierarchical", true);
 		}
 		else if(uaElement.getName().equalsIgnoreCase("References"))
 		{
-			uaElement.setValue(uaReferenceType, "isHierachical", false);
+			uaElement.setValue(uaReferenceType, "isHierarchical", false);
 			// Reference for References ReferenceType is not set at this point.
 			// Nonetheless it exists
 		}
@@ -2138,8 +2143,8 @@ public class OpcUaToUmlTransformer {
 			for(Element target :reference.getTargets())
 			{
 				Class uaRefType = (Class)target;
-				if(!uaRefType.hasValue(uaReferenceType, "isHierachical") &&
-				   !uaElement.hasValue(uaReferenceType, "isHierachical"))
+				if(!uaRefType.hasValue(uaReferenceType, "isHierarchical") &&
+				   !uaElement.hasValue(uaReferenceType, "isHierarchical"))
 				{
 					handleHierachicalTypes(uaRefType,uaReferenceType, uaReference);
 				}
@@ -2166,10 +2171,10 @@ public class OpcUaToUmlTransformer {
 					}
 				}	
 				
-				if(!uaElement.hasValue(uaReferenceType, "isHierachical"))
+				if(!uaElement.hasValue(uaReferenceType, "isHierarchical"))
 				{
-					boolean isHierachical = (boolean) uaRefType.getValue(uaReferenceType, "isHierachical");
-					uaElement.setValue(uaReferenceType, "isHierachical", isHierachical);
+					boolean isHierarchical = (boolean) uaRefType.getValue(uaReferenceType, "isHierarchical");
+					uaElement.setValue(uaReferenceType, "isHierarchical", isHierarchical);
 				}
 			}
 		}
@@ -2181,16 +2186,15 @@ public class OpcUaToUmlTransformer {
 	{
 	    
 		if(!referenceType.getName().equalsIgnoreCase("HierarchicalReferences") &&
-		   !referenceType.getName().equalsIgnoreCase("References		String test =\"asdfasf\";\n" + 
-		   		"		EList<Generalization> aas = uaElement.getGeneralizations();"))
+		   !referenceType.getName().equalsIgnoreCase("References"))
 		{
 			for(Generalization reference : referenceType.getGeneralizations() )
 			{
 				for(Element target :reference.getTargets())
 				{
 					Class uaRefType = (Class)target;
-					if(!uaRefType.hasValue(uaReferenceType, "isHierachical") &&
-					   !referenceType.hasValue(uaReferenceType, "isHierachical"))
+					if(!uaRefType.hasValue(uaReferenceType, "isHierarchical") &&
+					   !referenceType.hasValue(uaReferenceType, "isHierarchical"))
 					{
 						handleHierachicalTypes(uaRefType,uaReferenceType,uaReference);
 					}
@@ -2213,10 +2217,10 @@ public class OpcUaToUmlTransformer {
 						}
 					}
 					
-					if(!referenceType.hasValue(uaReferenceType, "isHierachical"))
+					if(!referenceType.hasValue(uaReferenceType, "isHierarchical"))
 					{
-						boolean isHierachical = (boolean) uaRefType.getValue(uaReferenceType, "isHierachical");
-						referenceType.setValue(uaReferenceType, "isHierachical", isHierachical);
+						boolean isHierarchical = (boolean) uaRefType.getValue(uaReferenceType, "isHierarchical");
+						referenceType.setValue(uaReferenceType, "isHierarchical", isHierarchical);
 					}
 				}
 			}
@@ -2326,13 +2330,13 @@ public class OpcUaToUmlTransformer {
 		Class uaReferenceType = getUmlNode(ref.getReferenceType());
 		Stereotype uaReferenceTypeStereoType  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
 		
-		boolean isHierachicalReference = (boolean) uaReferenceType.getValue(uaReferenceTypeStereoType, "isHierachical");
+		boolean isHierarchicalReference = (boolean) uaReferenceType.getValue(uaReferenceTypeStereoType, "isHierarchical");
 		
 		reference.setValue(uaReference,"referenceType_symmetric", uaReferenceType.getValue(uaReferenceTypeStereoType, "symmetric"));
 		reference.setValue(uaReference,"referenceType_browseName", uaReferenceType.getValue(uaReferenceTypeStereoType, "browseName"));
-		reference.setValue(uaReference,"referenceType_isHierachical", isHierachicalReference);
+		reference.setValue(uaReference,"referenceType_isHierarchical", isHierarchicalReference);
 
-		if(isHierachicalReference && uaElement.getModel().equals(refValue.getModel()) && 
+		if(isHierarchicalReference && uaElement.getModel().equals(refValue.getModel()) && 
 				uaElement.getNearestPackage().equals(refValue.getNearestPackage()))
 		{	
 			if(ref.isIsForward())

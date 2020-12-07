@@ -6,10 +6,13 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.mapping.ecore2xml.Ecore2XMLPackage;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
@@ -20,6 +23,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.resources.ResourcesPlugin;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.OpcUaDiagramResources;
 
@@ -31,17 +35,22 @@ public class ModelCreator {
 	public static Model createEmptyTestModel()
 	{
 		UMLResourcesUtil.initGlobalRegistries();	
-		Model umlTestModel = UMLFactory.eINSTANCE.createModel();
 		
-		ResourceSet owner_resource = new ResourceSetImpl();
-		UMLResourcesUtil.init(owner_resource);
-		Map<URI,URI> uriMap = owner_resource.getURIConverter().getURIMap();
-		owner_resource.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-		owner_resource.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
-		owner_resource.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
-		owner_resource.getPackageRegistry().put(UMLPackage.eCONTENT_TYPE, UMLPackage.eINSTANCE);
-		owner_resource.getPackageRegistry().put(UMLPackage.eNAME, UMLPackage.eINSTANCE);
-		owner_resource.getPackageRegistry().put(UMLPackage.eNS_PREFIX, UMLPackage.eINSTANCE);
+		
+		ResourceSet rset = new ResourceSetImpl();
+		UMLResourcesUtil.init(rset);
+		
+		rset.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
+		
+		Map<URI,URI> uriMap = rset.getURIConverter().getURIMap();
+		rset.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+		rset.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+		rset.getPackageRegistry().put(UMLPackage.eCONTENT_TYPE, UMLPackage.eINSTANCE);
+		rset.getPackageRegistry().put(UMLPackage.eNAME, UMLPackage.eINSTANCE);
+		rset.getPackageRegistry().put(UMLPackage.eNS_PREFIX, UMLPackage.eINSTANCE);
+		
+		EPackage.Registry.INSTANCE.put(UMLPackage.eNS_URI,EPackage.Registry.INSTANCE.get(UMLPackage.eINSTANCE.getNsURI()));
+		Ecore2XMLPackage.eINSTANCE.getEClassifiers();
 		
 		// override wrong pathmap mapping in UMLResourcesUtil
 		final URL UMLJarredFileLocation = ResourcesPlugin.class.getResource("ResourcesPlugin.class");
@@ -54,9 +63,13 @@ public class ModelCreator {
 		
 		uriMap.put(URI.createURI("pathmap://OPC_UA_PROFILES/UANodeSet.profile.uml"), URI.createURI(UML_PROFILE_PATH));
 		
+		Resource res = rset.createResource(URI.createURI("./model.uml"));
 		
-		initializeNodeSet(umlTestModel, owner_resource);
-		loadBaseNodeSet(umlTestModel, owner_resource);
+		Model umlTestModel = UMLFactory.eINSTANCE.createModel();
+	
+		res.getContents().add(umlTestModel);
+		initializeNodeSet(umlTestModel, rset);
+		loadBaseNodeSet(umlTestModel, rset);
 		
 		umlTestModel.setViewpoint(OpcUaDiagramResources.DIAGRAM_VIEWPOINT);
 		
@@ -66,9 +79,20 @@ public class ModelCreator {
 	private static void initializeNodeSet(Model model, ResourceSet owner_resource)
 	{
 //		URI uri_path = URI.createURI(UML_PROFILE_PATH);
-		Resource resource = owner_resource.getResource(URI.createURI(UML_PROFILE_PATH), true);
-		Profile basetypesProfile = (Profile) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PACKAGE);				
 		
+		Resource resourceEcore = owner_resource.getResource(URI.createURI(UMLResource.PROFILES_PATHMAP+"Ecore.profile.uml"), true);
+		
+		Profile ecoreProfile= (Profile) EcoreUtil.getObjectByType(resourceEcore.getContents(), UMLPackage.Literals.PROFILE);		
+		ecoreProfile.define();
+		Resource resource = owner_resource.getResource(URI.createURI(UML_PROFILE_PATH), true);
+//		Profile basetypesProfile = (Profile) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PACKAGE);				
+		
+		resource.getContents().add(ecoreProfile);
+		Profile basetypesProfile = (Profile) UMLUtil.load(owner_resource,
+				URI.createURI(UML_PROFILE_PATH),
+				UMLPackage.Literals.PROFILE);
+
+		basetypesProfile.define();
 //		Profile basetypesProfile = (Profile) PackageUtil.loadPackage(uri_path, owner_resource);
 		if (basetypesProfile != null) {
 			PackageUtil.applyProfile(model, basetypesProfile, true);

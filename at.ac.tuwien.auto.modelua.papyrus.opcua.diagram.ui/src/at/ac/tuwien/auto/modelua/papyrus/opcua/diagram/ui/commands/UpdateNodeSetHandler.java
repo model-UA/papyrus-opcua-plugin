@@ -25,7 +25,7 @@ public class UpdateNodeSetHandler extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// has to done before opening the file dialog otherwise the handle will be lost
-		URI uriWithoutExtension = Utils.getModelPath(event);
+		URI uri = Utils.getModelPath(event);
 		
 		if(OpcUaDiagramTransformationResources.DIAGRAM_SYNCH_HANDLER == null)
 		{
@@ -34,7 +34,7 @@ public class UpdateNodeSetHandler extends AbstractHandler {
 		
 		SynchHandler handler = OpcUaDiagramTransformationResources.DIAGRAM_SYNCH_HANDLER;
 		
-		if(handler.modelIsRegistered(uriWithoutExtension))
+		if(handler.modelIsRegistered(uri))
 		{			
 			Shell shell = Utils.getShell(event);
 			
@@ -45,13 +45,13 @@ public class UpdateNodeSetHandler extends AbstractHandler {
 				defaultPath = Utils.getWorkspacePath();
 			}
 			
-			String filepath = Utils.openFileDialoag(shell, FILEDIALOG_TITLE, false, defaultPath, FILEDIALOG_EXTENSIONS, uriWithoutExtension.lastSegment());
+			String filepath = Utils.openFileDialoag(shell, FILEDIALOG_TITLE, false, defaultPath, FILEDIALOG_EXTENSIONS, uri.lastSegment());
 			if(filepath == null)
 			{
 				return null;
 			}
 			
-			boolean success = handler.updateNodeSetFrom(uriWithoutExtension, filepath);
+			boolean success = handler.updateNodeSetFrom(uri, filepath);
 			
 			if(success)
 			{				

@@ -56,6 +56,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariable;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAVariableType;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UAView;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.UriTable;
+import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.ModelTableImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.RolePermissionImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UADataTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAMethodImpl;
@@ -571,6 +572,10 @@ public class OpcUaToUmlTransformer {
 		}
 				
 		// has to be added this way, otherwise ConcurrentModificationException
+		if(this.baseNodeset.getModels() == null)
+		{
+			this.baseNodeset.setModels(new ModelTableImpl());
+		}
 		this.baseNodeset.getModels().getModel().addAll(mtesToAdd);
 		
 		return success;
@@ -2102,18 +2107,16 @@ public class OpcUaToUmlTransformer {
 		Stereotype uaReference  = nodeSetProfile.getOwnedStereotype("Reference");
 		Class uaElement = (Class) this.nodeIdMap.get(referenceType.getNodeId());
 
-		boolean isSubtype = false;
 		
 		if(uaElement.getName().equalsIgnoreCase("HierarchicalReferences"))
 		{
-			uaElement.setValue(uaReferenceType, "isHierachical", true);
+			uaElement.setValue(uaReferenceType, "isHierarchical", true);
 		}
 		else if(uaElement.getName().equalsIgnoreCase("References"))
 		{
-			uaElement.setValue(uaReferenceType, "isHierachical", false);
+			uaElement.setValue(uaReferenceType, "isHierarchical", false);
 			// Reference for References ReferenceType is not set at this point.
 			// Nonetheless it exists
-			isSubtype = true;
 		}
 		
 		for(Generalization reference : uaElement.getGeneralizations())
@@ -2136,15 +2139,12 @@ public class OpcUaToUmlTransformer {
 			{
 				continue;
 			}
-			
-			// each ReferenceType shall be a subtype of another type
-			isSubtype = true;
-			
+						
 			for(Element target :reference.getTargets())
 			{
 				Class uaRefType = (Class)target;
-				if(!uaRefType.hasValue(uaReferenceType, "isHierachical") &&
-				   !uaElement.hasValue(uaReferenceType, "isHierachical"))
+				if(!uaRefType.hasValue(uaReferenceType, "isHierarchical") &&
+				   !uaElement.hasValue(uaReferenceType, "isHierarchical"))
 				{
 					handleHierachicalTypes(uaRefType,uaReferenceType, uaReference);
 				}
@@ -2171,15 +2171,15 @@ public class OpcUaToUmlTransformer {
 					}
 				}	
 				
-				if(!uaElement.hasValue(uaReferenceType, "isHierachical"))
+				if(!uaElement.hasValue(uaReferenceType, "isHierarchical"))
 				{
-					boolean isHierachical = (boolean) uaRefType.getValue(uaReferenceType, "isHierachical");
-					uaElement.setValue(uaReferenceType, "isHierachical", isHierachical);
+					boolean isHierarchical = (boolean) uaRefType.getValue(uaReferenceType, "isHierarchical");
+					uaElement.setValue(uaReferenceType, "isHierarchical", isHierarchical);
 				}
 			}
 		}
 		
-		return isSubtype;
+		return true;
 	}
 	
 	private boolean handleHierachicalTypes(Class referenceType, Stereotype uaReferenceType, Stereotype uaReference)
@@ -2193,8 +2193,8 @@ public class OpcUaToUmlTransformer {
 				for(Element target :reference.getTargets())
 				{
 					Class uaRefType = (Class)target;
-					if(!uaRefType.hasValue(uaReferenceType, "isHierachical") &&
-					   !referenceType.hasValue(uaReferenceType, "isHierachical"))
+					if(!uaRefType.hasValue(uaReferenceType, "isHierarchical") &&
+					   !referenceType.hasValue(uaReferenceType, "isHierarchical"))
 					{
 						handleHierachicalTypes(uaRefType,uaReferenceType,uaReference);
 					}
@@ -2220,8 +2220,8 @@ public class OpcUaToUmlTransformer {
 					if( this.baseUmlModel.equals(uaReferenceType.getModel()) &&
 							!referenceType.hasValue(uaReferenceType, "isHierachical"))
 					{
-						boolean isHierachical = (boolean) uaRefType.getValue(uaReferenceType, "isHierachical");
-						referenceType.setValue(uaReferenceType, "isHierachical", isHierachical);
+						boolean isHierarchical = (boolean) uaRefType.getValue(uaReferenceType, "isHierarchical");
+						referenceType.setValue(uaReferenceType, "isHierarchical", isHierarchical);
 					}
 				}
 			}
@@ -2281,11 +2281,13 @@ public class OpcUaToUmlTransformer {
 		}
 		
 		boolean success = true;
-		
-		for(Reference ref: node.getReferences().getReference())
+		if(node.getReferences() != null)
 		{
-			
-			success &= transformNodeReference(uaElement, ref);
+			for(Reference ref: node.getReferences().getReference())
+			{
+				
+				success &= transformNodeReference(uaElement, ref);
+			}
 		}
 		
 		return success;
@@ -2329,13 +2331,13 @@ public class OpcUaToUmlTransformer {
 		Class uaReferenceType = getUmlNode(ref.getReferenceType());
 		Stereotype uaReferenceTypeStereoType  = nodeSetProfile.getOwnedStereotype("UAReferenceType");
 		
-		boolean isHierachicalReference = (boolean) uaReferenceType.getValue(uaReferenceTypeStereoType, "isHierachical");
+		boolean isHierarchicalReference = (boolean) uaReferenceType.getValue(uaReferenceTypeStereoType, "isHierarchical");
 		
 		reference.setValue(uaReference,"referenceType_symmetric", uaReferenceType.getValue(uaReferenceTypeStereoType, "symmetric"));
 		reference.setValue(uaReference,"referenceType_browseName", uaReferenceType.getValue(uaReferenceTypeStereoType, "browseName"));
-		reference.setValue(uaReference,"referenceType_isHierachical", isHierachicalReference);
+		reference.setValue(uaReference,"referenceType_isHierarchical", isHierarchicalReference);
 
-		if(isHierachicalReference && uaElement.getModel().equals(refValue.getModel()) && 
+		if(isHierarchicalReference && uaElement.getModel().equals(refValue.getModel()) && 
 				uaElement.getNearestPackage().equals(refValue.getNearestPackage()))
 		{	
 			if(ref.isIsForward())
@@ -2428,6 +2430,7 @@ public class OpcUaToUmlTransformer {
 		Stereotype uaInstance = getMatchingStereotype(var);
 		
 		Object dataTypeObject = getUmlNodeReference(var.getDataType());
+		
 		boolean success = true;
 		
 		if(dataTypeObject == null)
@@ -2491,7 +2494,7 @@ public class OpcUaToUmlTransformer {
 				Package defaultNs = null;
 				for(Package pack : imports)
 				{
-					if(pack.getName().equalsIgnoreCase("Opc.Ua.NodeSet2"))
+					if(pack.getName() != null && pack.getName().equalsIgnoreCase("Opc.Ua.NodeSet2"))
 					{
 						defaultNs = pack;
 						break;
@@ -2549,42 +2552,42 @@ public class OpcUaToUmlTransformer {
 				if(clsElement.isStereotypeApplied(uaReferenceType))
 				{
 					nodeId = (String) clsElement.getValue(uaReferenceType, "nodeId");
-					this.matching.put(uaObject, new  UAReferenceTypeImpl());
+					this.matching.put(clsElement, new  UAReferenceTypeImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaDataType))
 				{
 					nodeId = (String) clsElement.getValue(uaDataType, "nodeId");
-					this.matching.put(uaObject, new  UADataTypeImpl());
+					this.matching.put(clsElement, new  UADataTypeImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaVariableType))
 				{
 					nodeId = (String) clsElement.getValue(uaVariableType, "nodeId");
-					this.matching.put(uaObject, new  UAVariableTypeImpl());
+					this.matching.put(clsElement, new  UAVariableTypeImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaObjectType))
 				{
 					nodeId = (String) clsElement.getValue(uaObjectType, "nodeId");
-					this.matching.put(uaObject, new  UAObjectTypeImpl());
+					this.matching.put(clsElement, new  UAObjectTypeImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaView))
 				{
 					nodeId = (String) clsElement.getValue(uaView, "nodeId");
-					this.matching.put(uaObject, new  UAViewImpl());
+					this.matching.put(clsElement, new  UAViewImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaMethod))
 				{
 					nodeId = (String) clsElement.getValue(uaMethod, "nodeId");
-					this.matching.put(uaObject, new  UAMethodImpl());
+					this.matching.put(clsElement, new  UAMethodImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaVariable))
 				{
 					nodeId = (String) clsElement.getValue(uaVariable, "nodeId");
-					this.matching.put(uaObject, new  UAVariableImpl());
+					this.matching.put(clsElement, new  UAVariableImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaObject))
 				{
 					nodeId = (String) clsElement.getValue(uaObject, "nodeId");
-					this.matching.put(uaObject, new  UAObjectImpl());
+					this.matching.put(clsElement, new  UAObjectImpl());
 				}
 				else
 				{
@@ -2599,7 +2602,7 @@ public class OpcUaToUmlTransformer {
 				catch (Exception e) {
 					nodeId = namespacePrefix + "s="+nodeId;
 				}
-				
+
 				this.nodeIdMap.put(nodeId, clsElement);
 			}
 		}

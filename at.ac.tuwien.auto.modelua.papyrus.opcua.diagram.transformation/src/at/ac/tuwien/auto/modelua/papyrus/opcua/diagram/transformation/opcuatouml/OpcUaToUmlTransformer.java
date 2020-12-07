@@ -2491,7 +2491,7 @@ public class OpcUaToUmlTransformer {
 				Package defaultNs = null;
 				for(Package pack : imports)
 				{
-					if(pack.getName().equalsIgnoreCase("Opc.Ua.NodeSet2"))
+					if(pack.getName() != null && pack.getName().equalsIgnoreCase("Opc.Ua.NodeSet2"))
 					{
 						defaultNs = pack;
 						break;

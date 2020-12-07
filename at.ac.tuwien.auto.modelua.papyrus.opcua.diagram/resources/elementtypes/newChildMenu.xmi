@@ -4,6 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ElementCreationMenuModel="http://www.eclipse.org/papyrus/infra/newchild/elementcreationmenumodel"
+    xmlns:assistant="http://www.eclipse.org/Papyrus/2014/diagram/assistant"
     xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
     xmlns:filters="http://www.eclipse.org/Papyrus/2014/common/filters"
     xmlns:umlfilters="http://www.eclipse.org/Papyrus/2014/uml/filters"
@@ -19,6 +20,12 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="DataTypeDefinition"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter">
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.60"/>
+    </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeDefinition"/>
@@ -26,6 +33,12 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="DataTypeField"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter">
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.0"/>
+    </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeField"/>
@@ -33,6 +46,12 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="ModelTableEntry"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter">
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.31"/>
+    </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.ModelTableEntry"/>
@@ -40,12 +59,19 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="NameSpace"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter">
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.31"/>
+    </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.NameSpace"/>
   </menu>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="Reference"
+      visible="false"
       displayAllRoles="false">
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -54,6 +80,36 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="RolePermission"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter">
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.60"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.36"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.55"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.35"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.58"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.61"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.52"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.59"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.57"/>
+    </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.RolePermission"/>
@@ -61,6 +117,12 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="StructureTranslationType"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter">
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.53"/>
+    </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.StructureTranslationType"/>
@@ -68,6 +130,12 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="TranslationType"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter">
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.52"/>
+    </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.TranslationType"/>
@@ -75,12 +143,48 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="UADataType"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter"
+        name="UANode or Namespace"
+        operator="or">
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.62"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.60"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.36"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.55"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.35"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.58"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.61"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.52"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.59"/>
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.57"/>
+    </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UADataType"/>
   </menu>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="UAInstance"
+      visible="false"
       displayAllRoles="false">
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -89,6 +193,9 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="UAMethod"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter"
+        filter="//@menu.8/@filter"/>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAMethod"/>
@@ -96,12 +203,19 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="UAMethodArgument"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter">
+      <filter
+          xsi:type="assistant:ElementTypeFilter"
+          href="../assitants/UANodeSet.assistants#//@ownedFilter.55"/>
+    </filter>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAMethodArgument"/>
   </menu>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="UANodeSetType"
+      visible="false"
       displayAllRoles="false">
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -110,6 +224,9 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="UAObject"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter"
+        filter="//@menu.8/@filter"/>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAObject"/>
@@ -117,6 +234,9 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="UAObjectType"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter"
+        filter="//@menu.8/@filter"/>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAObjectType"/>
@@ -124,6 +244,9 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="UAReferenceType"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter"
+        filter="//@menu.8/@filter"/>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAReferenceType"/>
@@ -131,6 +254,9 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="UAVariable"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter"
+        filter="//@menu.8/@filter"/>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAVariable"/>
@@ -138,6 +264,9 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="UAVariableType"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter"
+        filter="//@menu.8/@filter"/>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAVariableType"/>
@@ -145,12 +274,16 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="UAView"
       displayAllRoles="false">
+    <filter
+        xsi:type="filters:CompoundFilter"
+        filter="//@menu.8/@filter"/>
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
         href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAView"/>
   </menu>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="UriTable"
+      visible="false"
       displayAllRoles="false">
     <elementType
         xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"

@@ -2547,42 +2547,42 @@ public class OpcUaToUmlTransformer {
 				if(clsElement.isStereotypeApplied(uaReferenceType))
 				{
 					nodeId = (String) clsElement.getValue(uaReferenceType, "nodeId");
-					this.matching.put(uaObject, new  UAReferenceTypeImpl());
+					this.matching.put(clsElement, new  UAReferenceTypeImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaDataType))
 				{
 					nodeId = (String) clsElement.getValue(uaDataType, "nodeId");
-					this.matching.put(uaObject, new  UADataTypeImpl());
+					this.matching.put(clsElement, new  UADataTypeImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaVariableType))
 				{
 					nodeId = (String) clsElement.getValue(uaVariableType, "nodeId");
-					this.matching.put(uaObject, new  UAVariableTypeImpl());
+					this.matching.put(clsElement, new  UAVariableTypeImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaObjectType))
 				{
 					nodeId = (String) clsElement.getValue(uaObjectType, "nodeId");
-					this.matching.put(uaObject, new  UAObjectTypeImpl());
+					this.matching.put(clsElement, new  UAObjectTypeImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaView))
 				{
 					nodeId = (String) clsElement.getValue(uaView, "nodeId");
-					this.matching.put(uaObject, new  UAViewImpl());
+					this.matching.put(clsElement, new  UAViewImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaMethod))
 				{
 					nodeId = (String) clsElement.getValue(uaMethod, "nodeId");
-					this.matching.put(uaObject, new  UAMethodImpl());
+					this.matching.put(clsElement, new  UAMethodImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaVariable))
 				{
 					nodeId = (String) clsElement.getValue(uaVariable, "nodeId");
-					this.matching.put(uaObject, new  UAVariableImpl());
+					this.matching.put(clsElement, new  UAVariableImpl());
 				}
 				else if(clsElement.isStereotypeApplied(uaObject))
 				{
 					nodeId = (String) clsElement.getValue(uaObject, "nodeId");
-					this.matching.put(uaObject, new  UAObjectImpl());
+					this.matching.put(clsElement, new  UAObjectImpl());
 				}
 				else
 				{
@@ -2597,7 +2597,7 @@ public class OpcUaToUmlTransformer {
 				catch (Exception e) {
 					nodeId = namespacePrefix + "s="+nodeId;
 				}
-				
+
 				this.nodeIdMap.put(nodeId, clsElement);
 			}
 		}

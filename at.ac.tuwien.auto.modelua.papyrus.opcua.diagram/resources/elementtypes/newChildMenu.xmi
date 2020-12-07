@@ -1,63 +1,159 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ElementCreationMenuModel:Folder xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ElementCreationMenuModel="http://www.eclipse.org/papyrus/infra/newchild/elementcreationmenumodel" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" label="NodeSet">
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="DataTypeDefinition">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeDefinition"/>
+<ElementCreationMenuModel:Folder
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ElementCreationMenuModel="http://www.eclipse.org/papyrus/infra/newchild/elementcreationmenumodel"
+    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
+    xmlns:filters="http://www.eclipse.org/Papyrus/2014/common/filters"
+    xmlns:umlfilters="http://www.eclipse.org/Papyrus/2014/uml/filters"
+    label="NodeSet">
+  <filter xsi:type="filters:CompoundFilter"
+      filter="//@filter/@ownedFilter.0">
+    <ownedFilter
+        xsi:type="umlfilters:ProfileApplied"
+        name="isOpcUaProfileApplied"
+        profileQualifiedName="NodeSet"
+        profileURI="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.profile/resources/profile/UANodeSet.profile.uml#_4NQh8M2DEeq3ytc5nEBEpg"/>
+  </filter>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="DataTypeDefinition"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeDefinition"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="DataTypeField">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeField"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="DataTypeField"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeField"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="ModelTableEntry">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.ModelTableEntry"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="ModelTableEntry"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.ModelTableEntry"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="NameSpace">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.NameSpace"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="NameSpace"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.NameSpace"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="Reference">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.Reference"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="Reference"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.Reference"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="RolePermission">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.RolePermission"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="RolePermission"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.RolePermission"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="StructureTranslationType">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.StructureTranslationType"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="StructureTranslationType"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.StructureTranslationType"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="TranslationType">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.TranslationType"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="TranslationType"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.TranslationType"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="UADataType">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UADataType"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="UADataType"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UADataType"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="UAInstance">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAInstance"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="UAInstance"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAInstance"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="UAMethod">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAMethod"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="UAMethod"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAMethod"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="UAMethodArgument">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAMethodArgument"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="UAMethodArgument"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAMethodArgument"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="UANodeSetType">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UANodeSetType"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="UANodeSetType"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UANodeSetType"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="UAObject">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAObject"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="UAObject"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAObject"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="UAObjectType">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAObjectType"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="UAObjectType"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAObjectType"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="UAReferenceType">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAReferenceType"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="UAReferenceType"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAReferenceType"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="UAVariable">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAVariable"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="UAVariable"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAVariable"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="UAVariableType">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAVariableType"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="UAVariableType"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAVariableType"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="UAView">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAView"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="UAView"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAView"/>
   </menu>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" label="UriTable">
-    <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UriTable"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="UriTable"
+      displayAllRoles="false">
+    <elementType
+        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+        href="UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UriTable"/>
   </menu>
 </ElementCreationMenuModel:Folder>

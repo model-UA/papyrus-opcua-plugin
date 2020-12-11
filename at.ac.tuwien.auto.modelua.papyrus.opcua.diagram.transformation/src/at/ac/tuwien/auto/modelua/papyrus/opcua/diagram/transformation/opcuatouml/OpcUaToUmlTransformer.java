@@ -68,6 +68,8 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAVariableTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAViewImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UriTableImpl;
 
+import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.EventPublisher;
+import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.OpcUaDiagramTransformationResources;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.libraries.OpcUaLibraryResources;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceProvider;
 
@@ -78,7 +80,7 @@ public class OpcUaToUmlTransformer {
 	private HashMap<Element, Object> matching;
 	private HashMap<String, Element> nodeIdMap;
 	private HashMap<String, String> aliasTable;
-		
+	
 	public OpcUaToUmlTransformer(Model umlModel, UANodeSetType nodeset, HashMap<Element, Object> matching, HashMap<String, Element> nodeIdMap)
 	{
 		this.baseUmlModel = umlModel;
@@ -105,7 +107,9 @@ public class OpcUaToUmlTransformer {
 	{
         // Implement your write operations here,
     	boolean success = true;
-    	
+
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_NODESET_TOPIC, true);
+
     	if(nodeset.getNamespaceUris() != null) {    		
     		success &= transformNamespaces(nodeset.getNamespaceUris());
     	}
@@ -448,8 +452,8 @@ public class OpcUaToUmlTransformer {
     	{
     		success &= transformModels(nodeset.getModels());
     	}
-    	    	
-		return success;
+    	
+    	return success;
 	}
 
 	@SuppressWarnings("unchecked")

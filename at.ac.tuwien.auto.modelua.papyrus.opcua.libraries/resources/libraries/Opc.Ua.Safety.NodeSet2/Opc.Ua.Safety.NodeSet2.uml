@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:NodeSet="http://opcfoundation.org" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://opcfoundation.org platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.profile/resources/profile/UANodeSet.profile.uml#_yx7nUDhjEeuqzvXAmgyn5g">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:NodeSet="http://opcfoundation.org" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://opcfoundation.org platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.profile/resources/profile/UANodeSet.profile.uml#_T_F7QDuPEeuS-KY3x6-PjA">
   <uml:Model xmi:id="_JLtBgDhrEeuWl5vbW-LMHw" name="Opc.Ua.Safety.NodeSet2" viewpoint="NodeSet InformationModel">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_Khr9ADhrEeuWl5vbW-LMHw">
       <importedPackage xmi:type="uml:Model" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_vfuA8DhpEeu8_o7gqoFOiA"/>
@@ -332,8 +332,15 @@
       </packagedElement>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_J1PtwDhrEeuWl5vbW-LMHw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_t6FywDuREeuhqtwj1clfhg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_t6FywTuREeuhqtwj1clfhg" key="Version" value="0.0.68"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_t6FywjuREeuhqtwj1clfhg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_t6FywzuREeuhqtwj1clfhg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_t6FyxDuREeuhqtwj1clfhg" key="Date" value="2020-12-11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_t6FyxTuREeuhqtwj1clfhg" key="Author" value=""/>
+      </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_J2RogDhrEeuWl5vbW-LMHw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.profile/resources/profile/UANodeSet.profile.uml#_yx7nUDhjEeuqzvXAmgyn5g"/>
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.profile/resources/profile/UANodeSet.profile.uml#_T_F7QDuPEeuS-KY3x6-PjA"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.profile/resources/profile/UANodeSet.profile.uml#_4NQh8M2DEeq3ytc5nEBEpg"/>
     </profileApplication>
@@ -390,141 +397,113 @@
   </NodeSet:UAObject>
   <NodeSet:UAVariable xmi:id="_Rlxq0DhrEeuWl5vbW-LMHw" browseName="NonSafetyDataPlaceholderDataType" nodeId="6020" base_Class="_RlKm0DhrEeuWl5vbW-LMHw" parentNodeId="_Rl5moDhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NonSafetyDataPlaceholderDataType</displayName>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nYnMDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_Rl18QDhrEeuWl5vbW-LMHw" browseName="NonSafetyDataPlaceholderDataType" nodeId="6021" base_Class="_Rl0HEDhrEeuWl5vbW-LMHw" parentNodeId="_Rl_tQDhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NonSafetyDataPlaceholderDataType</displayName>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nYnMDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_Rl5moDhrEeuWl5vbW-LMHw" browseName="TypeDictionary" nodeId="6016" base_Class="_Rl3xcDhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>TypeDictionary</displayName>
     <description>Collects the data type descriptions of http://opcfoundation.org/UA/Safety</description>
     <symbolicName>TypeDictionary_BinarySchema</symbolicName>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nbDcDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_Rl8C4DhrEeuWl5vbW-LMHw" browseName="NamespaceUri" nodeId="6017" base_Class="_Rl7b0DhrEeuWl5vbW-LMHw" parentNodeId="_Rl5moDhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NamespaceUri</displayName>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nYnMDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_Rl_tQDhrEeuWl5vbW-LMHw" browseName="TypeDictionary" nodeId="6018" base_Class="_Rl94EDhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>TypeDictionary</displayName>
     <description>Collects the data type descriptions of http://opcfoundation.org/UA/Safety</description>
     <symbolicName>TypeDictionary_XmlSchema</symbolicName>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nbDcDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmCwkDhrEeuWl5vbW-LMHw" browseName="NamespaceUri" nodeId="6019" base_Class="_RmBicDhrEeuWl5vbW-LMHw" parentNodeId="_Rl_tQDhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NamespaceUri</displayName>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nYnMDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmFM0DhrEeuWl5vbW-LMHw" browseName="SafetyBaseID" nodeId="6010" base_Class="_RmD-sDhrEeuWl5vbW-LMHw" parentNodeId="_Rk9LcDhrEeuWl5vbW-LMHw" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyBaseID</displayName>
     <description>Base-ID of the SafetyProvider</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nZ1UThpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmIQIDhrEeuWl5vbW-LMHw" browseName="SafetyProviderDelay" nodeId="6011" base_Class="_RmHCADhrEeuWl5vbW-LMHw" parentNodeId="_Rk9LcDhrEeuWl5vbW-LMHw" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyProviderDelay</displayName>
     <description>SafetyProviderDelay is the maximum time at the SafetyProvider from receiving the RequestSPDU to start the transmission of ResponseSPDU</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nTHoDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmKsYDhrEeuWl5vbW-LMHw" browseName="SafetyProviderID" nodeId="6012" base_Class="_RmJeQDhrEeuWl5vbW-LMHw" parentNodeId="_Rk9LcDhrEeuWl5vbW-LMHw" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyProviderID</displayName>
     <description>Provider-ID of the SafetyProvider</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nTHoDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmL6gDhrEeuWl5vbW-LMHw" browseName="SafetyProviderLevel" nodeId="6013" base_Class="_RmLTcDhrEeuWl5vbW-LMHw" parentNodeId="_Rk9LcDhrEeuWl5vbW-LMHw" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyProviderLevel</displayName>
     <description>The maximal SIL the SafetyProvider implementation (hardware &amp; software) is capable of</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nPdQDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmOWwDhrEeuWl5vbW-LMHw" browseName="StructureIdentifier" nodeId="6014" base_Class="_RmNIoDhrEeuWl5vbW-LMHw" parentNodeId="_Rk9LcDhrEeuWl5vbW-LMHw" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>StructureIdentifier</displayName>
     <description>Identifier of the structure type</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nYnMDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmQL8DhrEeuWl5vbW-LMHw" browseName="StructureSignatureVersion" nodeId="6015" base_Class="_RmPk4DhrEeuWl5vbW-LMHw" parentNodeId="_Rk9LcDhrEeuWl5vbW-LMHw" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>StructureSignatureVersion</displayName>
     <description>Version of the algorithm for calculating the StructureSignature</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nRScDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmSoMDhrEeuWl5vbW-LMHw" browseName="InputArguments" nodeId="6007" base_Class="_RmRaEDhrEeuWl5vbW-LMHw" parentNodeId="_RneT8DhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="1">
     <displayName>InputArguments</displayName>
     <arrayDimensions>3</arrayDimensions>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2pguIDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmVrgDhrEeuWl5vbW-LMHw" browseName="OutputArguments" nodeId="6008" base_Class="_RmUdYDhrEeuWl5vbW-LMHw" parentNodeId="_RneT8DhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="1">
     <displayName>OutputArguments</displayName>
     <arrayDimensions>9</arrayDimensions>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2pguIDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmYu0DhrEeuWl5vbW-LMHw" browseName="OutputArguments" nodeId="6009" base_Class="_RmXgsDhrEeuWl5vbW-LMHw" parentNodeId="_RngJIDhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="1">
     <displayName>OutputArguments</displayName>
     <arrayDimensions>12</arrayDimensions>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2pguIDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmbyIDhrEeuWl5vbW-LMHw" browseName="SafetyBaseID" nodeId="6005" base_Class="_RmakADhrEeuWl5vbW-LMHw" parentNodeId="_Rk12sDhrEeuWl5vbW-LMHw" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyBaseID</displayName>
     <description>Base-ID of the SafetyProvider</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nZ1UThpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_Rme1cDhrEeuWl5vbW-LMHw" browseName="SafetyProviderDelay" nodeId="6002" base_Class="_RmdnUDhrEeuWl5vbW-LMHw" parentNodeId="_Rk12sDhrEeuWl5vbW-LMHw" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyProviderDelay</displayName>
     <description>SafetyProviderDelay is the maximum time at the SafetyProvider from receiving the RequestSPDU to start the transmission of ResponseSPDU</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nTHoDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmljIDhrEeuWl5vbW-LMHw" browseName="SafetyProviderID" nodeId="6006" base_Class="_RmgDkDhrEeuWl5vbW-LMHw" parentNodeId="_Rk12sDhrEeuWl5vbW-LMHw" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyProviderID</displayName>
     <description>Provider-ID of the SafetyProvider</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nTHoDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmomcDhrEeuWl5vbW-LMHw" browseName="SafetyProviderLevel" nodeId="6001" base_Class="_Rmn_YDhrEeuWl5vbW-LMHw" parentNodeId="_Rk12sDhrEeuWl5vbW-LMHw" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>SafetyProviderLevel</displayName>
     <description>The maximal SIL the SafetyProvider implementation (hardware &amp; software) is capable of</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nPdQDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmsQ0DhrEeuWl5vbW-LMHw" browseName="StructureIdentifier" nodeId="6004" base_Class="_RmrpwDhrEeuWl5vbW-LMHw" parentNodeId="_Rk12sDhrEeuWl5vbW-LMHw" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>StructureIdentifier</displayName>
     <description>Identifier of the structure type</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nYnMDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RmwiQDhrEeuWl5vbW-LMHw" browseName="StructureSignatureVersion" nodeId="6003" base_Class="_RmvUIDhrEeuWl5vbW-LMHw" parentNodeId="_Rk12sDhrEeuWl5vbW-LMHw" accessLevel="3" userAccessLevel="1" valueRank="-1">
     <displayName>StructureSignatureVersion</displayName>
     <description>Version of the algorithm for calculating the StructureSignature</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nRScDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_Rm5FIDhrEeuWl5vbW-LMHw" browseName="IsNamespaceSubset" nodeId="6022" base_Class="_Rmy-gDhrEeuWl5vbW-LMHw" parentNodeId="_RlCD8DhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>IsNamespaceSubset</displayName>
     <description>If TRUE then the server only supports a subset of the namespace.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nNoEDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_Rm66UDhrEeuWl5vbW-LMHw" browseName="NamespacePublicationDate" nodeId="6023" base_Class="_Rm6TQDhrEeuWl5vbW-LMHw" parentNodeId="_RlCD8DhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NamespacePublicationDate</displayName>
     <description>The publication date for the namespace.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nZOQDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RnDdMDhrEeuWl5vbW-LMHw" browseName="NamespaceUri" nodeId="6024" base_Class="_Rm_LwDhrEeuWl5vbW-LMHw" parentNodeId="_RlCD8DhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NamespaceUri</displayName>
     <description>The URI of the namespace.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nYnMDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RnGggDhrEeuWl5vbW-LMHw" browseName="NamespaceVersion" nodeId="6025" base_Class="_RnFSYDhrEeuWl5vbW-LMHw" parentNodeId="_RlCD8DhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>NamespaceVersion</displayName>
     <description>The human readable string representing version of the namespace.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nYnMDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RnLZADhrEeuWl5vbW-LMHw" browseName="StaticNodeIdTypes" nodeId="6026" base_Class="_RnHuoDhrEeuWl5vbW-LMHw" parentNodeId="_RlCD8DhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="1">
     <displayName>StaticNodeIdTypes</displayName>
     <description>A list of IdTypes for nodes which are the same in every server that exposes them.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2pNMIThpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RnQRgDhrEeuWl5vbW-LMHw" browseName="StaticNumericNodeIdRange" nodeId="6027" base_Class="_RnMnIDhrEeuWl5vbW-LMHw" parentNodeId="_RlCD8DhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="1">
     <displayName>StaticNumericNodeIdRange</displayName>
     <description>A list of ranges for numeric node ids which are the same in every server that exposes them.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qF88DhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAVariable xmi:id="_RnXmQDhrEeuWl5vbW-LMHw" browseName="StaticStringNodeIdPattern" nodeId="6028" base_Class="_RnWYIDhrEeuWl5vbW-LMHw" parentNodeId="_RlCD8DhrEeuWl5vbW-LMHw" accessLevel="1" userAccessLevel="1" valueRank="-1">
     <displayName>StaticStringNodeIdPattern</displayName>
     <description>A regular expression which matches string node ids are the same in every server that exposes them.</description>
-    <dataType xmi:type="NodeSet:UADataType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2nYnMDhpEeu8_o7gqoFOiA"/>
   </NodeSet:UAVariable>
   <NodeSet:UAMethod xmi:id="_RneT8DhrEeuWl5vbW-LMHw" browseName="ReadSafetyData" nodeId="7001" base_Class="_RnapkDhrEeuWl5vbW-LMHw" parentNodeId="_RkzacDhrEeuWl5vbW-LMHw">
     <displayName>ReadSafetyData</displayName>
@@ -536,133 +515,133 @@
     <description>Serves as a diagnostic interface</description>
     <description>https://reference.opcfoundation.org/v104/Safety/docs/6.1.2</description>
   </NodeSet:UAMethod>
-  <NodeSet:Reference xmi:id="_SWjngDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SWiZYDhrEeuWl5vbW-LMHw" referenceType_browseName="HasSubtype" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q2K4ThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SWk1oDhrEeuWl5vbW-LMHw" base_Generalization="_SWkOkDhrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SWnR4DhrEeuWl5vbW-LMHw" base_Generalization="_SWmq0DhrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SWogAThrEeuWl5vbW-LMHw" base_Generalization="_SWogADhrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SWqVMDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SWpuIDhrEeuWl5vbW-LMHw" referenceType_browseName="HasSubtype" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q2K4ThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SWsxcDhrEeuWl5vbW-LMHw" base_Generalization="_SWsKYDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SWumoDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SWt_kDhrEeuWl5vbW-LMHw" referenceType_browseName="HasSubtype" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q2K4ThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SWv0wDhrEeuWl5vbW-LMHw" base_Generalization="_SWvNsDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SWxp8DhrEeuWl5vbW-LMHw" base_Generalization="_SWxC4DhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SWy4EThrEeuWl5vbW-LMHw" base_Generalization="_SWy4EDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SW0tQDhrEeuWl5vbW-LMHw" base_Generalization="_SW0GMDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SW2icThrEeuWl5vbW-LMHw" base_Generalization="_SW2icDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SW4XoDhrEeuWl5vbW-LMHw" base_Generalization="_SW3wkDhrEeuWl5vbW-LMHw" referenceType_browseName="HasEncoding"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qxSYThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SW4-sThrEeuWl5vbW-LMHw" base_Generalization="_SW4-sDhrEeuWl5vbW-LMHw" referenceType_browseName="HasEncoding"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qxSYThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SW6M0DhrEeuWl5vbW-LMHw" base_Generalization="_SW5lwDhrEeuWl5vbW-LMHw" referenceType_browseName="HasEncoding"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qxSYThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SW8CADhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SW6z4DhrEeuWl5vbW-LMHw" referenceType_browseName="HasSubtype" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q2K4ThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SW8pEThrEeuWl5vbW-LMHw" base_Generalization="_SW8pEDhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SW93MDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SW9QIDhrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SW-eQThrEeuWl5vbW-LMHw" base_Generalization="_SW-eQDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXA6gDhrEeuWl5vbW-LMHw" base_Generalization="_SXATcDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXBhkDhrEeuWl5vbW-LMHw" base_Generalization="_SXA6gThrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXDWwDhrEeuWl5vbW-LMHw" base_Generalization="_SXCvsDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXHBIDhrEeuWl5vbW-LMHw" base_Generalization="_SXFL8DhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXIPQThrEeuWl5vbW-LMHw" base_Generalization="_SXIPQDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXKEcDhrEeuWl5vbW-LMHw" base_Generalization="_SXJdYDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXLSkThrEeuWl5vbW-LMHw" base_Generalization="_SXLSkDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXMgsDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXL5oDhrEeuWl5vbW-LMHw" referenceType_browseName="Organizes" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qvdMDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXNHwDhrEeuWl5vbW-LMHw" base_Generalization="_SXMgsThrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXOV4ThrEeuWl5vbW-LMHw" base_Generalization="_SXOV4DhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXPkADhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXO88DhrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXQLEDhrEeuWl5vbW-LMHw" base_Generalization="_SXPkAThrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXSAQDhrEeuWl5vbW-LMHw" base_Generalization="_SXRZMDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXTOYThrEeuWl5vbW-LMHw" base_Generalization="_SXTOYDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXUcgThrEeuWl5vbW-LMHw" base_Generalization="_SXUcgDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXWRsDhrEeuWl5vbW-LMHw" base_Generalization="_SXVqoDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXXf0ThrEeuWl5vbW-LMHw" base_Generalization="_SXXf0DhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXZ8EDhrEeuWl5vbW-LMHw" base_Generalization="_SXYt8DhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXbKMDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXZ8EThrEeuWl5vbW-LMHw" referenceType_browseName="HasEncoding"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qxSYThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXbxQDhrEeuWl5vbW-LMHw" base_Generalization="_SXbKMThrEeuWl5vbW-LMHw" referenceType_browseName="HasDescription"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qx5cThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXdmcThrEeuWl5vbW-LMHw" base_Generalization="_SXdmcDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXe0kDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXeNgDhrEeuWl5vbW-LMHw" referenceType_browseName="HasEncoding"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qxSYThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXfboThrEeuWl5vbW-LMHw" base_Generalization="_SXfboDhrEeuWl5vbW-LMHw" referenceType_browseName="HasDescription"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qx5cThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXgpwDhrEeuWl5vbW-LMHw" base_Generalization="_SXgCsDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXnXcThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXnXcDhrEeuWl5vbW-LMHw" referenceType_browseName="HasEncoding"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qxSYThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXolkDhrEeuWl5vbW-LMHw" base_Generalization="_SXn-gDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXpMoDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXolkThrEeuWl5vbW-LMHw" referenceType_browseName="HasDescription"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qx5cThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXv6UDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXpMoThrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXxvgDhrEeuWl5vbW-LMHw" base_Generalization="_SXxIcDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXyWkThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXyWkDhrEeuWl5vbW-LMHw" referenceType_browseName="HasDescription"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qx5cThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SXzksDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXy9oDhrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SX0y0ThrEeuWl5vbW-LMHw" base_Generalization="_SX0y0DhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SX1Z4ThrEeuWl5vbW-LMHw" base_Generalization="_SX1Z4DhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SX2oAThrEeuWl5vbW-LMHw" base_Generalization="_SX2oADhrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SX32IDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SX3PEDhrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SX5EQDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SX4dMDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SX5rUThrEeuWl5vbW-LMHw" base_Generalization="_SX5rUDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SX65cDhrEeuWl5vbW-LMHw" base_Generalization="_SX6SYDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SX7ggDhrEeuWl5vbW-LMHw" base_Generalization="_SX65cThrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SX8uoThrEeuWl5vbW-LMHw" base_Generalization="_SX8uoDhrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SX9VsThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SX9VsDhrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SX-j0DhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SX98wDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SX_K4DhrEeuWl5vbW-LMHw" base_Generalization="_SX-j0ThrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYAZADhrEeuWl5vbW-LMHw" base_Generalization="_SX_x8DhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYBAEDhrEeuWl5vbW-LMHw" base_Generalization="_SYAZAThrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYCOMDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYBnIDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYDcUDhrEeuWl5vbW-LMHw" base_Generalization="_SYC1QDhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYEDYDhrEeuWl5vbW-LMHw" base_Generalization="_SYDcUThrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYEqcThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYEqcDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYFRgThrEeuWl5vbW-LMHw" base_Generalization="_SYFRgDhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYGfoDhrEeuWl5vbW-LMHw" base_Generalization="_SYF4kDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYHGsDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYGfoThrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYHtwDhrEeuWl5vbW-LMHw" base_Generalization="_SYHGsThrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYIU0DhrEeuWl5vbW-LMHw" base_Generalization="_SYHtwThrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYI74ThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYI74DhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYJi8ThrEeuWl5vbW-LMHw" base_Generalization="_SYJi8DhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYL_MDhrEeuWl5vbW-LMHw" base_Generalization="_SYLYIDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYQ3sDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYQQoDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYRewDhrEeuWl5vbW-LMHw" base_Generalization="_SYQ3sThrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYSF0ThrEeuWl5vbW-LMHw" base_Generalization="_SYSF0DhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYSs4ThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYSs4DhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYTT8ThrEeuWl5vbW-LMHw" base_Generalization="_SYTT8DhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYT7AThrEeuWl5vbW-LMHw" base_Generalization="_SYT7ADhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYVJIDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYUiEDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYWXQDhrEeuWl5vbW-LMHw" base_Generalization="_SYVwMDhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYXlYDhrEeuWl5vbW-LMHw" base_Generalization="_SYW-UDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYYMcDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYXlYThrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYZakDhrEeuWl5vbW-LMHw" base_Generalization="_SYYzgDhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYaBoThrEeuWl5vbW-LMHw" base_Generalization="_SYaBoDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYbPwDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYaosDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYcd4ThrEeuWl5vbW-LMHw" base_Generalization="_SYcd4DhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYdE8ThrEeuWl5vbW-LMHw" base_Generalization="_SYdE8DhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYdsAThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYdsADhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYeTEThrEeuWl5vbW-LMHw" base_Generalization="_SYeTEDhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYe6IThrEeuWl5vbW-LMHw" base_Generalization="_SYe6IDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYgIQDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYfhMDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYgvUDhrEeuWl5vbW-LMHw" base_Generalization="_SYgIQThrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYh9cDhrEeuWl5vbW-LMHw" base_Generalization="_SYhWYDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYikgDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYh9cThrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYjLkDhrEeuWl5vbW-LMHw" base_Generalization="_SYikgThrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYjyoDhrEeuWl5vbW-LMHw" base_Generalization="_SYjLkThrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYkZsThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYkZsDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYlAwThrEeuWl5vbW-LMHw" base_Generalization="_SYlAwDhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYmO4DhrEeuWl5vbW-LMHw" base_Generalization="_SYln0DhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYm18ThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYm18DhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYndAThrEeuWl5vbW-LMHw" base_Generalization="_SYndADhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYoEEThrEeuWl5vbW-LMHw" base_Generalization="_SYoEEDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYorIThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYorIDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYpSMThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYpSMDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYqgUDhrEeuWl5vbW-LMHw" base_Generalization="_SYp5QDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYrucDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYrHYDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYsVgDhrEeuWl5vbW-LMHw" base_Generalization="_SYrucThrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYs8kDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYsVgThrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYtjoDhrEeuWl5vbW-LMHw" base_Generalization="_SYs8kThrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYuKsThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYuKsDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYvY0DhrEeuWl5vbW-LMHw" base_Generalization="_SYuxwDhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYv_4DhrEeuWl5vbW-LMHw" base_Generalization="_SYvY0ThrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYwm8ThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYwm8DhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYx1EDhrEeuWl5vbW-LMHw" base_Generalization="_SYxOADhrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYycIDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYx1EThrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SYzDMDhrEeuWl5vbW-LMHw" base_Generalization="_SYycIThrEeuWl5vbW-LMHw" referenceType_browseName="HasTypeDefinition"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qyggThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SY0RUDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYzqQDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SY1fcDhrEeuWl5vbW-LMHw" base_Generalization="_SY04YDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SY2GgThrEeuWl5vbW-LMHw" base_Generalization="_SY2GgDhrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SY2tkThrEeuWl5vbW-LMHw" base_Generalization="_SY2tkDhrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SY37sDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SY3UoDhrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SY4iwDhrEeuWl5vbW-LMHw" base_Generalization="_SY37sThrEeuWl5vbW-LMHw" referenceType_browseName="HasModellingRule"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2qwrUThpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SY5J0DhrEeuWl5vbW-LMHw" base_Generalization="_SY4iwThrEeuWl5vbW-LMHw" referenceType_browseName="HasProperty" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q3ZADhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
-  <NodeSet:Reference xmi:id="_SY5w4ThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SY5w4DhrEeuWl5vbW-LMHw" referenceType_browseName="HasComponent" referenceType_isHierarchical="true"><referenceType xmi:type="NodeSet:UAReferenceType" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.libraries/resources/libraries/Opc.Ua.NodeSet2/Opc.Ua.NodeSet2.uml#_2q4AEDhpEeu8_o7gqoFOiA"/></NodeSet:Reference>
+  <NodeSet:Reference xmi:id="_SWjngDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SWiZYDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SWk1oDhrEeuWl5vbW-LMHw" base_Generalization="_SWkOkDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SWnR4DhrEeuWl5vbW-LMHw" base_Generalization="_SWmq0DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SWogAThrEeuWl5vbW-LMHw" base_Generalization="_SWogADhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SWqVMDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SWpuIDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SWsxcDhrEeuWl5vbW-LMHw" base_Generalization="_SWsKYDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SWumoDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SWt_kDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SWv0wDhrEeuWl5vbW-LMHw" base_Generalization="_SWvNsDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SWxp8DhrEeuWl5vbW-LMHw" base_Generalization="_SWxC4DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SWy4EThrEeuWl5vbW-LMHw" base_Generalization="_SWy4EDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SW0tQDhrEeuWl5vbW-LMHw" base_Generalization="_SW0GMDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SW2icThrEeuWl5vbW-LMHw" base_Generalization="_SW2icDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SW4XoDhrEeuWl5vbW-LMHw" base_Generalization="_SW3wkDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SW4-sThrEeuWl5vbW-LMHw" base_Generalization="_SW4-sDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SW6M0DhrEeuWl5vbW-LMHw" base_Generalization="_SW5lwDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SW8CADhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SW6z4DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SW8pEThrEeuWl5vbW-LMHw" base_Generalization="_SW8pEDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SW93MDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SW9QIDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SW-eQThrEeuWl5vbW-LMHw" base_Generalization="_SW-eQDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXA6gDhrEeuWl5vbW-LMHw" base_Generalization="_SXATcDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXBhkDhrEeuWl5vbW-LMHw" base_Generalization="_SXA6gThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXDWwDhrEeuWl5vbW-LMHw" base_Generalization="_SXCvsDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXHBIDhrEeuWl5vbW-LMHw" base_Generalization="_SXFL8DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXIPQThrEeuWl5vbW-LMHw" base_Generalization="_SXIPQDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXKEcDhrEeuWl5vbW-LMHw" base_Generalization="_SXJdYDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXLSkThrEeuWl5vbW-LMHw" base_Generalization="_SXLSkDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXMgsDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXL5oDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXNHwDhrEeuWl5vbW-LMHw" base_Generalization="_SXMgsThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXOV4ThrEeuWl5vbW-LMHw" base_Generalization="_SXOV4DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXPkADhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXO88DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXQLEDhrEeuWl5vbW-LMHw" base_Generalization="_SXPkAThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXSAQDhrEeuWl5vbW-LMHw" base_Generalization="_SXRZMDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXTOYThrEeuWl5vbW-LMHw" base_Generalization="_SXTOYDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXUcgThrEeuWl5vbW-LMHw" base_Generalization="_SXUcgDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXWRsDhrEeuWl5vbW-LMHw" base_Generalization="_SXVqoDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXXf0ThrEeuWl5vbW-LMHw" base_Generalization="_SXXf0DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXZ8EDhrEeuWl5vbW-LMHw" base_Generalization="_SXYt8DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXbKMDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXZ8EThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXbxQDhrEeuWl5vbW-LMHw" base_Generalization="_SXbKMThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXdmcThrEeuWl5vbW-LMHw" base_Generalization="_SXdmcDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXe0kDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXeNgDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXfboThrEeuWl5vbW-LMHw" base_Generalization="_SXfboDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXgpwDhrEeuWl5vbW-LMHw" base_Generalization="_SXgCsDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXnXcThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXnXcDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXolkDhrEeuWl5vbW-LMHw" base_Generalization="_SXn-gDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXpMoDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXolkThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXv6UDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXpMoThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXxvgDhrEeuWl5vbW-LMHw" base_Generalization="_SXxIcDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXyWkThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXyWkDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SXzksDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SXy9oDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SX0y0ThrEeuWl5vbW-LMHw" base_Generalization="_SX0y0DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SX1Z4ThrEeuWl5vbW-LMHw" base_Generalization="_SX1Z4DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SX2oAThrEeuWl5vbW-LMHw" base_Generalization="_SX2oADhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SX32IDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SX3PEDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SX5EQDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SX4dMDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SX5rUThrEeuWl5vbW-LMHw" base_Generalization="_SX5rUDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SX65cDhrEeuWl5vbW-LMHw" base_Generalization="_SX6SYDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SX7ggDhrEeuWl5vbW-LMHw" base_Generalization="_SX65cThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SX8uoThrEeuWl5vbW-LMHw" base_Generalization="_SX8uoDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SX9VsThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SX9VsDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SX-j0DhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SX98wDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SX_K4DhrEeuWl5vbW-LMHw" base_Generalization="_SX-j0ThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYAZADhrEeuWl5vbW-LMHw" base_Generalization="_SX_x8DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYBAEDhrEeuWl5vbW-LMHw" base_Generalization="_SYAZAThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYCOMDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYBnIDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYDcUDhrEeuWl5vbW-LMHw" base_Generalization="_SYC1QDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYEDYDhrEeuWl5vbW-LMHw" base_Generalization="_SYDcUThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYEqcThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYEqcDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYFRgThrEeuWl5vbW-LMHw" base_Generalization="_SYFRgDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYGfoDhrEeuWl5vbW-LMHw" base_Generalization="_SYF4kDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYHGsDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYGfoThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYHtwDhrEeuWl5vbW-LMHw" base_Generalization="_SYHGsThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYIU0DhrEeuWl5vbW-LMHw" base_Generalization="_SYHtwThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYI74ThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYI74DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYJi8ThrEeuWl5vbW-LMHw" base_Generalization="_SYJi8DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYL_MDhrEeuWl5vbW-LMHw" base_Generalization="_SYLYIDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYQ3sDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYQQoDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYRewDhrEeuWl5vbW-LMHw" base_Generalization="_SYQ3sThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYSF0ThrEeuWl5vbW-LMHw" base_Generalization="_SYSF0DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYSs4ThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYSs4DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYTT8ThrEeuWl5vbW-LMHw" base_Generalization="_SYTT8DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYT7AThrEeuWl5vbW-LMHw" base_Generalization="_SYT7ADhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYVJIDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYUiEDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYWXQDhrEeuWl5vbW-LMHw" base_Generalization="_SYVwMDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYXlYDhrEeuWl5vbW-LMHw" base_Generalization="_SYW-UDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYYMcDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYXlYThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYZakDhrEeuWl5vbW-LMHw" base_Generalization="_SYYzgDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYaBoThrEeuWl5vbW-LMHw" base_Generalization="_SYaBoDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYbPwDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYaosDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYcd4ThrEeuWl5vbW-LMHw" base_Generalization="_SYcd4DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYdE8ThrEeuWl5vbW-LMHw" base_Generalization="_SYdE8DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYdsAThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYdsADhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYeTEThrEeuWl5vbW-LMHw" base_Generalization="_SYeTEDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYe6IThrEeuWl5vbW-LMHw" base_Generalization="_SYe6IDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYgIQDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYfhMDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYgvUDhrEeuWl5vbW-LMHw" base_Generalization="_SYgIQThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYh9cDhrEeuWl5vbW-LMHw" base_Generalization="_SYhWYDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYikgDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYh9cThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYjLkDhrEeuWl5vbW-LMHw" base_Generalization="_SYikgThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYjyoDhrEeuWl5vbW-LMHw" base_Generalization="_SYjLkThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYkZsThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYkZsDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYlAwThrEeuWl5vbW-LMHw" base_Generalization="_SYlAwDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYmO4DhrEeuWl5vbW-LMHw" base_Generalization="_SYln0DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYm18ThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYm18DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYndAThrEeuWl5vbW-LMHw" base_Generalization="_SYndADhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYoEEThrEeuWl5vbW-LMHw" base_Generalization="_SYoEEDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYorIThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYorIDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYpSMThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYpSMDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYqgUDhrEeuWl5vbW-LMHw" base_Generalization="_SYp5QDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYrucDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYrHYDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYsVgDhrEeuWl5vbW-LMHw" base_Generalization="_SYrucThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYs8kDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYsVgThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYtjoDhrEeuWl5vbW-LMHw" base_Generalization="_SYs8kThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYuKsThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYuKsDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYvY0DhrEeuWl5vbW-LMHw" base_Generalization="_SYuxwDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYv_4DhrEeuWl5vbW-LMHw" base_Generalization="_SYvY0ThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYwm8ThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYwm8DhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYx1EDhrEeuWl5vbW-LMHw" base_Generalization="_SYxOADhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYycIDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYx1EThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SYzDMDhrEeuWl5vbW-LMHw" base_Generalization="_SYycIThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SY0RUDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SYzqQDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SY1fcDhrEeuWl5vbW-LMHw" base_Generalization="_SY04YDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SY2GgThrEeuWl5vbW-LMHw" base_Generalization="_SY2GgDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SY2tkThrEeuWl5vbW-LMHw" base_Generalization="_SY2tkDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SY37sDhrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SY3UoDhrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SY4iwDhrEeuWl5vbW-LMHw" base_Generalization="_SY37sThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SY5J0DhrEeuWl5vbW-LMHw" base_Generalization="_SY4iwThrEeuWl5vbW-LMHw"/>
+  <NodeSet:Reference xmi:id="_SY5w4ThrEeuWl5vbW-LMHw" isForward="false" base_Generalization="_SY5w4DhrEeuWl5vbW-LMHw"/>
   <NodeSet:DataTypeDefinition xmi:id="_SY-CUDhrEeuWl5vbW-LMHw" baseType="" name="1:NonSafetyDataPlaceholderDataType" base_Class="_SY9bQDhrEeuWl5vbW-LMHw"/>
 </xmi:XMI>

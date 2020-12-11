@@ -126,16 +126,23 @@ public class UmlToOpcUaTransformer {
 		else if(object instanceof Model)
 		{
 			Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
-			Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
-			
-			DynamicEObjectImpl stereotype = (DynamicEObjectImpl) object.getStereotypeApplication(nodeSetType);
-			if(stereotype != null)
+			if(nodeSetProfile != null)
 			{
-				return_val=transformUANodeSetType((Model) object);
-				if(return_val)
+				Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
+				
+				DynamicEObjectImpl stereotype = (DynamicEObjectImpl) object.getStereotypeApplication(nodeSetType);
+				if(stereotype != null)
 				{
-					return_val &= transformModel((Model) object);
-				}
+					return_val=transformUANodeSetType((Model) object);
+					if(return_val)
+					{
+						return_val &= transformModel((Model) object);
+					}
+				}				
+			}
+			else
+			{
+				return_val = false;
 			}
 		}
 		else if(object instanceof Package)
@@ -670,6 +677,11 @@ public class UmlToOpcUaTransformer {
 		if(this.baseUmlModel.hasValue(nodeSetType, "nameSpaceUris"))
 		{			
 			EcoreEList<DynamicEObjectImpl> nsList = (EcoreEList<DynamicEObjectImpl>) this.baseUmlModel.getValue(nodeSetType, "nameSpaceUris");
+			
+			if(this.baseNodeset.getNamespaceUris() != null)
+			{
+				this.baseNodeset.setNamespaceUris(new UriTableImpl());
+			}
 			
 			for(DynamicEObjectImpl nsObject : nsList )
 			{
@@ -1686,7 +1698,7 @@ public class UmlToOpcUaTransformer {
 				convertedString = convertedString + "," + String.valueOf(dimension);
 			}
 							
-			dtf.setArrayDimensions(convertedString.substring(1));
+			dtf.setArrayDimensions(convertedString);
 			
 		}
 		else

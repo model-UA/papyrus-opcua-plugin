@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="ASCII"?>
+<assistant:ModelingAssistantProvider xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:assistant="http://www.eclipse.org/Papyrus/2014/diagram/assistant" xmlns:filters="http://www.eclipse.org/Papyrus/2014/common/filters" xmlns:umlfilters="http://www.eclipse.org/Papyrus/2014/uml/filters" name="NodeSet">
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="DataTypeDefinition" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeDefinition"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Activity" elementTypeID="org.eclipse.papyrus.uml.Activity"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::AssociationClassBase" elementTypeID="org.eclipse.papyrus.uml.AssociationClassBase"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::AssociationClass" elementTypeID="org.eclipse.papyrus.uml.AssociationClass"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Behavior" elementTypeID="org.eclipse.papyrus.uml.Behavior"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Class" elementTypeID="org.eclipse.papyrus.uml.Class"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::ClassifierTemplateParameterBase" elementTypeID="org.eclipse.papyrus.uml.ClassifierTemplateParameterBase"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::ClassifierTemplateParameter" elementTypeID="org.eclipse.papyrus.uml.ClassifierTemplateParameter"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Component" elementTypeID="org.eclipse.papyrus.uml.Component"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::ConnectableElementTemplateParameterBase" elementTypeID="org.eclipse.papyrus.uml.ConnectableElementTemplateParameterBase"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::ConnectableElementTemplateParameter" elementTypeID="org.eclipse.papyrus.uml.ConnectableElementTemplateParameter"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Device" elementTypeID="org.eclipse.papyrus.uml.Device"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::ExecutionEnvironment" elementTypeID="org.eclipse.papyrus.uml.ExecutionEnvironment"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::FunctionBehavior" elementTypeID="org.eclipse.papyrus.uml.FunctionBehavior"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Interaction" elementTypeID="org.eclipse.papyrus.uml.Interaction"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Interface" elementTypeID="org.eclipse.papyrus.uml.Interface"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Model" elementTypeID="org.eclipse.papyrus.uml.Model"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Node" elementTypeID="org.eclipse.papyrus.uml.Node"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::OpaqueBehavior" elementTypeID="org.eclipse.papyrus.uml.OpaqueBehavior"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::OperationTemplateParameterBase" elementTypeID="org.eclipse.papyrus.uml.OperationTemplateParameterBase"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::OperationTemplateParameter" elementTypeID="org.eclipse.papyrus.uml.OperationTemplateParameter"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Package" elementTypeID="org.eclipse.papyrus.uml.Package"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Profile" elementTypeID="org.eclipse.papyrus.uml.Profile"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::ProtocolStateMachine" elementTypeID="org.eclipse.papyrus.uml.ProtocolStateMachine"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::StateMachine" elementTypeID="org.eclipse.papyrus.uml.StateMachine"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Stereotype" elementTypeID="org.eclipse.papyrus.uml.Stereotype"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::TemplateParameterBase" elementTypeID="org.eclipse.papyrus.uml.TemplateParameterBase"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::TemplateParameter" elementTypeID="org.eclipse.papyrus.uml.TemplateParameter"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::TemplateParameterSubstitution" elementTypeID="org.eclipse.papyrus.uml.TemplateParameterSubstitution"/>
+  <ownedFilter xsi:type="filters:CompoundFilter" name="pertains to Profile NodeSet" filter="//@ownedFilter.29/@ownedFilter.0 //@ownedFilter.29/@ownedFilter.1" operator="or">
+    <ownedFilter xsi:type="umlfilters:ProfileApplied" name="NodeSet is applied in context" profileQualifiedName="NodeSet" profileURI="platform:/resource/at.ac.tuwien.auto.modelua.papyrus.opcua.profile/resources/profile/UANodeSet.profile.uml#_4NQh8M2DEeq3ytc5nEBEpg"/>
+    <ownedFilter xsi:type="assistant:AssistedElementTypeFilter"/>
+  </ownedFilter>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="DataTypeField" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeField"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UANodeSetType" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UANodeSetType"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UriTable" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UriTable"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="ModelTableEntry" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.ModelTableEntry"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="RolePermission" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.RolePermission"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UAObject" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAObject"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UAInstance" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAInstance"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Reference" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.Reference"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Actor" elementTypeID="org.eclipse.papyrus.uml.Actor"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Artifact" elementTypeID="org.eclipse.papyrus.uml.Artifact"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::BehavioredClassifier" elementTypeID="org.eclipse.papyrus.uml.BehavioredClassifier"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Classifier" elementTypeID="org.eclipse.papyrus.uml.Classifier"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Collaboration" elementTypeID="org.eclipse.papyrus.uml.Collaboration"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::DataType" elementTypeID="org.eclipse.papyrus.uml.DataType"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::DeploymentSpecification" elementTypeID="org.eclipse.papyrus.uml.DeploymentSpecification"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::EncapsulatedClassifier" elementTypeID="org.eclipse.papyrus.uml.EncapsulatedClassifier"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Enumeration" elementTypeID="org.eclipse.papyrus.uml.Enumeration"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::InformationItem" elementTypeID="org.eclipse.papyrus.uml.InformationItem"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::PrimitiveType" elementTypeID="org.eclipse.papyrus.uml.PrimitiveType"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Signal" elementTypeID="org.eclipse.papyrus.uml.Signal"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::StructuredClassifier" elementTypeID="org.eclipse.papyrus.uml.StructuredClassifier"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::UseCase" elementTypeID="org.eclipse.papyrus.uml.UseCase"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UAVariable" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAVariable"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="TranslationType" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.TranslationType"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="StructureTranslationType" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.StructureTranslationType"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UAMethod" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAMethod"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UAMethodArgument" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAMethodArgument"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UAView" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAView"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UAObjectType" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAObjectType"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UAVariableType" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAVariableType"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UADataType" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UADataType"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UAReferenceType" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAReferenceType"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="NameSpace" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.NameSpace"/>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeDefinition" filter="//@popupAssistant.0/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.0/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeField" filter="//@popupAssistant.1/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.1/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UANodeSetType" filter="//@popupAssistant.2/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.2/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.16 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UriTable" filter="//@popupAssistant.3/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.3/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.ModelTableEntry" filter="//@popupAssistant.4/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.4/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.RolePermission" filter="//@popupAssistant.5/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.5/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAObject" filter="//@popupAssistant.6/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.6/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAInstance" filter="//@popupAssistant.7/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.7/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAVariable" filter="//@popupAssistant.8/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.8/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.TranslationType" filter="//@popupAssistant.9/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.9/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.StructureTranslationType" filter="//@popupAssistant.10/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.10/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAMethod" filter="//@popupAssistant.11/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.11/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAMethodArgument" filter="//@popupAssistant.12/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.12/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAView" filter="//@popupAssistant.13/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.13/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAObjectType" filter="//@popupAssistant.14/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.14/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAVariableType" filter="//@popupAssistant.15/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.15/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UADataType" filter="//@popupAssistant.16/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.16/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAReferenceType" filter="//@popupAssistant.17/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.17/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.NameSpace" filter="//@popupAssistant.18/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.18/@ownedFilter/@ownedFilter.0">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.16 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <connectionAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.Reference" sourceFilter="//@connectionAssistant.0/@ownedSourceFilter" targetFilter="//@connectionAssistant.0/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" name="source UANode" filter="//@ownedFilter.60 //@ownedFilter.36 //@ownedFilter.55 //@ownedFilter.35 //@ownedFilter.58 //@ownedFilter.61 //@ownedFilter.52 //@ownedFilter.59 //@ownedFilter.57" operator="or"/>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" name="destination UANode" filter="//@ownedFilter.60 //@ownedFilter.36 //@ownedFilter.55 //@ownedFilter.35 //@ownedFilter.58 //@ownedFilter.61 //@ownedFilter.52 //@ownedFilter.59 //@ownedFilter.57"/>
+  </connectionAssistant>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeDefinition</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeField</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UANodeSetType</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UriTable</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.ModelTableEntry</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.RolePermission</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAObject</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAInstance</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.Reference</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAVariable</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.TranslationType</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.StructureTranslationType</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAMethod</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAMethodArgument</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAView</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAObjectType</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAVariableType</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UADataType</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAReferenceType</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.NameSpace</elementTypeID>
+  <relationshipTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.Reference</relationshipTypeID>
+</assistant:ModelingAssistantProvider>

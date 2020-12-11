@@ -678,6 +678,11 @@ public class UmlToOpcUaTransformer {
 		{			
 			EcoreEList<DynamicEObjectImpl> nsList = (EcoreEList<DynamicEObjectImpl>) this.baseUmlModel.getValue(nodeSetType, "nameSpaceUris");
 			
+			if(this.baseNodeset.getNamespaceUris() != null)
+			{
+				this.baseNodeset.setNamespaceUris(new UriTableImpl());
+			}
+			
 			for(DynamicEObjectImpl nsObject : nsList )
 			{
 				Package ns = (Package) nsObject.dynamicGet(0);

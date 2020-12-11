@@ -126,16 +126,23 @@ public class UmlToOpcUaTransformer {
 		else if(object instanceof Model)
 		{
 			Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
-			Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
-			
-			DynamicEObjectImpl stereotype = (DynamicEObjectImpl) object.getStereotypeApplication(nodeSetType);
-			if(stereotype != null)
+			if(nodeSetProfile != null)
 			{
-				return_val=transformUANodeSetType((Model) object);
-				if(return_val)
+				Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
+				
+				DynamicEObjectImpl stereotype = (DynamicEObjectImpl) object.getStereotypeApplication(nodeSetType);
+				if(stereotype != null)
 				{
-					return_val &= transformModel((Model) object);
-				}
+					return_val=transformUANodeSetType((Model) object);
+					if(return_val)
+					{
+						return_val &= transformModel((Model) object);
+					}
+				}				
+			}
+			else
+			{
+				return_val = false;
 			}
 		}
 		else if(object instanceof Package)

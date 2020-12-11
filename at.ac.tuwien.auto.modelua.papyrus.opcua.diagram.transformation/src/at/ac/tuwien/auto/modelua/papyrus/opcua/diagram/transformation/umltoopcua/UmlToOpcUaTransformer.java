@@ -1693,7 +1693,7 @@ public class UmlToOpcUaTransformer {
 				convertedString = convertedString + "," + String.valueOf(dimension);
 			}
 							
-			dtf.setArrayDimensions(convertedString.substring(1));
+			dtf.setArrayDimensions(convertedString);
 			
 		}
 		else

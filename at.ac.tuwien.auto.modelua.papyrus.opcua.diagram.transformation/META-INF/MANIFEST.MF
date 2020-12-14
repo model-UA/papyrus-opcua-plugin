@@ -17,10 +17,12 @@ Require-Bundle: org.eclipse.ui,
  at.ac.tuwien.auto.modelua.papyrus.opcua.libraries;bundle-version="1.0.0",
  at.ac.tuwien.auto.modelua.papyrus.opcua.console,
  org.eclipse.core.resources;bundle-version="3.13.700",
- org.eclipse.emf.transaction;bundle-version="1.9.1"
+ org.eclipse.emf.transaction;bundle-version="1.9.1",
+ org.eclipse.e4.core.services;bundle-version="2.2.300"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: at.ac.at.tuwien.modelua.papyrus.opcua.diagram.transformation
 Bundle-ActivationPolicy: lazy
-Import-Package: at.ac.tuwien.auto.modelua.papyrus.opcua.preferences
+Import-Package: at.ac.tuwien.auto.modelua.papyrus.opcua.preferences,
+ org.eclipse.e4.core.services.events
 Export-Package: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation,
  at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation

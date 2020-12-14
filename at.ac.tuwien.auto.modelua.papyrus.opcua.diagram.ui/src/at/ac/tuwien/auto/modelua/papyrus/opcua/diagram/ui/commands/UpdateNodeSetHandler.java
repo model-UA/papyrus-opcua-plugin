@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.OpcUaDiagramTransformationResources;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.SynchHandler;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.Utils;
+import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.jobs.UpdateNodeSetJob;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceProvider;
 
 public class UpdateNodeSetHandler extends AbstractHandler {
@@ -16,12 +17,6 @@ public class UpdateNodeSetHandler extends AbstractHandler {
 	private static final String FILEDIALOG_TITLE ="Select Nodeset file";
 	private static final String[] FILEDIALOG_EXTENSIONS = { "*.xml" };
 	
-	private static final String SUCCESS_TITLE ="NodeSet Update";
-	private static final String SUCCESS_TEXT ="NodeSet updated successfully";
-
-	private static final String ERROR_TITLE ="NodeSet Update Error";
-	private static final String ERROR_TEXT ="An error occured while updating the Nodeset, please check the error logs!";
-
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// has to done before opening the file dialog otherwise the handle will be lost
@@ -50,17 +45,8 @@ public class UpdateNodeSetHandler extends AbstractHandler {
 			{
 				return null;
 			}
-			
-			boolean success = handler.updateNodeSetFrom(uri, filepath);
-			
-			if(success)
-			{				
-				Utils.openSuccessDialog(shell, SUCCESS_TITLE, SUCCESS_TEXT);
-			}
-			else
-			{
-				Utils.openErrorDialog(shell, ERROR_TITLE, ERROR_TEXT);
-			}
+			UpdateNodeSetJob job = new UpdateNodeSetJob(uri, filepath, shell);
+			job.schedule();
 		}
 		return null;
 	}

@@ -103,23 +103,371 @@ public class OpcUaToUmlTransformer {
 		return cmd.getCommandResult();
 	}
 	
+
+	public int calculateWorkunits(UANodeSetType nodeset)
+	{
+		int workunits = 0;
+    	ArrayList<UAInstance> uaInstanceReferences = new ArrayList<UAInstance>();
+		
+		if(nodeset.getNamespaceUris() != null) {    		
+			workunits += nodeset.getNamespaceUris().getUri().size();
+    	}		
+		if(nodeset.getAliases() != null) {    		
+			workunits += nodeset.getAliases().getAlias().size();
+    	}
+		
+		// Todo: calculate workunits for purging old elements
+				
+		if(nodeset.getUAObjectType() != null || this.baseNodeset.getUAObjectType() != null)
+    	{ 
+    		EList<UAObjectType> uaTypes = nodeset.getUAObjectType();
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		if(uaTypes != null)
+    		{
+				for(UAObjectType t : uaTypes)
+	    		{
+					workunits++;
+	    			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+	    			{
+	    				workunits++;
+	    			}
+	    			
+	    			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+	    			{
+	    				workunits++;
+	    			}
+	    			nodeIds.add(t.getNodeId());
+	    		}
+    		}
+    		
+    		if(this.baseNodeset.getUAObjectType() != null)
+        	{   
+    			uaTypes = this.baseNodeset.getUAObjectType();
+
+        		for(UAObjectType type : uaTypes)
+        		{
+        			if(!nodeIds.contains(type.getNodeId()))
+        			{
+        				workunits++;
+        			}
+        		}
+        	}
+    		
+    	}
+		
+		if(nodeset.getUAVariableType() != null || this.baseNodeset.getUAVariableType() != null)
+    	{ 
+    		EList<UAVariableType> uaTypes = nodeset.getUAVariableType();
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		if(uaTypes != null)
+    		{    			
+    			for(UAVariableType t : uaTypes)
+    			{
+    				workunits++;
+    				if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+    				{
+    					workunits++;
+    				}
+    				
+    				if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+    				{
+    					workunits++;
+    				}
+    				nodeIds.add(t.getNodeId());
+    			}
+    		}
+    		
+    		if(this.baseNodeset.getUAVariableType() != null)
+        	{   
+    			uaTypes = this.baseNodeset.getUAVariableType();
+
+        		for(UAVariableType type : uaTypes)
+        		{
+        			if(!nodeIds.contains(type.getNodeId()))
+        			{
+        				workunits++;
+        			}
+        		}
+        	}
+    	}
+		
+		if(nodeset.getUAReferenceType() != null || this.baseNodeset.getUAReferenceType() != null)
+    	{ 
+    		EList<UAReferenceType> uaTypes = nodeset.getUAReferenceType();
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		if(uaTypes != null)
+    		{
+				for(UAReferenceType t : uaTypes)
+	    		{
+					workunits+=3;
+	    			
+	    			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+	    			{
+	    				workunits++;
+	    			}
+	    			nodeIds.add(t.getNodeId());
+	    		}
+    		}
+    		
+    		if(this.baseNodeset.getUAVariableType() != null)
+        	{   
+    			uaTypes = this.baseNodeset.getUAReferenceType();
+
+        		for(UAReferenceType type : uaTypes)
+        		{
+        			if(!nodeIds.contains(type.getNodeId()))
+        			{
+        				workunits++;
+        			}
+        		}
+        	}
+    	}
+		
+		if(nodeset.getUADataType() != null || this.baseNodeset.getUADataType() != null)
+    	{ 
+    		EList<UADataType> uaTypes = nodeset.getUADataType();
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		if(uaTypes != null)
+    		{    			
+    			for(UADataType t : uaTypes)
+    			{
+    				workunits++;
+    				if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+    				{
+    					workunits++;
+    				}
+    				
+    				if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+    				{
+    					workunits++;
+    				}
+    				
+    				if(t.getDefinition() != null )
+    				{
+    					workunits++;
+    				}
+    				nodeIds.add(t.getNodeId());
+    			}
+    		}
+    		
+    		if(this.baseNodeset.getUADataType() != null)
+        	{   
+    			uaTypes = this.baseNodeset.getUADataType();
+
+        		for(UADataType type : uaTypes)
+        		{
+        			if(!nodeIds.contains(type.getNodeId()))
+        			{
+        				workunits++;
+        			}
+        		}
+        	}
+    	}
+		
+		if(nodeset.getUAObject() != null || this.baseNodeset.getUAObject() != null)
+    	{
+			EList<UAObject> uaObjects = nodeset.getUAObject();
+			ArrayList<String> nodeIds = new ArrayList<String>();
+			
+			if(uaObjects != null)
+			{
+	    		for(UAObject t : uaObjects)
+	    		{
+	    			if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+	    			{
+	    				uaInstanceReferences.add(t);
+	    				workunits++;
+	    			}
+	    			
+	    			if(t.getParentNodeId() != null && t.getParentNodeId().length() > 0)
+	    			{
+	    				workunits++;
+	    			}
+	    			
+	    			if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+	    			{
+	    				workunits++;
+	    			}
+	    			nodeIds.add(t.getNodeId());
+	    		}
+			}
+			
+			if(this.baseNodeset.getUAObject() != null)
+        	{   
+				uaObjects = this.baseNodeset.getUAObject();
+
+        		for(UAObject type : uaObjects)
+        		{
+        			if(!nodeIds.contains(type.getNodeId()))
+        			{
+        				workunits++;
+        			}
+        		}
+        	}
+    	}
+		
+		if(nodeset.getUAVariable() != null|| this.baseNodeset.getUAVariable() != null)
+    	{	
+			EList<UAVariable> uaVariables = nodeset.getUAVariable();
+			ArrayList<String> nodeIds = new ArrayList<String>();
+			if(uaVariables != null)
+			{				
+				for(UAVariable t : uaVariables)
+				{
+					if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+					{
+						uaInstanceReferences.add(t);
+						workunits++;
+					}
+					if((t.getParentNodeId() != null && t.getParentNodeId().length() > 0) ||
+							t.getDataType() != null && t.getDataType().length() > 0)
+					{
+						workunits++;
+					}
+					
+					if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+					{
+						workunits++;
+					}
+					nodeIds.add(t.getNodeId());
+				}
+			}
+			
+
+			if(this.baseNodeset.getUAVariable() != null)
+        	{   
+				uaVariables = this.baseNodeset.getUAVariable();
+
+        		for(UAVariable type : uaVariables)
+        		{
+        			if(!nodeIds.contains(type.getNodeId()))
+        			{
+        				workunits++;
+        			}
+        		}
+        	}
+    	}  
+		
+		if(nodeset.getUAMethod() != null || this.baseNodeset.getUAMethod() != null)
+    	{    		
+    		EList<UAMethod> uaMethods = nodeset.getUAMethod();
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		if(uaMethods != null)
+    		{    			
+    			for(UAMethod t : uaMethods)
+    			{
+    				if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+    				{
+    					uaInstanceReferences.add(t);
+    					workunits++;
+    				}
+    				if(t.getParentNodeId() != null && t.getParentNodeId().length() > 0)
+    				{
+    					workunits++;
+    				}
+    				if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+    				{
+    					workunits++;
+    				}
+    				if(t.getMethodDeclarationId() != null && t.getMethodDeclarationId().length() > 0 && 
+    						!uaInstanceReferences.contains(t))
+    				{
+    					uaInstanceReferences.add(t);
+    					workunits++;
+    				}
+    				nodeIds.add(t.getNodeId());
+    			}
+    		}
+    		
+    		if(this.baseNodeset.getUAMethod() != null)
+        	{   
+    			uaMethods = this.baseNodeset.getUAMethod();
+
+        		for(UAMethod type : uaMethods)
+        		{
+        			if(!nodeIds.contains(type.getNodeId()))
+        			{
+        				workunits++;
+        			}
+        		}
+        	}
+    	}
+		
+		if(nodeset.getUAView() != null || this.baseNodeset.getUAView() != null)
+    	{    		
+    		EList<UAView> uaViews = nodeset.getUAView();
+    		ArrayList<String> nodeIds = new ArrayList<String>();
+    		
+    		if(uaViews != null)
+    		{
+    			for(UAView t : uaViews)
+    			{
+    				if(t.getReferences() != null && t.getReferences().getReference().size() > 0 )
+    				{
+    					workunits++;
+    				}
+    				if(t.getParentNodeId() != null && t.getParentNodeId().length() > 0)
+    				{
+    					uaInstanceReferences.add(t);
+    					workunits++;
+    				}
+    				if(t.getRolePermissions() != null && t.getRolePermissions().getRolePermission().size() >0)
+    				{
+    					workunits++;
+    				}
+    				nodeIds.add(t.getNodeId());
+    			}    			
+    		}
+    		if(this.baseNodeset.getUAView() != null)
+        	{   
+    			uaViews = this.baseNodeset.getUAView();
+
+        		for(UAView type : uaViews)
+        		{
+        			if(!nodeIds.contains(type.getNodeId()))
+        			{
+        				workunits++;
+        			}
+        		}
+        	}
+    	}
+		
+		if(nodeset.getModels() != null )
+    	{
+			workunits += nodeset.getModels().getModel().size();
+    	}
+		
+		return workunits;
+	}
+	
 	protected boolean transformMember(UANodeSetType nodeset)
 	{
         // Implement your write operations here,
     	boolean success = true;
-
-    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_NODESET_TOPIC, true);
-
-    	if(nodeset.getNamespaceUris() != null) {    		
-    		success &= transformNamespaces(nodeset.getNamespaceUris());
-    	}
+    	int workUnits = calculateWorkunits(nodeset);
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_NODESET_TOPIC, 0, workUnits);
     	
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_NAMESPACE_TOPIC, 0);
+    	if(nodeset.getNamespaceUris() != null) {    		
+    		int namespaces = nodeset.getNamespaceUris().getUri().size();
+    		success &= transformNamespaces(nodeset.getNamespaceUris());
+    		EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_NAMESPACE_TOPIC, namespaces);
+       	}
+
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_ALIAS_TABLE_TOPIC, 0);
     	if(nodeset.getAliases() != null) {    		
+    		int aliases = nodeset.getAliases().getAlias().size();
     		success &= transformAliasTable(nodeset.getAliases());
+    		EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_ALIAS_TABLE_TOPIC, aliases);
     	}
     	
     
     	// Delete all nodes which are not part of the loaded NodeSet
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_PURGE_OLD_ELEMENTS_TOPIC, 1);
     	success &= removeMissingElements(nodeset);
     	
     	ArrayList<UANode> referenceNodes = new ArrayList<UANode>();
@@ -127,7 +475,8 @@ public class OpcUaToUmlTransformer {
     	ArrayList<UAInstance> uaInstanceReferences = new ArrayList<UAInstance>();
     	ArrayList<UADataType> dataTypeDefinitions = new ArrayList<UADataType>();
     	ArrayList<UAReferenceType> referenceTypes = new ArrayList<UAReferenceType>();
-    	
+
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAOBJECT_TYPES_TOPIC, 0);
     	if(nodeset.getUAObjectType() != null)
     	{    		
     		// adding and removing needs to be done via list otherwise 
@@ -154,6 +503,7 @@ public class OpcUaToUmlTransformer {
     				success &= transformUAObjectType(t, nodesToAdd, nodesToDelete);
     				break;
     			}
+    			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAOBJECT_TYPES_TOPIC, 1);	
     		}
     		
     		// Important first remove old elements than add new ones
@@ -162,6 +512,7 @@ public class OpcUaToUmlTransformer {
 
     	}
     	
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAVARIABLE_TYPES_TOPIC, 0);
     	if(nodeset.getUAVariableType() != null)
     	{    		
     		// adding and removing needs to be done via list otherwise 
@@ -189,6 +540,7 @@ public class OpcUaToUmlTransformer {
     				success &= transformUAVariableType(t, nodesToAdd, nodesToDelete);
     				break;
     			}
+    			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAVARIABLE_TYPES_TOPIC, 1);
     		}
     		
     		// Important first remove old elements than add new ones
@@ -196,6 +548,7 @@ public class OpcUaToUmlTransformer {
     		this.baseNodeset.getUAVariableType().addAll(nodesToAdd);
     	}
     	
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UADATA_TYPES_TOPIC, 0);
     	if(nodeset.getUADataType() != null)
     	{    		
     		// adding and removing needs to be done via list otherwise 
@@ -227,6 +580,7 @@ public class OpcUaToUmlTransformer {
     				success &= transformUADataType(t, nodesToAdd, nodesToDelete);
     				break;
     			}
+    			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UADATA_TYPES_TOPIC, 1);
     		}
     		
     		// Important first remove old elements than add new ones
@@ -234,6 +588,7 @@ public class OpcUaToUmlTransformer {
     		this.baseNodeset.getUADataType().addAll(nodesToAdd);
     	}
 		
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAREFERENCE_TYPES_TOPIC, 0);
     	if(nodeset.getUAReferenceType() != null)
     	{    		
     		// adding and removing needs to be done via list otherwise 
@@ -258,6 +613,7 @@ public class OpcUaToUmlTransformer {
     				success &= transformUAReferenceType(t, nodesToAdd, nodesToDelete);
     				break;
     			}
+    			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAREFERENCE_TYPES_TOPIC, 1);
     		}
     		
     		// Important first remove old elements than add new ones
@@ -265,7 +621,7 @@ public class OpcUaToUmlTransformer {
     		this.baseNodeset.getUAReferenceType().addAll(nodesToAdd);
     	}
     	
-    	
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAOBJECTS_TOPIC, 0);
     	if(nodeset.getUAObject() != null)
     	{
     		// adding and removing needs to be done via list otherwise 
@@ -297,14 +653,17 @@ public class OpcUaToUmlTransformer {
     				success &= transformUAObject(t, nodesToAdd, nodesToDelete);
     				break;
     			}
+    			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAOBJECTS_TOPIC, 1);
     		}
     		
     		// Important first remove old elements than add new ones
     		this.baseNodeset.getUAObject().removeAll(nodesToDelete);
     		this.baseNodeset.getUAObject().addAll(nodesToAdd);
     	}
+    	
     	// Important!
     	// UAVariable depends on DataTypes --> DataTypes need to be parsed first
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAVARIABLES_TOPIC, 0);
     	if(nodeset.getUAVariable() != null)
     	{	
     		// adding and removing needs to be done via list otherwise 
@@ -336,6 +695,7 @@ public class OpcUaToUmlTransformer {
     				success &= transformUAVariable(t, nodesToAdd, nodesToDelete);
     				break;
     			}
+    			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAVARIABLES_TOPIC, 1);
     		}
     		
     		// Important first remove old elements than add new ones
@@ -343,6 +703,7 @@ public class OpcUaToUmlTransformer {
     		this.baseNodeset.getUAVariable().addAll(nodesToAdd);
     	}  
     	
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAMETHODS_TOPIC, 0);
     	if(nodeset.getUAMethod() != null)
     	{    		
 
@@ -378,6 +739,7 @@ public class OpcUaToUmlTransformer {
     				success &= transformUAMethod(t, nodesToAdd, nodesToDelete);
     				break;
     			}
+    			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAMETHODS_TOPIC, 1);
     		}
     		// Important first remove old elements than add new ones
     		this.baseNodeset.getUAMethod().removeAll(nodesToDelete);
@@ -385,6 +747,7 @@ public class OpcUaToUmlTransformer {
     		
     	}
     	
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAVIEWS_TOPIC, 0);
     	if(nodeset.getUAView() != null)
     	{    		
 
@@ -414,6 +777,7 @@ public class OpcUaToUmlTransformer {
     				success &= transformUAView(t, nodesToAdd, nodesToDelete);
     				break;
     			}
+    			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_UAVIEWS_TOPIC, 1);
     		}
     		
     		// Important first remove old elements than add new ones
@@ -422,6 +786,7 @@ public class OpcUaToUmlTransformer {
     		
     	}
     	
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_REFERENCES_TOPIC, 0);
     	if(success)
     	{
     		success &= transformUaReferenceTypesReferences(referenceTypes);
@@ -436,23 +801,29 @@ public class OpcUaToUmlTransformer {
     	{
     		success &= transformUaInstanceReferences(uaInstanceReferences);
     	}
-    	
+
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_ROLEPERMISSIONS_TOPIC, 0);
     	if(success)
     	{
     		success &= transformRolePermissions(rolePermissionNodes);
     	}
-    	
+
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_DATATYPE_DEFINITIONS_TOPIC, 0);
     	if(success)
     	{
     		success &= transformDataTypeDefinitions(dataTypeDefinitions);
     	}
     	
     	// has to executed after transformRolePermissions as transformed rolepermissions are required
+    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_MODELS_TOPIC, 0);
     	if(success && nodeset.getModels() != null )
     	{
+    		int model_count = nodeset.getModels().getModel().size();
     		success &= transformModels(nodeset.getModels());
+    		EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_MODELS_TOPIC, model_count);
     	}
     	
+//    	EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_DONE_TOPIC, success);
     	return success;
 	}
 
@@ -717,6 +1088,7 @@ public class OpcUaToUmlTransformer {
     				toRemove.add(type);
     			}
     		}
+    		EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_PURGE_OLD_ELEMENTS_TOPIC, toRemove.size());
     		this.baseNodeset.getUAObjectType().removeAll(toRemove);
     	}
     	
@@ -743,6 +1115,7 @@ public class OpcUaToUmlTransformer {
     				toRemove.add(type);
     			}
     		}
+    		EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_PURGE_OLD_ELEMENTS_TOPIC, toRemove.size());
     		this.baseNodeset.getUAVariableType().removeAll(toRemove);
     	}
     	
@@ -769,6 +1142,7 @@ public class OpcUaToUmlTransformer {
     				toRemove.add(type);
     			}
     		}
+    		EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_PURGE_OLD_ELEMENTS_TOPIC, toRemove.size());
     		this.baseNodeset.getUADataType().removeAll(toRemove);
     	}
 		
@@ -795,6 +1169,7 @@ public class OpcUaToUmlTransformer {
     				toRemove.add(type);
     			}
     		}
+    		EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_PURGE_OLD_ELEMENTS_TOPIC, toRemove.size());
     		this.baseNodeset.getUAReferenceType().removeAll(toRemove);
     	}
     	
@@ -821,6 +1196,7 @@ public class OpcUaToUmlTransformer {
     				toRemove.add(object);
     			}
     		}
+    		EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_PURGE_OLD_ELEMENTS_TOPIC, toRemove.size());
     		this.baseNodeset.getUAObject().removeAll(toRemove);
     	}
    
@@ -847,6 +1223,7 @@ public class OpcUaToUmlTransformer {
     				toRemove.add(var);
     			}
     		}
+    		EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_PURGE_OLD_ELEMENTS_TOPIC, toRemove.size());
     		this.baseNodeset.getUAVariable().removeAll(toRemove);
     	}  
     	
@@ -873,6 +1250,7 @@ public class OpcUaToUmlTransformer {
     				toRemove.add(method);
     			}
     		}
+    		EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_PURGE_OLD_ELEMENTS_TOPIC, toRemove.size());
     		this.baseNodeset.getUAMethod().removeAll(toRemove);
     	}
     	
@@ -899,6 +1277,7 @@ public class OpcUaToUmlTransformer {
     				toRemove.add(view);
     			}
     		}
+    		EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_PURGE_OLD_ELEMENTS_TOPIC, toRemove.size());
     		this.baseNodeset.getUAView().removeAll(toRemove);
     	}
 		return true;
@@ -1231,7 +1610,7 @@ public class OpcUaToUmlTransformer {
 			}
 					
 			success &= transformDataTypeDefinition(datatype.getDefinition(), definitionClass);
-			
+			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_DATATYPE_DEFINITIONS_TOPIC, 1);
 		}
 		
 		return success;
@@ -2089,6 +2468,7 @@ public class OpcUaToUmlTransformer {
 			{
 				break;
 			}
+			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_REFERENCES_TOPIC, 1);
 		}
 		// Analyse if reference Type is a hierachical Reference Type
 		for(UAReferenceType rt : referenceTypes)
@@ -2098,6 +2478,7 @@ public class OpcUaToUmlTransformer {
 			{
 				break;
 			}
+			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_REFERENCES_TOPIC, 1);
 		}
 		
 		return success;
@@ -2244,6 +2625,7 @@ public class OpcUaToUmlTransformer {
 			{
 				break;
 			}
+			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_REFERENCES_TOPIC, 1);
 		}
 		
 		return success;
@@ -2389,7 +2771,8 @@ public class OpcUaToUmlTransformer {
 					break;
 				}	
 			}
-			
+
+			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_REFERENCES_TOPIC, 1);
 		}
 		
 		return success;
@@ -2646,6 +3029,7 @@ public class OpcUaToUmlTransformer {
 			{
 				break;
 			}
+			EventPublisher.publishEvent(OpcUaDiagramTransformationResources.EventConstants.TRANSFORM_OPCUA_ROLEPERMISSIONS_TOPIC, 1);
 		}
 		
 		return success;

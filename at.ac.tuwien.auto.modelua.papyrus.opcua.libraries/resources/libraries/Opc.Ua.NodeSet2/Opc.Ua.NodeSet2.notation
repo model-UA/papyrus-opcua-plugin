@@ -1,9 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_dozm0BzrEeuLzem4u04h0Q" type="PapyrusUMLClassDiagram" name="InformationModel" measurementUnit="Pixel">
-  <styles xmi:type="notation:StringValueStyle" xmi:id="_dozm0RzrEeuLzem4u04h0Q" name="diagram_compatibility_version" stringValue="1.4.0"/>
-  <styles xmi:type="notation:DiagramStyle" xmi:id="_dozm0hzrEeuLzem4u04h0Q"/>
-  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_dozm0xzrEeuLzem4u04h0Q" diagramKindId="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram">
-    <owner xmi:type="uml:Model" href="Opc.Ua.NodeSet2.uml#_dQJ2QBzrEeuLzem4u04h0Q"/>
-  </styles>
-  <element xmi:type="uml:Model" href="Opc.Ua.NodeSet2.uml#_dQJ2QBzrEeuLzem4u04h0Q"/>
-</notation:Diagram>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"/>

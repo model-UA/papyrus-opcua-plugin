@@ -126,16 +126,23 @@ public class UmlToOpcUaTransformer {
 		else if(object instanceof Model)
 		{
 			Profile nodeSetProfile = this.baseUmlModel.getAppliedProfile("NodeSet");
-			Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
-			
-			DynamicEObjectImpl stereotype = (DynamicEObjectImpl) object.getStereotypeApplication(nodeSetType);
-			if(stereotype != null)
+			if(nodeSetProfile != null)
 			{
-				return_val=transformUANodeSetType((Model) object);
-				if(return_val)
+				Stereotype nodeSetType   = nodeSetProfile.getOwnedStereotype("UANodeSetType");
+				
+				DynamicEObjectImpl stereotype = (DynamicEObjectImpl) object.getStereotypeApplication(nodeSetType);
+				if(stereotype != null)
 				{
-					return_val &= transformModel((Model) object);
-				}
+					return_val=transformUANodeSetType((Model) object);
+					if(return_val)
+					{
+						return_val &= transformModel((Model) object);
+					}
+				}				
+			}
+			else
+			{
+				return_val = false;
 			}
 		}
 		else if(object instanceof Package)
@@ -670,6 +677,11 @@ public class UmlToOpcUaTransformer {
 		if(this.baseUmlModel.hasValue(nodeSetType, "nameSpaceUris"))
 		{			
 			EcoreEList<DynamicEObjectImpl> nsList = (EcoreEList<DynamicEObjectImpl>) this.baseUmlModel.getValue(nodeSetType, "nameSpaceUris");
+			
+			if(this.baseNodeset.getNamespaceUris() == null)
+			{
+				this.baseNodeset.setNamespaceUris(new UriTableImpl());
+			}
 			
 			for(DynamicEObjectImpl nsObject : nsList )
 			{
@@ -1686,7 +1698,7 @@ public class UmlToOpcUaTransformer {
 				convertedString = convertedString + "," + String.valueOf(dimension);
 			}
 							
-			dtf.setArrayDimensions(convertedString.substring(1));
+			dtf.setArrayDimensions(convertedString);
 			
 		}
 		else
@@ -2016,7 +2028,7 @@ public class UmlToOpcUaTransformer {
 			String referenceTypeNode = getNodeId(referenceType);
 			uaReference.setReferenceType(referenceTypeNode);
 			
-			boolean isHierachicalReference = (boolean) referenceType.getValue(uaReferenceType, "isHierachical");
+			boolean isHierarchicalReference = (boolean) referenceType.getValue(uaReferenceType, "isHierarchical");
 			
 			Package sourcePackage = source.getNearestPackage();
 			String sourceNs = sourcePackage.getURI();
@@ -2034,9 +2046,9 @@ public class UmlToOpcUaTransformer {
 			
 			general.setValue(uaStereoType,"referenceType_symmetric", referenceType.getValue(uaReferenceType, "symmetric"));
 			general.setValue(uaStereoType,"referenceType_browseName", referenceType.getValue(uaReferenceType, "browseName"));
-			general.setValue(uaStereoType,"referenceType_isHierachical", isHierachicalReference);
+			general.setValue(uaStereoType,"referenceType_isHierarchical", isHierarchicalReference);
 			
-			if(isHierachicalReference && sourceNs.equals(targetNs))
+			if(isHierarchicalReference && sourceNs.equals(targetNs))
 			{
 				//directionChanged = false;
 				if(isForward)
@@ -2104,16 +2116,16 @@ public class UmlToOpcUaTransformer {
 				{
 					if(this.baseUmlModel.equals(target.getModel()))
 					{
-						boolean isHierachicalReferenceType = (boolean) source.getValue(uaReferenceType, "isHierachical");
-						target.setValue(uaReferenceType, "isHierachical", isHierachicalReferenceType);
+						boolean isHierarchicalReferenceType = (boolean) source.getValue(uaReferenceType, "isHierarchical");
+						target.setValue(uaReferenceType, "isHierarchical", isHierarchicalReferenceType);
 					}
 				}
 				else
 				{
 					if(this.baseUmlModel.equals(source.getModel()))
 					{
-						boolean isHierachicalReferenceType = (boolean) target.getValue(uaReferenceType, "isHierachical");
-						source.setValue(uaReferenceType, "isHierachical", isHierachicalReferenceType);
+						boolean isHierarchicalReferenceType = (boolean) target.getValue(uaReferenceType, "isHierarchical");
+						source.setValue(uaReferenceType, "isHierarchical", isHierarchicalReferenceType);
 					}
 				}
 				

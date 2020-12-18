@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.OpcUaDiagramTransformationResources;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.SynchHandler;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.Utils;
+import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.ui.jobs.UpdateNodeSetJob;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.preferences.PreferenceProvider;
 
 public class UpdateNodeSetHandler extends AbstractHandler {
@@ -16,16 +17,10 @@ public class UpdateNodeSetHandler extends AbstractHandler {
 	private static final String FILEDIALOG_TITLE ="Select Nodeset file";
 	private static final String[] FILEDIALOG_EXTENSIONS = { "*.xml" };
 	
-	private static final String SUCCESS_TITLE ="NodeSet Update";
-	private static final String SUCCESS_TEXT ="NodeSet updated successfully";
-
-	private static final String ERROR_TITLE ="NodeSet Update Error";
-	private static final String ERROR_TEXT ="An error occured while updating the Nodeset, please check the error logs!";
-
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// has to done before opening the file dialog otherwise the handle will be lost
-		URI uriWithoutExtension = Utils.getModelPath(event);
+		URI uri = Utils.getModelPath(event);
 		
 		if(OpcUaDiagramTransformationResources.DIAGRAM_SYNCH_HANDLER == null)
 		{
@@ -34,7 +29,7 @@ public class UpdateNodeSetHandler extends AbstractHandler {
 		
 		SynchHandler handler = OpcUaDiagramTransformationResources.DIAGRAM_SYNCH_HANDLER;
 		
-		if(handler.modelIsRegistered(uriWithoutExtension))
+		if(handler.modelIsRegistered(uri))
 		{			
 			Shell shell = Utils.getShell(event);
 			
@@ -45,22 +40,13 @@ public class UpdateNodeSetHandler extends AbstractHandler {
 				defaultPath = Utils.getWorkspacePath();
 			}
 			
-			String filepath = Utils.openFileDialoag(shell, FILEDIALOG_TITLE, false, defaultPath, FILEDIALOG_EXTENSIONS, uriWithoutExtension.lastSegment());
+			String filepath = Utils.openFileDialoag(shell, FILEDIALOG_TITLE, false, defaultPath, FILEDIALOG_EXTENSIONS, uri.lastSegment());
 			if(filepath == null)
 			{
 				return null;
 			}
-			
-			boolean success = handler.updateNodeSetFrom(uriWithoutExtension, filepath);
-			
-			if(success)
-			{				
-				Utils.openSuccessDialog(shell, SUCCESS_TITLE, SUCCESS_TEXT);
-			}
-			else
-			{
-				Utils.openErrorDialog(shell, ERROR_TITLE, ERROR_TEXT);
-			}
+			UpdateNodeSetJob job = new UpdateNodeSetJob(uri, filepath, shell);
+			job.schedule();
 		}
 		return null;
 	}

@@ -84,7 +84,7 @@ StereotypeComment Compartment[type=StereotypeCompartment][stereotype="NodeSet::R
    visible: false;
 }
 
-StereotypeComment Compartment[type=StereotypeCompartment][stereotype="NodeSet::Reference"]>[property="referenceType_isHierachical"]{
+StereotypeComment Compartment[type=StereotypeCompartment][stereotype="NodeSet::Reference"]>[property="referenceType_isHierarchical"]{
    visible: false;
 }
 
@@ -96,23 +96,23 @@ StereotypeComment Compartment[type=StereotypeCompartment][stereotype="NodeSet::R
 	targetDecoration: "ReferenceTypeDecorator";
 }
 
-[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=false][isForward=false] {
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierarchical=false][isForward=false] {
 	sourceDecoration:"ReferenceTypeDecorator";	
 	targetDecoration:"none";
 }
 
-[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=false][isForward=true] {
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierarchical=false][isForward=true] {
 	sourceDecoration:"none";
 	targetDecoration:"ReferenceTypeDecorator";
 }
 
 /* Decorators for Hierarchical References */
-[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=true][isForward=false] {
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierarchical=true][isForward=false] {
 	sourceDecoration:"HierachicalReferenceTypeDecorator";
 	targetDecoration:"none";
 }
 
-[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierachical=true][isForward=true] {
+[appliedStereotypes~="NodeSet::Reference"][referenceType_symmetric=false][referenceType_isHierarchical=true][isForward=true] {
 	sourceDecoration:"none";
 	targetDecoration:"HierachicalReferenceTypeDecorator";
 }

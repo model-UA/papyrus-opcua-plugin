@@ -26,7 +26,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: at.ac.at.tuwien.modelua.papyrus.opcua.diagram.transformation
 Bundle-ActivationPolicy: lazy
 Import-Package: at.ac.tuwien.auto.modelua.papyrus.opcua.preferences,
- org.eclipse.e4.core.services.events,
  at.ac.tuwien.auto.modelua.papyrus.opcua.profile
 Export-Package: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation,
  at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation

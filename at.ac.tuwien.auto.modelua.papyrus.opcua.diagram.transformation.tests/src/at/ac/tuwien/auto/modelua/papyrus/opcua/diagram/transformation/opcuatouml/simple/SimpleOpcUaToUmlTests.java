@@ -38,7 +38,7 @@ import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAVariableImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAVariableTypeImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UAViewImpl;
 import org.opcfoundation.ua._2011._03.ua.UANodeSet.impl.UriTableImpl;
-
+import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.EventPublisher;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.opcuatouml.TransformerHandler;
 import at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.util.ModelCreator;
 
@@ -71,6 +71,7 @@ class SimpleOpcUaToUmlTests{
 		nodeIdMap = new HashMap<String, Element>();
 		
 		testObject = new TransformerHandler(umlTestModel, opcUaTestNodeset, matching, nodeIdMap);
+		EventPublisher.enableEvents(false);
 	}
 
 	/**

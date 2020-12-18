@@ -34,6 +34,7 @@ public class Activator extends AbstractUIPlugin {
 		nodeSetUmlSynchHandler = new SynchHandler();
 		nodeSetChangedListener = new FileChangeListener();
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(nodeSetChangedListener);
+		EventPublisher.enableEvents(true);
 	}
 
 	@Override

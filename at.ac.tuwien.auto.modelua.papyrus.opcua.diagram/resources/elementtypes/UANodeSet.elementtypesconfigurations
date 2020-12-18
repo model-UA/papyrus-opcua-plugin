@@ -140,6 +140,15 @@
     </matcherConfiguration>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_G43K8EEYEeuM3uqxa18tUA" description="Generalization between UANodes " identifier="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UANode_Generalization" name="UANode Generalization" hint="Generalization Edge" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <matcherConfiguration xmi:type="elementtypesconfigurations:MatcherConfiguration" xmi:id="_8NcUoEEYEeuM3uqxa18tUA" matcherClassName="at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.matchers.UANodeGeneralizationMatcher"/>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Generalization_Edge"/>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.elementtypesconfigurations#at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.Reference"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_b_3Z4EEYEeuM3uqxa18tUA" description="Generalization Edge between UANodes " identifier="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UANode_Generalization_Edge" name="UANode Generalization Edge" hint="Generalization_Edge" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/at.ac.tuwien.auto.modelua.papyrus.opcua.diagram/resources/elementtypes/UANodeSet.elementtypesconfigurations#_G43K8EEYEeuM3uqxa18tUA"/>
+    <specializedTypes xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Generalization_Edge"/>
+  </elementTypeConfigurations>
   <adviceBindingsConfigurations xmi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration" xmi:id="_J3NPyCfjEeuWR-ION5aZDg" description="Apply Stereotype DataTypeDefinition" identifier="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.dataTypeDefinition" target="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeDefinition">
     <stereotypesToApply xmi:type="applystereotypeadvice:StereotypeToApply" xmi:id="_J3NPySfjEeuWR-ION5aZDg" stereotypeQualifiedName="NodeSet::DataTypeDefinition" updateName="true">
       <requiredProfiles>NodeSet</requiredProfiles>

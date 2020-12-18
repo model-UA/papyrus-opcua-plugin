@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<assistant:ModelingAssistantProvider xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:assistant="http://www.eclipse.org/Papyrus/2014/diagram/assistant" xmlns:filters="http://www.eclipse.org/Papyrus/2014/common/filters" xmlns:umlfilters="http://www.eclipse.org/Papyrus/2014/uml/filters" name="NodeSet">
+<assistant:ModelingAssistantProvider xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:assistant="http://www.eclipse.org/Papyrus/2014/diagram/assistant" xmlns:filters="http://www.eclipse.org/Papyrus/2014/common/filters" xmlns:umlfilters="http://www.eclipse.org/Papyrus/2014/uml/filters" name="NodeSet" clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext">
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="DataTypeDefinition" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeDefinition"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::Activity" elementTypeID="org.eclipse.papyrus.uml.Activity"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UML::AssociationClassBase" elementTypeID="org.eclipse.papyrus.uml.AssociationClassBase"/>
@@ -66,6 +66,7 @@
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UADataType" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UADataType"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="UAReferenceType" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAReferenceType"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="NameSpace" elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.NameSpace"/>
+  <ownedFilter xsi:type="filters:CompoundFilter" name="isUANode" filter="//@ownedFilter.58" operator="or"/>
   <popupAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeDefinition" filter="//@popupAssistant.0/@ownedFilter">
     <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.29 //@popupAssistant.0/@ownedFilter/@ownedFilter.0">
       <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.11 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.16 //@ownedFilter.17 //@ownedFilter.18 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.23 //@ownedFilter.24 //@ownedFilter.25 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
@@ -161,9 +162,9 @@
       <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.6 //@ownedFilter.7 //@ownedFilter.8 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.16 //@ownedFilter.19 //@ownedFilter.20 //@ownedFilter.21 //@ownedFilter.22 //@ownedFilter.26 //@ownedFilter.27 //@ownedFilter.28" operator="or"/>
     </ownedFilter>
   </popupAssistant>
-  <connectionAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.Reference" sourceFilter="//@connectionAssistant.0/@ownedSourceFilter" targetFilter="//@connectionAssistant.0/@ownedTargetFilter">
-    <ownedSourceFilter xsi:type="filters:CompoundFilter" name="source UANode" filter="//@ownedFilter.60 //@ownedFilter.36 //@ownedFilter.55 //@ownedFilter.35 //@ownedFilter.58 //@ownedFilter.61 //@ownedFilter.52 //@ownedFilter.59 //@ownedFilter.57" operator="or"/>
-    <ownedTargetFilter xsi:type="filters:CompoundFilter" name="destination UANode" filter="//@ownedFilter.60 //@ownedFilter.36 //@ownedFilter.55 //@ownedFilter.35 //@ownedFilter.58 //@ownedFilter.61 //@ownedFilter.52 //@ownedFilter.59 //@ownedFilter.57"/>
+  <connectionAssistant elementTypeID="at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UANode_Generalization_Edge" sourceFilter="//@connectionAssistant.0/@ownedSourceFilter" targetFilter="//@connectionAssistant.0/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" name="source UANode" filter="//@ownedFilter.63" operator="or"/>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" name="destination UANode" filter="//@ownedFilter.63" operator="or"/>
   </connectionAssistant>
   <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeDefinition</elementTypeID>
   <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.DataTypeField</elementTypeID>
@@ -185,5 +186,9 @@
   <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UADataType</elementTypeID>
   <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UAReferenceType</elementTypeID>
   <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.NameSpace</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UANode_Generalization</elementTypeID>
+  <elementTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UANode_Generalization_Edge</elementTypeID>
   <relationshipTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.Reference</relationshipTypeID>
+  <relationshipTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UANode_Generalization</relationshipTypeID>
+  <relationshipTypeID>at.ac.tuwien.auto.modelua.papyrus.opcua.nodeset.UANode_Generalization_Edge</relationshipTypeID>
 </assistant:ModelingAssistantProvider>

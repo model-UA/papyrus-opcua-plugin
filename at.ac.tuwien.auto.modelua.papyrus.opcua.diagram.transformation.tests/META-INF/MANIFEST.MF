@@ -6,3 +6,4 @@ Bundle-Version: 1.0.0.qualifier
 Fragment-Host: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation;bundle-version="1.0.0"
 Automatic-Module-Name: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation.tests
 Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: at.ac.tuwien.auto.modelua.papyrus.opcua.diagram.transformation

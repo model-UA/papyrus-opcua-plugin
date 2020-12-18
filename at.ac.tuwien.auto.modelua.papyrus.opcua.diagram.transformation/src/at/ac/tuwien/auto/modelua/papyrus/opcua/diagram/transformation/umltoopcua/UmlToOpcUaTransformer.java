@@ -2009,7 +2009,7 @@ public class UmlToOpcUaTransformer {
 		
 		boolean isForward = uaReference.isIsForward();
 		boolean isForwardOld = isForward;
-		//if(general.hasValue(uaStereoType,"isForward"))
+		if(general.hasValue(uaStereoType,"isForward"))
 		{
 			isForward =(boolean) general.getValue(uaStereoType,"isForward");
 		}
@@ -2143,6 +2143,7 @@ public class UmlToOpcUaTransformer {
 		if(refList == null)
 		{
 			src.setReferences(new ListOfReferencesImpl());
+			refList = src.getReferences();
 		}
 		boolean contains = refList.getReference().contains(uaReference);
 		if(!contains)

@@ -43,5 +43,11 @@
           name="NodeSet"
           point="org.eclipse.papyrus.infra.newchild">
       <menuCreationModel model="resources/elementtypes/newChildMenu.xmi"></menuCreationModel>
+    </extension>
+    <extension
+          point="org.eclipse.papyrus.infra.gmfdiag.assistant.modelProviders">
+       <modelProvider
+             uri="resources/assistants/UANodeSet.assistants">
+       </modelProvider>
     </extension>  
 </plugin>
